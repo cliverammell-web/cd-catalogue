@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Classical CD Catalogue</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --navy:#1B2B5B;--navy-mid:#2d4080;--navy-light:#e8edf8;--navy-xlight:#f0f4fc;
+  --cream:#FAF7F2;--cream-dark:#f0ebe0;
+  --gold:#C4972A;--gold-light:#fdf3da;
+  --text:#1a1a2e;--text-mid:#4a4a6a;--text-light:#8888aa;
+  --border:#ddd8cc;--white:#fff;
+  --green:#1e7a4a;--green-bg:#eaf7f0;
+  --red:#b83232;--red-bg:#fdf0f0;
+  --radius:10px;--radius-lg:14px;
+}
+html{font-size:16px}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+
+/* ── HEADER ── */
+header{background:var(--navy);padding:1.2rem 1rem 1rem;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,0.25)}
+.header-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem}
+header h1{color:var(--white);font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;letter-spacing:0.02em}
+header h1 span{color:var(--gold);font-style:italic}
+.header-count{color:rgba(255,255,255,0.5);font-size:0.75rem;white-space:nowrap}
+
+/* ── SEARCH ── */
+.search-wrap{position:relative}
+.search-wrap svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:var(--text-light);fill:none;stroke-width:2.5;pointer-events:none}
+#search{width:100%;padding:0.85rem 3rem 0.85rem 2.75rem;border:none;border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:1rem;background:rgba(255,255,255,0.12);color:var(--white);outline:none;-webkit-appearance:none}
+#search::placeholder{color:rgba(255,255,255,0.45)}
+#search:focus{background:rgba(255,255,255,0.2)}
+#clear-search{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.2);border:none;border-radius:50%;width:24px;height:24px;color:white;font-size:14px;cursor:pointer;display:none;align-items:center;justify-content:center;line-height:1}
+#clear-search.visible{display:flex}
+
+/* ── FILTER BAR ── */
+.filter-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0.6rem 1rem;display:flex;gap:0.5rem;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.filter-bar::-webkit-scrollbar{display:none}
+.filter-chip{padding:0.35rem 0.75rem;border:1px solid var(--border);border-radius:20px;font-size:0.78rem;white-space:nowrap;background:var(--white);color:var(--text-mid);cursor:pointer;font-family:'DM Sans',sans-serif}
+.filter-chip.active{background:var(--navy);color:var(--white);border-color:var(--navy)}
+
+/* ── RESULTS BAR ── */
+.results-bar{padding:0.6rem 1rem;display:flex;justify-content:space-between;align-items:center}
+.results-count{font-size:0.78rem;color:var(--text-light)}
+.sort-btn{font-size:0.78rem;color:var(--navy);background:none;border:none;font-family:'DM Sans',sans-serif;cursor:pointer;padding:0.2rem 0.5rem;border:1px solid var(--border);border-radius:20px}
+
+/* ── CARDS ── */
+.cards{padding:0 0.75rem 2rem;display:flex;flex-direction:column;gap:0.6rem}
+
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:box-shadow 0.15s}
+.card:active{box-shadow:0 2px 8px rgba(27,43,91,0.15)}
+.card.duplicate{border-left:3px solid var(--gold)}
+
+.card-main{padding:0.9rem 1rem;cursor:pointer;display:flex;gap:0.75rem;align-items:flex-start}
+.card-num{min-width:28px;height:28px;background:var(--navy-xlight);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72rem;color:var(--navy-mid);font-weight:500;flex-shrink:0;margin-top:1px}
+.card-body{flex:1;min-width:0}
+.card-title{font-weight:500;font-size:0.95rem;line-height:1.3;color:var(--text);margin-bottom:0.2rem;word-break:break-word}
+.card-artist{font-size:0.8rem;color:var(--text-mid);margin-bottom:0.35rem;line-height:1.4}
+.card-meta{display:flex;flex-wrap:wrap;gap:0.3rem;align-items:center}
+.pill{display:inline-block;padding:0.15rem 0.5rem;border-radius:20px;font-size:0.7rem;line-height:1.4}
+.pill-composer{background:var(--navy-xlight);color:var(--navy-mid)}
+.pill-label{background:var(--cream-dark);color:var(--text-mid)}
+.pill-format{background:var(--gold-light);color:#7a5a0a}
+.pill-dupe{background:#fff3cd;color:#7a5a0a}
+.card-price{text-align:right;flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:0.25rem}
+.price-used{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:500;color:var(--navy);white-space:nowrap}
+.price-label{font-size:0.65rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.05em}
+.expand-icon{font-size:1rem;color:var(--text-light);margin-top:0.25rem;transition:transform 0.2s}
+.card.open .expand-icon{transform:rotate(180deg)}
+
+.card-detail{display:none;padding:0 1rem 1rem 1rem;border-top:1px solid var(--border);margin-top:0}
+.card.open .card-detail{display:block}
+.detail-section{margin-top:0.75rem}
+.detail-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-light);margin-bottom:0.25rem}
+.detail-text{font-size:0.82rem;color:var(--text-mid);line-height:1.6;font-style:italic}
+.detail-prices{display:flex;gap:1.5rem;margin-top:0.75rem;padding:0.65rem 0.75rem;background:var(--navy-xlight);border-radius:var(--radius)}
+.detail-price-item{display:flex;flex-direction:column}
+.detail-price-val{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--navy)}
+.detail-price-lbl{font-size:0.68rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.05em}
+
+/* ── EMPTY / NO RESULTS ── */
+.no-results{text-align:center;padding:3rem 1.5rem}
+.no-results-icon{font-size:2.5rem;margin-bottom:0.75rem}
+.no-results h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--text-mid);margin-bottom:0.5rem}
+.no-results p{font-size:0.85rem;color:var(--text-light)}
+.not-found-msg{display:none;text-align:center;margin:0.5rem 1rem;padding:0.75rem;background:var(--red-bg);border-radius:var(--radius);color:var(--red);font-size:0.85rem;font-weight:500}
+.not-found-msg.visible{display:block}
+
+/* ── STATS (bottom) ── */
+.stats-footer{background:var(--navy);color:rgba(255,255,255,0.7);font-size:0.75rem;padding:1rem;display:grid;grid-template-columns:1fr 1fr;gap:0.75rem}
+.stat-item{display:flex;flex-direction:column;gap:0.1rem}
+.stat-val{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--white)}
+.stat-val.gold{color:var(--gold)}
+
+/* ── DESKTOP: two column cards ── */
+@media(min-width:640px){
+  .cards{display:grid;grid-template-columns:1fr 1fr;padding:1rem;gap:0.75rem}
+  .stats-footer{grid-template-columns:repeat(4,1fr)}
+  header{padding:1.2rem 1.5rem 1rem}
+  header h1{font-size:1.7rem}
+  .filter-bar{padding:0.6rem 1.5rem}
+  .results-bar{padding:0.6rem 1.5rem}
+}
+@media(min-width:1024px){
+  .cards{grid-template-columns:1fr 1fr 1fr;padding:1rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-row">
+    <h1>Classical <span>CD</span> Catalogue</h1>
+    <span class="header-count" id="header-count">37 CDs</span>
+  </div>
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="search" id="search" placeholder="Search composer, artist, title…" autocomplete="off" autocorrect="off" spellcheck="false">
+    <button id="clear-search" onclick="clearSearch()" aria-label="Clear search">✕</button>
+  </div>
+</header>
+
+<div class="filter-bar" id="filter-bar">
+  <button class="filter-chip active" data-filter="">All</button>
+  <button class="filter-chip" data-filter="J.S. Bach">J.S. Bach</button>
+  <button class="filter-chip" data-filter="Carl Philipp Emanuel Bach">CPE Bach</button>
+  <button class="filter-chip" data-filter="Tomaso Albinoni">Albinoni</button>
+  <button class="filter-chip" data-filter="Single CD">Single CD</button>
+  <button class="filter-chip" data-filter="2-disc set">2-disc sets</button>
+  <button class="filter-chip" data-filter="4-disc set">4-disc sets</button>
+</div>
+
+<div class="results-bar">
+  <span class="results-count" id="results-count"></span>
+  <button class="sort-btn" onclick="toggleSort()">Sort: <span id="sort-label">№</span></button>
+</div>
+
+<div class="not-found-msg" id="not-found-msg">Not in your collection — safe to buy!</div>
+
+<div class="cards" id="cards"></div>
+
+<div class="no-results" id="no-results" style="display:none">
+  <div class="no-results-icon">🎵</div>
+  <h3>Not in your collection</h3>
+  <p>Safe to buy!</p>
+</div>
+
+<div class="stats-footer">
+  <div class="stat-item"><div class="stat-val" id="s-total">37</div><div>Total CDs</div></div>
+  <div class="stat-item"><div class="stat-val gold" id="s-value">—</div><div>Collection value (used)</div></div>
+  <div class="stat-item"><div class="stat-val" id="s-avg">—</div><div>Average used price</div></div>
+  <div class="stat-item"><div class="stat-val" id="s-comp">—</div><div>Composers</div></div>
+</div>
+
+<script>
+const catalogue = [
+  {id:1,label:"RCA Victor Red Seal",composers:["Enrique Granados","Isaac Albéniz"],artist:"Julian Bream (guitar)",title:"Julian Bream Edition – Music of Spain",description:"Granados & Albéniz",format:"Single CD",usedGBP:7.10,newGBP:null,notes:"RCA Red Seal. Bream was the defining interpreter of Spanish guitar repertoire for a generation. Part of the acclaimed 28-disc Julian Bream Edition."},
+  {id:2,label:"Philips",composers:["Juan Crisóstomo de Arriaga"],artist:"Guarneri Quartet",title:"Arriaga: The String Quartets (Nos. 1–3)",description:"",format:"Single CD",usedGBP:41.00,newGBP:null,notes:"Philips. A recognised collector's item — the Guarneri Quartet's recording has become so sought-after that unused copies command very high prices. Arriaga, who died aged 19, has been called the Spanish Mozart."},
+  {id:3,label:"Deutsche Grammophon",composers:["Tomaso Albinoni","Johann Pachelbel","J.S. Bach","Antonio Vivaldi","W.A. Mozart","C.W. Gluck"],artist:"Berliner Philharmoniker / Herbert von Karajan",title:"Albinoni: Adagio · Pachelbel: Canon",description:"+ Bach Air · Vivaldi La Notte · Mozart Serenata notturna · Gluck Dance of Blessed Spirits",format:"Single CD",usedGBP:9.45,newGBP:18.90,notes:"Deutsche Grammophon. One of DG's bestselling classical compilations ever. Karajan's 1973–74 recordings with the Berlin Philharmonic remain a popular benchmark for Baroque orchestral favourites."},
+  {id:4,label:"Philips (Gold Double)",composers:["Tomaso Albinoni"],artist:"I Musici · Maurice André · Heinz Holliger",title:"Adagio and Allegro – Albinoni Concertos",description:"Compilation spanning recordings 1960–93",format:"Single CD",usedGBP:5.50,newGBP:null,notes:"Philips Gold Double. I Musici were the ensemble that brought Vivaldi's Four Seasons to mass audiences. This compilation draws on their landmark Albinoni sessions for Philips spanning 1960–93."},
+  {id:5,label:"Decca (L'Oiseau-Lyre)",composers:["Tomaso Albinoni"],artist:"Andrew Manze · Academy of Ancient Music / Christopher Hogwood",title:"Albinoni: 12 Concertos, Op. 9",description:"First recording on period instruments · 2-disc set",format:"2-disc set",usedGBP:22.10,newGBP:null,notes:"Decca / L'Oiseau-Lyre. First complete recording of Op.9 on period instruments. Praised for spectacular performances — Manze's violin described as incomparable."},
+  {id:6,label:"Zig Zag Territoires / Alpha",composers:["Tomaso Albinoni"],artist:"Ensemble 415 / Chiara Banchini (violin & direction)",title:"Albinoni: Sinfonie a Cinque, Op. 2",description:"rec. Église Évangélique Allemande, Paris, 2008",format:"Single CD",usedGBP:11.05,newGBP:null,notes:"Zig Zag Territoires / Alpha. Ensemble 415 isolates the sonatas from Op.2 in an unmistakably chamber-oriented setting. Praised for appealing simplicity and charming sophistication (The Strad, Jan 2009)."},
+  {id:7,label:"Hyperion",composers:["J.S. Bach"],artist:"Angela Hewitt (piano)",title:"Bach: The Well-Tempered Clavier (Books 1 & 2)",description:"CDA67741/4 · 2008 recording · 4-disc set",format:"4-disc set",usedGBP:26.85,newGBP:null,notes:"Hyperion CDA67741/4. Hewitt's second recording of the 48, made fresh from her 58-city Bach World Tour. Gramophone: 'digs deeper, with more personalised poetry.' BBC Music Magazine: 'Her best Bach yet.'"},
+  {id:8,label:"Decca",composers:["J.S. Bach"],artist:"András Schiff (piano)",title:"Bach: The Well-Tempered Clavier, Book I",description:"BWV 846–869 · 2-disc set · rec. Walthamstow, 1984",format:"2-disc set",usedGBP:9.45,newGBP:15.80,notes:"Decca. Schiff's 1984 Walthamstow recording remains a touchstone of modern piano Bach. The New York Times described Schiff as a phenomenon — he doesn't so much perform Bach as emit, breathe it."},
+  {id:9,label:"Decca",composers:["J.S. Bach"],artist:"András Schiff (piano)",title:"Bach: The Well-Tempered Clavier, Book II",description:"BWV 870–893 · 2-disc set · rec. 1985",format:"2-disc set",usedGBP:9.45,newGBP:15.80,notes:"Decca. Companion volume to Book I; recorded 1985. Both Schiff WTC volumes praised as phenomenon performances."},
+  {id:10,label:"RCA Victor Red Seal",composers:["J.S. Bach"],artist:"Sviatoslav Richter (piano)",title:"Bach: The Well-Tempered Clavier (Complete)",description:"Books I & II · live, Innsbruck 1973 · 4-disc set",format:"4-disc set",usedGBP:17.35,newGBP:18.20,notes:"RCA Victor Red Seal. Live Innsbruck 1973. One of the most celebrated WTC recordings ever made. Richter's fierce concentration and architectural sweep are considered unsurpassed by many critics."},
+  {id:11,label:"Sony Classical",composers:["J.S. Bach"],artist:"Glenn Gould (piano)",title:"A State of Wonder – The Complete Goldberg Variations",description:"1955 & 1981 recordings · 2-disc set",format:"2-disc set",usedGBP:10.25,newGBP:null,notes:"Sony Classical. Combines Gould's electrifying 1955 debut with his final 1981 recording, made just days before his death. Both are among the most influential piano recordings of the 20th century."},
+  {id:12,label:"Warner Classics",composers:["J.S. Bach"],artist:"Beatrice Rana (piano)",title:"Bach: Goldberg Variations BWV 988",description:"2017 recording",format:"Single CD",usedGBP:13.40,newGBP:15.80,notes:"Warner Classics. Gramophone praised Rana's calm maturity and sense of architecture. Le Monde: she had nothing left to prove technically. Universal critical acclaim on release in 2017."},
+  {id:13,label:"Decca (Penguin Classics)",composers:["J.S. Bach"],artist:"András Schiff (piano)",title:"Bach: Goldberg Variations BWV 988",description:"Penguin Classics reissue · rec. 1982",format:"Single CD",usedGBP:6.30,newGBP:null,notes:"Decca Penguin Classics reissue. Budget reissue of Schiff's celebrated 1982 Goldberg recording, selected by Penguin Classics as a canonical recording."},
+  {id:14,label:"Decca",composers:["J.S. Bach"],artist:"András Schiff (piano)",title:"Bach: Goldberg Variations BWV 988",description:"Goldberg Variationen · rec. 1982",format:"Single CD",usedGBP:7.10,newGBP:null,notes:"Decca. Schiff's 1982 studio recording — his first Goldberg — recorded in his early thirties. Still regarded as one of the finest modern piano accounts of this work."},
+  {id:15,label:"Sony Classical",composers:["J.S. Bach"],artist:"Murray Perahia (piano)",title:"Bach: Goldberg Variations BWV 988",description:"rec. La Chaux-de-Fonds, July 2000 · Gramophone Recording of the Month",format:"Single CD",usedGBP:7.10,newGBP:null,notes:"Sony Classical. Gramophone Recording of the Month. Perahia overcame a career-threatening hand injury to make this recording. Widely regarded as one of the great modern Goldberg Variations."},
+  {id:16,label:"Hyperion",composers:["J.S. Bach"],artist:"Angela Hewitt (piano)",title:"Bach: Goldberg Variations BWV 988",description:"CDA67305 · rec. Henry Wood Hall, London, 1999",format:"Single CD",usedGBP:12.65,newGBP:14.20,notes:"Hyperion CDA67305. Gramophone: 'she has never made a better CD.' The Guardian: 'Bach on the piano of the highest quality imaginable.'"},
+  {id:17,label:"Virgin Veritas",composers:["J.S. Bach"],artist:"Monica Huggett (baroque violin)",title:"Bach: Sonatas & Partitas BWV 1001–1006",description:"2-disc set · rec. on 1618 Amati violin, 1995–96",format:"2-disc set",usedGBP:13.40,newGBP:null,notes:"Virgin Veritas. Gramophone Award winner 1997. Huggett plays on a 1618 Amati violin. Praised for purity of sound and historically informed articulation."},
+  {id:18,label:"Dynamic",composers:["J.S. Bach"],artist:"Andrea Bacchetti (piano)",title:"Bacchetti plays Bach: Two-Part Inventions & Sinfonias",description:"and other keyboard works · CDS 629/1-2 · 2-disc set",format:"2-disc set",usedGBP:14.20,newGBP:null,notes:"Dynamic CDS 629/1-2. Bacchetti's approach praised as genuinely new post-Gould. Classical Music: 'two discs without a dull moment.'"},
+  {id:19,label:"Sony Classical",composers:["J.S. Bach"],artist:"Murray Perahia (piano)",title:"Bach: Partitas Nos. 2, 3 & 4",description:"rec. Nalepa Studios, Berlin, 2007",format:"Single CD",usedGBP:10.25,newGBP:15.75,notes:"Sony Classical. Echo Klassik Award 2010, Best Solo Recording (17th–18th century). Die Zeit: 'wonderfully floating, free and cantabile.'"},
+  {id:20,label:"Sony Classical",composers:["J.S. Bach"],artist:"Murray Perahia (piano)",title:"Bach: Partitas Nos. 1, 5 & 6",description:"rec. Rundfunkzentrum Berlin, 2008–09",format:"Single CD",usedGBP:11.05,newGBP:15.75,notes:"Sony Classical. Second volume of Perahia's Partita cycle. Die Welt praised 'a ravishing sense of rhythm.'"},
+  {id:21,label:"Hyperion",composers:["J.S. Bach"],artist:"Angela Hewitt (piano)",title:"Bach: The Six Partitas BWV 825–830",description:"CDA67191/2 · 2-disc set · rec. Hannover, 1996–97",format:"2-disc set",usedGBP:17.35,newGBP:22.90,notes:"Hyperion CDA67191/2. Gramophone: 'effortlessly eclipsing all competition.' The Sunday Times: 'formidably equipped… discs to play again and again.'"},
+  {id:22,label:"EMI Classics",composers:["J.S. Bach","Rodion Shchedrin","Eugène Ysaÿe"],artist:"Maxim Vengerov (violin)",title:"Vengerov plays Bach, Shchedrin, Ysaÿe",description:"Works for solo violin · rec. Potton Hall, 2002",format:"Single CD",usedGBP:7.90,newGBP:null,notes:"EMI Classics. Dazzling solo recital linking three composers inspired by Bach. Vengerov's Ysaÿe sonatas — fiendishly difficult — brought alive with innate musicality."},
+  {id:23,label:"EMI Classics",composers:["J.S. Bach"],artist:"Mstislav Rostropovich (cello)",title:"Bach: Cello Suites Nos. 1–6 BWV 1007–1012",description:"2-disc set · rec. Basilique Ste-Madeleine, Vézelay, 1991",format:"2-disc set",usedGBP:8.70,newGBP:null,notes:"EMI Classics. Rostropovich prefaces each suite with spoken commentary. Recorded at Vézelay — its natural resonance perfectly suits the music."},
+  {id:24,label:"Sony Classical",composers:["J.S. Bach"],artist:"Murray Perahia (piano)",title:"Bach: The Complete English Suites Nos. 1–6",description:"BWV 806–811 · 2-disc digipak · rec. La Chaux-de-Fonds, 1997–98",format:"2-disc set",usedGBP:11.85,newGBP:null,notes:"Sony Classical. Grammy Award winner (English Suites Nos. 1, 3 & 6). Part of Perahia's acclaimed decade-long Bach project for Sony (1997–2009)."},
+  {id:25,label:"Sony Classical",composers:["J.S. Bach"],artist:"Murray Perahia · Academy of St Martin in the Fields",title:"Bach: Keyboard Concertos Nos. 3, 5, 6 & 7",description:"SK89690 · rec. Air Studios, Lyndhurst Hall, London, 2000",format:"Single CD",usedGBP:7.90,newGBP:null,notes:"Sony Classical SK89690. Vol. 2 of Perahia's Bach concerto series. Praised as reference versions for those who desire these works on the concert grand."},
+  {id:26,label:"EMI Classics",composers:["J.S. Bach"],artist:"Heinrich Schiff (cello)",title:"Bach: Cello Suites Nos. 1–6 BWV 1007–1012",description:"2-disc set · rec. Evangelische Kirche, Seeon, 1984",format:"2-disc set",usedGBP:5.50,newGBP:null,notes:"EMI Classics. ClassicsToday Reference Recording. 'Arrestingly individual, musically profound and sonically sumptuous.' Originally deleted; revived for EMI's Double Forte budget series."},
+  {id:27,label:"EMI Classics (Digital)",composers:["J.S. Bach","W.A. Mozart","Domenico Scarlatti","Franz Schubert"],artist:"Dinu Lipatti (piano)",title:"Lipatti: Bach · Mozart · Scarlatti · Schubert",description:"rec. Radio-Genève & Abbey Road, 1947 & 1950",format:"Single CD",usedGBP:7.10,newGBP:null,notes:"EMI Digital. Legendary recordings from 1947 and 1950 — Lipatti died of leukaemia aged 33. Never out of catalogue since his death. Producer Walter Legge called them beyond criticism."},
+  {id:28,label:"Deutsche Grammophon",composers:["J.S. Bach"],artist:"Nathan Milstein (violin)",title:"Bach: Sonatas & Partitas for Solo Violin BWV 1001–1006",description:"457 701-2 · 2-disc set · rec. Conway Hall, London, 1973",format:"2-disc set",usedGBP:11.05,newGBP:null,notes:"Deutsche Grammophon 457 701-2. Milstein's playing — constantly flawless, aristocratic and elegant. His special affinity for the Bach unaccompanied works is abundantly clear. Now out of print."},
+  {id:29,label:"Deutsche Grammophon",composers:["J.S. Bach"],artist:"Mischa Maisky (cello) · Martha Argerich (piano)",title:"Bach: Cello Sonatas BWV 1027–1029",description:"rec. Munich, Residenz, 1985",format:"Single CD",usedGBP:8.00,newGBP:null,duplicate:true,notes:"Deutsche Grammophon. One of the great chamber partnerships on record. Maisky's warm tone and Argerich's mercurial pianism make this enduringly compelling. ⚠ Two copies in collection."},
+  {id:30,label:"Decca",composers:["J.S. Bach"],artist:"Julia Fischer (violin) · Academy of St Martin in the Fields",title:"Bach: Violin Concertos",description:"BWV 1041, 1042, 1043, 1060 · rec. St Paul's, Deptford, 2008",format:"Single CD",usedGBP:10.00,newGBP:14.20,notes:"Decca. Fischer's Decca debut. The Times: 'there is only Julia Fischer.' Gramophone 2008: 'technically awe-inspiring, wonderfully imaginative.' Fischer won the Bach prize at the Menuhin Competition aged eleven."},
+  {id:31,label:"Deutsche Grammophon",composers:["J.S. Bach"],artist:"Hilary Hahn (violin) · Matthias Goerne (baritone) · Christine Schäfer (soprano)",title:"Bach: Violin and Voice",description:"rec. Himmelfahrtskirche, München-Sendling, 2008–09",format:"Single CD",usedGBP:10.00,newGBP:null,notes:"Deutsche Grammophon. Hahn records Bach violin obbligati exclusively — an act of devotion no other violinist had committed to disc. Works drawn from the St Matthew Passion and Mass in B minor."},
+  {id:32,label:"BBC Music Magazine (cover CD)",composers:["Carl Philipp Emanuel Bach"],artist:"Rachel Podger · Kristian Bezuidenhout · Katy Bircher · Bojan Čičić",title:"CPE Bach: Chamber Works",description:"Live, BBC Proms, Cadogan Hall, London, 28 July 2014",format:"Single CD",usedGBP:4.00,newGBP:null,notes:"BBC Music Magazine cover disc — 'Not for resale' printed on CD. Recorded live at the Proms for CPE Bach's 300th anniversary. Collector value only; rarely traded commercially."},
+  {id:33,label:"Deutsche Grammophon (Panorama)",composers:["J.S. Bach"],artist:"Reinhard Goebel · Musica Antiqua Köln · Simon Standage · Trevor Pinnock",title:"Johann Sebastian Bach: Panorama",description:"Brandenburg Concertos · Violin Concertos · Harpsichord Concertos · 2-disc set",format:"2-disc set",usedGBP:7.00,newGBP:null,notes:"DG Panorama budget series. Classical Music: 'no more thrilling survey of the Brandenburgs than Goebel's 1987 cycle — whirlwind performances, unfailingly polished and stylish.'"},
+  {id:34,label:"Virgin Classics",composers:["J.S. Bach"],artist:"Ralph Kirshbaum (cello)",title:"Bach: Cello Suites Nos. 1–6 BWV 1007–1012",description:"2-disc set · rec. January 1993",format:"2-disc set",usedGBP:6.00,newGBP:null,notes:"Virgin Classics. ClassicsToday: 'first class release.' Kirshbaum observes all of Bach's repeats with tasteful, expressive embellishments. His slightly gruff yet compelling sonority is beautifully engineered."},
+  {id:35,label:"Naxos",composers:["J.S. Bach"],artist:"Kolja Blacher · Christine Pichlmeier · Lisa Stewart · Cologne Chamber Orchestra / Helmut Müller-Brühl",title:"Bach: Violin Concertos",description:"BWV 1041, 1042, 1043, 1052 · Naxos 8.554603",format:"Single CD",usedGBP:5.00,newGBP:6.30,notes:"Naxos budget label. Solid, well-recorded performances at a fraction of mainstream prices. Müller-Brühl and the Cologne Chamber Orchestra were one of the label's most prolific early partnerships."},
+  {id:36,label:"EMI Classics",composers:["J.S. Bach"],artist:"Itzhak Perlman & Pinchas Zukerman (violins) · English Chamber Orchestra / Daniel Barenboim",title:"Bach: Violin Concertos in A minor, E & G minor; Double Concerto in D minor",description:"rec. Abbey Road, London, 1971 & 1974",format:"Single CD",usedGBP:4.00,newGBP:null,notes:"EMI Classics. Cheap as chips (Discogs median under £2) yet star-studded — Perlman and Zukerman at their peak, Barenboim conducting the ECO. Recordings from 1971–74 now in the public domain."},
+  {id:37,label:"Hyperion",composers:["Carl Philipp Emanuel Bach"],artist:"Rachel Brown (flute) · The Brandenburg Consort / Roy Goodman",title:"CPE Bach: Flute Concertos",description:"CDA67226 · Concertos in A, D minor & G · rec. August 2000",format:"Single CD",usedGBP:11.00,newGBP:13.99,notes:"Hyperion CDA67226. BBC Music Magazine: 'performances it would be hard to better.' Gramophone: 'a recording to treasure.' Brown uses a Quantz-style baroque flute at A=392Hz with Bach's own cadenzas."}
+];
+
+let activeFilter='', sortMode=0, filtered=[...catalogue];
+const sortModes=[{key:'id',label:'№'},{key:'title',label:'A–Z'},{key:'usedGBP',label:'Price ↑'},{key:'usedGBPd',label:'Price ↓'}];
+
+function fmt(n){return n!=null?'£'+n.toFixed(2):null}
+
+function search(){
+  const q=(document.getElementById('search').value||'').toLowerCase().trim();
+  const btn=document.getElementById('clear-search');
+  btn.classList.toggle('visible', q.length>0);
+
+  filtered=catalogue.filter(cd=>{
+    const filterOk = !activeFilter ||
+      cd.composers.includes(activeFilter) ||
+      cd.format===activeFilter;
+    if(!filterOk) return false;
+    if(!q) return true;
+    const hay=[cd.title,cd.artist,cd.label,...cd.composers,cd.description||''].join(' ').toLowerCase();
+    return hay.includes(q);
+  });
+
+  const sm=sortModes[sortMode];
+  filtered.sort((a,b)=>{
+    if(sm.key==='id') return a.id-b.id;
+    if(sm.key==='title') return a.title.localeCompare(b.title);
+    if(sm.key==='usedGBP') return a.usedGBP-b.usedGBP;
+    if(sm.key==='usedGBPd') return b.usedGBP-a.usedGBP;
+    return 0;
+  });
+
+  render(q);
+}
+
+function render(q){
+  const container=document.getElementById('cards');
+  const noRes=document.getElementById('no-results');
+  const notFound=document.getElementById('not-found-msg');
+  const resCount=document.getElementById('results-count');
+
+  if(!filtered.length){
+    container.innerHTML='';
+    noRes.style.display='block';
+    notFound.classList.add('visible');
+  } else {
+    noRes.style.display='none';
+    notFound.classList.remove('visible');
+  }
+
+  resCount.textContent = q||activeFilter
+    ? `${filtered.length} of ${catalogue.length} CDs`
+    : `${catalogue.length} CDs`;
+
+  container.innerHTML=filtered.map(cd=>{
+    const composers=cd.composers.map(c=>`<span class="pill pill-composer">${c}</span>`).join('');
+    const dupeBadge=cd.duplicate?`<span class="pill pill-dupe">⚠ Duplicate</span>`:'';
+    return `<div class="card${cd.duplicate?' duplicate':''}" id="card-${cd.id}">
+      <div class="card-main" onclick="toggle(${cd.id})">
+        <div class="card-num">${cd.id}</div>
+        <div class="card-body">
+          <div class="card-title">${cd.title}</div>
+          <div class="card-artist">${cd.artist}</div>
+          <div class="card-meta">
+            ${composers}
+            <span class="pill pill-label">${cd.label}</span>
+            <span class="pill pill-format">${cd.format}</span>
+            ${dupeBadge}
+          </div>
+        </div>
+        <div class="card-price">
+          <div class="price-label">Used</div>
+          <div class="price-used">${fmt(cd.usedGBP)}</div>
+          <div class="expand-icon">⌄</div>
+        </div>
+      </div>
+      <div class="card-detail">
+        <div class="detail-prices">
+          <div class="detail-price-item">
+            <div class="detail-price-val">${fmt(cd.usedGBP)}</div>
+            <div class="detail-price-lbl">Used (median)</div>
+          </div>
+          ${cd.newGBP?`<div class="detail-price-item">
+            <div class="detail-price-val">${fmt(cd.newGBP)}</div>
+            <div class="detail-price-lbl">New</div>
+          </div>`:''}
+        </div>
+        ${cd.description?`<div class="detail-section"><div class="detail-label">Details</div><div class="detail-text">${cd.description}</div></div>`:''}
+        <div class="detail-section"><div class="detail-label">Notes</div><div class="detail-text">${cd.notes}</div></div>
+      </div>
+    </div>`;
+  }).join('');
+
+  updateStats();
+}
+
+function toggle(id){
+  const card=document.getElementById('card-'+id);
+  if(card) card.classList.toggle('open');
+}
+
+function clearSearch(){
+  document.getElementById('search').value='';
+  search();
+}
+
+function toggleSort(){
+  sortMode=(sortMode+1)%sortModes.length;
+  document.getElementById('sort-label').textContent=sortModes[sortMode].label;
+  search();
+}
+
+document.querySelectorAll('.filter-chip').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-chip').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter=btn.dataset.filter;
+    search();
+  });
+});
+
+document.getElementById('search').addEventListener('input',search);
+
+function updateStats(){
+  const total=filtered.length;
+  const val=filtered.reduce((s,c)=>s+c.usedGBP,0);
+  const avg=total?val/total:0;
+  const comps=new Set(filtered.flatMap(c=>c.composers)).size;
+  document.getElementById('s-total').textContent=total;
+  document.getElementById('s-value').textContent='£'+val.toFixed(2);
+  document.getElementById('s-avg').textContent='£'+avg.toFixed(2);
+  document.getElementById('s-comp').textContent=comps;
+  document.getElementById('header-count').textContent=total+' CDs';
+}
+
+search();
+</script>
+</body>
+</html>
