@@ -200,7 +200,7 @@ header h1 span{color:var(--gold);font-style:italic}
     <div class="modal-img-wrap" id="modal-img-wrap">
       <div class="modal-spinner">⏳</div>
     </div>
-    <div class="modal-footer">Source: MusicBrainz Cover Art Archive</div>
+    <div class="modal-footer">Source: iTunes Search API · Results may vary by pressing</div>
   </div>
 </div>
 <script>
@@ -450,46 +450,28 @@ async function showCover(id, event){
   if(!cd) return;
   const modal = document.getElementById('cover-modal');
   const wrap  = document.getElementById('modal-img-wrap');
-  const title = document.getElementById('modal-title');
-  title.textContent = cd.title + ' · ' + cd.artist;
+  document.getElementById('modal-title').textContent = cd.title + ' · ' + cd.artist;
   wrap.innerHTML = '<div class="modal-spinner">⏳</div>';
   modal.classList.add('open');
   try {
-    // Search MusicBrainz for the release
-    const artist = cd.artist.split('·')[0].split('/')[0].trim();
-    const q = encodeURIComponent(`"${cd.title}" artist:"${artist}"`);
-    const res = await fetch(
-      `https://musicbrainz.org/ws/2/release/?query=${q}&limit=8&fmt=json`,
-      {headers:{'Accept':'application/json'}}
-    );
+    // Build search term: first composer + key title words + first artist name
+    const composer = cd.composers[0] || '';
+    const artist   = cd.artist.split('·')[0].split('/')[0].trim();
+    const titleWords = cd.title.replace(/[^\w\s]/g,' ').split(' ')
+                        .filter(w=>w.length>2).slice(0,4).join(' ');
+    const term = encodeURIComponent(`${composer} ${titleWords} ${artist}`.trim());
+    // iTunes Search API — free, no auth, CORS open
+    const url = `https://itunes.apple.com/search?term=${term}&media=music&entity=album&limit=10`;
+    const res  = await fetch(url);
     const data = await res.json();
-    // Find first release that has cover art
-    const releases = (data.releases||[]);
-    let mbid = null;
-    for(const r of releases){
-      if(r['cover-art-archive'] && r['cover-art-archive'].count > 0){
-        mbid = r.id; break;
-      }
-    }
-    if(!mbid && releases.length) mbid = releases[0].id;
-    if(!mbid) throw new Error('Not found');
-    // Try to load the image
-    const imgUrl = `https://coverartarchive.org/release/${mbid}/front-250`;
+    const results = (data.results||[]).filter(r=>r.artworkUrl100);
+    if(!results.length) throw new Error('No results');
+    // Use highest quality artwork (replace 100x100 with 600x600)
+    const imgUrl = results[0].artworkUrl100.replace('100x100bb','600x600bb');
     const img = new Image();
-    img.onload = ()=>{
-      wrap.innerHTML='';
-      wrap.appendChild(img);
-    };
-    img.onerror = ()=>{
-      // Try without -250 suffix
-      const img2 = new Image();
-      img2.onload = ()=>{ wrap.innerHTML=''; wrap.appendChild(img2); };
-      img2.onerror = ()=>{ wrap.innerHTML='<div class="modal-error">Cover art not found<br><span style="font-size:1.5rem">💿</span></div>'; };
-      img2.src = `https://coverartarchive.org/release/${mbid}/front`;
-      img2.style.width='100%';
-    };
+    img.onload = ()=>{ wrap.innerHTML=''; img.style.width='100%'; wrap.appendChild(img); };
+    img.onerror = ()=>{ wrap.innerHTML='<div class="modal-error">Cover art not found<br><span style="font-size:1.5rem">💿</span></div>'; };
     img.src = imgUrl;
-    img.style.width = '100%';
   } catch(e) {
     wrap.innerHTML = '<div class="modal-error">Cover art not available<br><span style="font-size:1.5rem">💿</span></div>';
   }
