@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Classical CD Catalogue</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="CD Catalogue">
+<meta name="theme-color" content="#1B2B5B">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --navy:#1B2B5B;--navy-mid:#2d4080;--navy-light:#e8edf8;--navy-xlight:#f0f4fc;
+  --cream:#FAF7F2;--cream-dark:#f0ebe0;
+  --gold:#C4972A;--gold-light:#fdf3da;
+  --text:#1a1a2e;--text-mid:#4a4a6a;--text-light:#8888aa;
+  --border:#ddd8cc;--white:#fff;
+  --green:#1e7a4a;--green-bg:#eaf7f0;
+  --red:#b83232;--red-bg:#fdf0f0;
+  --radius:10px;--radius-lg:14px;
+}
+html{font-size:16px}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+
+/* ── HEADER ── */
+header{background:var(--navy);padding:1.2rem 1rem 1rem;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,0.25)}
+.header-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem}
+header h1{color:var(--white);font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;letter-spacing:0.02em}
+header h1 span{color:var(--gold);font-style:italic}
+.header-count{color:rgba(255,255,255,0.5);font-size:0.75rem;white-space:nowrap}
+
+/* ── SEARCH ── */
+.search-wrap{position:relative}
+.search-wrap svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:var(--text-light);fill:none;stroke-width:2.5;pointer-events:none}
+#search{width:100%;padding:0.85rem 3rem 0.85rem 2.75rem;border:none;border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:1rem;background:rgba(255,255,255,0.12);color:var(--white);outline:none;-webkit-appearance:none}
+#search::placeholder{color:rgba(255,255,255,0.45)}
+#search:focus{background:rgba(255,255,255,0.2)}
+#clear-search{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.2);border:none;border-radius:50%;width:24px;height:24px;color:white;font-size:14px;cursor:pointer;display:none;align-items:center;justify-content:center;line-height:1}
+#clear-search.visible{display:flex}
+
+/* ── FILTER BAR ── */
+.filter-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0.6rem 1rem;display:flex;gap:0.5rem;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.filter-bar::-webkit-scrollbar{display:none}
+.filter-chip{padding:0.35rem 0.75rem;border:1px solid var(--border);border-radius:20px;font-size:0.78rem;white-space:nowrap;background:var(--white);color:var(--text-mid);cursor:pointer;font-family:'DM Sans',sans-serif}
+.filter-chip.active{background:var(--navy);color:var(--white);border-color:var(--navy)}
+
+/* ── RESULTS BAR ── */
+.results-bar{padding:0.6rem 1rem;display:flex;justify-content:space-between;align-items:center}
+.results-count{font-size:0.78rem;color:var(--text-light)}
+.sort-btn{font-size:0.78rem;color:var(--navy);background:none;border:none;font-family:'DM Sans',sans-serif;cursor:pointer;padding:0.2rem 0.5rem;border:1px solid var(--border);border-radius:20px}
+
+/* ── CARDS ── */
+.cards{padding:0 0.75rem 2rem;display:flex;flex-direction:column;gap:0.6rem}
+
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:box-shadow 0.15s}
+.card:active{box-shadow:0 2px 8px rgba(27,43,91,0.15)}
+.card.duplicate{border-left:3px solid var(--gold)}
+
+.card-main{padding:0.9rem 1rem;cursor:pointer;display:flex;gap:0.75rem;align-items:flex-start}
+.card-num{min-width:28px;height:28px;background:var(--navy-xlight);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72rem;color:var(--navy-mid);font-weight:500;flex-shrink:0;margin-top:1px}
+.card-body{flex:1;min-width:0}
+.card-title{font-weight:500;font-size:0.95rem;line-height:1.3;color:var(--text);margin-bottom:0.2rem;word-break:break-word}
+.card-artist{font-size:0.8rem;color:var(--text-mid);margin-bottom:0.35rem;line-height:1.4}
+.card-meta{display:flex;flex-wrap:wrap;gap:0.3rem;align-items:center}
+.pill{display:inline-block;padding:0.15rem 0.5rem;border-radius:20px;font-size:0.7rem;line-height:1.4}
+.pill-composer{background:var(--navy-xlight);color:var(--navy-mid)}
+.pill-label{background:var(--cream-dark);color:var(--text-mid)}
+.pill-format{background:var(--gold-light);color:#7a5a0a}
+.pill-dupe{background:#fff3cd;color:#7a5a0a}
+.card-price{text-align:right;flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:0.25rem}
+.price-used{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:500;color:var(--navy);white-space:nowrap}
+.price-label{font-size:0.65rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.05em}
+.expand-icon{font-size:1rem;color:var(--text-light);margin-top:0.25rem;transition:transform 0.2s}
+.card.open .expand-icon{transform:rotate(180deg)}
+
+.card-detail{display:none;padding:0 1rem 1rem 1rem;border-top:1px solid var(--border);margin-top:0}
+.card.open .card-detail{display:block}
+.detail-section{margin-top:0.75rem}
+.detail-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-light);margin-bottom:0.25rem}
+.detail-text{font-size:0.82rem;color:var(--text-mid);line-height:1.6;font-style:italic}
+.detail-prices{display:flex;gap:1.5rem;margin-top:0.75rem;padding:0.65rem 0.75rem;background:var(--navy-xlight);border-radius:var(--radius)}
+.detail-price-item{display:flex;flex-direction:column}
+.detail-price-val{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--navy)}
+.detail-price-lbl{font-size:0.68rem;color:var(--text-light);text-transform:uppercase;letter-spacing:0.05em}
+
+/* ── EMPTY / NO RESULTS ── */
+.no-results{text-align:center;padding:3rem 1.5rem}
+.no-results-icon{font-size:2.5rem;margin-bottom:0.75rem}
+.no-results h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--text-mid);margin-bottom:0.5rem}
+.no-results p{font-size:0.85rem;color:var(--text-light)}
+.not-found-msg{display:none;text-align:center;margin:0.5rem 1rem;padding:0.75rem;background:var(--red-bg);border-radius:var(--radius);color:var(--red);font-size:0.85rem;font-weight:500}
+.not-found-msg.visible{display:block}
+
+/* ── STATS (bottom) ── */
+.filter-chip-dupe{border-color:#c4972a;color:#7a5a0a}
+.filter-chip-dupe.active{background:#c4972a;border-color:#c4972a;color:white}
+.filter-chip-restore{border-color:#b83232;color:#b83232;font-size:0.75rem}
+
+.catno-row{display:flex;align-items:center;gap:0.5rem}
+.catno-edit-btn{background:none;border:none;font-size:0.8rem;cursor:pointer;padding:0;opacity:0.6;line-height:1}
+.catno-edit-btn:active{opacity:1}
+.catno-input{width:100%;padding:0.5rem 0.65rem;border:1.5px solid var(--navy);border-radius:var(--radius);font-family:"DM Sans",sans-serif;font-size:0.85rem;margin-top:0.35rem;outline:none}
+.delete-btn{width:100%;margin-top:0.9rem;padding:0.7rem;background:none;border:1.5px solid #b83232;border-radius:var(--radius);color:#b83232;font-family:"DM Sans",sans-serif;font-size:0.85rem;font-weight:500;cursor:pointer;letter-spacing:0.02em}
+.delete-btn:active{background:#fdf0f0}
+.delete-confirm{display:none;margin-top:0.6rem;padding:0.75rem;background:#fdf0f0;border-radius:var(--radius);text-align:center}
+.delete-confirm.visible{display:block}
+.delete-confirm p{font-size:0.82rem;color:#b83232;margin-bottom:0.6rem}
+.delete-confirm-btns{display:flex;gap:0.5rem;justify-content:center}
+.btn-yes{padding:0.45rem 1.2rem;background:#b83232;color:white;border:none;border-radius:var(--radius);font-family:"DM Sans",sans-serif;font-size:0.82rem;cursor:pointer}
+.btn-no{padding:0.45rem 1.2rem;background:none;border:1.5px solid var(--border);border-radius:var(--radius);font-family:"DM Sans",sans-serif;font-size:0.82rem;cursor:pointer;color:var(--text-mid)}
+.stats-footer{background:var(--navy);color:rgba(255,255,255,0.7);font-size:0.75rem;padding:1rem;display:grid;grid-template-columns:1fr 1fr;gap:0.75rem}
+.stat-item{display:flex;flex-direction:column;gap:0.1rem}
+.stat-val{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--white)}
+.stat-val.gold{color:var(--gold)}
+
+/* ── DESKTOP: two column cards ── */
+@media(min-width:640px){
+  .cards{display:grid;grid-template-columns:1fr 1fr;padding:1rem;gap:0.75rem}
+  .stats-footer{grid-template-columns:repeat(4,1fr)}
+  header{padding:1.2rem 1.5rem 1rem}
+  header h1{font-size:1.7rem}
+  .filter-bar{padding:0.6rem 1.5rem}
+  .results-bar{padding:0.6rem 1.5rem}
+}
+@media(min-width:1024px){
+  .cards{grid-template-columns:1fr 1fr 1fr;padding:1rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-row">
+    <h1>Classical <span>CD</span> Catalogue</h1>
+    <span class="header-count" id="header-count">37 CDs</span>
+  </div>
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="search" id="search" placeholder="Search composer, artist, title…" autocomplete="off" autocorrect="off" spellcheck="false">
+    <button id="clear-search" onclick="clearSearch()" aria-label="Clear search">✕</button>
+  </div>
+</header>
+
+<div class="filter-bar" id="filter-bar">
+  <button class="filter-chip active" data-filter="">All</button>
+  <button class="filter-chip" data-filter="J.S. Bach">J.S. Bach</button>
+  <button class="filter-chip" data-filter="Carl Philipp Emanuel Bach">CPE Bach</button>
+  <button class="filter-chip" data-filter="Tomaso Albinoni">Albinoni</button>
+  <button class="filter-chip" data-filter="Single CD">Single CD</button>
+  <button class="filter-chip" data-filter="2-disc set">2-disc sets</button>
+  <button class="filter-chip" data-filter="4-disc set">4-disc sets</button>
+  <button class="filter-chip filter-chip-dupe" data-filter="duplicate">⚠ Duplicates</button>
+  <button class="filter-chip filter-chip-restore" id="restore-btn" onclick="showRestoreConfirm()" style="display:none">&#x21A9; Restore deleted (<span id="restore-count">0</span>)</button>
+</div>
+
+<div class="results-bar">
+  <span class="results-count" id="results-count"></span>
+  <button class="sort-btn" onclick="toggleSort()">Sort: <span id="sort-label">№</span></button>
+</div>
+
+<div id="restore-confirm" style="display:none;margin:0.5rem 1rem;padding:0.85rem;background:#fff3cd;border-radius:10px;border:1px solid #c4972a">
+  <p style="font-size:0.85rem;color:#7a5a0a;margin-bottom:0.6rem;font-weight:500">Restore all deleted CDs to the catalogue?</p>
+  <div style="display:flex;gap:0.5rem">
+    <button onclick="confirmRestore()" style="flex:1;padding:0.55rem;background:#c4972a;color:white;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.85rem;cursor:pointer">Yes, restore all</button>
+    <button onclick="hideRestoreConfirm()" style="flex:1;padding:0.55rem;background:none;border:1.5px solid #c4972a;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.85rem;cursor:pointer;color:#7a5a0a">Cancel</button>
+  </div>
+</div>
+<div class="not-found-msg" id="not-found-msg">Not in your collection — safe to buy!</div>
+
+<div class="cards" id="cards"></div>
+
+<div class="no-results" id="no-results" style="display:none">
+  <div class="no-results-icon">🎵</div>
+  <h3>Not in your collection</h3>
+  <p>Safe to buy!</p>
+</div>
+
+<div class="stats-footer">
+  <div class="stat-item"><div class="stat-val" id="s-total">37</div><div>Total CDs</div></div>
+  <div class="stat-item"><div class="stat-val gold" id="s-value">—</div><div>Collection value (used)</div></div>
+  <div class="stat-item"><div class="stat-val" id="s-avg">—</div><div>Average used price</div></div>
+  <div class="stat-item"><div class="stat-val" id="s-comp">—</div><div>Composers</div></div>
+</div>
+
+      <button class="modal-close" onclick="document.getElementById('cover-modal').classList.remove('open')">✕</button>
+    </div>
+    <div class="modal-img-wrap" id="modal-img-wrap">
+      <div class="modal-spinner">⏳</div>
+    </div>
+    
+  </div>
+</div>
+<script>
+const catalogue = [
+  {id:1,label:"RCA Victor Red Seal",composers:["Enrique Granados","Isaac Albéniz"],artist:"Julian Bream (guitar)",title:"Julian Bream Edition – Music of Spain",description:"Granados & Albéniz",format:"Single CD",catNo:"",usedGBP:7.10,newGBP:null,notes:"RCA Red Seal. Bream was the defining interpreter of Spanish guitar repertoire for a generation. Part of the acclaimed 28-disc Julian Bream Edition."},
+  {id:2,label:"Philips",composers:["Juan Crisóstomo de Arriaga"],artist:"Guarneri Quartet",title:"Arriaga: The String Quartets (Nos. 1–3)",description:"",format:"Single CD",catNo:"416 466-2",usedGBP:41.00,newGBP:null,notes:"Philips. A recognised collector's item — the Guarneri Quartet's recording has become so sought-after that unused copies command very high prices. Arriaga, who died aged 19, has been called the Spanish Mozart."},
+  {id:3,label:"Deutsche Grammophon",composers:["Tomaso Albinoni","Johann Pachelbel","J.S. Bach","Antonio Vivaldi","W.A. Mozart","C.W. Gluck"],artist:"Berliner Philharmoniker / Herbert von Karajan",title:"Albinoni: Adagio · Pachelbel: Canon",description:"+ Bach Air · Vivaldi La Notte · Mozart Serenata notturna · Gluck Dance of Blessed Spirits",format:"Single CD",catNo:"410 606-2",usedGBP:9.45,newGBP:18.90,notes:"Deutsche Grammophon. One of DG's bestselling classical compilations ever. Karajan's 1973–74 recordings with the Berlin Philharmonic remain a popular benchmark for Baroque orchestral favourites."},
+  {id:4,label:"Philips (Gold Double)",composers:["Tomaso Albinoni"],artist:"I Musici · Maurice André · Heinz Holliger",title:"Adagio and Allegro – Albinoni Concertos",description:"Compilation spanning recordings 1960–93",format:"Single CD",catNo:"412 628-2",usedGBP:5.50,newGBP:null,notes:"Philips Gold Double. I Musici were the ensemble that brought Vivaldi's Four Seasons to mass audiences. This compilation draws on their landmark Albinoni sessions for Philips spanning 1960–93."},
+  {id:5,label:"Decca (L'Oiseau-Lyre)",composers:["Tomaso Albinoni"],artist:"Andrew Manze · Academy of Ancient Music / Christopher Hogwood",title:"Albinoni: 12 Concertos, Op. 9",description:"First recording on period instruments · 2-disc set",format:"2-disc set",catNo:"430 271-2",usedGBP:22.10,newGBP:null,notes:"Decca / L'Oiseau-Lyre. First complete recording of Op.9 on period instruments. Praised for spectacular performances — Manze's violin described as incomparable."},
+  {id:6,label:"Zig Zag Territoires / Alpha",composers:["Tomaso Albinoni"],artist:"Ensemble 415 / Chiara Banchini (violin & direction)",title:"Albinoni: Sinfonie a Cinque, Op. 2",description:"rec. Église Évangélique Allemande, Paris, 2008",format:"Single CD",catNo:"",usedGBP:11.05,newGBP:null,notes:"Zig Zag Territoires / Alpha. Ensemble 415 isolates the sonatas from Op.2 in an unmistakably chamber-oriented setting. Praised for appealing simplicity and charming sophistication (The Strad, Jan 2009)."},
+  {id:7,label:"Hyperion",composers:["J.S. Bach"],artist:"Angela Hewitt (piano)",title:"Bach: The Well-Tempered Clavier (Books 1 & 2)",description:"CDA67741/4 · 2008 recording · 4-disc set",format:"4-disc set",catNo:"CDA67741/4",usedGBP:26.85,newGBP:null,notes:"Hyperion CDA67741/4. Hewitt's second recording of the 48, made fresh from her 58-city Bach World Tour. Gramophone: 'digs deeper, with more personalised poetry.' BBC Music Magazine: 'Her best Bach yet.'"},
+  {id:8,label:"Decca",composers:["J.S. Bach"],artist:"András Schiff (piano)",title:"Bach: The Well-Tempered Clavier, Book I",description:"BWV 846–869 · 2-disc set · rec. Walthamstow, 1984",format:"2-disc set",catNo:"414 388-2",usedGBP:9.45,newGBP:15.80,notes:"Decca. Schiff's 1984 Walthamstow recording remains a touchstone of modern piano Bach. The New York Times described Schiff as a phenomenon — he doesn't so much perform Bach as emit, breathe it."},
+  {id:9,label:"Decca",composers:["J.S. Bach"],artist:"András Schiff (piano)",title:"Bach: The Well-Tempered Clavier, Book II",description:"BWV 870–893 · 2-disc set · rec. 1985",format:"2-disc set",catNo:"417 154-2",usedGBP:9.45,newGBP:15.80,notes:"Decca. Companion volume to Book I; recorded 1985. Both Schiff WTC volumes praised as phenomenon performances."},
+  {id:10,label:"RCA Victor Red Seal",composers:["J.S. Bach"],artist:"Sviatoslav Richter (piano)",title:"Bach: The Well-Tempered Clavier (Complete)",description:"Books I & II · live, Innsbruck 1973 · 4-disc set",format:"4-disc set",catNo:"",usedGBP:17.35,newGBP:18.20,notes:"RCA Victor Red Seal. Live Innsbruck 1973. One of the most celebrated WTC recordings ever made. Richter's fierce concentration and architectural sweep are considered unsurpassed by many critics."},
+  {id:11,label:"Sony Classical",composers:["J.S. Bach"],artist:"Glenn Gould (piano)",title:"A State of Wonder – The Complete Goldberg Variations",description:"1955 & 1981 recordings · 2-disc set",format:"2-disc set",catNo:"S3K 87703",usedGBP:10.25,newGBP:null,notes:"Sony Classical. Combines Gould's electrifying 1955 debut with his final 1981 recording, made just days before his death. Both are among the most influential piano recordings of the 20th century."},
+  {id:12,label:"Warner Classics",composers:["J.S. Bach"],artist:"Beatrice Rana (piano)",title:"Bach: Goldberg Variations BWV 988",description:"2017 recording",format:"Single CD",catNo:"9029582849",usedGBP:13.40,newGBP:15.80,notes:"Warner Classics. Gramophone praised Rana's calm maturity and sense of architecture. Le Monde: she had nothing left to prove technically. Universal critical acclaim on release in 2017."},
+  {id:13,label:"Decca (Penguin Classics)",composers:["J.S. Bach"],artist:"András Schiff (piano)",title:"Bach: Goldberg Variations BWV 988",description:"Penguin Classics reissue · rec. 1982",format:"Single CD",catNo:"",usedGBP:6.30,newGBP:null,notes:"Decca Penguin Classics reissue. Budget reissue of Schiff's celebrated 1982 Goldberg recording, selected by Penguin Classics as a canonical recording."},
+  {id:14,label:"Decca",composers:["J.S. Bach"],artist:"András Schiff (piano)",title:"Bach: Goldberg Variations BWV 988",description:"Goldberg Variationen · rec. 1982",format:"Single CD",catNo:"413 439-2",usedGBP:7.10,newGBP:null,notes:"Decca. Schiff's 1982 studio recording — his first Goldberg — recorded in his early thirties. Still regarded as one of the finest modern piano accounts of this work."},
+  {id:15,label:"Sony Classical",composers:["J.S. Bach"],artist:"Murray Perahia (piano)",title:"Bach: Goldberg Variations BWV 988",description:"rec. La Chaux-de-Fonds, July 2000 · Gramophone Recording of the Month",format:"Single CD",catNo:"SK 89243",usedGBP:7.10,newGBP:null,notes:"Sony Classical. Gramophone Recording of the Month. Perahia overcame a career-threatening hand injury to make this recording. Widely regarded as one of the great modern Goldberg Variations."},
+  {id:16,label:"Hyperion",composers:["J.S. Bach"],artist:"Angela Hewitt (piano)",title:"Bach: Goldberg Variations BWV 988",description:"CDA67305 · rec. Henry Wood Hall, London, 1999",format:"Single CD",catNo:"CDA67305",usedGBP:12.65,newGBP:14.20,notes:"Hyperion CDA67305. Gramophone: 'she has never made a better CD.' The Guardian: 'Bach on the piano of the highest quality imaginable.'"},
+  {id:17,label:"Virgin Veritas",composers:["J.S. Bach"],artist:"Monica Huggett (baroque violin)",title:"Bach: Sonatas & Partitas BWV 1001–1006",description:"2-disc set · rec. on 1618 Amati violin, 1995–96",format:"2-disc set",catNo:"VER 5 61516 2",usedGBP:13.40,newGBP:null,notes:"Virgin Veritas. Gramophone Award winner 1997. Huggett plays on a 1618 Amati violin. Praised for purity of sound and historically informed articulation."},
+  {id:18,label:"Dynamic",composers:["J.S. Bach"],artist:"Andrea Bacchetti (piano)",title:"Bacchetti plays Bach: Two-Part Inventions & Sinfonias",description:"and other keyboard works · CDS 629/1-2 · 2-disc set",format:"2-disc set",catNo:"CDS 629/1-2",usedGBP:14.20,newGBP:null,notes:"Dynamic CDS 629/1-2. Bacchetti's approach praised as genuinely new post-Gould. Classical Music: 'two discs without a dull moment.'"},
+  {id:19,label:"Sony Classical",composers:["J.S. Bach"],artist:"Murray Perahia (piano)",title:"Bach: Partitas Nos. 2, 3 & 4",description:"rec. Nalepa Studios, Berlin, 2007",format:"Single CD",catNo:"88697148572",usedGBP:10.25,newGBP:15.75,notes:"Sony Classical. Echo Klassik Award 2010, Best Solo Recording (17th–18th century). Die Zeit: 'wonderfully floating, free and cantabile.'"},
+  {id:20,label:"Sony Classical",composers:["J.S. Bach"],artist:"Murray Perahia (piano)",title:"Bach: Partitas Nos. 1, 5 & 6",description:"rec. Rundfunkzentrum Berlin, 2008–09",format:"Single CD",catNo:"88697583502",usedGBP:11.05,newGBP:15.75,notes:"Sony Classical. Second volume of Perahia's Partita cycle. Die Welt praised 'a ravishing sense of rhythm.'"},
+  {id:21,label:"Hyperion",composers:["J.S. Bach"],artist:"Angela Hewitt (piano)",title:"Bach: The Six Partitas BWV 825–830",description:"CDA67191/2 · 2-disc set · rec. Hannover, 1996–97",format:"2-disc set",catNo:"CDA67191/2",usedGBP:17.35,newGBP:22.90,notes:"Hyperion CDA67191/2. Gramophone: 'effortlessly eclipsing all competition.' The Sunday Times: 'formidably equipped… discs to play again and again.'"},
+  {id:22,label:"EMI Classics",composers:["J.S. Bach","Rodion Shchedrin","Eugène Ysaÿe"],artist:"Maxim Vengerov (violin)",title:"Vengerov plays Bach, Shchedrin, Ysaÿe",description:"Works for solo violin · rec. Potton Hall, 2002",format:"Single CD",catNo:"5 57169 2",usedGBP:7.90,newGBP:null,notes:"EMI Classics. Dazzling solo recital linking three composers inspired by Bach. Vengerov's Ysaÿe sonatas — fiendishly difficult — brought alive with innate musicality."},
+  {id:23,label:"EMI Classics",composers:["J.S. Bach"],artist:"Mstislav Rostropovich (cello)",title:"Bach: Cello Suites Nos. 1–6 BWV 1007–1012",description:"2-disc set · rec. Basilique Ste-Madeleine, Vézelay, 1991",format:"2-disc set",catNo:"7 54068 2",usedGBP:8.70,newGBP:null,duplicate:true,duplicateGroup:"rostropovich-emi",notes:"EMI Classics. Rostropovich prefaces each suite with spoken commentary. Recorded at Vézelay — its natural resonance perfectly suits the music. ⚠ Two copies in collection."},
+  {id:24,label:"Sony Classical",composers:["J.S. Bach"],artist:"Murray Perahia (piano)",title:"Bach: The Complete English Suites Nos. 1–6",description:"BWV 806–811 · 2-disc digipak · rec. La Chaux-de-Fonds, 1997–98",format:"2-disc set",catNo:"S2K 87038",usedGBP:11.85,newGBP:null,notes:"Sony Classical. Grammy Award winner (English Suites Nos. 1, 3 & 6). Part of Perahia's acclaimed decade-long Bach project for Sony (1997–2009)."},
+  {id:25,label:"Sony Classical",composers:["J.S. Bach"],artist:"Murray Perahia · Academy of St Martin in the Fields",title:"Bach: Keyboard Concertos Nos. 3, 5, 6 & 7",description:"SK89690 · rec. Air Studios, Lyndhurst Hall, London, 2000",format:"Single CD",catNo:"SK 89690",usedGBP:7.90,newGBP:null,notes:"Sony Classical SK89690. Vol. 2 of Perahia's Bach concerto series. Praised as reference versions for those who desire these works on the concert grand."},
+  {id:26,label:"EMI Classics",composers:["J.S. Bach"],artist:"Heinrich Schiff (cello)",title:"Bach: Cello Suites Nos. 1–6 BWV 1007–1012",description:"2-disc set · rec. Evangelische Kirche, Seeon, 1984",format:"2-disc set",catNo:"7 69742 2",usedGBP:5.50,newGBP:null,notes:"EMI Classics. ClassicsToday Reference Recording. 'Arrestingly individual, musically profound and sonically sumptuous.' Originally deleted; revived for EMI's Double Forte budget series."},
+  {id:27,label:"EMI Classics (Digital)",composers:["J.S. Bach","W.A. Mozart","Domenico Scarlatti","Franz Schubert"],artist:"Dinu Lipatti (piano)",title:"Lipatti: Bach · Mozart · Scarlatti · Schubert",description:"rec. Radio-Genève & Abbey Road, 1947 & 1950",format:"Single CD",catNo:"CDH 7 61011 2",usedGBP:7.10,newGBP:null,notes:"EMI Digital. Legendary recordings from 1947 and 1950 — Lipatti died of leukaemia aged 33. Never out of catalogue since his death. Producer Walter Legge called them beyond criticism."},
+  {id:28,label:"Deutsche Grammophon",composers:["J.S. Bach"],artist:"Nathan Milstein (violin)",title:"Bach: Sonatas & Partitas for Solo Violin BWV 1001–1006",description:"457 701-2 · 2-disc set · rec. Conway Hall, London, 1973",format:"2-disc set",catNo:"457 701-2",usedGBP:11.05,newGBP:null,notes:"Deutsche Grammophon 457 701-2. Milstein's playing — constantly flawless, aristocratic and elegant. His special affinity for the Bach unaccompanied works is abundantly clear. Now out of print."},
+  {id:29,label:"Deutsche Grammophon",composers:["J.S. Bach"],artist:"Mischa Maisky (cello) · Martha Argerich (piano)",title:"Bach: Cello Sonatas BWV 1027–1029",description:"rec. Munich, Residenz, 1985",format:"Single CD",catNo:"415 471-2",usedGBP:8.00,newGBP:null,duplicate:true,duplicateGroup:"maisky-argerich",notes:"Deutsche Grammophon. One of the great chamber partnerships on record. Maisky's warm tone and Argerich's mercurial pianism make this enduringly compelling. ⚠ Two copies in collection."},
+  {id:30,label:"Decca",composers:["J.S. Bach"],artist:"Julia Fischer (violin) · Academy of St Martin in the Fields",title:"Bach: Violin Concertos",description:"BWV 1041, 1042, 1043, 1060 · rec. St Paul's, Deptford, 2008",format:"Single CD",catNo:"476 3634",usedGBP:10.00,newGBP:14.20,notes:"Decca. Fischer's Decca debut. The Times: 'there is only Julia Fischer.' Gramophone 2008: 'technically awe-inspiring, wonderfully imaginative.' Fischer won the Bach prize at the Menuhin Competition aged eleven."},
+  {id:31,label:"Deutsche Grammophon",composers:["J.S. Bach"],artist:"Hilary Hahn (violin) · Matthias Goerne (baritone) · Christine Schäfer (soprano)",title:"Bach: Violin and Voice",description:"rec. Himmelfahrtskirche, München-Sendling, 2008–09",format:"Single CD",catNo:"B001383202",usedGBP:10.00,newGBP:null,notes:"Deutsche Grammophon. Hahn records Bach violin obbligati exclusively — an act of devotion no other violinist had committed to disc. Works drawn from the St Matthew Passion and Mass in B minor."},
+  {id:32,label:"BBC Music Magazine (cover CD)",composers:["Carl Philipp Emanuel Bach"],artist:"Rachel Podger · Kristian Bezuidenhout · Katy Bircher · Bojan Čičić",title:"CPE Bach: Chamber Works",description:"Live, BBC Proms, Cadogan Hall, London, 28 July 2014",format:"Single CD",catNo:"",usedGBP:4.00,newGBP:null,notes:"BBC Music Magazine cover disc — 'Not for resale' printed on CD. Recorded live at the Proms for CPE Bach's 300th anniversary. Collector value only; rarely traded commercially."},
+  {id:33,label:"Deutsche Grammophon (Panorama)",composers:["J.S. Bach"],artist:"Reinhard Goebel · Musica Antiqua Köln · Simon Standage · Trevor Pinnock",title:"Johann Sebastian Bach: Panorama",description:"Brandenburg Concertos · Violin Concertos · Harpsichord Concertos · 2-disc set",format:"2-disc set",catNo:"469 103-2",usedGBP:7.00,newGBP:null,notes:"DG Panorama budget series. Classical Music: 'no more thrilling survey of the Brandenburgs than Goebel's 1987 cycle — whirlwind performances, unfailingly polished and stylish.'"},
+  {id:34,label:"Virgin Classics",composers:["J.S. Bach"],artist:"Ralph Kirshbaum (cello)",title:"Bach: Cello Suites Nos. 1–6 BWV 1007–1012",description:"2-disc set · rec. January 1993",format:"2-disc set",catNo:"VBD 5 61609 2",usedGBP:6.00,newGBP:null,notes:"Virgin Classics. ClassicsToday: 'first class release.' Kirshbaum observes all of Bach's repeats with tasteful, expressive embellishments. His slightly gruff yet compelling sonority is beautifully engineered."},
+  {id:35,label:"Naxos",composers:["J.S. Bach"],artist:"Kolja Blacher · Christine Pichlmeier · Lisa Stewart · Cologne Chamber Orchestra / Helmut Müller-Brühl",title:"Bach: Violin Concertos",description:"BWV 1041, 1042, 1043, 1052 · Naxos 8.554603",format:"Single CD",catNo:"8.554603",usedGBP:5.00,newGBP:6.30,notes:"Naxos budget label. Solid, well-recorded performances at a fraction of mainstream prices. Müller-Brühl and the Cologne Chamber Orchestra were one of the label's most prolific early partnerships."},
+  {id:36,label:"EMI Classics",composers:["J.S. Bach"],artist:"Itzhak Perlman & Pinchas Zukerman (violins) · English Chamber Orchestra / Daniel Barenboim",title:"Bach: Violin Concertos in A minor, E & G minor; Double Concerto in D minor",description:"rec. Abbey Road, London, 1971 & 1974",format:"Single CD",catNo:"CDC 7 47856 2",usedGBP:4.00,newGBP:null,notes:"EMI Classics. Cheap as chips (Discogs median under £2) yet star-studded — Perlman and Zukerman at their peak, Barenboim conducting the ECO. Recordings from 1971–74 now in the public domain."},
+  {id:37,label:"Hyperion",composers:["Carl Philipp Emanuel Bach"],artist:"Rachel Brown (flute) · The Brandenburg Consort / Roy Goodman",title:"CPE Bach: Flute Concertos",description:"CDA67226 · Concertos in A, D minor & G · rec. August 2000",format:"Single CD",catNo:"CDA67226",usedGBP:11.00,newGBP:13.99,notes:"Hyperion CDA67226. BBC Music Magazine: 'performances it would be hard to better.' Gramophone: 'a recording to treasure.' Brown uses a Quantz-style baroque flute at A=392Hz with Bach's own cadenzas."},
+  {id:38,label:"EMI Classics",composers:["J.S. Bach"],artist:"Mstislav Rostropovich (cello)",title:"Bach: Cello Suites Nos. 1–6 BWV 1007–1012",description:"2-disc set · rec. Basilique Ste-Madeleine, Vézelay, 1991 · Copy 2",format:"2-disc set",catNo:"7 54068 2",usedGBP:8.70,newGBP:null,duplicate:true,duplicateGroup:"rostropovich-emi",notes:"EMI Classics. Second copy. Rostropovich prefaces each suite with spoken commentary. Recorded at Vézelay — its natural resonance perfectly suits the music. ⚠ Two copies in collection."},
+  {id:39,label:"Deutsche Grammophon",composers:["J.S. Bach"],artist:"Mischa Maisky (cello) · Martha Argerich (piano)",title:"Bach: Cello Sonatas BWV 1027–1029",description:"rec. Munich, Residenz, 1985 · Copy 2",format:"Single CD",catNo:"415 471-2",usedGBP:8.00,newGBP:null,duplicate:true,duplicateGroup:"maisky-argerich",notes:"Deutsche Grammophon. Second copy. One of the great chamber partnerships on record. Maisky's warm tone and Argerich's mercurial pianism make this enduringly compelling. ⚠ Two copies in collection."},
+  {id:40,label:"Naxos",composers:["J.S. Bach"],artist:"Bournemouth Symphony Orchestra / José Serebrier",title:"Stokowski: Bach Transcriptions, Vol. 2",description:"Toccata & Fugue in D minor · Jesu Joy of Man's Desiring · Sleepers Awake! · Naxos 8.572050",format:"Single CD",catNo:"8.572050",usedGBP:5.00,newGBP:6.30,notes:"Naxos. Serebrier was one-time associate conductor to Stokowski himself. Time Out Chicago: 'piling the pathos onto Bach has made for one of the sexiest records of the year.' Stokowski arranged nearly 40 Bach works for modern symphony orchestra — trading the organ for a loaded Maserati."},
+  {id:41,label:"Conifer Classics / BMG",composers:["J.S. Bach","Johann Bach","Johann Christoph Bach","Johann Michael Bach","Johann Ludwig Bach","Johann Christoph Friedrich Bach"],artist:"Choir of Trinity College, Cambridge / Richard Marlow",title:"Bach Family Motets",description:"75605513062 · rec. 1995–97",format:"Single CD",catNo:"75605513062",usedGBP:5.00,newGBP:null,notes:"Conifer Classics / BMG. Gramophone: 'Several generations of Bachs gathered by Richard Marlow.' Covers motets by five members of the Bach family alongside J.S. Bach — a fascinating survey of the musical dynasty. Trinity College Choir's discography is considered one of the finest in British choral music."},
+  {id:42,label:"Philips (Duo, 2-disc)",composers:["J.S. Bach"],artist:"Marshall · Töpper · Pears · Borg · Chor & Symphonie-Orchester des Bayerischen Rundfunks / Eugen Jochum
+Giebel · Litz · Prey · Pro Arte Chorus & Orchestra / Kurt Redel",title:"Bach: Mass in B minor BWV 232 + Mass in F",description:"438 739-2 · Philips Duo budget reissue · rec. 1958 & 1965",format:"2-disc set",catNo:"438 739-2",usedGBP:8.00,newGBP:null,notes:"Philips Duo. Jochum's 1958 Mass in B minor with the Bavarian Radio Symphony Orchestra is one of the classic recordings of this towering work — richly romantic yet never inflated. The Philips Duo series brought great archive recordings to the mass market at budget prices."},
+  {id:43,label:"Virgin Veritas (2-disc)",composers:["J.S. Bach"],artist:"Taverner Consort & Players / Andrew Parrott",title:"Bach: Magnificat BWV 243 + Easter Oratorio BWV 249",description:"7243 5 61647 2 7 · Disc 1 rec. Abbey Road, Apr 1989 · Disc 2 rec. St Jude's, Hampstead, Apr 1993",format:"2-disc set",catNo:"7243 5 61647 2 7",usedGBP:9.00,newGBP:null,notes:"Virgin Veritas. Andrew Parrott and the Taverner Consort were among the foremost pioneers of historically informed Bach performance. The Magnificat (Abbey Road, 1989) and Easter Oratorio (Hampstead, 1993) are paired on separate discs, each recorded in sympathetic acoustic settings. Parrott's Magnificat in particular is noted for its brisk tempi and transparent textures."},
+  {id:44,label:"Decca / L'Oiseau-Lyre (2-disc)",composers:["J.S. Bach"],artist:"Academy of Ancient Music / Christopher Hogwood",title:"Bach: Brandenburg Concertos Nos. 1–6 BWV 1046–1051",description:"414 187-2 · rec. Walthamstow Town Hall, Mar–May 1984",format:"2-disc set",catNo:"414 187-2",usedGBP:10.00,newGBP:16.00,notes:"Decca / L'Oiseau-Lyre. A landmark period-instrument recording of the Brandenburgs. OLDIES.com $16.20 new. Personnel outstanding, showing the strength of the London early-music scene. Hogwood's AAM was one of the first ensembles to record Bach on instruments of the period to widespread acclaim."},
+  {id:45,label:"Český Rozhlas (2-disc)",composers:["J.S. Bach"],artist:"Musica Florea / Marek Štryncl",title:"Bach: Brandenburg Concertos Complete BWV 1046–1051",description:"2-disc set",format:"2-disc set",catNo:"",usedGBP:8.00,newGBP:null,notes:"Český Rozhlas (Czech Radio). Musica Florea is one of the leading Czech period-instrument ensembles, founded by Marek Štryncl in 1992. Their Brandenburg Concertos are praised for energy and historical awareness, and represent an interesting Central European perspective on this cornerstone repertoire."},
+  {id:46,label:"Harmonia Mundi",composers:["J.S. Bach"],artist:"Nicholas McGegan (harpsichord & clavichord) · Lorraine Hunt (soprano) · David Bowles (baroque cello)",title:"Bach: Clavierbüchlein für Anna Magdalena Bach",description:"A selection · HMU 907042",format:"Single CD",catNo:"HMU 907042",usedGBP:8.00,newGBP:null,notes:"Harmonia Mundi. A charming and intimate selection from the Anna Magdalena Notebook — the little music book Bach compiled for his second wife containing arias, preludes and dances. Lorraine Hunt (later Lieberson) was one of the great American mezzo-sopranos of her generation; her recordings are now collector's items."},
+  {id:47,label:"ABC Classics",composers:["J.S. Bach"],artist:"Richard Tognetti (violin) · Helena Rathbone (violin) · Diana Doherty (oboe) · Australian Chamber Orchestra",title:"Bach: Violin Concertos",description:"ABC Classics 4765691 · 2006",format:"Single CD",catNo:"ABC4765691",usedGBP:8.00,newGBP:null,notes:"ABC Classics. ARIA Award for Best Classical Recording 2007. Discogs median $10.39. The Daily Telegraph (UK): 'Tognetti is one of the most characterful, incisive and impassioned violinists to be heard today.' The ACO under Tognetti is one of the world's finest chamber orchestras."},
+  {id:48,label:"EMI Classics (2-disc)",composers:["J.S. Bach"],artist:"Choir of King's College, Cambridge · Academy of Ancient Music / Stephen Cleobury",title:"Bach: Magnificat BWV 243 + Cantatas",description:"2-disc set · rec. King's College Chapel, Cambridge, 1999–2000",format:"2-disc set",catNo:"",usedGBP:8.00,newGBP:null,notes:"EMI Classics. Recorded in the legendary acoustic of King's College Chapel, Cambridge. Cleobury led the King's choir from 1982 until his death in 2019, making this one of his landmark recordings. The Academy of Ancient Music provide period-instrument support throughout."},
+  {id:49,label:"Virgin Classics",composers:["J.S. Bach","George Frideric Handel"],artist:"Natalie Dessay · Karine Deshayes · Philippe Jaroussky · Toby Spence · Laurent Naouri · Le Concert d'Astrée / Emmanuelle Haïm",title:"Bach: Magnificat BWV 243 + Handel: Dixit Dominus HWV 232",description:"Virgin Classics 094639524129 · rec. Paris, Oct 2006",format:"Single CD",catNo:"094639524129",usedGBP:4.00,newGBP:null,notes:"Virgin Classics. Discogs copies from $1.69 — one of the cheaper CDs in the collection. Reviews divided: Dessay and Jaroussky praised warmly, but some critics found ensemble coordination uneven. Amazon.com: 'in heaven for a while — top soloists in an excellent combination.' Haïm unites Germanic and French Baroque schools in a distinctly personal way."}
+];
+
+let activeFilter='', sortMode=0, filtered=[...catalogue];
+const sortModes=[{key:'id',label:'№'},{key:'title',label:'A–Z'},{key:'usedGBP',label:'Price ↑'},{key:'usedGBPd',label:'Price ↓'}];
+
+function fmt(n){return n!=null?'£'+n.toFixed(2):null}
+
+function search(){
+  const q=(document.getElementById('search').value||'').toLowerCase().trim();
+  const btn=document.getElementById('clear-search');
+  btn.classList.toggle('visible', q.length>0);
+
+  const deleted=getDeleted();
+  filtered=catalogue.filter(cd=>{
+    if(deleted.includes(cd.id)) return false;
+    if(activeFilter==='duplicate'){
+      const deleted=getDeleted();
+      return cd.duplicate===true && cd.duplicateGroup &&
+        catalogue.some(o => o.id!==cd.id && o.duplicateGroup===cd.duplicateGroup && !deleted.includes(o.id));
+    }
+    const filterOk = !activeFilter ||
+      cd.composers.includes(activeFilter) ||
+      cd.format===activeFilter;
+    if(!filterOk) return false;
+    if(!q) return true;
+    const catnos=getCatNoStore(); const liveCatNo=catnos[cd.id]||cd.catNo||'';
+    const hay=[cd.title,cd.artist,cd.label,...cd.composers,cd.description||'',liveCatNo].join(' ').toLowerCase();
+    return hay.includes(q);
+  });
+
+  const sm=sortModes[sortMode];
+  filtered.sort((a,b)=>{
+    if(sm.key==='id') return a.id-b.id;
+    if(sm.key==='title') return a.title.localeCompare(b.title);
+    if(sm.key==='usedGBP') return a.usedGBP-b.usedGBP;
+    if(sm.key==='usedGBPd') return b.usedGBP-a.usedGBP;
+    return 0;
+  });
+
+  render(q);
+}
+
+function getDeleted(){
+  try{ return JSON.parse(localStorage.getItem('cd_deleted')||'[]'); }
+  catch(e){ return []; }
+}
+function saveDeleted(arr){
+  localStorage.setItem('cd_deleted', JSON.stringify(arr));
+}
+function updateRestoreBtn(){
+  const del=getDeleted();
+  const btn=document.getElementById('restore-btn');
+  const count=document.getElementById('restore-count');
+  if(del.length>0){btn.style.display='';count.textContent=del.length;}
+  else{btn.style.display='none';}
+}
+function deleteCD(id){
+  const del=getDeleted();
+  if(!del.includes(id)) del.push(id);
+  saveDeleted(del);
+  updateRestoreBtn();
+  search();
+}
+function showRestoreConfirm(){
+  document.getElementById('restore-confirm').style.display='block';
+}
+function hideRestoreConfirm(){
+  document.getElementById('restore-confirm').style.display='none';
+}
+function confirmRestore(){
+  localStorage.removeItem('cd_deleted');
+  hideRestoreConfirm();
+  updateRestoreBtn();
+  search();
+}
+function render(q){
+  const container=document.getElementById('cards');
+  const noRes=document.getElementById('no-results');
+  const notFound=document.getElementById('not-found-msg');
+  const resCount=document.getElementById('results-count');
+
+  if(!filtered.length){
+    container.innerHTML='';
+    noRes.style.display='block';
+    notFound.classList.add('visible');
+  } else {
+    noRes.style.display='none';
+    notFound.classList.remove('visible');
+  }
+
+  resCount.textContent = q||activeFilter
+    ? `${filtered.length} of ${catalogue.length} CDs`
+    : `${catalogue.length - getDeleted().length} CDs`;
+
+  container.innerHTML=filtered.map(cd=>{
+    const composers=cd.composers.map(c=>`<span class="pill pill-composer">${c}</span>`).join('');
+    const deleted=getDeleted();
+    const isActiveDupe = cd.duplicate && cd.duplicateGroup &&
+      catalogue.some(o => o.id!==cd.id && o.duplicateGroup===cd.duplicateGroup && !deleted.includes(o.id));
+    const dupeBadge=isActiveDupe?`<span class="pill pill-dupe">⚠ Duplicate</span>`:'';
+    const dupeClass=isActiveDupe?' duplicate':'';
+    const cardClass=dupeClass;
+    return `<div class="card${cardClass}" id="card-${cd.id}">
+      <div class="card-main" onclick="toggle(${cd.id})">
+        <div class="card-num">${cd.id}</div>
+        <div class="card-body">
+          <div class="card-title">${cd.title}</div>
+          <div class="card-artist">${cd.artist}</div>
+          <div class="card-meta">
+            ${composers}
+            <span class="pill pill-label">${cd.label}</span>
+            <span class="pill pill-format">${cd.format}</span>
+            ${dupeBadge}
+          </div>
+        </div>
+        <div class="card-price">
+          <div class="price-label">Used</div>
+          <div class="price-used">${fmt(cd.usedGBP)}</div>
+          <div class="expand-icon">⌄</div>
+        </div>
+      </div>
+      <div class="card-detail">
+        <div class="detail-prices">
+          <div class="detail-price-item">
+            <div class="detail-price-val">${fmt(cd.usedGBP)}</div>
+            <div class="detail-price-lbl">Used (median)</div>
+          </div>
+          ${cd.newGBP?`<div class="detail-price-item">
+            <div class="detail-price-val">${fmt(cd.newGBP)}</div>
+            <div class="detail-price-lbl">New</div>
+          </div>`:''}
+        </div>
+        <div class="detail-section">
+          <div class="detail-label">Catalogue No.</div>
+          <div class="catno-row" id="catno-row-${cd.id}">
+            <span class="detail-text catno-val" id="catno-val-${cd.id}">${getCatNo(cd.id, cd.catNo)}</span>
+            <button class="catno-edit-btn" onclick="editCatNo(${cd.id}, event)">✏️</button>
+          </div>
+          <div class="catno-edit-wrap" id="catno-edit-${cd.id}" style="display:none">
+            <input type="text" class="catno-input" id="catno-input-${cd.id}" placeholder="Enter catalogue number…">
+            <div style="display:flex;gap:0.5rem;margin-top:0.4rem">
+              <button class="btn-yes" onclick="saveCatNo(${cd.id}, event)">Save</button>
+              <button class="btn-no" onclick="cancelCatNo(${cd.id}, event)">Cancel</button>
+            </div>
+          </div>
+        </div>
+        ${cd.description?`<div class="detail-section"><div class="detail-label">Details</div><div class="detail-text">${cd.description}</div></div>`:''}
+        <div class="detail-section"><div class="detail-label">Notes</div><div class="detail-text">${cd.notes}</div></div>
+        <button class="delete-btn" onclick="showConfirm(${cd.id}, event)">Remove from collection</button>
+        <div class="delete-confirm" id="confirm-${cd.id}">
+          <p>Remove this CD from your collection?<br><strong>${cd.title}</strong></p>
+          <div class="delete-confirm-btns">
+            <button class="btn-no" onclick="hideConfirm(${cd.id}, event)">Cancel</button>
+            <button class="btn-yes" onclick="deleteCD(${cd.id})">Yes, remove it</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  updateStats();
+}
+
+function getCatNoStore(){
+  try{ return JSON.parse(localStorage.getItem('cd_catnos')||'{}'); }
+  catch(e){ return {}; }
+}
+function getCatNo(id, defaultVal){
+  const store=getCatNoStore();
+  return store[id]!==undefined ? store[id] : (defaultVal||'—');
+}
+function editCatNo(id, e){
+  e.stopPropagation();
+  const current=getCatNo(id, '');
+  const input=document.getElementById('catno-input-'+id);
+  input.value = current==='—'?'':current;
+  document.getElementById('catno-edit-'+id).style.display='block';
+  input.focus();
+}
+function saveCatNo(id, e){
+  e.stopPropagation();
+  const val=document.getElementById('catno-input-'+id).value.trim();
+  const store=getCatNoStore();
+  store[id]=val||'—';
+  localStorage.setItem('cd_catnos', JSON.stringify(store));
+  document.getElementById('catno-val-'+id).textContent=val||'—';
+  document.getElementById('catno-edit-'+id).style.display='none';
+}
+function cancelCatNo(id, e){
+  e.stopPropagation();
+  document.getElementById('catno-edit-'+id).style.display='none';
+}
+function toggle(id){
+  const card=document.getElementById('card-'+id);
+  if(card) card.classList.toggle('open');
+}
+function showConfirm(id, e){
+  e.stopPropagation();
+  document.getElementById('confirm-'+id).classList.add('visible');
+}
+function hideConfirm(id, e){
+  e.stopPropagation();
+  document.getElementById('confirm-'+id).classList.remove('visible');
+}
+
+function clearSearch(){
+  document.getElementById('search').value='';
+  search();
+}
+
+function toggleSort(){
+  sortMode=(sortMode+1)%sortModes.length;
+  document.getElementById('sort-label').textContent=sortModes[sortMode].label;
+  search();
+}
+
+document.querySelectorAll('.filter-chip').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-chip').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter=btn.dataset.filter;
+    search();
+  });
+});
+
+document.getElementById('search').addEventListener('input',search);
+
+function updateStats(){
+  const total=filtered.length;
+  const val=filtered.reduce((s,c)=>s+c.usedGBP,0);
+  const avg=total?val/total:0;
+  const comps=new Set(filtered.flatMap(c=>c.composers)).size;
+  document.getElementById('s-total').textContent=total;
+  document.getElementById('s-value').textContent='£'+val.toFixed(2);
+  document.getElementById('s-avg').textContent='£'+avg.toFixed(2);
+  document.getElementById('s-comp').textContent=comps;
+  document.getElementById('header-count').textContent=total+' CDs';
+}
+
+updateRestoreBtn();
+search();
+
+
+function closeCoverModal(e){
+  if(e.target===document.getElementById('cover-modal'))
+    document.getElementById('cover-modal').classList.remove('open');
+}
+</script>
+</body>
+</html>
