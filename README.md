@@ -1,2 +1,0 @@
-# CD-Catalogue
-Catalogue
