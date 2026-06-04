@@ -163,18 +163,6 @@ header h1 span{color:var(--gold);font-style:italic}
 @media(min-width:1024px){
   .cards{grid-template-columns:1fr 1fr 1fr;padding:1rem 1.5rem}
 }
-
-.fav-btn{background:none;border:1px solid #c8a43a;color:#c8a43a;padding:0.35rem 0.8rem;border-radius:1rem;font-size:0.8rem;cursor:pointer}
-.fav-btn.active{background:#c8a43a;color:white}
-.btn-tracks{background:none;border:1px solid #4a7a9b;color:#4a7a9b;padding:0.35rem 0.8rem;border-radius:1rem;font-size:0.8rem;cursor:pointer}
-.btn-tracks:hover{background:#4a7a9b;color:white}
-.tracks-section{margin-top:0.8rem;font-size:0.82rem;background:#f8f9fa;padding:0.6rem;border-radius:0.5rem}
-.tracks-section ol{margin:0.4rem 0 0 1.2rem;padding:0}
-.new-badge{background:#2a8a2a;color:white;font-size:0.65rem;font-weight:700;padding:0.15rem 0.4rem;border-radius:0.25rem;margin-right:0.4rem;vertical-align:middle}
-.pill-new{background:#2a8a2a;color:white}
-.pill-star{background:#c8a43a;color:white}
-.clive-note-val{color:#444;font-style:italic;min-height:1.2rem}
-.clive-note-edit{width:100%;border:1px solid var(--border);border-radius:0.4rem;padding:0.4rem;font-size:0.85rem;margin-top:0.3rem;font-family:inherit}
 </style>
 </head>
 <body>
@@ -491,7 +479,7 @@ const catalogue = [
   {id:234,label:"EMI",composers:["Joseph Haydn"],artist:"English Chamber Orchestra / Jeffrey Tate",title:"Haydn: Symphonies Nos. 99 in E-flat major & 101 in D major 'The Clock'",description:"CDC 7 49634 2 · EMI",format:"Single CD",catNo:"CDC 7 49634 2",usedGBP:9.00,newGBP:null,notes:"EMI. Two of Haydn's twelve 'London' Symphonies composed for his triumphant visits to England in 1791-92 and 1794-95. Symphony No. 101 'The Clock' takes its nickname from the tick-tock accompaniment in the slow movement — one of the most instantly recognisable openings in all Haydn. Jeffrey Tate and the ECO bring elegance and wit to these quintessential late Haydn masterpieces."},
   {id:235,label:"Naxos",composers:["Joseph Haydn"],artist:"Viktória Loukiánetz (soprano) · Gabriele Sima (contralto) · Kurt Azesberger (tenor) · Robert Holl (bass) · Hungarian Radio and Television Chorus · Nicolaus Esterőzy Sinfonia / Béla Drahos",title:"Haydn: Nelson Mass · Kleine Orgelmesse (Little Organ Mass)",description:"8.554416 · Naxos",format:"Single CD",catNo:"8.554416",usedGBP:6.00,newGBP:8.99,notes:"Naxos. The Nelson Mass (Missa in Angustiis, 1798) was composed during the Battle of the Nile — hence its nickname, though Haydn had no knowledge of Nelson's victory at the time of writing. It is among his most dramatic and intense sacred works, driven by a sense of urgency and power that reflects the turbulent times. The Little Organ Mass makes an ideal companion piece."},
   {id:236,label:"Naxos",composers:["Joseph Haydn"],artist:"Maria Kliegel (cello) · Cologne Chamber Orchestra / Helmut Müller-Brühl",title:"Haydn: Cello Concertos · Hob. VIIb:1, 2 & 4",description:"8.555041 · Naxos",format:"Single CD",catNo:"8.555041",usedGBP:6.00,newGBP:8.99,notes:"Naxos. Haydn's two great cello concertos — in C major (rediscovered in Prague in 1961, having been lost for nearly 200 years) and D major — are among the finest in the entire cello repertoire. Maria Kliegel brings her assured technique and warm tone to these works. An exceptional budget disc coupling three Haydn cello concertos."},
-  {id:237,label:"Vox Box (2-disc)",composers:["Joseph Haydn"],artist:"Helen Donath (soprano) · Adalbert Kraus (tenor) · Kurt Widmer (bass) · Süddeutscher Madrigalchor Stuttgart · Orchester der Ludwigsburger Festspiele / Wolfgang Gönnenwein",title:"Haydn: The Creation (Die Schöpfung) Hob. XXI:2",description:"231558 · 2-disc set · original German pressing; reissued as Vox Box CDX-5025",format:"2-disc set",catNo:"231558",usedGBP:12.00,newGBP:null,notes:"Vox Box reissue of an original German pressing. Haydn's greatest oratorio, composed in 1798 when he was 65, directly inspired by hearing Handel's Messiah in London. The Creation depicts the six days of creation based on Genesis and Milton's Paradise Lost, opening with one of the most remarkable passages in all music — the representation of Chaos that suddenly bursts into blazing C major on the word 'Light.' Gönnenwein was closely associated with the Ludwigsburg Festival and this is one of the most warmly regarded accounts."},
+  {id:237,label:"Vox Box (2-disc)",composers:["Joseph Haydn"],artist:"Helen Donath (soprano/Gabriel/Eva) · Adalbert Kraus (tenor/Uriel) · Kurt Widmer (bass/Raphael/Adam) · Süddeutscher Madrigalchor Stuttgart · Orchester der Ludwigsburger Festspiele / Wolfgang Gönnenwein",title:"Haydn: The Creation (Die Schöpfung) Hob. XXI:2",description:"231558 · 2-disc set · original German pressing; reissued as Vox Box CDX-5025",format:"2-disc set",catNo:"231558",usedGBP:12.00,newGBP:null,notes:"Vox Box reissue of an original German pressing. Haydn's greatest oratorio, composed in 1798 when he was 65, directly inspired by hearing Handel's Messiah in London. The Creation depicts the six days of creation based on Genesis and Milton's Paradise Lost, opening with one of the most remarkable passages in all music — the representation of Chaos that suddenly bursts into blazing C major on the word 'Light.' Gönnenwein was closely associated with the Ludwigsburg Festival and this is one of the most warmly regarded accounts."},
   {id:238,label:"RCA Victor Red Seal",composers:["Joseph Haydn"],artist:"Steven Isserlis (cello) · Orchestra of the Age of Enlightenment / Roger Norrington",title:"Haydn: Cello Concertos Hob. VIIb:1 & 2",description:"09026 68578 2 · RCA Victor Red Seal",format:"Single CD",catNo:"09026 68578 2",usedGBP:12.00,newGBP:null,notes:"RCA Victor. Steven Isserlis is one of Britain's most distinguished cellists, with a strongly individual musical personality and a particular commitment to period-informed playing on the modern cello. Roger Norrington and the Orchestra of the Age of Enlightenment bring their characteristic historical awareness to these concertos. A thoughtful and distinctively characterised pairing."},
   {id:239,label:"Pentatone (SACD)",composers:["Joseph Haydn"],artist:"Gordan Nikolić (violin/director) · Netherlands Chamber Orchestra",title:"Haydn: Sinfonia Concertante Hob. I:105 · Symphony No. 100 'Military' · L'Isola disabitata Overture",description:"PTC 5186 300 · Pentatone SACD hybrid multichannel",format:"SACD",catNo:"PTC 5186 300",usedGBP:14.00,newGBP:null,notes:"Pentatone SACD. Gordan Nikolić, the distinguished Serbian violinist, directs the Netherlands Chamber Orchestra from the violin in a disc of late Haydn. The Symphony No. 100 'Military' takes its nickname from the use of Turkish percussion (cymbals, triangle, bass drum) that caused a sensation at its London premiere in 1794. The Sinfonia Concertante is one of Haydn's most charming occasional works. SACD hybrid multichannel format."},
   {id:240,label:"Naxos",composers:["Joseph Haydn"],artist:"Kodály Quartet",title:"Haydn: String Quartets Op. 76 · No. 1 · No. 2 'Fifths' · No. 3 'Emperor'",description:"8.550314 · Naxos",format:"Single CD",catNo:"8.550314",usedGBP:6.00,newGBP:8.99,notes:"Naxos. Three of Haydn's six Op. 76 quartets (1797), among the greatest works in the string quartet repertoire. The 'Emperor' Quartet takes its name from the slow movement, a set of variations on the hymn Haydn wrote for Emperor Franz II — later adapted as the German national anthem. The 'Fifths' Quartet is named for the falling-fifth motif that opens it. The Kodály Quartet were long-standing Naxos advocates for Haydn's chamber music."},
@@ -720,106 +708,248 @@ const catalogue = [
   {id:463,label:"EMI Classics (2-disc)",composers:["Giuseppe Verdi"],artist:"Maria Callas (soprano) · Giuseppe di Stefano (tenor) · Ettore Bastianini (baritone) · Orchestra e Coro del Teatro alla Scala / Carlo Maria Giulini",title:"Verdi: La Traviata",description:"7243 5 66450 2 8 · EMI Classics · 2-disc set · live La Scala 1955 · outer box missing",format:"2-disc set",catNo:"7243 5 66450 2 8",usedGBP:14.00,newGBP:null,notes:"EMI Classics. One of the most celebrated opera recordings ever made. Maria Callas's 1955 live La Scala performance of Verdi's La Traviata under Carlo Maria Giulini is legendary: Callas's portrayal of Violetta — at once fragile and incandescent — has never been surpassed. Giuseppe Verdi (1813-1901) is the supreme Italian opera composer; La Traviata (1853) is his most intimate and personal opera, based on Dumas's 'La Dame aux camélias.' Di Stefano and Bastianini complete a cast of the highest calibre. Note: outer box missing, discs present. Gramophone 'Recording of the Century.'"}
 ];
 
-let activeFilter='', activeComposer='', activeArtist='', activeLabel='', sortMode=0, notesSearchMode=false, pendingImport=null;
-let filtered=[...catalogue];
+let activeFilter='', activeComposer='', activeArtist='', activeLabel='', sortMode=0, notesSearchMode=false, filtered=[...catalogue], ddType='', ddItems=[];
 const sortModes=[{key:'id',label:'No.'},{key:'title',label:'A-Z'},{key:'usedGBP',label:'Price low'},{key:'usedGBPd',label:'Price high'}];
 
-function fmt(n){return n!=null&&n>0?'&#163;'+n.toFixed(2):null}
+function fmt(n){return n!=null&&n>0?'£'+n.toFixed(2):null}
 
 function getDeleted(){try{return JSON.parse(localStorage.getItem('cd_deleted')||'[]')}catch(e){return[]}}
 function saveDeleted(arr){localStorage.setItem('cd_deleted',JSON.stringify(arr))}
+function getLocStore(){try{return JSON.parse(localStorage.getItem('cd_locations')||'{}');}catch(e){return{};}}
+function getLoc(id){return getLocStore()[id]||'';}
+function editLoc(id,e){
+  e.stopPropagation();
+  const inp=document.getElementById('loc-input-'+id);
+  inp.value=getLoc(id);
+  document.getElementById('loc-edit-'+id).style.display='block';
+  inp.focus();
+}
+function saveLoc(id,e){
+  e.stopPropagation();
+  const val=document.getElementById('loc-input-'+id).value.trim().toUpperCase().slice(0,4);
+  const s=getLocStore();
+  if(val)s[id]=val; else delete s[id];
+  localStorage.setItem('cd_locations',JSON.stringify(s));
+  const disp=document.getElementById('loc-val-'+id);
+  disp.innerHTML=val||'<span style="color:var(--text-light)">—</span>';
+  document.getElementById('loc-edit-'+id).style.display='none';
+}
+function cancelLoc(id,e){
+  e.stopPropagation();
+  document.getElementById('loc-edit-'+id).style.display='none';
+}
 function getCatNoStore(){try{return JSON.parse(localStorage.getItem('cd_catnos')||'{}')}catch(e){return{}}}
 function getCatNo(id,defaultVal){const s=getCatNoStore();return s[id]!==undefined?s[id]:(defaultVal||'&#8212;')}
-function getCliveNotes(){try{return JSON.parse(localStorage.getItem('cd_notes')||'{}')}catch(e){return{}}}
-function getCliveNote(id){return getCliveNotes()[id]||''}
-function getFavourites(){try{return JSON.parse(localStorage.getItem('cd_favourites')||'[]')}catch(e){return[]}}
-function saveFavourites(arr){localStorage.setItem('cd_favourites',JSON.stringify(arr))}
-function getLocations(){try{return JSON.parse(localStorage.getItem('cd_locations')||'{}')}catch(e){return{}}}
-function getLoc(id){return getLocations()[id]||''}
-
-function normaliseLabel(lbl){
-  if(!lbl)return lbl;
-  const l=lbl.toLowerCase();
-  if(l.includes('deutsche grammophon')||l.includes('dg '))return'Deutsche Grammophon';
-  if(l.startsWith('decca'))return'Decca';
-  if(l.startsWith('philips'))return'Philips';
-  if(l.startsWith('emi'))return'EMI';
-  if(l.startsWith('sony'))return'Sony Classical';
-  if(l.startsWith('cbs'))return'CBS/Sony';
-  if(l.startsWith('hyperion'))return'Hyperion';
-  if(l.startsWith('chandos'))return'Chandos';
-  if(l.startsWith('harmonia mundi')||l.startsWith('hm '))return'Harmonia Mundi';
-  if(l.startsWith('naxos'))return'Naxos';
-  if(l.startsWith('bis'))return'BIS';
-  if(l.startsWith('rca'))return'RCA';
-  if(l.startsWith('erato'))return'Erato';
-  if(l.startsWith('teldec'))return'Teldec';
-  if(l.startsWith('virgin'))return'Virgin Classics';
-  if(l.startsWith('warner'))return'Warner';
-  return lbl.replace(/\s*\([^)]*\)\s*/g,'').trim();
-}
-
-function getComposerList(){
-  const del=getDeleted();
-  const all=new Set(catalogue.filter(c=>!del.includes(c.id)).flatMap(c=>c.composers));
-  return [...all].sort();
-}
-function getArtistList(){
-  const del=getDeleted();
-  const all=new Set(catalogue.filter(c=>!del.includes(c.id)).map(c=>c.artist));
-  return [...all].sort();
-}
-function getLabelList(){
-  const del=getDeleted();
-  const all=new Set(catalogue.filter(c=>!del.includes(c.id)).map(c=>normaliseLabel(c.label)));
-  return [...all].sort();
-}
-
-let openDropdown=null;
-function toggleDropdown(which,e){
-  e.stopPropagation();
-  const panel=document.getElementById('dd-panel');
-  const ddList=document.getElementById('dd-list');
-  if(!panel||!ddList)return;
-  if(openDropdown===which){closeDropdown();return;}
-  openDropdown=which;
-  const items=(which==='composer'?getComposerList():which==='artist'?getArtistList():getLabelList());
-  const cur=which==='composer'?activeComposer:which==='artist'?activeArtist:activeLabel;
-  let out='';
-  if(cur)out+='<div class="dd-item active" onclick="selectDropdown(\''+which+'\',\'\')">All '+which+'s</div>';
-  out+=items.map(v=>'<div class="dd-item'+(v===cur?' active':'')+'" onclick="selectDropdown(\''+which+'\',\''+v.replace(/\\/g,'\\\\').replace(/'/g,"\'")+'\')">'+v+'</div>').join('');
-  ddList.innerHTML=out;
-  panel.style.display='block';
-}
-function selectDropdown(which,val){
-  if(which==='composer')activeComposer=val;
-  else if(which==='artist')activeArtist=val;
-  else activeLabel=val;
-  const lbl=document.getElementById(which+'-label');
-  if(lbl)lbl.textContent=val||(which.charAt(0).toUpperCase()+which.slice(1));
-  closeDropdown();
-  search();
-}
-function closeDropdown(){
-  openDropdown=null;
-  const panel=document.getElementById('dd-panel');
-  if(panel)panel.style.display='none';
-}
-document.addEventListener('click',closeDropdown);
 
 function toggleNotesSearch(){
   notesSearchMode=!notesSearchMode;
   const btn=document.getElementById('notes-search-btn');
-  if(btn)btn.classList.toggle('active',notesSearchMode);
-  const box=document.getElementById('search');
-  if(box)box.placeholder=notesSearchMode?'Search notes only\u2026':'Search by title, composer, artist, catalogue no\u2026';
+  btn.classList.toggle('active',notesSearchMode);
+  const box=document.getElementById('search-box');
+  box.placeholder=notesSearchMode?'Search notes only…':'Search by title, composer, artist, catalogue no…';
   search();
 }
+function normaliseLabel(label){
+  if(!label)return'';
+  // Strip parenthetical suffix e.g. "(2-disc)", "(SACD)", "(Great Recordings...)"
+  let b=label.replace(/\s*\(.*$/,'').trim();
+  // Collapse known label families
+  if(/^Deutsche Grammophon/i.test(b))return'Deutsche Grammophon';
+  if(/^Archiv/i.test(b))return'Archiv Produktion';
+  if(/^Philips/i.test(b))return'Philips';
+  if(/^Decca/i.test(b))return'Decca';
+  if(/^EMI/i.test(b))return'EMI';
+  if(/^Harmonia Mundi/i.test(b))return'Harmonia Mundi';
+  if(/^Naxos/i.test(b))return'Naxos';
+  if(/^Chandos/i.test(b))return'Chandos';
+  if(/^Hyperion/i.test(b))return'Hyperion';
+  if(/^Sony/i.test(b))return'Sony';
+  if(/^CBS/i.test(b))return'CBS Masterworks';
+  if(/^RCA/i.test(b))return'RCA';
+  if(/^Warner/i.test(b))return'Warner Classics';
+  if(/^Virgin/i.test(b))return'Virgin Classics';
+  if(/^Coro/i.test(b))return'Coro';
+  if(/^BIS/i.test(b))return'BIS';
+  if(/^LSO Live/i.test(b))return'LSO Live';
+  if(/^Brilliant/i.test(b))return'Brilliant Classics';
+  if(/^Pentatone/i.test(b))return'Pentatone';
+  if(/^Linn/i.test(b))return'Linn Records';
+  if(/^Testament/i.test(b))return'Testament';
+  if(/^BBC/i.test(b))return'BBC Legends';
+  if(/^Vox/i.test(b))return'Vox Box';
+  return b;
+}
+function getLabelList(){
+  const s=new Set();
+  catalogue.forEach(cd=>{ if(cd.label) s.add(normaliseLabel(cd.label)); });
+  return [...s].sort((a,b)=>a.localeCompare(b));
+}
+function lastNameFirst(name){
+  const parts=name.trim().split(' ');
+  if(parts.length<=1)return name;
+  const last=parts[parts.length-1];
+  const rest=parts.slice(0,-1).join(' ');
+  return last+', '+rest;
+}
+function getComposerList(){
+  const s=new Set();
+  catalogue.forEach(cd=>cd.composers.forEach(c=>s.add(c)));
+  return [...s]
+    .map(c=>({display:lastNameFirst(c),value:c}))
+    .sort((a,b)=>a.display.localeCompare(b.display));
+}
+function getArtistList(){
+  const s=new Set();
+  const del=getDeleted();
+  catalogue.filter(cd=>!del.includes(cd.id)).forEach(cd=>{
+    cd.artist.split(/\s*[·\/]\s*/).forEach(p=>{
+      const clean=p.replace(/\s*\([^)]*\)/g,'').trim();
+      if(clean.length>2) s.add(clean);
+    });
+  });
+  return [...s].sort((a,b)=>a.localeCompare(b));
+}
+function toggleDropdown(type, e){
+  e.stopPropagation();
+  const panel=document.getElementById('dd-panel');
+  if(ddType===type){closeDropdown();return;}
+  ddType=type;
+  ddItems=type==='composer'?getComposerList():type==='artist'?getArtistList():getLabelList();
+  const current=type==='composer'?activeComposer:type==='artist'?activeArtist:activeLabel;
+  const filterBar=document.querySelector('.filter-bar');
+  const resultsBar=document.querySelector('.results-bar');
+  const top=filterBar.getBoundingClientRect().bottom;
+  panel.style.top=top+'px';
+  document.getElementById('dd-list').innerHTML=
+    '<div class="dd-item'+(current===''?' dd-selected':'')+'" onclick="selectDropdown(-1)">All '+(type==='composer'?'composers':type==='artist'?'artists':'labels')+'</div>'+
+    ddItems.map((item,i)=>{
+      const val=item.value||item;
+      const label=item.display||item;
+      return '<div class="dd-item'+(current===val?' dd-selected':'')+'" onclick="selectDropdown('+i+')">'+label+'</div>';
+    }).join('');
+  panel.style.display='block';
+}
+function selectDropdown(idx){
+  const raw=idx===-1?'':ddItems[idx];
+  const val=raw&&raw.value!==undefined?raw.value:raw;
+  const label=raw&&raw.display!==undefined?raw.display:raw;
+  if(ddType==='composer'){
+    activeComposer=val;
+    document.getElementById('composer-label').textContent=label||'Composer';
+    document.getElementById('composer-btn').classList.toggle('active',val!=='');
+  } else if(ddType==='artist'){
+    activeArtist=val;
+    document.getElementById('artist-label').textContent=val.length>20?val.slice(0,18)+'…':val||'Artist';
+    document.getElementById('artist-btn').classList.toggle('active',val!=='');
+  } else {
+    activeLabel=val;
+    document.getElementById('label-label').textContent=val.length>18?val.slice(0,16)+'…':val||'Label';
+    document.getElementById('label-btn').classList.toggle('active',val!=='');
+  }
+  closeDropdown();
+  search();
+}
+function closeDropdown(){
+  document.getElementById('dd-panel').style.display='none';
+  ddType='';
+}
+// ── EXPORT / IMPORT ──────────────────────────────────────────────────────────
+// ── SCROLL FAB ────────────────────────────────────────────────────────────────
+function scrollFab(){
+  const fab=document.getElementById('scroll-fab');
+  const atBottom=window.innerHeight+window.scrollY>=document.body.scrollHeight-60;
+  if(atBottom){
+    window.scrollTo({top:0,behavior:'smooth'});
+  } else {
+    window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+  }
+}
+window.addEventListener('scroll',function(){
+  const fab=document.getElementById('scroll-fab');
+  if(!fab)return;
+  const atBottom=window.innerHeight+window.scrollY>=document.body.scrollHeight-60;
+  fab.innerHTML=atBottom?'&#8963;':'&#8964;';
+  fab.title=atBottom?'Scroll to top':'Scroll to bottom';
+  fab.classList.toggle('at-bottom', atBottom);
+});
+function exportData(){
+  const data={
+    exported: new Date().toISOString(),
+    version: 1,
+    favourites: JSON.parse(localStorage.getItem('cd_favourites')||'[]'),
+    deleted:    JSON.parse(localStorage.getItem('cd_deleted')||'[]'),
+    catnos:     JSON.parse(localStorage.getItem('cd_catnos')||'{}'),
+    locations:  JSON.parse(localStorage.getItem('cd_locations')||'{}'),
+    notes:      JSON.parse(localStorage.getItem('cd_notes')||'{}')
+  };
+  const counts=[
+    data.favourites.length+' favourite(s)',
+    data.deleted.length+' deletion(s)',
+    Object.keys(data.catnos).length+' cat.no. edit(s)',
+    Object.keys(data.locations).length+' location(s)',
+    Object.keys(data.notes).length+' note(s)'
+  ].filter(s=>!s.startsWith('0')).join(', ');
+  const date=new Date().toISOString().slice(0,10);
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='clives-cds-data-'+date+'.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  if(!counts) alert('Nothing to export yet — no personal data saved.');
+  else alert("Exported: "+counts);
+}
 
+let pendingImport=null;
+function importData(e){
+  const file=e.target.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=function(ev){
+    try{
+      const data=JSON.parse(ev.target.result);
+      if(!data.version||!data.exported) throw new Error('Invalid file');
+      const counts=[
+        (data.favourites||[]).length+' favourite(s)',
+        (data.deleted||[]).length+' deletion(s)',
+        Object.keys(data.catnos||{}).length+' cat.no. edit(s)',
+        Object.keys(data.locations||{}).length+' location(s)',
+        Object.keys(data.notes||{}).length+' note(s)'
+      ].filter(s=>!s.startsWith('0')).join(', ');
+      const saved=new Date(data.exported).toLocaleDateString();
+      pendingImport=data;
+      document.getElementById('import-msg').textContent=
+        'Restore data from '+saved+'? ('+counts+') This will overwrite your current personal data.';
+      document.getElementById('import-confirm').style.display='block';
+      document.getElementById('import-confirm').scrollIntoView({behavior:'smooth',block:'center'});
+    }catch(err){
+      alert("Could not read file — please select a valid export file.");
+    }
+    e.target.value='';
+  };
+  reader.readAsText(file);
+}
+function confirmImport(){
+  if(!pendingImport)return;
+  const d=pendingImport;
+  if(d.favourites) localStorage.setItem('cd_favourites',JSON.stringify(d.favourites));
+  if(d.deleted)    localStorage.setItem('cd_deleted',JSON.stringify(d.deleted));
+  if(d.catnos)     localStorage.setItem('cd_catnos',JSON.stringify(d.catnos));
+  if(d.locations)  localStorage.setItem('cd_locations',JSON.stringify(d.locations));
+  if(d.notes)      localStorage.setItem('cd_notes',JSON.stringify(d.notes));
+  pendingImport=null;
+  document.getElementById('import-confirm').style.display='none';
+  updateRestoreBtn();
+  search();
+  alert("Data restored successfully!");
+}
+function cancelImport(){
+  pendingImport=null;
+  document.getElementById('import-confirm').style.display='none';
+}
 function updateRestoreBtn(){
   const del=getDeleted();
   const btn=document.getElementById('restore-btn');
-  if(!btn)return;
   if(del.length>0){btn.style.display='';document.getElementById('restore-count').textContent=del.length}
   else{btn.style.display='none'}
 }
@@ -828,81 +958,187 @@ function hideRestoreConfirm(){document.getElementById('restore-confirm').style.d
 function confirmRestore(){localStorage.removeItem('cd_deleted');hideRestoreConfirm();updateRestoreBtn();search()}
 
 function deleteCD(id){const del=getDeleted();if(!del.includes(id))del.push(id);saveDeleted(del);updateRestoreBtn();search()}
-
-function editCatNo(id,e){e.stopPropagation();const cur=getCatNo(id,'');const inp=document.getElementById('catno-input-'+id);if(!inp)return;inp.value=cur==='&#8212;'?'':cur;document.getElementById('catno-edit-'+id).style.display='block';inp.focus()}
-function saveCatNo(id,e){e.stopPropagation();const val=document.getElementById('catno-input-'+id).value.trim();const s=getCatNoStore();s[id]=val;localStorage.setItem('cd_catnos',JSON.stringify(s));document.getElementById('catno-val-'+id).textContent=val||'&#8212;';document.getElementById('catno-edit-'+id).style.display='none'}
+function editCatNo(id,e){e.stopPropagation();const cur=getCatNo(id,'');const inp=document.getElementById('catno-input-'+id);inp.value=cur==='&#8212;'?'':cur;document.getElementById('catno-edit-'+id).style.display='block';inp.focus()}
+function saveCatNo(id,e){e.stopPropagation();const val=document.getElementById('catno-input-'+id).value.trim();const s=getCatNoStore();s[id]=val||'&#8212;';localStorage.setItem('cd_catnos',JSON.stringify(s));document.getElementById('catno-val-'+id).textContent=val||'&#8212;';document.getElementById('catno-edit-'+id).style.display='none'}
 function cancelCatNo(id,e){e.stopPropagation();document.getElementById('catno-edit-'+id).style.display='none'}
-
-function editLoc(id,e){e.stopPropagation();const inp=document.getElementById('loc-input-'+id);if(!inp)return;inp.value=getLoc(id);document.getElementById('loc-edit-'+id).style.display='block';inp.focus()}
-function saveLoc(id,e){e.stopPropagation();const val=document.getElementById('loc-input-'+id).value.trim().substr(0,4);const locs=getLocations();locs[id]=val;localStorage.setItem('cd_locations',JSON.stringify(locs));document.getElementById('loc-val-'+id).textContent=val||'&#8212;';document.getElementById('loc-edit-'+id).style.display='none'}
-function cancelLoc(id,e){e.stopPropagation();document.getElementById('loc-edit-'+id).style.display='none'}
-
-function editCliveNote(id,e){e.stopPropagation();const ta=document.getElementById('clive-note-edit-'+id);const val=document.getElementById('clive-note-val-'+id);if(!ta||!val)return;ta.value=getCliveNote(id);ta.style.display='block';val.style.display='none';document.getElementById('clive-note-btns-'+id).style.display='flex'}
-function saveCliveNote(id,e){e.stopPropagation();const ta=document.getElementById('clive-note-edit-'+id);const val=document.getElementById('clive-note-val-'+id);const notes=getCliveNotes();notes[id]=ta.value.trim();localStorage.setItem('cd_notes',JSON.stringify(notes));val.textContent=notes[id]||'(none)';ta.style.display='none';val.style.display='block';document.getElementById('clive-note-btns-'+id).style.display='none'}
-function cancelCliveNote(id,e){e.stopPropagation();const ta=document.getElementById('clive-note-edit-'+id);const val=document.getElementById('clive-note-val-'+id);if(ta)ta.style.display='none';if(val)val.style.display='block';document.getElementById('clive-note-btns-'+id).style.display='none'}
-
-function toggleFavourite(id,e){e.stopPropagation();const favs=getFavourites();const idx=favs.indexOf(id);if(idx>=0)favs.splice(idx,1);else favs.push(id);saveFavourites(favs);const btn=document.getElementById('fav-btn-'+id);if(btn)btn.classList.toggle('active',favs.includes(id));if(activeFilter==='favourites')search()}
-
-function showTracks(id,e){e.stopPropagation();const cd=catalogue.find(c=>c.id===id);if(!cd)return;const out=document.getElementById('tracks-'+id);if(!out)return;if(out.style.display==='block'){out.style.display='none';return}out.innerHTML='Loading\u2026';out.style.display='block';const q=encodeURIComponent(cd.title+' '+cd.artist);fetch('https://musicbrainz.org/ws/2/release/?query='+q+'&fmt=json').then(r=>r.json()).then(data=>{const rel=data.releases&&data.releases[0];if(!rel){out.innerHTML='No results found.';return}return fetch('https://musicbrainz.org/ws/2/release/'+rel.id+'?inc=recordings&fmt=json')}).then(r=>r&&r.json()).then(data=>{if(!data||!data.media){out.innerHTML='No track data.';return}const tracks=data.media.flatMap(m=>m.tracks||[]);out.innerHTML='<strong>'+data.title+'</strong><ol>'+tracks.map(t=>'<li>'+t.title+(t.length?' ('+Math.floor(t.length/60000)+':'+(''+(Math.floor(t.length/1000)%60)).padStart(2,'0')+')':'')+'</li>').join('')+'</ol>'}).catch(()=>{out.innerHTML='Could not load tracks.'})}
-
 function showConfirm(id,e){e.stopPropagation();document.getElementById('confirm-'+id).classList.add('visible')}
 function hideConfirm(id,e){e.stopPropagation();document.getElementById('confirm-'+id).classList.remove('visible')}
-function toggle(id){const c=document.getElementById('card-'+id);if(c)c.classList.toggle('open')}
-function clearSearch(){const s=document.getElementById('search');if(s)s.value='';search()}
-function toggleSort(){sortMode=(sortMode+1)%sortModes.length;document.getElementById('sort-label').textContent=sortModes[sortMode].label;search()}
-
-function setFilter(val,btn){
-  document.querySelectorAll('.filter-chip').forEach(b=>b.classList.remove('active'));
-  if(btn)btn.classList.add('active');
-  activeFilter=val;
-  activeComposer=''; activeArtist=''; activeLabel='';
-  notesSearchMode=false;
-  const nb=document.getElementById('notes-search-btn');if(nb)nb.classList.remove('active');
-  const sb=document.getElementById('search');if(sb)sb.placeholder='Search by title, composer, artist, catalogue no\u2026';
-  ['composer','artist','label'].forEach(w=>{const l=document.getElementById(w+'-label');if(l)l.textContent=w.charAt(0).toUpperCase()+w.slice(1);});
-  search();
+// ── FAVOURITES ───────────────────────────────────────────────────
+function getFavourites(){try{return JSON.parse(localStorage.getItem('cd_favourites')||'[]');}catch(e){return[];}}
+function saveFavourites(arr){localStorage.setItem('cd_favourites',JSON.stringify(arr));}
+function toggleFavourite(id,e){
+  e.stopPropagation();
+  const favs=getFavourites();
+  const idx=favs.indexOf(id);
+  if(idx>-1)favs.splice(idx,1); else favs.push(id);
+  saveFavourites(favs);
+  const btn=document.querySelector('.star-btn[onclick*="toggleFavourite('+id+',"]');
+  if(btn)btn.classList.toggle('active',favs.includes(id));
 }
 
+// ── CLIVE'S NOTES ────────────────────────────────────────────────────────────
+function getCliveNotes(){try{return JSON.parse(localStorage.getItem('cd_notes')||'{}');}catch(e){return{};}}
+function getCliveNote(id){return getCliveNotes()[id]||'';}
+function editCliveNote(id,e){
+  e.stopPropagation();
+  const inp=document.getElementById('clive-note-input-'+id);
+  inp.value=getCliveNote(id);
+  document.getElementById('clive-note-edit-'+id).style.display='block';
+  inp.focus();
+}
+function saveCliveNote(id,e){
+  e.stopPropagation();
+  const val=document.getElementById('clive-note-input-'+id).value.trim();
+  const notes=getCliveNotes();
+  if(val)notes[id]=val; else delete notes[id];
+  localStorage.setItem('cd_notes',JSON.stringify(notes));
+  const disp=document.getElementById('clive-note-val-'+id);
+  disp.innerHTML=val||'<span class="clive-note-placeholder">Add your notes…</span>';
+  document.getElementById('clive-note-edit-'+id).style.display='none';
+}
+function cancelCliveNote(id,e){
+  e.stopPropagation();
+  document.getElementById('clive-note-edit-'+id).style.display='none';
+}
+
+// ── SELECTIVE RESTORE ─────────────────────────────────────────────────────────
+function showRestoreConfirm(){
+  const del=getDeleted();
+  const list=document.getElementById('restore-list');
+  list.innerHTML=del.map(id=>{
+    const cd=catalogue.find(c=>c.id===id);
+    if(!cd)return'';
+    const artist=cd.artist.split('·')[0].split('/')[0].trim();
+    return '<div class="restore-item">'+
+      '<div class="restore-item-info">'+
+        '<div class="restore-item-title">'+cd.title+'</div>'+
+        '<div class="restore-item-artist">'+artist+'</div>'+
+      '</div>'+
+      '<button class="restore-one-btn" onclick="restoreOne('+id+')">&#x21A9; Restore</button>'+
+    '</div>';
+  }).join('');
+  document.getElementById('restore-confirm').style.display='block';
+}
+function restoreOne(id){
+  const del=getDeleted().filter(d=>d!==id);
+  saveDeleted(del);
+  updateRestoreBtn();
+  if(del.length===0)hideRestoreConfirm();
+  else showRestoreConfirm();
+  search();
+}
+// ── MUSICBRAINZ TRACK LISTING ─────────────────────────────────────────────
+async function showTracks(id, e){
+  e.stopPropagation();
+  const cd=catalogue.find(c=>c.id===id);
+  const panel=document.getElementById('tracks-panel-'+id);
+  const btn=panel.previousElementSibling;
+
+  // Toggle off if already showing
+  if(panel.style.display==='block'){
+    panel.style.display='none';
+    btn.textContent='\u266B Show tracks on MusicBrainz';
+    return;
+  }
+
+  const catNo=(getCatNoStore()[id]||cd.catNo||'').trim();
+  if(!catNo||catNo==='—'){
+    panel.style.display='block';
+    panel.innerHTML='<div class="tracks-error">No catalogue number — cannot look up tracks.</div>';
+    return;
+  }
+
+  panel.style.display='block';
+  btn.textContent='Loading…';
+  panel.innerHTML='<div class="tracks-loading">⏳ Searching MusicBrainz…</div>';
+
+  try{
+    // Step 1: search by catalogue number (quoted, then unquoted, then barcode)
+    const catNoStripped=catNo.replace(/\s/g,'');
+    let releases=[];
+
+    const attempts=[
+      'https://musicbrainz.org/ws/2/release/?query='+encodeURIComponent('catno:"'+catNo+'"')+'&limit=5&fmt=json',
+      'https://musicbrainz.org/ws/2/release/?query='+encodeURIComponent('catno:'+catNoStripped)+'&limit=5&fmt=json',
+      'https://musicbrainz.org/ws/2/release/?query='+encodeURIComponent('barcode:'+catNoStripped)+'&limit=5&fmt=json',
+    ];
+
+    for(const url of attempts){
+      if(releases.length) break;
+      try{
+        const r=await fetch(url,{headers:{'Accept':'application/json'}});
+        const d=await r.json();
+        releases=(d.releases||[]);
+        await new Promise(res=>setTimeout(res,1100));
+      }catch(e){ break; }
+    }
+
+    if(!releases.length){
+      panel.innerHTML='<div class="tracks-error">Not found on MusicBrainz for cat. no. '+catNo+'.</div>';
+      btn.textContent='\u266B Show tracks on MusicBrainz';
+      return;
+    }
+
+    // Step 2: fetch full release with tracks
+    const mbid=releases[0].id;
+    const r2=await fetch('https://musicbrainz.org/ws/2/release/'+mbid+'?inc=recordings&fmt=json',
+      {headers:{'Accept':'application/json'}});
+    const rel=await r2.json();
+    const media=rel.media||[];
+
+    let trackHtml='';
+    for(let m=0;m<media.length;m++){
+      if(media.length>1) trackHtml+='<div class="tracks-disc">Disc '+(m+1)+'</div>';
+      (media[m].tracks||[]).forEach(t=>{
+        const ms=t.length;
+        const time=ms?Math.floor(ms/60000)+':'+String(Math.floor((ms%60000)/1000)).padStart(2,'0'):'';
+        trackHtml+='<div class="track-item"><span class="track-num">'+t.number+'.</span><span class="track-title">'+t.title+'</span><span class="track-time">'+time+'</span></div>';
+      });
+    }
+    panel.innerHTML=trackHtml||'<div class="tracks-error">No track data available.</div>';
+    btn.textContent='\u266B Hide tracks';
+  }catch(err){
+    panel.innerHTML='<div class="tracks-error">Could not reach MusicBrainz — check your connection.</div>';
+    btn.textContent='\u266B Show tracks on MusicBrainz';
+  }
+}
+function toggle(id){const c=document.getElementById('card-'+id);if(c)c.classList.toggle('open')}
+function clearSearch(){document.getElementById('search').value='';search()}
+function toggleSort(){sortMode=(sortMode+1)%sortModes.length;document.getElementById('sort-label').textContent=sortModes[sortMode].label;search()}
+
 function search(){
-  const raw=(document.getElementById('search').value||'').trim();
-  const exactMatch=/^"(.+)"$/.test(raw);
-  const q=exactMatch?raw.slice(1,-1).toLowerCase():raw.toLowerCase();
-  const qWords=exactMatch?null:q.split(/\s+/).filter(Boolean);
-  const clearBtn=document.getElementById('clear-search');
-  if(clearBtn)clearBtn.classList.toggle('visible',q.length>0);
+  const q=(document.getElementById('search').value||'').toLowerCase().trim();
+  document.getElementById('clear-search').classList.toggle('visible',q.length>0);
   const deleted=getDeleted();
-  const favs=getFavourites();
+  const catnos=getCatNoStore();
   filtered=catalogue.filter(cd=>{
     if(deleted.includes(cd.id))return false;
+    if(activeFilter==='sealed')return cd.sealed===true;
+    if(activeFilter==='favourites')return getFavourites().includes(cd.id);
     if(activeFilter==='duplicate'){
       return cd.duplicate===true&&cd.duplicateGroup&&
         catalogue.some(o=>o.id!==cd.id&&o.duplicateGroup===cd.duplicateGroup&&!deleted.includes(o.id));
     }
-    if(activeFilter==='favourites')if(!favs.includes(cd.id))return false;
-    if(activeFilter==='sealed')if(!cd.sealed)return false;
-    if(activeFilter==='SACD')if(cd.format!=='SACD')return false;
-    if(activeFilter&&activeFilter!=='duplicate'&&activeFilter!=='favourites'&&activeFilter!=='sealed'&&activeFilter!=='SACD'){
-      if(cd.format!==activeFilter)return false;
-    }
+    if(activeFilter==='SACD'&&!(cd.format&&cd.format.includes('SACD')))return false;
+    if(activeFilter&&activeFilter!=='SACD'&&cd.format!==activeFilter)return false;
     if(activeComposer&&!cd.composers.includes(activeComposer))return false;
-    if(activeArtist&&cd.artist!==activeArtist)return false;
+    if(activeArtist&&!cd.artist.includes(activeArtist))return false;
     if(activeLabel&&normaliseLabel(cd.label)!==activeLabel)return false;
     if(!q)return true;
-    const catnos=getCatNoStore();
     const liveCatNo=catnos[cd.id]||cd.catNo||'';
     if(notesSearchMode){
       const notesHay=[cd.notes||'',getCliveNote(cd.id)].join(' ').toLowerCase();
-      return exactMatch?new RegExp('\\b'+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b','i').test(notesHay):qWords.every(w=>notesHay.includes(w));
+      return notesHay.includes(q);
     }
     const hay=[cd.title,cd.artist,cd.label,...cd.composers,cd.description||'',liveCatNo,cd.notes||''].join(' ').toLowerCase();
-    return exactMatch?new RegExp('\\b'+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b','i').test(hay):qWords.every(w=>hay.includes(w));
+    return hay.includes(q);
   });
   const sm=sortModes[sortMode];
   filtered.sort((a,b)=>{
     if(sm.key==='id')return a.id-b.id;
     if(sm.key==='title')return a.title.localeCompare(b.title);
-    if(sm.key==='usedGBP')return (a.usedGBP||0)-(b.usedGBP||0);
-    if(sm.key==='usedGBPd')return (b.usedGBP||0)-(a.usedGBP||0);
+    if(sm.key==='usedGBP')return a.usedGBP-b.usedGBP;
+    if(sm.key==='usedGBPd')return b.usedGBP-a.usedGBP;
     return 0;
   });
   render(q);
@@ -913,88 +1149,81 @@ function render(q){
   const noRes=document.getElementById('no-results');
   const notFound=document.getElementById('not-found-msg');
   const resCount=document.getElementById('results-count');
-  if(!container)return;
   const deleted=getDeleted();
-  const favs=getFavourites();
   const total=catalogue.length-deleted.length;
-  const hasFilter=q||activeFilter||activeComposer||activeArtist||activeLabel;
 
   if(!filtered.length){
     container.innerHTML='';
-    if(noRes)noRes.style.display='block';
-    if(notFound)notFound.classList.add('visible');
+    noRes.style.display='block';
+    notFound.classList.add('visible');
   } else {
-    if(noRes)noRes.style.display='none';
-    if(notFound)notFound.classList.remove('visible');
+    noRes.style.display='none';
+    notFound.classList.remove('visible');
   }
-  if(resCount)resCount.textContent=hasFilter?(filtered.length+' of '+total+' CDs'):(total+' CDs');
-  const hc=document.getElementById('header-count');if(hc)hc.textContent=total+' CDs';
+
+  const isFiltered=q||activeFilter||activeComposer||activeArtist||activeLabel;
+  resCount.textContent=isFiltered?filtered.length+' of '+total:total+' CDs';
+  
 
   container.innerHTML=filtered.map(cd=>{
-    const catnos=getCatNoStore();
-    const liveCatNo=catnos[cd.id]||cd.catNo||'&#8212;';
-    const liveLoc=getLoc(cd.id);
-    const cliveNote=getCliveNote(cd.id);
-    const isFav=favs.includes(cd.id);
     const isActiveDupe=cd.duplicate&&cd.duplicateGroup&&
       catalogue.some(o=>o.id!==cd.id&&o.duplicateGroup===cd.duplicateGroup&&!deleted.includes(o.id));
     const dupeBadge=isActiveDupe?'<span class="pill pill-dupe">&#9888; Duplicate</span>':'';
-    const sealedBadge=cd.sealed?'<span class="pill pill-new">&#127381; New</span>':'';
-    const newBadge=cd.sealed?'<span class="new-badge">NEW</span>':'';
-    const cardClass=(isActiveDupe?' duplicate':'')+(cd.sealed?' sealed':'');
+    const cardClass=isActiveDupe?' duplicate':'';
     const composers=cd.composers.map(c=>'<span class="pill pill-composer">'+c+'</span>').join('');
-    const priceLabel=cd.sealed?'New':'Used';
-    const priceVal=cd.sealed&&cd.newGBP?cd.newGBP:(cd.usedGBP||0);
-    const priceDisplay=priceVal>0?'&#163;'+priceVal.toFixed(2):'TBC';
+    const priceDisplay=cd.usedGBP>0?'&#163;'+cd.usedGBP.toFixed(2):'TBC';
     return '<div class="card'+cardClass+'" id="card-'+cd.id+'">'+
       '<div class="card-main" onclick="toggle('+cd.id+')">'+
         '<div class="card-num">'+cd.id+'</div>'+
         '<div class="card-body">'+
-          '<div class="card-title">'+newBadge+cd.title+'</div>'+
+          '<div class="card-title">'+cd.title+'</div>'+
           '<div class="card-artist">'+cd.artist+'</div>'+
           '<div class="card-meta">'+composers+
             '<span class="pill pill-label">'+cd.label+'</span>'+
             '<span class="pill pill-format">'+cd.format+'</span>'+
-            dupeBadge+sealedBadge+
+            dupeBadge+
           '</div>'+
         '</div>'+
         '<div class="card-price">'+
-          '<div class="price-label">'+priceLabel+'</div>'+
+          '<button class="star-btn'+(getFavourites().includes(cd.id)?' active':'')+'" onclick="toggleFavourite('+cd.id+',event)" title="Mark as favourite">&#9733;</button>'+
+          '<div class="price-label" style="'+(cd.sealed?'color:#2a7a2a;font-weight:700':'')+'">'+(cd.sealed?'New':'Used')+'</div>'+
           '<div class="price-used">'+priceDisplay+'</div>'+
           '<div class="expand-icon">&#8964;</div>'+
         '</div>'+
       '</div>'+
       '<div class="card-detail">'+
         '<div class="detail-prices">'+
-          '<div class="detail-price-item"><div class="detail-price-val">'+priceDisplay+'</div><div class="detail-price-lbl">'+(cd.sealed?'New (sealed)':'Used (median)')+'</div></div>'+
-          (cd.newGBP&&!cd.sealed?'<div class="detail-price-item"><div class="detail-price-val">&#163;'+cd.newGBP.toFixed(2)+'</div><div class="detail-price-lbl">New</div></div>':'')+
+          '<div class="detail-price-item"><div class="detail-price-val">'+priceDisplay+'</div><div class="detail-price-lbl">Used (median)</div></div>'+
+          (cd.newGBP?'<div class="detail-price-item"><div class="detail-price-val">&#163;'+cd.newGBP.toFixed(2)+'</div><div class="detail-price-lbl">New</div></div>':'')+
         '</div>'+
-        '<div class="detail-section" style="display:flex;gap:1.5rem;flex-wrap:wrap">'+
-          '<div>'+
-            '<div class="detail-label">Catalogue No.</div>'+
-            '<div class="catno-row" id="catno-row-'+cd.id+'">'+
-              '<span class="detail-text catno-val" id="catno-val-'+cd.id+'">'+liveCatNo+'</span>'+
-              '<button class="catno-edit-btn" onclick="editCatNo('+cd.id+',event)">&#9999;&#65039;</button>'+
-            '</div>'+
-            '<div class="catno-edit-wrap" id="catno-edit-'+cd.id+'" style="display:none">'+
-              '<input type="text" class="catno-input" id="catno-input-'+cd.id+'" placeholder="Catalogue number...">'+
-              '<div style="display:flex;gap:0.5rem;margin-top:0.4rem">'+
-                '<button class="btn-yes" onclick="saveCatNo('+cd.id+',event)">Save</button>'+
-                '<button class="btn-no" onclick="cancelCatNo('+cd.id+',event)">Cancel</button>'+
+        '<div class="detail-section">'+
+          '<div class="catno-loc-row">'+
+            '<div style="flex:1;min-width:0">'+
+              '<div class="detail-label">Catalogue No.</div>'+
+              '<div class="catno-row" id="catno-row-'+cd.id+'">'+
+                '<span class="detail-text catno-val" id="catno-val-'+cd.id+'">'+getCatNo(cd.id,cd.catNo)+'</span>'+
+                '<button class="catno-edit-btn" onclick="editCatNo('+cd.id+',event)">&#9999;&#65039;</button>'+
+              '</div>'+
+              '<div class="catno-edit-wrap" id="catno-edit-'+cd.id+'" style="display:none">'+
+                '<input type="text" class="catno-input" id="catno-input-'+cd.id+'" placeholder="Enter catalogue number...">'+
+                '<div style="display:flex;gap:0.5rem;margin-top:0.4rem">'+
+                  '<button class="btn-yes" onclick="saveCatNo('+cd.id+',event)">Save</button>'+
+                  '<button class="btn-no" onclick="cancelCatNo('+cd.id+',event)">Cancel</button>'+
+                '</div>'+
               '</div>'+
             '</div>'+
-          '</div>'+
-          '<div>'+
-            '<div class="detail-label">Loc</div>'+
-            '<div class="catno-row" id="loc-row-'+cd.id+'">'+
-              '<span class="detail-text catno-val" id="loc-val-'+cd.id+'">'+(liveLoc||'&#8212;')+'</span>'+
-              '<button class="catno-edit-btn" onclick="editLoc('+cd.id+',event)">&#9999;&#65039;</button>'+
-            '</div>'+
-            '<div class="catno-edit-wrap" id="loc-edit-'+cd.id+'" style="display:none">'+
-              '<input type="text" class="catno-input" id="loc-input-'+cd.id+'" maxlength="4" placeholder="4 chars max">'+
-              '<div style="display:flex;gap:0.5rem;margin-top:0.4rem">'+
-                '<button class="btn-yes" onclick="saveLoc('+cd.id+',event)">Save</button>'+
-                '<button class="btn-no" onclick="cancelLoc('+cd.id+',event)">Cancel</button>'+
+            '<div class="loc-wrap">'+
+              '<div class="detail-label">Loc</div>'+
+              '<div class="loc-row" id="loc-row-'+cd.id+'">'+
+                '<span class="loc-val" id="loc-val-'+cd.id+'">'+(getLoc(cd.id)||'<span style="color:var(--text-light)">&#8212;</span>')+'</span>'+
+                '<button class="catno-edit-btn" onclick="editLoc('+cd.id+',event)">&#9999;&#65039;</button>'+
+              '</div>'+
+              '<div id="loc-edit-'+cd.id+'" style="display:none;margin-top:0.35rem">'+
+                '<input type="text" class="loc-input" id="loc-input-'+cd.id+'" maxlength="4" placeholder="A1">'+
+                '<div style="display:flex;gap:0.4rem;margin-top:0.35rem">'+
+                  '<button class="btn-yes" onclick="saveLoc('+cd.id+',event)">&#10003;</button>'+
+                  '<button class="btn-no" onclick="cancelLoc('+cd.id+',event)">&#10005;</button>'+
+                '</div>'+
               '</div>'+
             '</div>'+
           '</div>'+
@@ -1003,19 +1232,20 @@ function render(q){
         '<div class="detail-section"><div class="detail-label">Notes</div><div class="detail-text">'+cd.notes+'</div></div>'+
         '<div class="detail-section">'+
           '<div class="detail-label">Clive\'s Notes</div>'+
-          '<div id="clive-note-val-'+cd.id+'" class="detail-text clive-note-val">'+(cliveNote||'(none)')+'</div>'+
-          '<textarea id="clive-note-edit-'+cd.id+'" class="clive-note-edit" style="display:none" rows="3" placeholder="Add personal notes..."></textarea>'+
-          '<div id="clive-note-btns-'+cd.id+'" style="display:none;gap:0.5rem;margin-top:0.4rem">'+
-            '<button class="btn-yes" onclick="saveCliveNote('+cd.id+',event)">Save</button>'+
-            '<button class="btn-no" onclick="cancelCliveNote('+cd.id+',event)">Cancel</button>'+
+          '<div class="clive-note-row">'+
+            '<div class="clive-note-display" id="clive-note-val-'+cd.id+'">'+(getCliveNote(cd.id)||'<span class="clive-note-placeholder">Add your notes…</span>')+'</div>'+
+            '<button class="catno-edit-btn" onclick="editCliveNote('+cd.id+',event)">&#9999;&#65039;</button>'+
           '</div>'+
-          '<button class="catno-edit-btn" onclick="editCliveNote('+cd.id+',event)" style="margin-top:0.3rem">&#9999;&#65039;</button>'+
+          '<div id="clive-note-edit-'+cd.id+'" style="display:none">'+
+            '<textarea class="clive-note-input" id="clive-note-input-'+cd.id+'" placeholder="Your personal notes about this CD…"></textarea>'+
+            '<div style="display:flex;gap:0.5rem;margin-top:0.4rem">'+
+              '<button class="btn-yes" onclick="saveCliveNote('+cd.id+',event)">Save</button>'+
+              '<button class="btn-no" onclick="cancelCliveNote('+cd.id+',event)">Cancel</button>'+
+            '</div>'+
+          '</div>'+
         '</div>'+
-        '<div style="display:flex;gap:0.5rem;margin-top:0.8rem;flex-wrap:wrap">'+
-          '<button class="btn-tracks" onclick="showTracks('+cd.id+',event)">&#127925; Show tracks</button>'+
-          '<button class="fav-btn'+(isFav?' active':'')+'" id="fav-btn-'+cd.id+'" onclick="toggleFavourite('+cd.id+',event)">'+(isFav?'&#9733;':'&#9734;')+' Favourite</button>'+
-        '</div>'+
-        '<div id="tracks-'+cd.id+'" class="tracks-section" style="display:none"></div>'+
+        '<button class="tracks-btn" onclick="showTracks('+cd.id+',event)">&#127925; Show tracks on MusicBrainz</button>'+
+        '<div class="tracks-panel" id="tracks-panel-'+cd.id+'"></div>'+
         '<button class="delete-btn" onclick="showConfirm('+cd.id+',event)">Remove from collection</button>'+
         '<div class="delete-confirm" id="confirm-'+cd.id+'">'+
           '<p>Remove this CD?<br><strong>'+cd.title+'</strong></p>'+
@@ -1027,83 +1257,56 @@ function render(q){
       '</div>'+
     '</div>';
   }).join('');
+
   updateStats();
 }
 
 function updateStats(){
   const deleted=getDeleted();
+  // Footer always shows TOTAL collection (not filtered view)
   const all=catalogue.filter(c=>!deleted.includes(c.id));
-  const val=all.reduce((s,c)=>s+(c.sealed&&c.newGBP?c.newGBP:(c.usedGBP||0)),0);
-  const avg=all.length?val/all.length:0;
+  const total=all.length;
+  const val=all.reduce((s,c)=>s+(c.usedGBP||0),0);
+  const avg=total?val/total:0;
   const comps=new Set(all.flatMap(c=>c.composers)).size;
-  const st=document.getElementById('s-total');if(st)st.textContent=all.length;
-  const sv=document.getElementById('s-value');if(sv)sv.textContent='&#163;'+val.toFixed(2);
-  const sa=document.getElementById('s-avg');if(sa)sa.textContent='&#163;'+avg.toFixed(2);
-  const sc=document.getElementById('s-comp');if(sc)sc.textContent=comps;
+  document.getElementById('s-total').innerHTML=total;
+  document.getElementById('s-value').innerHTML='£'+val.toFixed(2);
+  document.getElementById('s-avg').innerHTML='£'+avg.toFixed(2);
+  document.getElementById('s-comp').innerHTML=comps;
 }
-
-function exportData(){
-  const data={deleted:getDeleted(),catnos:getCatNoStore(),notes:getCliveNotes(),favourites:getFavourites(),locations:getLocations()};
-  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='cd-catalogue-backup.json';a.click();
-}
-function importData(e){
-  const file=e.target.files[0];if(!file)return;
-  const reader=new FileReader();
-  reader.onload=ev=>{
-    try{
-      pendingImport=JSON.parse(ev.target.result);
-      const msg=document.getElementById('import-msg');
-      if(msg)msg.textContent='Import '+Object.keys(pendingImport).length+' data keys?';
-      const ic=document.getElementById('import-confirm');if(ic)ic.style.display='block';
-    }catch(err){alert('Invalid JSON file');}
-  };
-  reader.readAsText(file);
-  e.target.value='';
-}
-function confirmImport(){
-  if(!pendingImport)return;
-  if(pendingImport.deleted)localStorage.setItem('cd_deleted',JSON.stringify(pendingImport.deleted));
-  if(pendingImport.catnos)localStorage.setItem('cd_catnos',JSON.stringify(pendingImport.catnos));
-  if(pendingImport.notes)localStorage.setItem('cd_notes',JSON.stringify(pendingImport.notes));
-  if(pendingImport.favourites)localStorage.setItem('cd_favourites',JSON.stringify(pendingImport.favourites));
-  if(pendingImport.locations)localStorage.setItem('cd_locations',JSON.stringify(pendingImport.locations));
-  pendingImport=null;
-  const ic=document.getElementById('import-confirm');if(ic)ic.style.display='none';
-  updateRestoreBtn();search();
-}
-function cancelImport(){pendingImport=null;const ic=document.getElementById('import-confirm');if(ic)ic.style.display='none';}
-
-document.getElementById('search').addEventListener('input',search);
 
 document.querySelectorAll('.filter-chip[data-filter]').forEach(btn=>{
   btn.addEventListener('click',()=>{
+    const isActive=btn.classList.contains('active');
+    const isAll=btn.dataset.filter==='';
+    // Toggle off if already active (and not the All chip)
+    const newFilter=(isActive&&!isAll)?'':btn.dataset.filter||'';
     document.querySelectorAll('.filter-chip[data-filter]').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    activeFilter=btn.dataset.filter;
-    activeComposer=''; activeArtist=''; activeLabel='';
-    notesSearchMode=false;
-    const nb=document.getElementById('notes-search-btn');if(nb)nb.classList.remove('active');
-    const sb=document.getElementById('search');if(sb)sb.placeholder='Search by title, composer, artist, catalogue no…';
-    ['composer','artist','label'].forEach(w=>{const l=document.getElementById(w+'-label');if(l)l.textContent=w.charAt(0).toUpperCase()+w.slice(1);});
+    // Highlight All chip if resetting, otherwise highlight clicked chip
+    if(newFilter===''){
+      document.querySelector('.filter-chip[data-filter=""]').classList.add('active');
+    } else {
+      btn.classList.add('active');
+    }
+    activeFilter=newFilter;
+    if(activeFilter===''){
+      activeComposer=''; activeArtist=''; activeLabel='';
+      notesSearchMode=false;
+      const nb=document.getElementById('notes-search-btn'); if(nb) nb.classList.remove('active');
+      const sb=document.getElementById('search-box'); if(sb) sb.placeholder='Search by title, composer, artist, catalogue no…';
+      document.getElementById('composer-label').textContent='Composer';
+      document.getElementById('artist-label').textContent='Artist';
+      document.getElementById('label-label').textContent='Label';
+      document.getElementById('composer-btn').classList.remove('active');
+      document.getElementById('artist-btn').classList.remove('active');
+      document.getElementById('label-btn').classList.remove('active');
+    }
+    closeDropdown();
     search();
   });
 });
-
-function scrollFab(){
-  const atBottom=(window.innerHeight+window.scrollY)>=document.body.scrollHeight-50;
-  if(atBottom){window.scrollTo({top:0,behavior:'smooth'});}
-  else{window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});}
-}
-window.addEventListener('scroll',function(){
-  const fab=document.getElementById('scroll-fab');
-  if(!fab)return;
-  const atBottom=(window.innerHeight+window.scrollY)>=document.body.scrollHeight-50;
-  fab.innerHTML=atBottom?'&#8963;':'&#8964;';
-  fab.title=atBottom?'Scroll to top':'Scroll to bottom';
-  fab.style.background=atBottom?'white':'#1a2e5a';
-  fab.style.color=atBottom?'#1a2e5a':'white';
-},{passive:true});
+document.addEventListener('click', closeDropdown);
+document.getElementById('search').addEventListener('input',search);
 
 if('serviceWorker' in navigator){
   window.addEventListener('load',()=>{
@@ -1114,6 +1317,13 @@ if('serviceWorker' in navigator){
 updateRestoreBtn();
 search();
 
+// Keep filter bar stuck just below header
+function setHeaderHeight(){
+  const h = document.querySelector('header');
+  if(h) document.documentElement.style.setProperty('--header-h', h.offsetHeight+'px');
+}
+setHeaderHeight();
+window.addEventListener('resize', setHeaderHeight);
 </script>
 </body>
 </html>
