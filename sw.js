@@ -1,4 +1,4 @@
-const CACHE = 'cd-catalogue-v3';
+const CACHE = 'cd-catalogue-v4';
 const BASE = '/CD-Catalogue/';
 const ASSETS = [
   BASE,
