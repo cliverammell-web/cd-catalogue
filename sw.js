@@ -1,7 +1,8 @@
-const CACHE = 'cd-catalogue-v5';
+const CACHE = 'cd-catalogue-v6';
+const BASE = '/cd-catalogue/';
 const ASSETS = [
-  '/',
-  '/index.html',
+  BASE,
+  BASE + 'index.html',
   'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@300;400;500&display=swap'
 ];
 
@@ -20,7 +21,7 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
-  if (e.request.url.includes('index.html') || e.request.url.endsWith('/')) {
+  if (e.request.url.includes('index.html') || e.request.url.endsWith(BASE)) {
     e.respondWith(
       fetch(e.request).then(res => {
         const clone = res.clone();
