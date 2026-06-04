@@ -1322,7 +1322,7 @@ document.getElementById('search').addEventListener('input',search);
 
 if('serviceWorker' in navigator){
   window.addEventListener('load',()=>{
-    navigator.serviceWorker.register('/CD-Catalogue/sw.js').catch(()=>{});
+    navigator.serviceWorker.register('/sw.js').catch(()=>{});
   });
 }
 
