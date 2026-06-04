@@ -775,31 +775,35 @@ function getLabelList(){
   return [...all].sort();
 }
 
+let openDropdown=null;
 function toggleDropdown(which,e){
   e.stopPropagation();
-  const dd=document.getElementById(which+'-dropdown');
-  if(!dd)return;
-  const isOpen=dd.style.display==='block';
-  closeDropdown();
-  if(!isOpen){
-    const list=(which==='composer'?getComposerList():which==='artist'?getArtistList():getLabelList());
-    const cur=which==='composer'?activeComposer:which==='artist'?activeArtist:activeLabel;
-    dd.innerHTML=list.map(v=>'<div class="dd-item'+(v===cur?' active':'')+'" onclick="selectDropdown(\''+which+'\',\''+v.replace(/'/g,"\\'")+'\')">'+(v.length>40?v.substr(0,40)+'...':v)+'</div>').join('');
-    if(cur){dd.innerHTML='<div class="dd-item" onclick="selectDropdown(\''+which+'\',\'\')">All</div>'+dd.innerHTML;}
-    dd.style.display='block';
-  }
+  const panel=document.getElementById('dd-panel');
+  const ddList=document.getElementById('dd-list');
+  if(!panel||!ddList)return;
+  if(openDropdown===which){closeDropdown();return;}
+  openDropdown=which;
+  const items=(which==='composer'?getComposerList():which==='artist'?getArtistList():getLabelList());
+  const cur=which==='composer'?activeComposer:which==='artist'?activeArtist:activeLabel;
+  let out='';
+  if(cur)out+='<div class="dd-item active" onclick="selectDropdown(\''+which+'\',\'\')">All '+which+'s</div>';
+  out+=items.map(v=>'<div class="dd-item'+(v===cur?' active':'')+'" onclick="selectDropdown(\''+which+'\',\''+v.replace(/\\/g,'\\\\').replace(/'/g,"\'")+'\')">'+v+'</div>').join('');
+  ddList.innerHTML=out;
+  panel.style.display='block';
 }
 function selectDropdown(which,val){
   if(which==='composer')activeComposer=val;
   else if(which==='artist')activeArtist=val;
   else activeLabel=val;
-  const label=document.getElementById(which+'-label');
-  if(label)label.textContent=val||(which==='composer'?'Composer':which==='artist'?'Artist':'Label');
+  const lbl=document.getElementById(which+'-label');
+  if(lbl)lbl.textContent=val||(which.charAt(0).toUpperCase()+which.slice(1));
   closeDropdown();
   search();
 }
 function closeDropdown(){
-  ['composer','artist','label'].forEach(w=>{const d=document.getElementById(w+'-dropdown');if(d)d.style.display='none';});
+  openDropdown=null;
+  const panel=document.getElementById('dd-panel');
+  if(panel)panel.style.display='none';
 }
 document.addEventListener('click',closeDropdown);
 
@@ -1028,11 +1032,11 @@ function render(q){
 
 function updateStats(){
   const deleted=getDeleted();
-  const vis=filtered;
-  const val=vis.reduce((s,c)=>s+(c.sealed&&c.newGBP?c.newGBP:(c.usedGBP||0)),0);
-  const avg=vis.length?val/vis.length:0;
-  const comps=new Set(vis.flatMap(c=>c.composers)).size;
-  const st=document.getElementById('s-total');if(st)st.textContent=vis.length;
+  const all=catalogue.filter(c=>!deleted.includes(c.id));
+  const val=all.reduce((s,c)=>s+(c.sealed&&c.newGBP?c.newGBP:(c.usedGBP||0)),0);
+  const avg=all.length?val/all.length:0;
+  const comps=new Set(all.flatMap(c=>c.composers)).size;
+  const st=document.getElementById('s-total');if(st)st.textContent=all.length;
   const sv=document.getElementById('s-value');if(sv)sv.textContent='&#163;'+val.toFixed(2);
   const sa=document.getElementById('s-avg');if(sa)sa.textContent='&#163;'+avg.toFixed(2);
   const sc=document.getElementById('s-comp');if(sc)sc.textContent=comps;
