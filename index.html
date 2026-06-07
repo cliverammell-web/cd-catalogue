@@ -2015,6 +2015,76 @@ function returnToArticle(){
   setTimeout(()=>window.scrollTo({top:sy,behavior:'instant'}),80);
 }
 
+
+// ── Add CD ────────────────────────────────────────────────────
+function getAdditions(){ try{ return JSON.parse(localStorage.getItem('cd_additions')||'[]'); } catch(e){ return []; } }
+function saveAdditions(arr){ localStorage.setItem('cd_additions',JSON.stringify(arr)); }
+
+function getNextId(){
+  const allIds=[...catalogue.map(c=>c.id),...getAdditions().map(c=>c.id)];
+  return allIds.length ? Math.max(...allIds)+1 : 539;
+}
+
+function openAddCD(){
+  document.getElementById('add-cd-overlay').style.display='flex';
+  document.getElementById('acd-id-preview').textContent='Will be assigned CD '+getNextId();
+  document.getElementById('acd-error').style.display='none';
+  ['acd-label','acd-composers','acd-artist','acd-title','acd-catno','acd-notes'].forEach(function(id){
+    document.getElementById(id).value='';
+  });
+  document.getElementById('acd-used').value='';
+  document.getElementById('acd-new').value='';
+  document.getElementById('acd-sealed').checked=false;
+  document.getElementById('acd-format').selectedIndex=0;
+}
+
+function closeAddCD(){
+  document.getElementById('add-cd-overlay').style.display='none';
+}
+
+function submitAddCD(){
+  var err=document.getElementById('acd-error');
+  err.style.display='none';
+  var label=document.getElementById('acd-label').value.trim();
+  var composersRaw=document.getElementById('acd-composers').value.trim();
+  var artist=document.getElementById('acd-artist').value.trim();
+  var title=document.getElementById('acd-title').value.trim();
+  var catNo=document.getElementById('acd-catno').value.trim();
+  var format=document.getElementById('acd-format').value;
+  var usedRaw=document.getElementById('acd-used').value;
+  var newRaw=document.getElementById('acd-new').value;
+  var sealed=document.getElementById('acd-sealed').checked;
+  var notes=document.getElementById('acd-notes').value.trim();
+  if(!label||!composersRaw||!artist||!title){
+    err.textContent='Please fill in Label, Composer(s), Artist and Title.';
+    err.style.display='block';
+    return;
+  }
+  var composers=composersRaw.split(',').map(function(s){return s.trim();}).filter(Boolean);
+  var usedGBP=usedRaw?parseFloat(usedRaw):0;
+  var newGBP=newRaw?parseFloat(newRaw):null;
+  var id=getNextId();
+  var newCD={id:id,label:label,composers:composers,artist:artist,title:title,
+    description:catNo?catNo+' · '+label:label,format:format,catNo:catNo,
+    usedGBP:usedGBP,newGBP:newGBP,notes:notes};
+  if(sealed) newCD.sealed=true;
+  var additions=getAdditions();
+  additions.push(newCD);
+  saveAdditions(additions);
+  closeAddCD();
+  activeFilter=''; activeComposer=''; activeArtist=''; activeLabel=''; notesSearchMode=false;
+  document.getElementById('search').value='';
+  document.getElementById('clear-search').classList.remove('visible');
+  search();
+  setTimeout(function(){
+    var card=document.getElementById('card-'+id);
+    if(card){
+      card.scrollIntoView({behavior:'smooth',block:'center'});
+      card.classList.add('cd-highlight');
+      setTimeout(function(){card.classList.remove('cd-highlight');},2500);
+    }
+  },200);
+}
 </script>
 
 <div id="add-cd-overlay" style="display:none">
