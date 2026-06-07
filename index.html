@@ -219,12 +219,50 @@ header h1 span{color:var(--gold);font-style:italic}
   .art-link { color:#1B2B5B; text-decoration:underline; text-underline-offset:2px; }
 
   
-  #return-art-btn { position:fixed; bottom:1.2rem; left:50%; transform:translateX(-50%); z-index:999; pointer-events:none; }
-  #return-art-inner { background:#1B2B5B; color:#fff; padding:.55rem 1.2rem; border-radius:24px;
-    font-size:.82rem; font-weight:500; box-shadow:0 3px 12px rgba(0,0,0,.35);
-    cursor:pointer; pointer-events:all; white-space:nowrap;
-    border:1px solid rgba(200,168,75,.4); letter-spacing:.02em; }
-  #return-art-inner:active { background:#C8A84B; color:#1B2B5B; }
+  
+  #return-art-banner { background:#1B2B5B; color:#fff; padding:.65rem 1rem;
+    text-align:center; font-size:.85rem; cursor:pointer; font-weight:500;
+    border-bottom:2px solid #C8A84B; letter-spacing:.02em; }
+  #return-art-banner:active { background:#C8A84B; color:#1B2B5B; }
+
+  
+  /* ── Add CD modal ── */
+  #add-cd-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:2000;
+    display:flex; align-items:flex-end; }
+  #add-cd-modal { background:#FAF7F2; width:100%; max-height:92vh;
+    border-radius:16px 16px 0 0; display:flex; flex-direction:column;
+    box-shadow:0 -4px 30px rgba(0,0,0,0.3); }
+  #add-cd-hdr { background:#1B2B5B; color:#fff; padding:.8rem 1rem;
+    display:flex; align-items:center; justify-content:space-between;
+    border-radius:16px 16px 0 0; flex-shrink:0; }
+  #add-cd-hdr span { font-size:.95rem; font-weight:500; }
+  #add-cd-close { background:none; border:none; color:rgba(255,255,255,.7);
+    font-size:1.2rem; cursor:pointer; padding:0 .2rem; line-height:1; }
+  #add-cd-body { overflow-y:auto; padding:1rem; flex:1; }
+  .acd-field { margin-bottom:.9rem; }
+  .acd-field label { display:block; font-size:.78rem; font-weight:500;
+    color:#444; margin-bottom:.3rem; }
+  .acd-hint { font-weight:400; color:#999; font-size:.72rem; }
+  .acd-field input[type=text], .acd-field input[type=number],
+  .acd-field select, .acd-field textarea {
+    width:100%; padding:.6rem .75rem; border:1px solid #D4C4A0;
+    border-radius:6px; font-size:.9rem; background:#fff;
+    font-family:inherit; color:#1a1208; box-sizing:border-box; }
+  .acd-field textarea { resize:vertical; }
+  .acd-field select { appearance:auto; }
+  .acd-check-label { display:flex!important; align-items:center;
+    font-size:.88rem!important; cursor:pointer; }
+  .acd-row { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; }
+  #add-cd-footer { border-top:1px solid #E8E0D0; padding:.85rem 1rem;
+    display:flex; align-items:center; gap:.75rem; flex-shrink:0; }
+  #acd-submit-btn { background:#2a7a2a; color:#fff; border:none;
+    padding:.7rem 1.4rem; border-radius:8px; font-size:.9rem;
+    font-weight:500; cursor:pointer; font-family:inherit; }
+  #acd-submit-btn:active { background:#1a5a1a; }
+  #acd-id-preview { font-size:.75rem; color:#999; }
+  #acd-error { background:#fde8e8; border:1px solid #e08080; color:#8b0000;
+    padding:.55rem .75rem; border-radius:6px; font-size:.82rem;
+    margin-top:.5rem; }
 
   </style>
 </head>
@@ -274,14 +312,10 @@ header h1 span{color:var(--gold);font-style:italic}
 
 <div class="not-found-msg" id="not-found-msg">Not in your collection &#8212; safe to buy!</div>
 
+<div id="return-art-banner" style="display:none" onclick="returnToArticle()">&#8617; <span id="return-art-label">Return to article</span></div>
 <div class="cards" id="cards"></div>
 
 
-<div id="return-art-btn" style="display:none">
-  <div id="return-art-inner" onclick="returnToArticle()">
-    &#8617; Return to article
-  </div>
-</div>
 
 <div id="article-panel" style="display:none">
   <div class="art-back-bar" onclick="closeArticles()">
@@ -570,6 +604,130 @@ header h1 span{color:var(--gold);font-style:italic}
 </div>
 
 
+<div id="art-content-gould" style="display:none">
+<div class="art-article">
+<div class="art-kicker">A Musical Portrait</div>
+<h1 class="art-title">Glenn Gould</h1>
+<div class="art-subtitle">Portrait of an Original &nbsp;&#183;&nbsp; Toronto 1932 &ndash; Toronto 1982</div>
+
+<h2 class="art-h2">A Canadian Original</h2>
+<p>Glenn Herbert Gould was born on 25 September 1932 in Toronto, Canada, into a comfortable, music-loving household in the city&apos;s prosperous Beach neighbourhood. His father, Russell Gould, was a furrier; his mother, Florence, was an amateur pianist and singer who began teaching her son the piano almost as soon as he could reach the keys. She noticed immediately that the boy had something beyond ordinary talent: perfect pitch, an uncanny ability to read music at sight, and an absorption in sound that set him apart from other children. He was, from the beginning, someone for whom music was not a subject of study but the primary medium of his inner life.</p>
+<p>Toronto in the 1930s and 40s was not an obvious nursery for world-class musical genius, but it gave Gould something perhaps more useful than a great conservatoire: a somewhat marginal, self-reliant, stubbornly individual outlook that he never lost. He was Canadian to the core &mdash; proud of it, shaped by it &mdash; and the particular quality of Canadian solitude, the vast cold landscape of the north that he loved passionately, runs through his artistic personality like a watermark. He once said that the idea of the north &mdash; of isolation, of space, of a world stripped of social distraction &mdash; was the most creatively fertile imaginable. He meant it literally as well as metaphorically.</p>
+
+<h2 class="art-h2">The Prodigy and the Low Chair</h2>
+<p>At ten, Gould entered the Royal Conservatory of Music in Toronto, where he studied piano with Alberto Guerrero and organ with Frederick Silvester. Guerrero was a distinguished Chilean-Canadian musician who recognised his pupil&apos;s gifts and gave him a thorough, demanding training. But even as a student, Gould was already developing habits and techniques that his teacher had not taught him and would not have endorsed. Most famously, the chair: Gould played throughout his entire career on a folding wooden chair that his father had originally made for camping and that Gould had cut down to its extraordinary low height &mdash; fourteen inches from floor to seat. He sat so low at the keyboard that his eyes were barely above the level of his hands. He conducted this low, crouching posture to a uniquely intimate relationship with the instrument, as though he were inside the music rather than presiding over it from above.</p>
+<p>He carried that chair everywhere &mdash; to every studio, every concert hall &mdash; until it became so worn and structurally compromised that it was effectively held together by memory and habit. When it finally disintegrated he had a replica made, but the original, battered and repaired countless times, remained for him a kind of talisman. He also soaked his hands and forearms in very hot water before playing, wore heavy coats and gloves even in summer, refused to shake hands (for fear of infection), and hummed and sang continuously while performing &mdash; an involuntary accompaniment audible on virtually every recording he ever made and maddening to those who found it distracting, though for many listeners it became inseparable from the music itself, a reminder that this was always a profoundly personal, embodied act.</p>
+<p>His professional debut came in 1945 as an organist at Casavant Frères in Toronto; his piano recital debut followed in 1947. He was fifteen, already fully formed in all the ways that mattered. Reviewing his early performances, critics struggled to find the right vocabulary. He was technically immaculate, but what startled them was something harder to name: a quality of absolute concentration, of music thought through from the inside, that made even familiar pieces sound newly discovered.</p>
+
+<h2 class="art-h2">The 1955 Goldbergs: An Earthquake</h2>
+<p>In January 1955, aged twenty-two, Gould made his American debut at the Phillips Collection in Washington DC and Town Hall in New York. The response was electric. Within weeks he had been signed to Columbia Records &mdash; an almost unheard-of speed for a young pianist unknown outside Canada. And in June 1955, over two sessions in Columbia&apos;s 30th Street Studio in New York, he recorded the work that would make him famous across the world: Bach&apos;s Goldberg Variations.</p>
+<p>The Goldberg Variations had been regarded, if at all, as a dry academic exercise &mdash; a learned contrapuntal curiosity of interest mainly to scholars. Gould&apos;s recording demolished that perception entirely. He played it at tempi ranging from the reckless to the meditative, articulated the inner voices with a clarity that made the contrapuntal architecture visible as never before, and brought to the whole an energy and personality that was simply unlike anything the gramophone had previously heard. The humming was already there; so was the sense that this was a musician engaging with Bach in the most direct, unmediated way imaginable &mdash; not performing the music but thinking it, in real time. It was the first classical LP to sell over a million copies. Both that 1955 recording and the valedictory 1981 account are yours in <span class="art-cd-ref" onclick="goToCD(11)">CD 11</span>.</p>
+
+<h2 class="art-h2">Concert Hall vs. Recording Studio</h2>
+<p>Gould was already, even in his concert years, articulating a position that would eventually lead him to one of the most dramatic decisions in musical history. He believed &mdash; and argued with great intellectual force and considerable provocation &mdash; that the concert hall was a dying institution; that the relationship between performer and passive audience it enforced was fundamentally inimical to serious musical experience; and that the recording studio was not merely a means of documenting performance but a new creative medium with its own aesthetic possibilities.</p>
+<p>His argument was not philistine. He pointed out that recording allowed for a kind of perfection impossible in live performance &mdash; not just technical perfection, but interpretative perfection, the ability to assemble from many takes the ideal realisation of a musical vision. He pointed out that the listener at home, alone with a record, could engage with music in a more concentrated and personal way than any concert audience. He was, in this as in much else, ahead of his time: he was describing, forty years early, the relationship that most people now have with recorded music.</p>
+<p>But he also simply found the concert hall, with its rituals of applause and social performance, deeply uncongenial. He was constitutionally a private man. The stage frightened him not in the conventional sense &mdash; his nerves were entirely under control &mdash; but in a deeper, more philosophical way: he disliked the element of spectacle, of public display, that concert-giving inevitably involved.</p>
+
+<h2 class="art-h2">The Retirement</h2>
+<p>On 10 April 1964, in Los Angeles, Glenn Gould gave his final public concert. He was thirty-one years old, at the absolute peak of his performing powers and international fame, and he simply walked away from the stage &mdash; permanently, as it turned out &mdash; never to return. It was one of the most dramatic and debated decisions in the history of musical performance. Friends, managers, concert promoters and critics all assumed it was a temporary withdrawal; that he would return within months. He never did.</p>
+<p>What followed was not a retirement in any conventional sense. It was a redirection. Gould threw his extraordinary energies into recording, writing, broadcasting, and a series of innovative radio documentaries for the Canadian Broadcasting Corporation. His output, if anything, increased. He was simply doing exactly what he wanted to do, on his own terms, in his own time, free at last from the tyranny of the concert schedule, the obsequious management, the applauding crowds, the handshaking, the social performance of the musical life.</p>
+
+<h2 class="art-h2">Behind the Microphone</h2>
+<p>In the studio, Gould was a perfectionist of a peculiar and highly original kind. He did not seek perfect takes in the conventional sense &mdash; a single flawless run-through of a piece &mdash; but something more interesting: the perfect assembly of many takes, each capturing a different aspect of the musical vision. He would record a passage twenty or thirty times, each slightly different in character, and then work with his producer to splice together the ideal version. He was interested in the studio as an instrument, and his recordings from the later period are in this sense composite constructions, though the joins are invisible to any but the most forensic ear.</p>
+<p>He was also, uniquely, a practitioner and theorist of what he called &ldquo;the prospects of recording&rdquo; &mdash; a genuine philosopher of the medium. His essays on the subject, written with great wit and argumentative precision, are among the most searching things ever written about recorded music. He foresaw the internet &mdash; specifically, the possibility of listeners assembling their own versions of performances from multiple recorded options &mdash; with an accuracy that now seems almost uncanny.</p>
+
+<h2 class="art-h2">His Musical World: Bach and Beyond</h2>
+<p>Gould&apos;s musical sympathies were wide but particular. He was above all a Bach pianist &mdash; the Goldbergs, the <em>Well-Tempered Clavier</em>, the Partitas, the English and French Suites, the Inventions &mdash; but he was also deeply committed to the early keyboard music of Sweelinck, Gibbons and Byrd (composers you will find in your own collection), to Beethoven (he recorded virtually all the sonatas, with results that ranged from the revelatory to the deliberately perverse), and to twentieth-century music, particularly Schoenberg, Berg and Webern. He was the great champion of Schoenberg&apos;s piano works at a time when almost no one else was playing them, and his recordings of the <em>Three Piano Pieces</em> Op.11 and the <em>Suite</em> Op.25 remain benchmarks.</p>
+<p>He was equally particular about what he refused to play. He had almost no interest in Chopin, Liszt or most of the Romantic piano repertoire. He found Chopin merely decorative; Liszt vulgar; the cult of the virtuoso performer in general a distraction from the music itself. These views were sincerely held and entertainingly argued, and they have a coherence: Gould was drawn to music in which structure and counterpoint were primary, where the architecture of the piece was the point, and where the performer&apos;s role was to elucidate that architecture rather than to display personal feeling. In this he was, in his way, a classicist &mdash; though a classicist of extreme and idiosyncratic tastes.</p>
+<p>He also composed. His String Quartet Op.1, written in 1955 and recorded, was a serious, ambitious work that revealed a genuine compositional voice. He wrote for his CBC radio documentaries &mdash; the &ldquo;Solitude Trilogy,&rdquo; three programmes about isolation and the far north, are considered among the finest examples of the radiophonic art. He was, in short, a complete musical intelligence, not merely a performer.</p>
+
+<h2 class="art-h2">Solitude and Eccentricity</h2>
+<p>As the years after his retirement passed, Gould became increasingly reclusive &mdash; though &ldquo;reclusive&rdquo; is perhaps misleading, since he was intensely sociable in his preferred medium: the telephone. He was famous for calls lasting three, four, five hours, conducted late at night, ranging across music, philosophy, literature and life with extraordinary verve and wit. His friends cherished these calls; his acquaintances were sometimes overwhelmed by them. In person, however, he retreated from the world. He rarely left Toronto; he frequented all-night diners and truck stops, where he felt comfortable and anonymous; he lived, in his later years, largely nocturnally, composing and recording through the night.</p>
+<p>His hypochondria grew. He was a prodigious consumer of medications &mdash; blood pressure drugs, sedatives, stimulants, vitamins &mdash; and kept meticulous records of his heart rate and blood pressure, which he took with obsessive frequency. He was convinced for much of his adult life that he had various serious ailments; some of the ailments, as it turned out, were real. He was also convinced that cold was health-giving and warmth dangerous: he wore his overcoat through Canadian summers and kept his studio at temperatures his engineers found arctic. He loved dogs with a tenderness he found difficult to extend to most humans. He talked to them, worried about them, and felt their companionship as a form of uncomplicated grace.</p>
+
+<h2 class="art-h2">The 1981 Goldbergs: A Valediction</h2>
+<p>In the spring of 1981, Gould returned to the Goldberg Variations &mdash; the work with which he had begun his career twenty-six years earlier &mdash; and recorded it again. He was forty-eight, in deteriorating health, and he played it as if he knew it was the last time. Where the 1955 recording was mercurial, rhythmically propulsive and outward-facing &mdash; a young man seizing the music and offering it to the world &mdash; the 1981 account is inward, slow, contemplative, the Aria played at the beginning with a gravity and tenderness that stops the breath, the variations themselves unfolding with the patience of someone who has nothing left to prove and everything to explore. Many of the variations are taken at half the speed of the 1955 version; none of it feels slow.</p>
+<p>He completed the recording in April 1981. It was released in September 1982 &mdash; the month he turned fifty. On 27 September, two days after his birthday, he suffered a massive stroke. He never regained consciousness. He died on 4 October 1982, aged fifty years and nine days. The 1981 Goldbergs, heard in the knowledge of what followed, carry a weight that has only deepened with time. Together the two recordings &mdash; both in your collection as <span class="art-cd-ref" onclick="goToCD(11)">CD 11</span> &mdash; are the most complete artistic self-portrait in the history of recorded music: a life in performance, bookended by the same thirty-two pieces, utterly transformed.</p>
+
+<h2 class="art-h2">Legacy</h2>
+<p>Glenn Gould died at fifty having transformed, almost single-handedly, the way the world thinks about recorded music, about Bach, and about what a performing musician can and should be. His influence is incalculable. Every pianist who plays Bach today does so in the shadow of his example, whether they acknowledge it or not. His arguments about recording, about the concert hall, about the aesthetics of musical performance, have proved more prophetic than almost anyone recognised at the time. And the recordings themselves &mdash; the Goldbergs, the <em>Well-Tempered Clavier</em>, the Partitas, the Beethoven sonatas, the Schoenberg &mdash; remain, fifty years on, as alive, as personal, as inescapably present as they were when he made them. There has been no one quite like him. There will not be again.</p>
+
+<h2 class="art-h2">Recommended Recordings</h2>
+<p>Your collection currently has the essential Gould &mdash; the two Goldberg recordings on <span class="art-cd-ref" onclick="goToCD(11)">CD 11</span>. Here is a guide to building further:</p>
+<div class="art-rec-list">
+  <div class="art-rec-item">
+    <div class="art-rec-title">Bach: The Well-Tempered Clavier, Books 1 &amp; 2</div>
+    <div class="art-rec-label">Sony Classical &nbsp;&#183;&nbsp; 4-disc set &nbsp;&#183;&nbsp; rec. 1962&ndash;71</div>
+    <p>Gould&apos;s complete recording of the 48 preludes and fugues, made in the 1960s and early 70s. Less famous than the Goldbergs but arguably just as important: his ability to balance and differentiate the inner voices of Bach&apos;s counterpoint is simply without parallel. An essential companion to Angela Hewitt&apos;s account in your collection <span class="art-cd-ref" onclick="goToCD(7)">CD 7</span> &mdash; the contrast between the two is one of the great illuminating comparisons in recorded music.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">Bach: The Partitas BWV 825&ndash;830</div>
+    <div class="art-rec-label">Sony Classical &nbsp;&#183;&nbsp; 2-disc set &nbsp;&#183;&nbsp; rec. 1957&ndash;63</div>
+    <p>Many Gould devotees consider the Partitas his finest Bach set after the Goldbergs: six keyboard suites of supreme elegance, played with a freshness and rhythmic certainty that has never been bettered. The Partita No. 2 in C minor, in particular, is a revelation. Available in budget reissues.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">Beethoven: Piano Sonatas (Selected)</div>
+    <div class="art-rec-label">Sony Classical &nbsp;&#183;&nbsp; Various single CDs</div>
+    <p>Gould recorded most of the Beethoven sonatas, with results ranging from the quietly brilliant to the deliberately provocative. The Op.109, 110 and 111 (the last three sonatas) are essential; so is Op.57 (the &lsquo;Appassionata&rsquo;, played at a speed that made critics splutter). His Beethoven divides opinion more than his Bach &mdash; which is precisely why it is worth hearing. Available individually or in a Sony box set.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">Schoenberg: Piano Music</div>
+    <div class="art-rec-label">Sony Classical &nbsp;&#183;&nbsp; Single CD</div>
+    <p>Gould was the great champion of Schoenberg&apos;s piano works and the recordings he made of them &mdash; the Three Pieces Op.11, the Six Little Pieces Op.19, the Suite Op.25, the two Piano Pieces Op.33 &mdash; remain the benchmarks. He genuinely loved this music, heard in it a natural continuation of Bach&apos;s polyphonic tradition, and played it with a conviction and affection that makes the unfamiliar accessible. An eye-opening disc for anyone who thinks Schoenberg forbidding.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">A Glenn Gould Portrait (Sampler)</div>
+    <div class="art-rec-label">Sony Classical &nbsp;&#183;&nbsp; Various budget compilations</div>
+    <p>Several well-chosen Gould compilations are available at budget price on Sony and give a broad overview of his range &mdash; Bach, Beethoven, Scarlatti, Handel, Sweelinck, Gibbons. A good way to explore his wider repertoire before committing to individual discs. Worth searching for on the second-hand market, where Gould is well represented.</p>
+  </div>
+</div>
+
+<h2 class="art-h2">Further Reading and Watching</h2>
+<div class="art-reading-section">
+  <div class="art-reading-sub">Books</div>
+  <div class="art-book-list">
+    <div class="art-book-item">
+      <div class="art-book-title">Wondrous Strange: The Life and Art of Glenn Gould</div>
+      <div class="art-book-author">Kevin Bazzana &nbsp;&#183;&nbsp; Yale University Press, 2004</div>
+      <p>The definitive biography &mdash; thorough, admirably balanced, and written with genuine critical intelligence. Bazzana is both a Gould admirer and a rigorous scholar; he neither hagiographises nor debunks. Everything you need to know about the life, the personality and the artistic achievement is here, in readable and well-organised form.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">The Glenn Gould Reader</div>
+      <div class="art-book-author">Edited by Tim Page &nbsp;&#183;&nbsp; Vintage, 1990</div>
+      <p>Gould&apos;s own writings &mdash; essays, liner notes, interviews, criticism &mdash; collected and edited by the critic Tim Page. Gould was an exceptionally gifted writer: precise, witty, paradoxical and always stimulating, even (especially) when wrong. His essays on recording, on Bach, on Schoenberg, and on the future of music are essential reading for anyone who takes recorded classical music seriously.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">Glenn Gould: A Life and Variations</div>
+      <div class="art-book-author">Otto Friedrich &nbsp;&#183;&nbsp; Random House, 1989</div>
+      <p>An earlier, more anecdotal biography assembled largely from interviews with those who knew Gould, and thus a valuable complement to Bazzana&apos;s more scholarly account. Rich in telling personal detail and useful for anyone who wants to understand the texture of Gould&apos;s daily life and the impression he made on those around him.</p>
+    </div>
+  </div>
+  <div class="art-reading-sub">Film</div>
+  <div class="art-book-list">
+    <div class="art-book-item">
+      <div class="art-book-title">Thirty Two Short Films About Glenn Gould</div>
+      <div class="art-book-author">Dir. Fran&ccedil;ois Girard &nbsp;&#183;&nbsp; 1993 &nbsp;&#183;&nbsp; Available on streaming platforms</div>
+      <p>One of the finest music documentaries ever made &mdash; and it is not quite a documentary. Girard&apos;s film takes its structure from the Goldberg Variations: thirty-two short episodes, each a different approach to its subject, mixing dramatic reconstruction, interview, archive footage and pure music. Colm Feore&apos;s performance as Gould is extraordinary. Essential viewing.</p>
+    </div>
+  </div>
+  <div class="art-reading-sub">Online</div>
+  <div class="art-book-list">
+    <div class="art-book-item">
+      <div class="art-book-title">CBC Digital Archives &mdash; Glenn Gould</div>
+      <div class="art-book-author"><a href="https://www.cbc.ca/archives/topic/glenn-gould" target="_blank" class="art-link">cbc.ca/archives</a></div>
+      <p>The Canadian Broadcasting Corporation holds an extraordinary archive of Gould material &mdash; interviews, documentary footage, radio recordings, performance clips &mdash; much of it freely available online. This is the richest single source of primary Gould material on the internet, and hours can be spent here very profitably.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">The Glenn Gould Foundation</div>
+      <div class="art-book-author"><a href="https://www.glenngould.ca" target="_blank" class="art-link">glenngould.ca</a></div>
+      <p>The foundation established in Gould&apos;s memory maintains a useful website with biographical material, discography, and information about the Glenn Gould Prize, awarded every three years to a musician who has enriched human life through music. Past laureates include Yo-Yo Ma and Jessye Norman.</p>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
 <div class="no-results" id="no-results" style="display:none">
   <div class="no-results-icon">&#127925;</div>
   <h3>Not in your collection</h3>
@@ -578,6 +736,7 @@ header h1 span{color:var(--gold);font-style:italic}
 
 <button class="scroll-fab" id="scroll-fab" onclick="scrollFab()" title="Scroll to bottom">&#8964;</button>
 <div class="data-bar">
+  <button class="data-btn" onclick="openAddCD()" style="border-color:#2a7a2a;color:#1a5a1a">&#43; Add CD</button>
   <button class="data-btn" onclick="exportData()">&#128228; Export data</button>
   <button class="data-btn" onclick="document.getElementById('import-file').click()">&#128229; Import data</button>
   <button class="data-btn" id="restore-btn" onclick="showRestoreConfirm()" style="display:none;border-color:#b94040;color:#8b2020">&#x21A9; Restore (<span id="restore-count">0</span>)</button>
@@ -1311,7 +1470,8 @@ function exportData(){
     deleted:    JSON.parse(localStorage.getItem('cd_deleted')||'[]'),
     catnos:     JSON.parse(localStorage.getItem('cd_catnos')||'{}'),
     locations:  JSON.parse(localStorage.getItem('cd_locations')||'{}'),
-    notes:      JSON.parse(localStorage.getItem('cd_notes')||'{}')
+    notes:      JSON.parse(localStorage.getItem('cd_notes')||'{}'),
+    additions:  JSON.parse(localStorage.getItem('cd_additions')||'[]')
   };
   const counts=[
     data.favourites.length+' favourite(s)',
@@ -1345,7 +1505,8 @@ function importData(e){
         (data.deleted||[]).length+' deletion(s)',
         Object.keys(data.catnos||{}).length+' cat.no. edit(s)',
         Object.keys(data.locations||{}).length+' location(s)',
-        Object.keys(data.notes||{}).length+' note(s)'
+        Object.keys(data.notes||{}).length+' note(s)',
+        (data.additions||[]).length+' added CD(s)'
       ].filter(s=>!s.startsWith('0')).join(', ');
       const saved=new Date(data.exported).toLocaleDateString();
       pendingImport=data;
@@ -1545,7 +1706,7 @@ function search(){
   document.getElementById('clear-search').classList.toggle('visible',raw.length>0);
   const deleted=getDeleted();
   const catnos=getCatNoStore();
-  filtered=catalogue.filter(cd=>{
+  filtered=[...catalogue,...getAdditions()].filter(cd=>{
     if(deleted.includes(cd.id))return false;
     if(activeFilter==='sealed')return cd.sealed===true;
     if(activeFilter==='favourites')return getFavourites().includes(cd.id);
@@ -1700,7 +1861,7 @@ function render(q){
 function updateStats(){
   const deleted=getDeleted();
   // Footer always shows TOTAL collection (not filtered view)
-  const all=catalogue.filter(c=>!deleted.includes(c.id));
+  const all=[...catalogue,...getAdditions()].filter(c=>!deleted.includes(c.id));
   const total=all.length;
   const val=all.reduce((s,c)=>s+(c.usedGBP||0),0);
   document.getElementById('s-total').innerHTML=total;
@@ -1764,7 +1925,8 @@ window.addEventListener('resize', setHeaderHeight);
 // ── Articles ──────────────────────────────────────────────────
 const articleMeta = [
   {id:'bach', title:'Johann Sebastian Bach', subtitle:'Life, times & music — from Eisenach to Leipzig', cdCount:12},
-  {id:'schubert', title:'Franz Schubert', subtitle:'Life, times & music — the brief miraculous life', cdCount:16}
+  {id:'schubert', title:'Franz Schubert', subtitle:'Life, times & music — the brief miraculous life', cdCount:16},
+  {id:'gould', title:'Glenn Gould', subtitle:'Portrait of an original — the pianist who changed everything', cdCount:1}
 ];
 
 function openArticles(){
@@ -1777,7 +1939,7 @@ function openArticles(){
 }
 
 function closeArticles(){
-  _currentArticleId=null; hideReturnBtn();
+  _currentArticleId=null; hideReturnBanner();
   document.getElementById('article-panel').style.display='none';
   document.getElementById('cards').style.display='';
   document.getElementById('articles-chip').classList.remove('active');
@@ -1814,10 +1976,9 @@ function backToArticleList(){
   renderArticleList();
 }
 
-let _lastArticleId=null, _lastScrollY=0, _returnTimer=null;
+let _lastArticleId=null, _lastScrollY=0;
 
 function goToCD(id){
-  // Store current article state for return
   _lastArticleId=_currentArticleId||null;
   _lastScrollY=window.scrollY;
   closeArticles();
@@ -1833,30 +1994,20 @@ function goToCD(id){
       setTimeout(()=>card.classList.remove('cd-highlight'),2000);
     }
   },150);
-  // Show return button if we came from an article
   if(_lastArticleId){
-    showReturnBtn();
+    const meta=articleMeta.find(a=>a.id===_lastArticleId);
+    const label=meta?meta.title:'article';
+    document.getElementById('return-art-label').textContent='Return to — '+label;
+    document.getElementById('return-art-banner').style.display='block';
   }
 }
 
-function showReturnBtn(){
-  const btn=document.getElementById('return-art-btn');
-  btn.style.display='block';
-  btn.style.opacity='0';
-  btn.style.transition='opacity 0.3s';
-  setTimeout(()=>btn.style.opacity='1',10);
-  if(_returnTimer) clearTimeout(_returnTimer);
-  _returnTimer=setTimeout(hideReturnBtn, 12000);
-}
-
-function hideReturnBtn(){
-  const btn=document.getElementById('return-art-btn');
-  btn.style.opacity='0';
-  setTimeout(()=>btn.style.display='none',300);
+function hideReturnBanner(){
+  document.getElementById('return-art-banner').style.display='none';
 }
 
 function returnToArticle(){
-  hideReturnBtn();
+  hideReturnBanner();
   if(!_lastArticleId) return;
   openArticles();
   openArticle(_lastArticleId);
@@ -1865,5 +2016,77 @@ function returnToArticle(){
 }
 
 </script>
+
+<div id="add-cd-overlay" style="display:none">
+  <div id="add-cd-modal">
+    <div id="add-cd-hdr">
+      <span>&#127829; Add New CD</span>
+      <button id="add-cd-close" onclick="closeAddCD()">&#10005;</button>
+    </div>
+    <div id="add-cd-body">
+      <div class="acd-field">
+        <label>Label *</label>
+        <input id="acd-label" type="text" placeholder="e.g. Hyperion, Deutsche Grammophon">
+      </div>
+      <div class="acd-field">
+        <label>Composer(s) * <span class="acd-hint">separate multiple with commas</span></label>
+        <input id="acd-composers" type="text" placeholder="e.g. J.S. Bach, Handel">
+      </div>
+      <div class="acd-field">
+        <label>Artist / Performer(s) *</label>
+        <input id="acd-artist" type="text" placeholder="e.g. Andras Schiff (piano)">
+      </div>
+      <div class="acd-field">
+        <label>Title *</label>
+        <input id="acd-title" type="text" placeholder="e.g. Bach: Goldberg Variations">
+      </div>
+      <div class="acd-field">
+        <label>Catalogue Number</label>
+        <input id="acd-catno" type="text" placeholder="e.g. CDA67288">
+      </div>
+      <div class="acd-field">
+        <label>Format</label>
+        <select id="acd-format">
+          <option>Single CD</option>
+          <option>2-disc set</option>
+          <option>3-disc set</option>
+          <option>4-disc set</option>
+          <option>5-disc set</option>
+          <option>6-disc set</option>
+          <option>7-disc set</option>
+          <option>8-disc set</option>
+          <option>12-disc set</option>
+          <option>SACD</option>
+          <option>Box set</option>
+        </select>
+      </div>
+      <div class="acd-row">
+        <div class="acd-field">
+          <label>Used price (&#163;)</label>
+          <input id="acd-used" type="number" min="0" step="0.01" placeholder="0.00">
+        </div>
+        <div class="acd-field">
+          <label>New price (&#163;)</label>
+          <input id="acd-new" type="number" min="0" step="0.01" placeholder="optional">
+        </div>
+      </div>
+      <div class="acd-field">
+        <label class="acd-check-label">
+          <input id="acd-sealed" type="checkbox"> &nbsp;Sealed / New &amp; unplayed
+        </label>
+      </div>
+      <div class="acd-field">
+        <label>Notes <span class="acd-hint">optional</span></label>
+        <textarea id="acd-notes" rows="4" placeholder="Your notes about this recording..."></textarea>
+      </div>
+      <div id="acd-error" style="display:none"></div>
+    </div>
+    <div id="add-cd-footer">
+      <button id="acd-submit-btn" onclick="submitAddCD()">&#10003; Add to Collection</button>
+      <div id="acd-id-preview"></div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
