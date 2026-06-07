@@ -264,6 +264,29 @@ header h1 span{color:var(--gold);font-style:italic}
     padding:.55rem .75rem; border-radius:6px; font-size:.82rem;
     margin-top:.5rem; }
 
+  
+  /* ── Restore modal ── */
+  #restore-confirm { position:fixed; inset:0; background:rgba(0,0,0,0.55);
+    z-index:2000; display:flex; align-items:flex-end; }
+  #restore-confirm-sheet { background:#FFFDF5; width:100%; max-height:75vh;
+    border-radius:16px 16px 0 0; display:flex; flex-direction:column;
+    box-shadow:0 -4px 30px rgba(0,0,0,0.25); overflow:hidden; }
+  #restore-confirm-hdr { background:#7a5a0a; color:#fff; padding:.8rem 1rem;
+    display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
+  #restore-confirm-hdr span { font-size:.92rem; font-weight:500; }
+  #restore-confirm-hdr button { background:none; border:none; color:rgba(255,255,255,.7);
+    font-size:1.2rem; cursor:pointer; padding:0 .2rem; line-height:1; }
+  #restore-list { overflow-y:auto; flex:1; padding:.5rem .75rem; }
+  #restore-confirm-footer { border-top:1px solid #e8d8a0; padding:.75rem 1rem;
+    display:flex; gap:.75rem; flex-shrink:0; }
+  #restore-all-btn { background:#7a5a0a; color:#fff; border:none; padding:.65rem 1.2rem;
+    border-radius:8px; font-size:.88rem; font-weight:500; cursor:pointer;
+    font-family:inherit; flex:1; }
+  #restore-all-btn:active { background:#5a3a00; }
+  #restore-cancel-btn { background:none; border:1.5px solid #c4a060; color:#7a5a0a;
+    padding:.65rem 1.2rem; border-radius:8px; font-size:.88rem; cursor:pointer;
+    font-family:inherit; }
+
   </style>
 </head>
 <body>
@@ -302,12 +325,18 @@ header h1 span{color:var(--gold);font-style:italic}
   <button class="sort-btn" onclick="toggleSort()">Sort: <span id="sort-label">&#8470;</span></button>
 </div>
 
-<div id="restore-confirm" style="display:none;margin:0.5rem 1rem;padding:0.85rem;background:#fff3cd;border-radius:10px;border:1px solid #c4972a">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem">
-    <p style="font-size:0.85rem;color:#7a5a0a;font-weight:500">Deleted CDs</p>
-    <button onclick="hideRestoreConfirm()" style="background:none;border:none;font-size:1rem;cursor:pointer;color:#7a5a0a;padding:0">&#x2715;</button>
+<div id="restore-confirm" style="display:none">
+  <div id="restore-confirm-sheet">
+    <div id="restore-confirm-hdr">
+      <span>&#x21A9; Deleted CDs</span>
+      <button onclick="hideRestoreConfirm()">&#x2715;</button>
+    </div>
+    <div id="restore-list"></div>
+    <div id="restore-confirm-footer">
+      <button id="restore-all-btn" onclick="confirmRestore()">&#x21A9; Restore All</button>
+      <button id="restore-cancel-btn" onclick="hideRestoreConfirm()">Cancel</button>
+    </div>
   </div>
-  <div id="restore-list"></div>
 </div>
 
 <div class="not-found-msg" id="not-found-msg">Not in your collection &#8212; safe to buy!</div>
@@ -721,6 +750,139 @@ header h1 span{color:var(--gold);font-style:italic}
       <div class="art-book-title">The Glenn Gould Foundation</div>
       <div class="art-book-author"><a href="https://www.glenngould.ca" target="_blank" class="art-link">glenngould.ca</a></div>
       <p>The foundation established in Gould&apos;s memory maintains a useful website with biographical material, discography, and information about the Glenn Gould Prize, awarded every three years to a musician who has enriched human life through music. Past laureates include Yo-Yo Ma and Jessye Norman.</p>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+<div id="art-content-quartet" style="display:none">
+<div class="art-article">
+<div class="art-kicker">A Genre History</div>
+<h1 class="art-title">The String Quartet</h1>
+<div class="art-subtitle">From Haydn to Shostakovich &nbsp;&#183;&nbsp; c.1760 &ndash; 1974</div>
+
+<h2 class="art-h2">Four Instruments, One Voice</h2>
+<p>The string quartet &mdash; two violins, viola and cello &mdash; is the chamber music form that composers across two and a half centuries have chosen above all others for their most serious, most intimate and most unguarded utterances. It is the medium in which Beethoven expressed things he could not say in symphonies, in which Schubert confronted his mortality, in which Shostakovich, forced to conceal his thoughts from a totalitarian state, hid messages in plain sight. Strip away the orchestra&apos;s colour and weight, the piano&apos;s percussive brilliance, and what remains is four voices of essentially identical character, obliged to balance, to listen, to argue and to agree with no hiding place and nothing to conceal imprecision. It is the most demanding medium in music, and the most revealing.</p>
+<p>Its history is one of the great continuous narratives in Western art: from Haydn&apos;s elegant conversational wit to Beethoven&apos;s shattering of every formal convention; from Schubert&apos;s song-saturated lyricism to the nationalist voices of Smetana and Dvo&#345;&aacute;k; from Debussy and Ravel&apos;s transformation of the harmonic language to Bart&oacute;k&apos;s ferocious reinvention of the whole enterprise; from Shostakovich&apos;s fifteen coded confessions to the Kronos Quartet&apos;s reimagining of what the medium could encompass. Your collection traces almost every chapter of this story.</p>
+
+<h2 class="art-h2">Haydn: Inventing the Conversation</h2>
+<p>The string quartet did not spring fully formed from any single mind. It evolved gradually through the middle decades of the eighteenth century from the <em>divertimento</em> &mdash; light entertainment music for small groups &mdash; towards something more serious and structurally ambitious. But it was Joseph Haydn who gave it its definitive character, and for this reason he is universally recognised as the father of the form, despite the fact that he would have been puzzled by the title.</p>
+<p>Haydn&apos;s contribution was not merely compositional but philosophical. In his Op. 33 quartets of 1781 he wrote to a friend that they were composed &ldquo;in a new and quite special manner,&rdquo; and the novelty was exactly this: each of the four instruments was given an equal share of the musical argument. There was no longer a dominant melody on the first violin with the others as accompaniment. Instead, a theme could pass from instrument to instrument, be interrupted, questioned, elaborated and contradicted &mdash; a conversation among four independent but mutually attentive voices. It was a musical model for something like civilised discourse, and it transformed the medium.</p>
+<p>His Op. 76 quartets, written in 1796-97 and among the last he completed, show the form at full maturity <span class="art-cd-ref" onclick="goToCD(240)">CD 240</span>. The &lsquo;Emperor&rsquo; quartet, whose slow movement is a set of variations on the melody Haydn had just written as the Austrian imperial anthem (it became, with different words, <em>Deutschland &uuml;ber Alles</em>), is one of the most widely beloved. The &lsquo;Fifths&rsquo; quartet, with its dramatic descending interval in the opening theme, is one of the most immediately striking. And the Allegri Quartet&apos;s disc includes the &lsquo;Bird&rsquo; quartet, Op. 33 No. 3, with its delightful chirping grace notes in the first movement <span class="art-cd-ref" onclick="goToCD(400)">CD 400</span>.</p>
+
+<h2 class="art-h2">A Short Digression: The Spanish Mozart</h2>
+<p>Before moving to Mozart, one remarkable detour is worth making. Juan Cris&oacute;stomo de Arriaga (1806-1826) was a Basque composer who died in Paris three months before his twentieth birthday and left behind, among other things, three string quartets of such extraordinary accomplishment that they have earned him the sobriquet &ldquo;the Spanish Mozart.&rdquo; The three quartets, written when he was barely seventeen, are fluent, formally secure and melodically inspired in a way that defies their composer&apos;s age &mdash; more than competent imitations of the Haydn-Mozart style, but alive with a personality and invention entirely their own <span class="art-cd-ref" onclick="goToCD(2)">CD 2</span>. What he might have achieved with another forty years is one of music&apos;s tantalising unanswerable questions.</p>
+
+<h2 class="art-h2">Mozart: The Poet Responds</h2>
+<p>Mozart&apos;s engagement with the string quartet was both direct and deeply personal. His six &ldquo;Haydn Quartets&rdquo; (K.387-465), dedicated to the older composer and described by Mozart in his dedication as &ldquo;the fruit of long and laborious effort,&rdquo; are his response to the challenge that Haydn&apos;s Op. 33 had thrown down. They are remarkable for their expressive depth: the famous &lsquo;Dissonance&rsquo; Quartet K.465, with its extraordinary slow chromatic introduction that seems to dissolve tonality altogether, anticipates harmonic developments of a hundred years later. Haydn, hearing the six quartets performed, turned to Mozart&apos;s father and said: &ldquo;I tell you before God and as an honest man that your son is the greatest composer known to me.&rdquo;</p>
+<p>Mozart&apos;s later quintets &mdash; for two violins, two violas and cello &mdash; are if anything even finer. The Quintet in C minor K.516 and the G minor K.516 are among the supreme achievements of his chamber output, darker and more searching than the quartets <span class="art-cd-ref" onclick="goToCD(303)">CD 303</span> <span class="art-cd-ref" onclick="goToCD(304)">CD 304</span>. It was a combination &mdash; four strings plus one additional voice &mdash; that Schubert would later take to its absolute summit.</p>
+
+<h2 class="art-h2">Beethoven: Expanding the Universe</h2>
+<p>Beethoven approached the string quartet three times, at very different stages of his life and art, and each time he transformed it. His six Op. 18 quartets (1798-1800) are masterly early works, thoroughly in the Haydn-Mozart tradition, already marked by a characteristic energy and directness but still essentially conventional in form.</p>
+<p>The three Razumovsky Quartets Op. 59 (1806), written for the Russian ambassador Count Razumovsky and incorporating Russian folk themes at his request, are something entirely different. They stunned contemporary listeners. One violinist, presented with the score of Op. 59 No. 1, declared that it was not music; a colleague replied that it would be music in fifty years. He was right. The sheer scale of these works &mdash; each one as long as a symphony &mdash; the complexity of their development sections, the radical harmonic adventurousness, the slow movements of almost unbearable intensity, all announced that the string quartet had ceased to be drawing-room entertainment and had become something as serious, as demanding, as a symphony or an opera <span class="art-cd-ref" onclick="goToCD(77)">CD 77</span>.</p>
+
+<h2 class="art-h2">Beethoven: Into the Unknown</h2>
+<p>But it is the five late quartets (Op. 127, 130, 131, 132 and 135), written between 1824 and 1826 when Beethoven was completely deaf and within sight of death, that mark the most extraordinary single chapter in the entire history of the form. They were incomprehensible to his contemporaries, barely performed for decades, and are now recognised as among the most profound utterances in Western music.</p>
+<p>The Quartet in A minor Op. 132 contains a central slow movement marked <em>Heiliger Dankgesang eines Genesenen an die Gottheit</em> &mdash; Holy Song of Thanksgiving of a Convalescent to the Divinity &mdash; written after Beethoven&apos;s recovery from a serious illness. It is music of an otherworldly stillness and beauty, alternating between a modal chorale (marked &ldquo;feeling new strength&rdquo;) and a dancing D major episode, that seems to exist outside ordinary time. The Quartet in C-sharp minor Op. 131, in seven linked movements played without a break, is perhaps the single most concentrated masterpiece in the chamber repertoire &mdash; a complete emotional and spiritual journey compressed into forty minutes. And then there is the <em>Grosse Fuge</em> Op. 133, originally the finale of Op. 130 and so violent and dissonant that Beethoven&apos;s publisher persuaded him to publish it separately: a fugue of extraordinary ferocity that sounds like nothing else in the music of its era and a great deal in the music of ours. Your collection covers the late quartets in depth, with both the Quartetto Italiano <span class="art-cd-ref" onclick="goToCD(78)">CD 78</span> <span class="art-cd-ref" onclick="goToCD(79)">CD 79</span> and the Amadeus Quartet accounts <span class="art-cd-ref" onclick="goToCD(88)">CD 88</span> available for comparison.</p>
+
+<h2 class="art-h2">Schubert: In Beethoven&apos;s Shadow</h2>
+<p>Schubert lived in Vienna alongside Beethoven, worshipped him from a respectful distance, was a torchbearer at his funeral in 1827, and died the following year &mdash; aged thirty-one, a year after Beethoven, having spent his entire creative life in the shadow of that overwhelming presence. His chamber music shows how a composer of genius can absorb a dominant influence without being crushed by it.</p>
+<p>The <em>Quartettsatz</em> in C minor D.703 (1820), a single movement surviving from an unfinished quartet, is as dramatic and concentrated as anything Beethoven wrote &mdash; but unmistakably Schubertian in its lyricism and harmonic colour <span class="art-cd-ref" onclick="goToCD(400)">CD 400</span>. The &lsquo;Rosamunde&rsquo; Quartet D.804 (1824), with its slow movement based on music from his incidental score for the play of that name, has a radiant, singing quality that is entirely his own. But it is the <em>Death and the Maiden</em> Quartet D.810 (also 1824) that is the supreme achievement among his quartets &mdash; a work so charged with mortality and passionate desperation that it feels less like chamber music than a cry from the abyss. The slow movement is a set of variations on his own song of the same name, in which Death speaks in the bass with a terrible, seductive calm. Your collection holds no fewer than four separate recordings of this work <span class="art-cd-ref" onclick="goToCD(402)">CD 402</span> <span class="art-cd-ref" onclick="goToCD(404)">CD 404</span> <span class="art-cd-ref" onclick="goToCD(407)">CD 407</span> <span class="art-cd-ref" onclick="goToCD(408)">CD 408</span> &mdash; a tribute to its inexhaustible fascination.</p>
+<p>The late G major Quartet D.887 (1826), the last he completed, goes still further: a vast, restless work of nearly fifty minutes, harmonically turbulent and structurally unprecedented, it anticipates the emotional world of the late sonatas and looks forward to the string writing of Brahms <span class="art-cd-ref" onclick="goToCD(406)">CD 406</span> <span class="art-cd-ref" onclick="goToCD(408)">CD 408</span>. And then there is the String Quintet in C major D.956 (1828), written in the last weeks of his life and scored, like Boccherini, for string quartet plus second cello. Its Adagio slow movement &mdash; one of the most sustained passages of pure beauty in all music &mdash; seems to hover, timeless, between grief and acceptance <span class="art-cd-ref" onclick="goToCD(401)">CD 401</span> <span class="art-cd-ref" onclick="goToCD(408)">CD 408</span>.</p>
+
+<h2 class="art-h2">The Romantic Quartet: Mendelssohn and Brahms</h2>
+<p>The mid-nineteenth century produced string quartets of great accomplishment and occasional genius, though none quite matching the revolutionary force of the late Beethoven. Mendelssohn&apos;s six quartets span his career and show his characteristic combination of Classical formal clarity and Romantic expressive warmth; the F minor Quartet Op. 80, written in a single anguished outburst after the death of his sister Fanny, is his darkest and most emotionally raw work in any form <span class="art-cd-ref" onclick="goToCD(281)">CD 281</span>.</p>
+<p>Brahms, temperamentally unable to publish anything he did not consider fully achieved, wrote only three string quartets &mdash; and destroyed at least twenty others before he was satisfied. The two Op. 51 quartets (1873) and the B-flat Op. 67 (1875) are dense, richly developed works that draw on the late Beethoven tradition while speaking in an unmistakably Brahmsian voice: autumnal, contrapuntally complex, suffused with a characteristically Central European melancholy.</p>
+
+<h2 class="art-h2">National Voices: Smetana and Dvo&#345;&aacute;k</h2>
+<p>The later nineteenth century saw the emergence of powerful national schools of quartet-writing. Bed&#345;ich Smetana&apos;s &lsquo;From my Life&rsquo; (1876) is one of the first explicitly autobiographical quartets: four movements depicting episodes from the composer&apos;s own life, culminating in a high E whistling through the final movement &mdash; the actual sound of the tinnitus that heralded his deafness. It is a programmatic work of startling directness, and it opened a tradition of confessional quartet-writing that would reach its fullest expression in Shostakovich. Your collection has a beautiful recording by the Pavel Haas Quartet, Czech musicians performing Czech music with native authority <span class="art-cd-ref" onclick="goToCD(438)">CD 438</span>.</p>
+<p>Anton&iacute;n Dvo&#345;&aacute;k&apos;s &lsquo;American&rsquo; Quartet Op. 96 (1893), written during his time in Iowa, is perhaps the most universally beloved quartet after Beethoven&apos;s middle works &mdash; its pentatonic melodies and lilting syncopations infused with the spirit of American folk music, its warmth and directness entirely irresistible. It is a notable gap in the collection and appears in the recommended recordings below.</p>
+
+<h2 class="art-h2">The French Transformation: Ravel</h2>
+<p>The French string quartet tradition found its most perfect expression in two works written within a year of each other: Debussy&apos;s in G minor (1893) and Ravel&apos;s in F major (1903). Both composers owed a debt to the cyclic formal techniques of C&eacute;sar Franck, in which thematic material transforms and returns across movements, but both transcended their influence entirely. Where Debussy&apos;s quartet shimmers with impressionist colour and subtle ambiguity, Ravel&apos;s is more classical in outline but equally radical in harmonic language &mdash; its pizzicato second movement one of the wittiest and most perfectly crafted movements in all chamber music. Your collection has a recording of the Ravel alongside Haydn and Schubert on the Allegri Quartet&apos;s Naim disc <span class="art-cd-ref" onclick="goToCD(400)">CD 400</span>.</p>
+
+<h2 class="art-h2">Elgar and the English Quartet</h2>
+<p>Elgar&apos;s String Quartet in E minor Op. 83 (1919), written alongside the Piano Quintet and Cello Concerto in a remarkable late flowering, is one of the finest contributions to the English chamber repertoire: a work of sustained lyrical beauty and autumnal regret, quite different in character from the public pomp of his orchestral music. The &lsquo;pensive and haunting&rsquo; quality he described in the slow movement is peculiarly English &mdash; a landscape heard rather than seen. Your collection pairs it with the Piano Quintet in another fine work from the same creative burst <span class="art-cd-ref" onclick="goToCD(174)">CD 174</span>.</p>
+
+<h2 class="art-h2">Bart&oacute;k: The Twentieth-Century Summit</h2>
+<p>B&eacute;la Bart&oacute;k&apos;s six string quartets, written between 1909 and 1939, are almost universally recognised as the greatest contribution to the form since Beethoven &mdash; a complete world in six works, each one different in character and equally extraordinary. Bart&oacute;k brought to the string quartet his deep immersion in Hungarian, Romanian and Bulgarian folk music (collected in the field with a phonograph over decades), his command of the European modernist tradition, and a structural intelligence of the highest order. The results range from the fierce dissonance and brutal percussive effects of the Fourth Quartet to the night-music of the Third and the valedictory lyricism of the Sixth, written as the Second World War closed in and Bart&oacute;k prepared to leave Europe for the last time. They are, collectively, a monument of the twentieth century &mdash; and a notable gap in the collection that the recommended recordings address below.</p>
+
+<h2 class="art-h2">Shostakovich: Fifteen Confessions</h2>
+<p>Dmitri Shostakovich&apos;s fifteen string quartets, written between 1938 and 1974, are perhaps the most personal documents in the entire history of the form. Composed under the shadow of Stalinist terror &mdash; Shostakovich lived in constant fear of arrest, having already been publicly denounced by the regime in 1936 and again in 1948 &mdash; they encode a private emotional world that his more public works could not safely contain. The string quartet was his diary.</p>
+<p>The Eighth Quartet (1960), written in three days in Dresden while ostensibly composing film music, is a work of devastating autobiographical intensity: Shostakovich quotes from his own earlier works, from Tchaikovsky, from a Russian revolutionary song, and from a Jewish folk melody, weaving them together in a tapestry of grief and memory. He told a friend he had written it &ldquo;in memory of myself.&rdquo; The Fifteenth (1974), his last, ends with a <em>Funeral March</em> and an <em>Epilogue</em> of such bleakness that the final pizzicato chord seems to extinguish a light. Your collection is extraordinarily rich in Shostakovich quartets: the complete Naxos survey by the &Eacute;der Quartet across six volumes <span class="art-cd-ref" onclick="goToCD(422)">CD 422</span> <span class="art-cd-ref" onclick="goToCD(423)">CD 423</span> <span class="art-cd-ref" onclick="goToCD(424)">CD 424</span> <span class="art-cd-ref" onclick="goToCD(425)">CD 425</span> <span class="art-cd-ref" onclick="goToCD(426)">CD 426</span> <span class="art-cd-ref" onclick="goToCD(427)">CD 427</span>, the Shostakovich Quartet&apos;s complete set on Regis <span class="art-cd-ref" onclick="goToCD(428)">CD 428</span>, the Borodin Quartet in Nos. 1 and 15 <span class="art-cd-ref" onclick="goToCD(429)">CD 429</span>, the Taneyev Quartet in Nos. 11-13 <span class="art-cd-ref" onclick="goToCD(430)">CD 430</span>, and the Mandelring Quartett&apos;s SACD set <span class="art-cd-ref" onclick="goToCD(431)">CD 431</span>. It is one of the finest single-composer quartet collections imaginable.</p>
+
+<h2 class="art-h2">Stravinsky and the Modern Tradition</h2>
+<p>Igor Stravinsky wrote relatively little for string quartet &mdash; the Three Pieces (1914) and the Concertino (1920) are the principal works &mdash; but they are characteristically bracing, stripped of the Romantic warmth that still permeates Bart&oacute;k and pointing towards the neoclassical austerity of his later style. They mark one exit from the Romantic tradition; Webern&apos;s Five Movements Op. 5 (1909) and Six Bagatelles Op. 9 (1913) mark another, compressing the entire emotional range of a Beethoven quartet into a few minutes of barely audible intensity.</p>
+<p>The tradition continued and diversified through the century: Britten, Tipp ett, Ligeti <span class="art-cd-ref" onclick="goToCD(262)">CD 262</span>, Lutosławski, and dozens of others added to the canon. The Kronos Quartet, founded in 1973, reinvented the very idea of what a quartet&apos;s repertoire could encompass &mdash; commissioning new works, reimagining popular music, crossing every genre boundary with infectious energy and complete seriousness of purpose <span class="art-cd-ref" onclick="goToCD(508)">CD 508</span> <span class="art-cd-ref" onclick="goToCD(509)">CD 509</span>. Their recordings in your collection show the form alive, various, and still expanding &mdash; two hundred and fifty years after Haydn first set four players talking to each other and found that they had something inexhaustible to say.</p>
+
+<h2 class="art-h2">Recommended Recordings Not in the Collection</h2>
+<p>Some essential gaps worth filling:</p>
+<div class="art-rec-list">
+  <div class="art-rec-item">
+    <div class="art-rec-title">Bart&oacute;k: The Six String Quartets</div>
+    <div class="art-rec-label">Various labels &nbsp;&#183;&nbsp; 2 or 3-disc sets</div>
+    <p>The single most important gap in an otherwise comprehensive quartet collection. The Emerson String Quartet on Deutsche Grammophon and the Belcea Quartet on Alpha are both outstanding complete sets. If only one, the Emerson: brilliantly played, superbly recorded, and authoritative in every bar. The Sixth Quartet alone &mdash; valedictory, devastated, magnificent &mdash; justifies the investment.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">Dvo&#345;&aacute;k: String Quartet No. 12 in F major Op. 96 &lsquo;American&rsquo;</div>
+    <div class="art-rec-label">Many labels &nbsp;&#183;&nbsp; Single CD (usually paired with other works)</div>
+    <p>The most popular quartet after Beethoven&apos;s Op. 18 set, and one of the most immediately loveable works in the entire repertoire. The Pavel Haas Quartet on Supraphon or the Emerson on DG are both excellent choices. Often paired with the Quintet Op. 97 (also &lsquo;American&rsquo;) for a full disc of Dvo&#345;&aacute;k at his most sunnily inspired.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">Debussy: String Quartet in G minor Op. 10</div>
+    <div class="art-rec-label">Many labels &nbsp;&#183;&nbsp; Single CD (usually paired with Ravel)</div>
+    <p>The natural companion to your Ravel quartet <span class="art-cd-ref" onclick="goToCD(400)">CD 400</span>. Almost every recording of one is paired with the other, and rightly so &mdash; together they define the French impressionist contribution to the form. The Quatuor Ébène on Virgin is outstanding; so is the older Melos Quartet recording on DG.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">Beethoven: The Complete String Quartets</div>
+    <div class="art-rec-label">Various labels &nbsp;&#183;&nbsp; 8-CD box sets</div>
+    <p>Your collection has the Razumovsky quartets <span class="art-cd-ref" onclick="goToCD(77)">CD 77</span> and the late quartets in depth <span class="art-cd-ref" onclick="goToCD(78)">CD 78</span> <span class="art-cd-ref" onclick="goToCD(79)">CD 79</span> <span class="art-cd-ref" onclick="goToCD(88)">CD 88</span>, but the six Op. 18 quartets and the &lsquo;Harp&rsquo; Op. 74 and &lsquo;Serioso&rsquo; Op. 95 are missing. The Talich Quartet on Calliope or the Quartetto Italiano on Philips complete sets would fill every gap at once.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">Borodin Quartet &mdash; Shostakovich Complete String Quartets</div>
+    <div class="art-rec-label">Melodiya / EMI &nbsp;&#183;&nbsp; 6-disc set</div>
+    <p>You have the Borodin Quartet in Nos. 1 and 15 already <span class="art-cd-ref" onclick="goToCD(429)">CD 429</span>. Their complete Shostakovich set &mdash; the performers who knew the composer, who premiered most of the quartets, who received his personal instructions on interpretation &mdash; is the definitive account and sits alongside the &Eacute;der and Mandelring sets in the collection as the ultimate authority. Available as a reasonably priced box.</p>
+  </div>
+</div>
+
+<h2 class="art-h2">Further Reading</h2>
+<div class="art-reading-section">
+  <div class="art-reading-sub">Books</div>
+  <div class="art-book-list">
+    <div class="art-book-item">
+      <div class="art-book-title">The String Quartet: A History</div>
+      <div class="art-book-author">Paul Griffiths &nbsp;&#183;&nbsp; Thames and Hudson, 1983</div>
+      <p>The standard single-volume history of the form, concise and very readable. Griffiths is one of the finest music critics writing in English, and his command of the entire repertoire from Haydn to the present day is authoritative. Somewhat dated in its coverage of later twentieth-century works but invaluable for the core repertoire. Worth seeking out secondhand.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">Beethoven and His World</div>
+      <div class="art-book-author">Scott Burnham &amp; Michael Steinberg (eds.) &nbsp;&#183;&nbsp; Princeton University Press, 2000</div>
+      <p>Contains several essential essays on the late quartets in their historical and biographical context. Particularly useful for understanding the Op. 132 <em>Heiliger Dankgesang</em> and the <em>Grosse Fuge</em>. Not a book to read straight through, but invaluable for the Beethoven chapters of this history.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">Shostakovich: A Life Remembered</div>
+      <div class="art-book-author">Elizabeth Wilson &nbsp;&#183;&nbsp; Princeton University Press, 1994</div>
+      <p>An extraordinary book: a mosaic of memoirs and recollections from those who knew Shostakovich, assembled with great skill. Essential reading alongside the quartets. Wilson&apos;s later book <em>Shostakovich: A Life</em> is also recommended. Together they provide the biographical and political context without which the quartets cannot be fully understood.</p>
+    </div>
+  </div>
+  <div class="art-reading-sub">Online</div>
+  <div class="art-book-list">
+    <div class="art-book-item">
+      <div class="art-book-title">BBC Radio 3 &mdash; Chamber Music</div>
+      <div class="art-book-author"><a href="https://www.bbc.co.uk/radio3" target="_blank" class="art-link">bbc.co.uk/radio3</a></div>
+      <p>BBC Radio 3&apos;s chamber music programmes &mdash; particularly <em>In Tune</em>, <em>Music Matters</em> and the live recordings from Wigmore Hall &mdash; provide an ideal accompaniment to exploring this repertoire. The Wigmore Hall recordings in particular are frequently of the highest quality and often devoted to the central quartet repertoire.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">Wigmore Hall &mdash; Archive Recordings</div>
+      <div class="art-book-author"><a href="https://www.wigmore-hall.org.uk" target="_blank" class="art-link">wigmore-hall.org.uk</a></div>
+      <p>London&apos;s premier chamber music venue streams and archives many of its concerts. The Wigmore Hall is the natural home of string quartet playing in Britain, and its online archive gives access to performances by the finest quartets in the world in a room perfectly suited to the music.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">IMSLP &mdash; String Quartet Scores</div>
+      <div class="art-book-author"><a href="https://imslp.org" target="_blank" class="art-link">imslp.org</a></div>
+      <p>Free scores for virtually the entire quartet repertoire from Haydn to the mid-twentieth century. Following a score while listening &mdash; even without being able to read every note &mdash; transforms the experience, making the interplay between voices visible and the formal structure clear.</p>
     </div>
   </div>
 </div>
@@ -1598,7 +1760,7 @@ function showRestoreConfirm(){
   const del=getDeleted();
   const list=document.getElementById('restore-list');
   list.innerHTML=del.map(id=>{
-    const cd=catalogue.find(c=>c.id===id);
+    const cd=[...catalogue,...getAdditions()].find(c=>c.id===id);
     if(!cd)return'';
     const artist=cd.artist.split('·')[0].split('/')[0].trim();
     return '<div class="restore-item">'+
@@ -1622,7 +1784,7 @@ function restoreOne(id){
 // ── MUSICBRAINZ TRACK LISTING ─────────────────────────────────────────────
 async function showTracks(id, e){
   e.stopPropagation();
-  const cd=catalogue.find(c=>c.id===id);
+  const cd=[...catalogue,...getAdditions()].find(c=>c.id===id);
   const panel=document.getElementById('tracks-panel-'+id);
   const btn=panel.previousElementSibling;
 
@@ -1926,7 +2088,8 @@ window.addEventListener('resize', setHeaderHeight);
 const articleMeta = [
   {id:'bach', title:'Johann Sebastian Bach', subtitle:'Life, times & music — from Eisenach to Leipzig', cdCount:12},
   {id:'schubert', title:'Franz Schubert', subtitle:'Life, times & music — the brief miraculous life', cdCount:16},
-  {id:'gould', title:'Glenn Gould', subtitle:'Portrait of an original — the pianist who changed everything', cdCount:1}
+  {id:'gould', title:'Glenn Gould', subtitle:'Portrait of an original — the pianist who changed everything', cdCount:1},
+  {id:'quartet', title:'The String Quartet', subtitle:'A history from Haydn to Shostakovich', cdCount:22}
 ];
 
 function openArticles(){
