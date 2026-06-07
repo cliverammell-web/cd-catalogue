@@ -2010,8 +2010,8 @@ function render(q){
         '</div>'+
         '<button class="tracks-btn" onclick="showTracks('+cd.id+',event)">&#127925; Show tracks on MusicBrainz</button>'+
         '<div class="tracks-panel" id="tracks-panel-'+cd.id+'"></div>'+
-        '<butt'+editBtn+
-        'n class="delete-btn" onclick="showConfirm('+cd.id+',event)">Remove from collection</button>'+
+        editBtn+
+        '<button class="delete-btn" onclick="showConfirm('+cd.id+',event)">Remove from collection</button>'+
         '<div class="delete-confirm" id="confirm-'+cd.id+'">'+
           '<p>Remove this CD?<br><strong>'+cd.title+'</strong></p>'+
           '<div class="delete-confirm-btns">'+
