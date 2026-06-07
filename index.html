@@ -287,7 +287,10 @@ header h1 span{color:var(--gold);font-style:italic}
     padding:.65rem 1.2rem; border-radius:8px; font-size:.88rem; cursor:pointer;
     font-family:inherit; }
 
-  </style>
+  
+  .edit-cd-btn{display:block;width:100%;padding:.55rem;margin:.4rem 0 .2rem;background:#E8F0FF;border:1.5px solid #4a6bbf;color:#1B2B5B;border-radius:8px;font-size:.82rem;font-weight:500;cursor:pointer;font-family:inherit;text-align:center;}
+  .edit-cd-btn:active{background:#d0dcf8;}
+</style>
 </head>
 <body>
 
@@ -1927,6 +1930,8 @@ function render(q){
   container.innerHTML=filtered.map(cd=>{
     const isActiveDupe=cd.duplicate&&cd.duplicateGroup&&
       catalogue.some(o=>o.id!==cd.id&&o.duplicateGroup===cd.duplicateGroup&&!deleted.includes(o.id));
+    const isAddition=getAdditions().some(function(a){return a.id===cd.id;});
+    const editBtn=isAddition?'<button class="edit-cd-btn" onclick="openEditCD('+cd.id+',event)">&#9998; Edit</button>':'';
     const dupeBadge=isActiveDupe?'<span class="pill pill-dupe">&#9888; Duplicate</span>':'';
     const cardClass=isActiveDupe?' duplicate':'';
     const composers=cd.composers.map(c=>'<span class="pill pill-composer">'+c+'</span>').join('');
@@ -2005,7 +2010,8 @@ function render(q){
         '</div>'+
         '<button class="tracks-btn" onclick="showTracks('+cd.id+',event)">&#127925; Show tracks on MusicBrainz</button>'+
         '<div class="tracks-panel" id="tracks-panel-'+cd.id+'"></div>'+
-        '<button class="delete-btn" onclick="showConfirm('+cd.id+',event)">Remove from collection</button>'+
+        '<butt'+editBtn+
+        'n class="delete-btn" onclick="showConfirm('+cd.id+',event)">Remove from collection</button>'+
         '<div class="delete-confirm" id="confirm-'+cd.id+'">'+
           '<p>Remove this CD?<br><strong>'+cd.title+'</strong></p>'+
           '<div class="delete-confirm-btns">'+
@@ -2188,7 +2194,33 @@ function getNextId(){
   return allIds.length ? Math.max(...allIds)+1 : 539;
 }
 
+var _editingId=null;
+function openEditCD(id,e){
+  if(e)e.stopPropagation();
+  var cd=[...catalogue,...getAdditions()].find(function(c){return c.id===id;});
+  if(!cd)return;
+  _editingId=id;
+  document.getElementById('add-cd-overlay').style.display='flex';
+  document.getElementById('add-cd-hdr').querySelector('span').textContent='Edit CD '+id;
+  document.getElementById('acd-submit-btn').textContent='Save Changes';
+  document.getElementById('acd-error').style.display='none';
+  document.getElementById('acd-label').value=cd.label||'';
+  document.getElementById('acd-composers').value=(cd.composers||[]).join(', ');
+  document.getElementById('acd-artist').value=cd.artist||'';
+  document.getElementById('acd-title').value=cd.title||'';
+  document.getElementById('acd-catno').value=cd.catNo||'';
+  document.getElementById('acd-notes').value=cd.notes||'';
+  document.getElementById('acd-used').value=cd.usedGBP||'';
+  document.getElementById('acd-new').value=cd.newGBP||'';
+  document.getElementById('acd-sealed').checked=!!cd.sealed;
+  var fmt=document.getElementById('acd-format');
+  for(var i=0;i<fmt.options.length;i++){if(fmt.options[i].value===cd.format){fmt.selectedIndex=i;break;}}
+  document.getElementById('acd-id-preview').textContent='Editing CD '+id;
+}
 function openAddCD(){
+  _editingId=null;
+  document.getElementById('add-cd-hdr').querySelector('span').textContent='Add New CD';
+  document.getElementById('acd-submit-btn').textContent='Add to Collection';
   document.getElementById('add-cd-overlay').style.display='flex';
   document.getElementById('acd-id-preview').textContent='Will be assigned CD '+getNextId();
   document.getElementById('acd-error').style.display='none';
@@ -2202,6 +2234,7 @@ function openAddCD(){
 }
 
 function closeAddCD(){
+  _editingId=null;
   document.getElementById('add-cd-overlay').style.display='none';
 }
 
@@ -2232,7 +2265,11 @@ function submitAddCD(){
     usedGBP:usedGBP,newGBP:newGBP,notes:notes};
   if(sealed) newCD.sealed=true;
   var additions=getAdditions();
-  additions.push(newCD);
+  if(_editingId){
+    var ei=additions.findIndex(function(c){return c.id===_editingId;});
+    if(ei!==-1)additions[ei]=newCD;else additions.push(newCD);
+    _editingId=null;
+  }else{additions.push(newCD);}
   saveAdditions(additions);
   closeAddCD();
   activeFilter=''; activeComposer=''; activeArtist=''; activeLabel=''; notesSearchMode=false;
