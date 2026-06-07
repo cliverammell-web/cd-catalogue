@@ -199,6 +199,33 @@ header h1 span{color:var(--gold);font-style:italic}
   @keyframes cardPulse { 0%{box-shadow:0 0 0 0 rgba(200,168,75,.7)} 70%{box-shadow:0 0 0 10px rgba(200,168,75,0)} 100%{box-shadow:none} }
   .cd-highlight { animation:cardPulse 1.5s ease; border-color:#C8A84B!important; }
 
+  
+  /* ── Recommended recordings ── */
+  .art-rec-list { margin:1rem 0 1.5rem; }
+  .art-rec-item { background:#fff; border:1px solid #E8E0D0; border-radius:8px; padding:.9rem 1rem; margin-bottom:.75rem; }
+  .art-rec-title { font-family:"Cormorant Garamond",serif; font-size:1.05rem; font-weight:600; color:#1B2B5B; margin-bottom:.1rem; }
+  .art-rec-label { font-size:.75rem; color:#C8A84B; font-family:"DM Sans",sans-serif; margin-bottom:.45rem; letter-spacing:.03em; }
+  .art-rec-item p { font-size:.88em; margin-bottom:0; color:#444; }
+
+  /* ── Further reading ── */
+  .art-reading-section { margin:1rem 0 2rem; }
+  .art-reading-sub { font-family:"DM Sans",sans-serif; font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:#C8A84B; margin:1.2rem 0 .6rem; }
+  .art-book-list { }
+  .art-book-item { border-bottom:1px solid #E8E0D0; padding:.8rem 0; }
+  .art-book-item:last-child { border-bottom:none; }
+  .art-book-title { font-family:"Cormorant Garamond",serif; font-size:1.05rem; font-weight:600; color:#1B2B5B; }
+  .art-book-author { font-size:.78rem; color:#888; font-family:"DM Sans",sans-serif; margin:.1rem 0 .35rem; }
+  .art-book-item p { font-size:.88em; color:#444; margin-bottom:0; }
+  .art-link { color:#1B2B5B; text-decoration:underline; text-underline-offset:2px; }
+
+  
+  #return-art-btn { position:fixed; bottom:1.2rem; left:50%; transform:translateX(-50%); z-index:999; pointer-events:none; }
+  #return-art-inner { background:#1B2B5B; color:#fff; padding:.55rem 1.2rem; border-radius:24px;
+    font-size:.82rem; font-weight:500; box-shadow:0 3px 12px rgba(0,0,0,.35);
+    cursor:pointer; pointer-events:all; white-space:nowrap;
+    border:1px solid rgba(200,168,75,.4); letter-spacing:.02em; }
+  #return-art-inner:active { background:#C8A84B; color:#1B2B5B; }
+
   </style>
 </head>
 <body>
@@ -249,6 +276,300 @@ header h1 span{color:var(--gold);font-style:italic}
 
 <div class="cards" id="cards"></div>
 
+
+<div id="return-art-btn" style="display:none">
+  <div id="return-art-inner" onclick="returnToArticle()">
+    &#8617; Return to article
+  </div>
+</div>
+
+<div id="article-panel" style="display:none">
+  <div class="art-back-bar" onclick="closeArticles()">
+    <span class="art-back-arrow">&#8592;</span>
+    <span>Back to catalogue</span>
+  </div>
+  <div id="article-list-view">
+    <div class="art-list-header">&#128214; Claude Articles</div>
+    <div id="art-list-items"></div>
+  </div>
+  <div id="article-reader-view" style="display:none;overflow-y:auto">
+    <div class="art-reader-back" onclick="backToArticleList()">&#8592; All Articles</div>
+    <div id="article-reader-content"></div>
+  </div>
+</div>
+
+<div id="art-content-bach" style="display:none">
+<div class="art-article">
+<div class="art-kicker">A Musical Portrait</div>
+<h1 class="art-title">Johann Sebastian Bach</h1>
+<div class="art-subtitle">Life, Times &amp; Music &nbsp;&#183;&nbsp; Eisenach 1685 &ndash; Leipzig 1750</div>
+
+<h2 class="art-h2">Origins: A Family of Musicians</h2>
+<p>Johann Sebastian Bach was born on 31 March 1685 in the small Thuringian town of Eisenach, in what is now central Germany. The town was steeped in history: it was here that Martin Luther had taken refuge in the Wartburg Castle in 1521, translating the New Testament into German and laying the foundations of the Lutheran faith that would shape every aspect of Bach&apos;s life and music. The Wartburg still loomed over the town in Bach&apos;s day, a daily reminder of the reforming tradition in which he was raised.</p>
+<p>But if Luther defined the spiritual landscape of Eisenach, music defined its social one &mdash; and in particular, the Bach family. By the time Johann Sebastian was born, the Bachs had been producing professional musicians in Thuringia for four generations. Uncles, cousins, brothers &mdash; virtually every male member of the family held some musical post: as town musician, court player, church organist, or cantor. In Thuringia the name Bach had become virtually synonymous with musician, and the family was sufficiently numerous and prominent that they held annual reunions at which, according to a later family document, they sang together &ldquo;in a most cheerful manner, beginning with chorales and going on to quodlibets.&rdquo; Music was not art; it was trade, family tradition, and devotion all at once.</p>
+<p>Johann Sebastian&apos;s father, Johann Ambrosius Bach, was a string player and town musician in Eisenach &mdash; a solid, respected civic appointment. The young Johann Sebastian grew up surrounded by music-making as naturally as other children grow up surrounded by conversation. He attended the Latin School in Eisenach, where the curriculum was heavily weighted towards Lutheran theology and singing, and it was clear from early on that he had inherited the family gift in extraordinary measure.</p>
+
+<h2 class="art-h2">Orphaned and Apprenticed</h2>
+<p>Tragedy struck when Johann Sebastian was nine. His mother, Maria Elisabeth, died in May 1694. His father, Johann Ambrosius, died just eight months later in February 1695 &mdash; still only 50 years old, and recently remarried. Within a year the ten-year-old boy had lost both parents. He and his brother Jakob were taken in by their eldest brother, Johann Christoph, who held the organist&apos;s post at Ohrdruf, some 30 kilometres away.</p>
+<p>Johann Christoph was a capable musician and a serious teacher. He had studied with the great Johann Pachelbel (whose Canon you know from your Hallé Encore disc <span class="art-cd-ref" onclick="goToCD(500)">CD 500</span>) and gave his young brother a thorough grounding in keyboard technique and music theory. The years at Ohrdruf were formative but not always easy. The household was modest, Johann Christoph&apos;s own family grew, and according to a family memoir Johann Sebastian once copied out a book of keyboard pieces &mdash; works by Froberger, Kerll and Pachelbel that his brother kept locked away &mdash; by moonlight over six months, only for Johann Christoph to confiscate the completed copy. The story may be embellished, but it captures something true: a boy of extraordinary musical appetite and determination, learning in whatever ways he could.</p>
+<p>In 1700, at fifteen, Bach won a choral scholarship to the Michaelisschule in L&uuml;neburg, in northern Germany. The journey took him far from Thuringia for the first time &mdash; he probably walked most of the 300 kilometres &mdash; and opened his ears to new musical worlds. L&uuml;neburg had a distinguished musical tradition; the school library contained a substantial collection of music; and the nearby court of Celle maintained a French orchestra whose style was quite different from anything Bach had encountered in Thuringia. He absorbed it all.</p>
+
+<h2 class="art-h2">Early Posts: Arnstadt and the Walk to L&uuml;beck</h2>
+<p>In 1703, barely eighteen, Bach obtained his first significant post: organist at the Neue Kirche (New Church) in Arnstadt, back in Thuringia. The appointment recognised his already exceptional abilities as a keyboard player. He had a fine new organ to play, a regular salary, and relatively light duties. He should have been content.</p>
+<p>He was not. He quarrelled with the church council about the standard of his choir (they were, he complained, ignorant and undisciplined; they complained in turn that he confused them with strange harmonies and prolonged the chorales to impossible lengths). He played for too long; then he played for too short. He invited &ldquo;a strange maiden&rdquo; (almost certainly his cousin Maria Barbara, whom he would later marry) into the organ loft &mdash; a serious impropriety. And in the autumn of 1705, without adequately obtaining leave, he disappeared.</p>
+<p>He had gone to L&uuml;beck, some 400 kilometres to the north, to hear Dieterich Buxtehude. Buxtehude was then the most celebrated organist in northern Germany, nearing seventy, and the director of the famous <em>Abendmusiken</em> &mdash; public evening concerts in the Marienkirche that attracted audiences from across the region. Bach had borrowed money, obtained what he thought was adequate permission from Arnstadt, and set off &mdash; probably on foot at least part of the way. He intended to stay a month. He stayed four.</p>
+<p>What he heard in L&uuml;beck changed him permanently. Buxtehude&apos;s organ music &mdash; its improvisatory freedom, its bold harmonies, its emotional directness &mdash; left deep marks on everything Bach wrote for the next decade. The influence is audible in the great organ works from the Weimar period that followed, and it never entirely left him. Your Seraphim Baroque Organ Music disc <span class="art-cd-ref" onclick="goToCD(520)">CD 520</span> pairs Buxtehude directly with Bach; hearing them in sequence reveals exactly what the young Bach was learning in those four extraordinary months in L&uuml;beck.</p>
+<p>He returned to Arnstadt to face a deeply unhappy church council. The records of the subsequent inquiry survive and make delightful reading: &ldquo;He has been away longer than he should have been; also on his return he has played many peculiar variations in the chorale, mixed into it many strange notes, so that the congregation was confused by it.&rdquo; Bach apologised &mdash; sort of &mdash; and continued to quarrel with choir and council until he left Arnstadt in 1707.</p>
+
+<h2 class="art-h2">M&uuml;hlhausen, Marriage, and Moving On</h2>
+<p>His next post was organist at the Blasiuskirche in M&uuml;hlhausen. He was now 22, and in October 1707 he married his cousin Maria Barbara Bach. The match was entirely in the family tradition; she was musical, she was from a good Bach family, and by all accounts they were well suited. They would have seven children together, of whom four survived to adulthood, including Wilhelm Friedemann and Carl Philipp Emanuel Bach, both of whom became distinguished composers in their own right.</p>
+<p>M&uuml;hlhausen lasted barely a year. Bach composed one substantial cantata there &mdash; the celebratory <em>Gott ist mein K&ouml;nig</em> BWV 71, the only cantata printed during his lifetime &mdash; before requesting his release. His letter of resignation is a remarkable document: he speaks of his wish to pursue a &ldquo;well-regulated church music to the glory of God,&rdquo; suggests that M&uuml;hlhausen cannot offer the resources to realise this ambition, and politely but firmly moves on. He was twenty-three years old.</p>
+
+<h2 class="art-h2">Weimar: The Organ at Its Finest</h2>
+<p>In 1708 Bach moved to Weimar, as court organist and chamber musician to Duke Wilhelm Ernst. He would stay nine years, and it was at Weimar that his organ playing and organ composition reached their zenith. The Duke was a serious music lover who took religion seriously and expected high standards from his musicians. For Bach, it was a productive and reasonably congenial environment &mdash; at least for a while.</p>
+<p>The Weimar organ works represent the summit of Bach&apos;s achievement in this form. The great Prelude and Fugue in D minor BWV 565, the Toccata, Adagio and Fugue in C BWV 564, the Passacaglia and Fugue in C minor BWV 582, the Fantasia and Fugue in G minor BWV 542 &mdash; all date from this period. They are works of extraordinary technical command and emotional range, drawing on both the north German improvisatory tradition he had absorbed from Buxtehude and the more structured Italian style he was discovering through his transcriptions of Vivaldi concertos.</p>
+<p>It was also at Weimar that Bach began his systematic study of Italian music, particularly Vivaldi. Duke Johann Ernst had brought back scores from Italy, and Bach transcribed a number of Vivaldi concertos for keyboard and organ &mdash; a process of absorption that transformed his own compositional thinking, giving his music a new clarity of structure and rhythmic energy. The connection between Vivaldi and Bach is made audible on your Sirena Recorder Quartet disc <span class="art-cd-ref" onclick="goToCD(510)">CD 510</span>, which opens with a Vivaldi concerto and weaves it together with Bach chorale preludes.</p>
+<p>Weimar ended badly. When the post of Kapellmeister (head of music) fell vacant in 1716, Bach expected the promotion. He did not receive it. He sought employment elsewhere and accepted the post of Kapellmeister at the court of Prince Leopold of Anhalt-C&ouml;then. Duke Wilhelm Ernst, furious at being passed over by his own employee, had Bach imprisoned for a month before allowing him to leave. Bach served his time in the Duke&apos;s &ldquo;court of justice&rdquo; and departed for C&ouml;then.</p>
+
+<h2 class="art-h2">C&ouml;then: Music Liberated from the Church</h2>
+<p>The years at C&ouml;then (1717&ndash;23) were, in some ways, the most creatively liberated of Bach&apos;s career. Prince Leopold was young (twenty-three when Bach arrived), genuinely musical, and Calvinist. Calvinist worship had no use for elaborate church music. Released from the obligation to produce weekly cantatas, Bach poured his energies into instrumental music with an ambition and a range he had never previously had the time to explore.</p>
+<p>The six Brandenburg Concertos, presented to the Margrave of Brandenburg in 1721, are the fruits of this period. They are the most varied and inventive concertos of the entire Baroque era &mdash; each one a different combination of instruments, each one a different formal experiment, all six together demonstrating a range of compositional resource that no contemporary could match. The concertos were apparently ignored by the Margrave and the parts put in a drawer; they were discovered and published after Bach&apos;s death.</p>
+<p>The violin sonatas and partitas for solo violin (BWV 1001-1006) also date from C&ouml;then. The Chaconne that closes the Partita No. 2 in D minor is one of the most extraordinary single movements in all music &mdash; fifteen minutes of variations on a four-bar bass line, in which Bach conjures a full harmonic world from a single unaccompanied instrument. Brahms, who later transcribed it for piano left hand alone, wrote to Clara Schumann: &ldquo;On one stave, for a small instrument, the man writes a whole world of the deepest thoughts and most powerful feelings.&rdquo;</p>
+<p>The six cello suites (BWV 1007-1012) are equally remarkable &mdash; six works of impossible perfection for an instrument that was not even considered a solo instrument by most of Bach&apos;s contemporaries. Your collection includes Mischa Maisky&apos;s celebrated DG recording <span class="art-cd-ref" onclick="goToCD(394)">CD 394</span> &mdash; warm, rhapsodic, and full of personality. The opening Prelude of the First Suite in G major, with its endlessly unfolding arpeggios, is one of those pieces that seems to have existed before it was composed, as if Bach had simply written down something that was already there.</p>
+<p>Tragedy interrupted this golden period. In July 1720 Bach returned from a trip with Prince Leopold to find that his wife Maria Barbara had died and been buried in his absence. He had been married thirteen years; they had seven children together. The shock must have been profound. Within a year and a half he had remarried &mdash; Anna Magdalena W&uuml;lcken, a singer sixteen years his junior, who proved an excellent partner and stepmother, bore him thirteen more children, and continued to copy out his music until the very end of his life.</p>
+
+<h2 class="art-h2">Leipzig: The Weekly Miracle</h2>
+<p>In 1722 the post of Cantor of the Thomasschule in Leipzig fell vacant. It was one of the most prestigious musical positions in Lutheran Germany. The council offered it first to Georg Philipp Telemann, who declined. They offered it to Christoph Graupner, who was prevented by his employer from accepting. Then they turned to Bach. One councillor noted, with splendid condescension, that &ldquo;since the best men could not be obtained, one would have to make do with the mediocre.&rdquo; He meant, presumably, that Bach was third choice. He was wrong about most things.</p>
+<p>Bach moved his large family to Leipzig in May 1723 and remained there for the last 27 years of his life. The post of Cantor carried heavy responsibilities: he was required to direct music at four city churches, to train the boys of the Thomasschule as singers, to teach Latin, and to compose a new cantata virtually every Sunday and feast day throughout the church year. The sheer volume of music he produced in his first years at Leipzig is almost incomprehensible. He composed more than 150 new cantatas in his first three years alone, while simultaneously running the school, teaching private pupils, directing concerts, and raising a very large family.</p>
+<p>John Eliot Gardiner&apos;s Pilgrimage &mdash; the project to record all the surviving Bach cantatas by performing them on the feast days for which they were written, in a single calendar year (2000) &mdash; was one of the most ambitious musical undertakings of recent decades. Your collection holds multiple volumes of the resulting recordings on Soli Deo Gloria: <span class="art-cd-ref" onclick="goToCD(1)">CD 1</span> <span class="art-cd-ref" onclick="goToCD(2)">CD 2</span> <span class="art-cd-ref" onclick="goToCD(3)">CD 3</span> <span class="art-cd-ref" onclick="goToCD(4)">CD 4</span>. Each cantata is a compressed world: a dramatic and theological argument typically lasting twenty to thirty minutes, opening with a large choral movement, moving through recitatives and arias for soloists, and closing with a Lutheran chorale &mdash; a hymn tune that the congregation knew and would sing along with. The quality never drops. Week after week, year after year, Bach produced music of this order.</p>
+<p>The great choral works crown the Leipzig achievement. The <em>St Matthew Passion</em> (1727, revised 1736) sets Matthew&apos;s account of Christ&apos;s last days for double choir, double orchestra, and soloists in a work that lasts nearly three hours and encompasses every shade of human emotion. Bach himself directs the narrative through the Evangelist&apos;s tenor recitative, with Christ&apos;s words accompanied by a shimmering string halo. The work was largely forgotten after Bach&apos;s death; its rediscovery by the 21-year-old Mendelssohn, who conducted a landmark Berlin performance in 1829 with a choir of 400 singers, is one of the great stories of musical history. The <em>Christmas Oratorio</em> (1734), a set of six cantatas for the days from Christmas to Epiphany, is more immediately accessible &mdash; exuberant, warm, and full of the most wonderful tunes. The <em>Mass in B minor</em>, assembled by Bach from movements spanning his entire career and completed in the last years of his life, is a summation: in many views the greatest piece of choral music ever composed.</p>
+
+<h2 class="art-h2">The Keyboard Works: A Universe in Black and White</h2>
+<p>Alongside the public music of the church and court, Bach created a parallel universe of keyboard music that was partly pedagogical, partly exploratory, and partly &mdash; one feels &mdash; simply for himself and for the pleasure of pure musical thought.</p>
+<p>The two books of the <em>Well-Tempered Clavier</em> (1722 and 1742) are the most comprehensive survey of keyboard writing ever undertaken: 48 preludes and fugues, two in each major and minor key, demonstrating in practice the implications of equal temperament tuning and, more importantly, showing what an inexhaustible variety of character and expression could be drawn from the simplest formal constraint. You have the definitive modern piano recording: Angela Hewitt&apos;s luminous, beautifully voiced Hyperion account <span class="art-cd-ref" onclick="goToCD(7)">CD 7</span>.</p>
+<p>The Goldberg Variations (1741) &mdash; thirty variations on a bass line and harmonic scheme, framed by a gentle Aria played at beginning and end &mdash; were supposedly commissioned by a Russian ambassador called Kaiserling to help him sleep. They would have had the opposite effect on any attentive listener. The Variations have become perhaps the most meditated-upon piece in the keyboard repertoire. Glenn Gould&apos;s 1981 recording (see Recommended Recordings below) is the most famous piano account, but the work rewards discovery on harpsichord too &mdash; the instrument for which Bach wrote it.</p>
+<p>The six keyboard Partitas (BWV 825-830), published in Bach&apos;s lifetime as <em>Clavierübung Part I</em>, are the most polished and overtly brilliant of his keyboard suites. Each one is a sequence of stylised dances in a single key, but the variety within that framework is astonishing: the French Overture, the Italian Concerto, the English Suites all demonstrate Bach&apos;s mastery of contrasting national styles. He was the only composer of his era who could write convincingly in all three.</p>
+
+<h2 class="art-h2">The Organ Works: Monuments in Sound</h2>
+<p>Bach&apos;s organ music is the most substantial and technically demanding body of work ever written for the instrument. It spans his entire career, from the early Weimar pieces to the late chorale preludes of the <em>Orgelbüchlein</em> and the magisterial works of his maturity.</p>
+<p>The Toccata and Fugue in D minor BWV 565 &mdash; the most famous organ piece ever written &mdash; appears in four of your recordings. Peter Hurford on the Decca Eclipse disc <span class="art-cd-ref" onclick="goToCD(514)">CD 514</span> gives a reliable, well-engineered account; Simon Preston on the DG Entr&eacute;e series <span class="art-cd-ref" onclick="goToCD(515)">CD 515</span> brings the clarity of his Westminster Abbey playing to a focused programme of Bach organ masterworks; Piet Kee at St Bavo&apos;s in Haarlem <span class="art-cd-ref" onclick="goToCD(519)">CD 519</span> plays on one of the greatest Baroque organs in the world &mdash; the very Müller instrument on which the ten-year-old Mozart played in 1766. Each recording reveals something different, because the organ is inseparable from the room and the room is inseparable from the music.</p>
+<p>Ton Koopman&apos;s two-disc Bach Organ Masterpieces on Regis <span class="art-cd-ref" onclick="goToCD(518)">CD 518</span> is arguably the finest set in your collection. Koopman plays at historic Dutch organs in Leeuwarden and Amsterdam, and the Penguin Guide awarded the disc three stars and its highest commendation: &ldquo;Demonstration bracket &mdash; the organ itself is the co-star of the performance, magnificent and unclouded.&rdquo; The Passacaglia and Fugue in C minor BWV 582 here is one of the most compelling recordings ever made of this inexorable, accumulative masterpiece.</p>
+<p>Simon Preston&apos;s Decca recording at Westminster Abbey <span class="art-cd-ref" onclick="goToCD(516)">CD 516</span>, made in 1963-65, captures the grandeur of a great English cathedral organ in music that was written for a rather different acoustic &mdash; the effect is magnificent if not always historically accurate. And the Seraphim two-disc Baroque Organ Music <span class="art-cd-ref" onclick="goToCD(520)">CD 520</span> provides an invaluable context, placing Bach&apos;s organ works alongside Buxtehude and Couperin and showing where he came from and what he transformed.</p>
+
+<h2 class="art-h2">Late Works and Last Years</h2>
+<p>In his final years Bach increasingly turned away from the demands of his Leipzig post towards more abstract, speculative compositional projects. He joined a learned society, the Correspondirende Societät der musicalischen Wissenschaften, and began submitting learned canons and contrapuntal puzzles as membership offerings. The <em>Musical Offering</em> (1747), based on a theme given to him by Frederick the Great of Prussia during a celebrated visit to Potsdam, explores the contrapuntal possibilities of that theme in a series of canons, fugues, and a trio sonata of extraordinary beauty. The <em>Art of Fugue</em> (BWV 1080), left unfinished at his death, is the ultimate abstract statement: a systematic exploration of every kind of fugue, all on a single subject, ending with a quadruple fugue that breaks off at the moment Bach introduces his own name (B-A-C-H in German notation) as a countersubject.</p>
+<p>His eyesight had been failing for years. In 1750 he submitted to operations by a travelling oculist named John Taylor &mdash; the same man who had operated, equally disastrously, on Handel. The operations left Bach blind. He recovered some sight briefly in the weeks before his death, then lost it again. He died on 28 July 1750, aged 65, of a stroke. His estate was modest: some musical instruments, printed music, a few household goods. Anna Magdalena, his widow, received no pension from the city of Leipzig and died in poverty ten years later.</p>
+
+<h2 class="art-h2">Rediscovery and Legacy</h2>
+<p>For fifty years after his death Bach was known primarily to specialists and connoisseurs. His sons &mdash; Carl Philipp Emanuel and Johann Christian &mdash; were far more fashionable. The elegant, lighter style of the emerging Classical period seemed to render his dense counterpoint old-fashioned. Mozart knew and admired him; Beethoven had played the <em>Well-Tempered Clavier</em> as a boy. But the general public barely knew his name.</p>
+<p>The turning point came in Berlin on 11 March 1829, when the 20-year-old Felix Mendelssohn conducted the first performance of the <em>St Matthew Passion</em> since Bach&apos;s death &mdash; a century after its premiere. The audience, which included Hegel and the poet Heinrich Heine, was transfixed. The reviews were ecstatic. A Bach revival began that has never stopped. Within a generation the Bach-Gesellschaft had begun the systematic publication of his complete works. By the end of the nineteenth century he was recognised as the supreme figure in Western music.</p>
+<p>That recognition has only deepened. Bach is now understood not merely as a great composer but as the foundation on which all subsequent Western music rests. Harmony, counterpoint, form, keyboard technique &mdash; everything that came after him is shaped by what he achieved. And the music itself, heard on its own terms, remains inexhaustible: the same pieces reveal new depths on the hundredth hearing that were invisible on the first. Your collection touches most of the central repertoire. There is no better place to begin &mdash; and no end to where it leads.</p>
+
+<h2 class="art-h2">Recommended Recordings Not in the Collection</h2>
+<p>Your Bach holdings are already exceptional, but these recordings are worth seeking out to complete the picture:</p>
+
+<div class="art-rec-list">
+  <div class="art-rec-item">
+    <div class="art-rec-title">Angela Hewitt &mdash; Well-Tempered Clavier (Complete)</div>
+    <div class="art-rec-label">Hyperion &nbsp;&#183;&nbsp; 4-disc set &nbsp;&#183;&nbsp; <span style="color:#2a7a2a">&#10003; Already in your collection</span></div>
+    <p>Already yours as <span class="art-cd-ref" onclick="goToCD(7)">CD 7</span> &mdash; Angela Hewitt&apos;s Hyperion recording of both books, luminously clear, beautifully voiced, and consistently musical across all 48 preludes and fugues. The most admired modern piano account of this work.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">Glenn Gould &mdash; Goldberg Variations (1955 &amp; 1981)</div>
+    <div class="art-rec-label">Sony Classical &nbsp;&#183;&nbsp; <span style="color:#2a7a2a">&#10003; Already in your collection</span></div>
+    <p>Both recordings are already yours as <span class="art-cd-ref" onclick="goToCD(11)">CD 11</span> &mdash; the electrifying 1955 debut and the slow, inward 1981 farewell, made weeks before Gould&apos;s death. Together they define the entire debate about how the Goldberg Variations should be played.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">Murray Perahia &mdash; Goldberg Variations</div>
+    <div class="art-rec-label">Sony Classical &nbsp;&#183;&nbsp; Single CD &nbsp;&#183;&nbsp; 2000</div>
+    <p>The most admired modern piano Goldbergs after Gould, and entirely different in character: where Gould is analytical and mercurial, Perahia is lyrical, warm and singing. He treats the work as a seamless arc rather than a sequence of contrasts, and the result is deeply satisfying. An essential complement to Gould.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">Trevor Pinnock &mdash; Goldberg Variations</div>
+    <div class="art-rec-label">DG Archiv &nbsp;&#183;&nbsp; Single CD &nbsp;&#183;&nbsp; 1980</div>
+    <p>For the harpsichord perspective &mdash; the instrument Bach actually wrote the Variations for &mdash; Pinnock&apos;s 1980 Archiv recording remains the benchmark: clean, authoritative, and alive with rhythmic energy. Heard after Gould or Perahia, the harpsichord reveals facets of the music that the piano inevitably softens. A very different and equally rewarding experience.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">Harnoncourt &amp; Leonhardt &mdash; Complete Cantatas</div>
+    <div class="art-rec-label">Teldec &nbsp;&#183;&nbsp; 60-CD box set</div>
+    <p>The original complete cantata cycle on period instruments, recorded 1971&ndash;1990. The project that made historically informed Bach performance a serious enterprise. Gardiner&apos;s cycle (which you have) is more polished; Harnoncourt and Leonhardt are rawer and stranger &mdash; more like a discovery. The box appears regularly on the second-hand market.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">Herreweghe &mdash; St Matthew Passion (1985)</div>
+    <div class="art-rec-label">Harmonia Mundi &nbsp;&#183;&nbsp; 3-disc set</div>
+    <p>Philippe Herreweghe&apos;s 1985 Harmonia Mundi account is widely considered the most perfectly judged period-instrument performance of this work: chamber-scale, transparent, deeply felt. An essential recording of Bach&apos;s greatest choral work.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">Musica Antiqua K&ouml;ln / Reinhard Goebel &mdash; Brandenburg Concertos</div>
+    <div class="art-rec-label">Archiv &nbsp;&#183;&nbsp; 2-disc set</div>
+    <p>Goebel&apos;s electrifyingly fast period-instrument Brandenburgs from 1981 were a landmark. Not everyone loves them but no one forgets them &mdash; they make every other Brandenburg recording sound cautious. Essential listening even if the final verdict is mixed.</p>
+  </div>
+</div>
+
+<h2 class="art-h2">Further Reading</h2>
+<div class="art-reading-section">
+  <div class="art-reading-sub">Books</div>
+  <div class="art-book-list">
+    <div class="art-book-item">
+      <div class="art-book-title">Johann Sebastian Bach: The Learned Musician</div>
+      <div class="art-book-author">Christoph Wolff &nbsp;&#183;&nbsp; W. W. Norton, 2000</div>
+      <p>The definitive modern biography by the world&apos;s leading Bach scholar. Exhaustive, authoritative, and surprisingly readable. Wolff traces the music and the life with equal depth and care. The essential book for anyone seriously interested in Bach. Available new and secondhand; likely in most good public libraries.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">Bach (Master Musicians series)</div>
+      <div class="art-book-author">Malcolm Boyd &nbsp;&#183;&nbsp; Oxford University Press, 2000</div>
+      <p>The most accessible single-volume life-and-works in the standard reference series. Boyd is clear, well-organised and authoritative. An excellent starting point before tackling Wolff, and ideal for dipping into alongside the music.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">The Faber Pocket Guide to Bach</div>
+      <div class="art-book-author">Nicholas Anderson &nbsp;&#183;&nbsp; Faber &amp; Faber, 2007</div>
+      <p>Compact enough to keep beside the CD player or read on a phone. Anderson provides concise, reliable notes on every major work. Particularly useful for the cantatas, where even dedicated listeners can struggle to keep track of what is what.</p>
+    </div>
+  </div>
+  <div class="art-reading-sub">Online</div>
+  <div class="art-book-list">
+    <div class="art-book-item">
+      <div class="art-book-title">Bach-Archiv Leipzig</div>
+      <div class="art-book-author"><a href="https://www.bach-leipzig.de/en" target="_blank" class="art-link">bach-leipzig.de</a></div>
+      <p>The official research institute dedicated to Bach, based in his former home city. Biography, catalogue information, and details of the annual Bach Festival. Scholarly but accessible.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">BBC Radio 3 &mdash; Composer of the Week</div>
+      <div class="art-book-author"><a href="https://www.bbc.co.uk/programmes/b006tnbm" target="_blank" class="art-link">bbc.co.uk/radio3</a></div>
+      <p>BBC Radio 3 has devoted multiple week-long series to Bach, all available on BBC Sounds. Donald Macleod&apos;s authoritative and warmly engaging presenter style makes these ideal listening alongside the music.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">IMSLP &mdash; Petrucci Music Library</div>
+      <div class="art-book-author"><a href="https://imslp.org/wiki/Johann_Sebastian_Bach" target="_blank" class="art-link">imslp.org</a></div>
+      <p>Free public domain scores for virtually everything Bach wrote. If you ever want to follow a score while listening &mdash; particularly rewarding with the Well-Tempered Clavier or the cello suites &mdash; IMSLP is the place to go.</p>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+<div id="art-content-schubert" style="display:none">
+<div class="art-article">
+<div class="art-kicker">A Musical Portrait</div>
+<h1 class="art-title">Franz Schubert</h1>
+<div class="art-subtitle">Life, Times &amp; Music &nbsp;&#183;&nbsp; Vienna 1797 &ndash; Vienna 1828</div>
+
+<h2 class="art-h2">A Schoolmaster&apos;s Son</h2>
+<p>Franz Peter Schubert was born on 31 January 1797 in Himmelpfortgrund, a modest suburb on the northern edge of Vienna. His father, Franz Theodor Schubert, was a parish schoolmaster of peasant stock who had built a respectable lower-middle-class life through hard work and discipline; his mother, Elisabeth Vietz, had been a cook before her marriage. Of the fourteen children she bore, only five survived infancy. Franz was the twelfth. He grew up in the cramped quarters of a suburban schoolhouse, surrounded by the noise of pupils and the constant presence of music &mdash; for the Schubert household, like so many in musical Vienna, made music together as naturally as it ate and slept.</p>
+<p>His father taught him the violin; his elder brother Ignaz taught him the piano. But it quickly became clear that the boy&apos;s gifts ran far beyond anything his family could supply. He had perfect pitch, an extraordinary musical memory, and an instinct for harmony that astonished his first proper teacher, the local church organist Michael Holzer. &ldquo;If I wished to instruct him in anything fresh,&rdquo; Holzer later recalled, &ldquo;he already knew it. Consequently I gave him no actual tuition but merely talked to him and watched him with silent astonishment.&rdquo;</p>
+
+<h2 class="art-h2">The Choirboy and the Seminary</h2>
+<p>In 1808, at the age of eleven, Schubert won a place as a chorister in the imperial court chapel &mdash; and with it, a scholarship to the Stadtkonvikt, the imperial seminary that trained the choristers and educated the sons of the bourgeoisie. It was the finest schooling available to a boy of his class, and it transformed him. The Konvikt had a student orchestra in which Schubert played the violin, and through it he came to know the symphonies of Haydn and Mozart and the overtures of Beethoven from the inside, as a player. He devoured everything. The orchestra&apos;s conductor noticed that the small, short-sighted boy at the back of the second violins seemed to know the music better than anyone.</p>
+<p>He also began to compose, prolifically and from a startlingly young age. Songs, string quartets for the family to play, piano pieces, the beginnings of symphonies &mdash; the music poured out of him. For a time he studied with Antonio Salieri, the imperial court composer who had taught Beethoven and, in legend if not in fact, poisoned Mozart. Salieri recognised the boy&apos;s gift and gave him a thorough grounding in counterpoint and Italian vocal style. When Schubert&apos;s voice broke in 1812 and he could no longer sing in the chapel, he stayed on at the Konvikt as a pupil for another year before the demands of ordinary life intervened.</p>
+
+<h2 class="art-h2">The Reluctant Schoolmaster and the Miracle of 1814&ndash;15</h2>
+<p>His father wished him to become a schoolteacher, a secure and respectable profession, and in 1814 the seventeen-year-old Schubert dutifully took up a post as an assistant in his father&apos;s school, teaching the youngest and most fractious pupils their letters. He loathed it. The work was drudgery; the classroom was chaos; and his mind was entirely elsewhere. For while he was supposedly teaching infants to read, he was composing music at a rate and of a quality that has no real parallel in the history of the art.</p>
+<p>In October 1814, aged seventeen, he set a poem from Goethe&apos;s <em>Faust</em> &mdash; Gretchen sitting at her spinning wheel, her mind turning obsessively on her absent lover. <em>Gretchen am Spinnrade</em> (D.118) is one of the true watersheds in musical history. In it, for the first time, the piano accompaniment is not mere support but a full dramatic participant: the right hand spins the relentless wheel, the music rises to an almost unbearable climax at the memory of Faust&apos;s kiss, the wheel falters and stops &mdash; and then, with a shudder, begins again. The German art song, the Lied, was effectively born in that single piece, written by a teenager in a noisy schoolroom.</p>
+<p>The following year, 1815, was the most productive of his entire life and one of the most productive any composer has ever known. In that one year Schubert wrote around 150 songs &mdash; on some days, several complete masterpieces between morning and night &mdash; along with two symphonies, two masses, several stage works, and a quantity of chamber and piano music. Among the songs was <em>Erlk&ouml;nig</em> (D.328), another Goethe setting: the terrifying ballad of a father riding through the night with his dying child, the demonic Erlking luring the boy to his death, the galloping triplets in the piano never letting up until the final, devastating spoken line, &ldquo;in his arms the child was dead.&rdquo; He was eighteen. You can hear the full range of his song-writing genius in the Hyperion Schubert Edition <span class="art-cd-ref" onclick="goToCD(538)">CD 538</span>, part of the monumental complete survey, and in Bryn Terfel&apos;s warm-hearted recital of favourite songs <span class="art-cd-ref" onclick="goToCD(505)">CD 505</span>.</p>
+
+<h2 class="art-h2">Schubertiads: A Life Among Friends</h2>
+<p>Schubert escaped the schoolroom as soon as he could. From around 1817 he abandoned teaching almost entirely and threw in his lot with a circle of young artists, poets, students and civil servants who gathered around him &mdash; men who recognised his genius long before the wider world did and who supported him, fed him, gave him lodging, and provided the texts he set to music. This bohemian fellowship was the great fact of his social life. Its members included the poet Johann Mayrhofer, the law student and dilettante Franz von Schober (in whose rooms Schubert often lived), the painter Moritz von Schwind, the singer Johann Michael Vogl &mdash; an established opera star who became the foremost interpreter of Schubert&apos;s songs &mdash; and the writer Eduard von Bauernfeld.</p>
+<p>Their evenings together became known as &ldquo;Schubertiads&rdquo;: gatherings, often in private houses, devoted entirely to performances of Schubert&apos;s music, with the composer at the piano, Vogl singing, dancing afterwards, and a great deal of wine, talk and laughter. They were the warm centre of an otherwise precarious existence. For Schubert never held a salaried musical post, never had a wealthy patron of the kind that sustained Haydn, never enjoyed the concert-giving career that made Beethoven independent. He lived from hand to mouth, on small fees from publishers who exploited him and on the generosity of friends. He was generous in return: easygoing, unpretentious, devoted to his art and his companions, careless of money whenever he had any.</p>
+<p>Physically he was unprepossessing &mdash; short (barely five feet tall), stocky, round-faced, so near-sighted that he reportedly slept in his spectacles so as to be ready to compose the moment he woke. His friends called him, affectionately, &ldquo;Schwammerl&rdquo; &mdash; little mushroom. But at the piano, and above all in the act of creation, this modest, shy, unremarkable-looking young man was transformed into one of the supreme musical minds in history.</p>
+
+<h2 class="art-h2">The Songs</h2>
+<p>Schubert wrote in every form &mdash; symphonies, masses, operas, chamber music, sonatas &mdash; but it is above all as the supreme master of the Lied that he stands alone. Over the course of his short life he composed more than six hundred songs, setting the poetry of Goethe, Schiller, Heine, Mayrhofer, Walter Scott, Shakespeare and dozens of others, and in doing so he raised what had been a minor domestic genre into one of the central art forms of the nineteenth century. No composer before him had understood so completely how music could illuminate, deepen and even transfigure a poem &mdash; how a shift of harmony could open a window onto the soul.</p>
+<p>His genius found its fullest expression in the three great song cycles. <em>Die sch&ouml;ne M&uuml;llerin</em> (The Fair Maid of the Mill, 1823), a setting of twenty poems by Wilhelm M&uuml;ller, tells of a young miller who falls in love, is betrayed, and drowns himself in the brook that has been his companion throughout &mdash; the whole sung with a freshness and lyric tenderness that makes the tragedy all the more affecting <span class="art-cd-ref" onclick="goToCD(396)">CD 396</span>. And then there is <em>Winterreise</em> (Winter Journey, 1827), again to M&uuml;ller, the greatest song cycle ever written and one of the bleakest, most profound utterances in all of music: twenty-four songs charting a rejected lover&apos;s wanderings through a frozen landscape towards madness and oblivion, ending with the spectral figure of the hurdy-gurdy man grinding out his tune in the snow <span class="art-cd-ref" onclick="goToCD(387)">CD 387</span>. Schubert knew, when he wrote it, that he was mortally ill. His friends were shocked by the darkness of the music; he told them simply that he liked these songs more than all the rest, and that they would come to like them too.</p>
+
+<h2 class="art-h2">The Shadow: 1822 and After</h2>
+<p>In late 1822, at the age of twenty-five, Schubert contracted syphilis. It was, in that era, effectively a sentence of slow death, and the knowledge transformed both his life and his music. The treatments &mdash; chiefly mercury, itself highly toxic &mdash; were almost as dreadful as the disease. He spent periods in hospital, lost his hair for a time and had to wear a wig, and suffered bouts of severe depression and physical agony. &ldquo;I feel myself to be the most unhappy and wretched creature in the world,&rdquo; he wrote to a friend in 1824. &ldquo;Imagine a man whose health will never be right again&hellip; whose most brilliant hopes have perished.&rdquo;</p>
+<p>And yet from this period of suffering came an extraordinary deepening of his art. It was in the autumn of 1822, just as the illness took hold, that he began the Symphony in B minor that the world knows as the <em>Unfinished</em> (D.759) &mdash; two movements of such perfection and emotional weight that no one has ever satisfactorily explained why he never completed it. He simply set it aside, and turned to other things, and never returned. The two movements he did finish are among the most beloved in the orchestral repertoire <span class="art-cd-ref" onclick="goToCD(389)">CD 389</span> <span class="art-cd-ref" onclick="goToCD(398)">CD 398</span>.</p>
+
+<h2 class="art-h2">The Instrumental Masterpieces</h2>
+<p>The chamber music of Schubert&apos;s last years stands beside Beethoven&apos;s as the summit of the form. The String Quartet in D minor, <em>Death and the Maiden</em> (D.810, 1824), takes its name and its haunting slow-movement variations from one of his own songs, in which a terrified girl pleads with Death and Death answers with chilling gentleness; the whole quartet is shadowed by mortality, driven by a desperate energy <span class="art-cd-ref" onclick="goToCD(402)">CD 402</span> <span class="art-cd-ref" onclick="goToCD(407)">CD 407</span>. The Octet in F major (D.803), written the same year for a wealthy amateur clarinettist, shows the sunnier side of his genius &mdash; a glorious, expansive, six-movement serenade of pure delight <span class="art-cd-ref" onclick="goToCD(410)">CD 410</span>.</p>
+<p>Above all there is the String Quintet in C major (D.956), composed in the last months of his life and scored, unusually, for string quartet with a second cello rather than a second viola &mdash; a choice that gives the music its extraordinary richness and depth of sonority. Its slow movement, an Adagio of almost unbearable beauty and stillness, is for many listeners the single most sublime thing Schubert ever wrote, and one of the supreme achievements of Western music. It was not performed publicly until 1850, more than twenty years after his death <span class="art-cd-ref" onclick="goToCD(401)">CD 401</span> <span class="art-cd-ref" onclick="goToCD(408)">CD 408</span>.</p>
+<p>His earlier chamber music has its own irresistible charm, never more so than in the <em>Trout</em> Quintet (D.667, 1819), written when he was just twenty-two during a happy summer holiday in the Austrian countryside. Its fourth movement is a set of variations on his own song <em>Die Forelle</em> (The Trout), and the whole work brims with the carefree high spirits of youth <span class="art-cd-ref" onclick="goToCD(390)">CD 390</span> <span class="art-cd-ref" onclick="goToCD(399)">CD 399</span>. For the cello there is also the wistful <em>Arpeggione</em> Sonata (D.821), written for an obsolete bowed guitar and now most often heard on the cello <span class="art-cd-ref" onclick="goToCD(129)">CD 129</span>.</p>
+<p>At the piano, Schubert was the great lyric poet of the keyboard. The two sets of Impromptus (D.899 and D.935, 1827) are among the best-loved of all piano music &mdash; intimate, songful, by turns playful and profound <span class="art-cd-ref" onclick="goToCD(384)">CD 384</span>. The <em>Wanderer</em> Fantasy (D.760) is his most virtuosic and structurally ambitious solo work, built throughout from a single rhythmic idea drawn from one of his songs <span class="art-cd-ref" onclick="goToCD(144)">CD 144</span>. For piano duet &mdash; the favourite music-making of the Schubertiads &mdash; he wrote the great Fantasia in F minor (D.940), one of the finest works ever composed for four hands at one keyboard <span class="art-cd-ref" onclick="goToCD(287)">CD 287</span>. And Mitsuko Uchida&apos;s recordings reveal the inwardness and poetry of his solo writing as few others have <span class="art-cd-ref" onclick="goToCD(388)">CD 388</span>.</p>
+<p>The symphonies, too, grew in stature across his life, culminating in the great Symphony No. 9 in C major (D.944), the <em>Great</em> &mdash; a work of vast scale and inexhaustible melodic invention whose &ldquo;heavenly length,&rdquo; in Schumann&apos;s famous phrase, demands and rewards the listener&apos;s full surrender <span class="art-cd-ref" onclick="goToCD(392)">CD 392</span>. The complete cycle traces his whole orchestral development, from the Mozartian charm of the early symphonies to the Romantic grandeur of the last <span class="art-cd-ref" onclick="goToCD(391)">CD 391</span>.</p>
+
+<h2 class="art-h2">The Final Year</h2>
+<p>The year 1828 was Schubert&apos;s last, and one of the most astonishing final years in the history of any art. Though increasingly ill, he composed with a feverish intensity, as though he sensed how little time remained. In a matter of months he produced the String Quintet in C; the last three piano sonatas (D.958, 959 and 960), the final B-flat major sonata being one of the great valedictory utterances of the repertoire; the <em>Great</em> C major Symphony in its final form; the Mass in E-flat; and the collection of songs published after his death as <em>Schwanengesang</em> (Swan Song), including settings of Heine of an almost expressionist intensity that point far into the future.</p>
+<p>In March 1828, for the first and only time in his life, he gave a public concert devoted entirely to his own music. It was a success, and for once he had money in his pocket &mdash; though characteristically he seems to have spent much of it standing his friends dinner. Beethoven had died the previous March; Schubert, who revered him almost to the point of worship and had lived in the same city without ever becoming intimate with him, had been a torchbearer at the funeral. Now he had barely eighteen months to follow.</p>
+
+<h2 class="art-h2">Death and Posterity</h2>
+<p>In the autumn of 1828 his health collapsed entirely. He moved into his brother Ferdinand&apos;s rooms, grew steadily weaker, and in his final days &mdash; delirious with what was probably typhoid fever compounding his long illness &mdash; was still correcting the proofs of <em>Winterreise</em> and asking to hear Beethoven&apos;s C-sharp minor Quartet. He died on 19 November 1828, aged just thirty-one. At his own request he was buried near Beethoven; the poet Franz Grillparzer composed his epitaph: &ldquo;Music has here entombed a rich treasure, but still fairer hopes.&rdquo;</p>
+<p>That phrase &mdash; mourning the masterpieces a longer life would have brought &mdash; has haunted posterity. For the cruel irony of Schubert&apos;s story is that the world barely knew what it had lost. At his death, the vast majority of his music was unpublished and unperformed: the symphonies, the late chamber works, hundreds of songs, all lay in manuscript. The <em>Great</em> C major Symphony was discovered by Robert Schumann in 1839, in a pile of Schubert&apos;s papers kept by Ferdinand, and given its premiere by Mendelssohn in Leipzig. The <em>Unfinished</em> was not heard until 1865. Decade by decade through the nineteenth century, the true scale of his achievement was gradually revealed, until Schubert took his rightful place &mdash; beside Beethoven, with whom his life had so briefly and so poignantly overlapped &mdash; as one of the supreme composers in the history of music. He had lived thirty-one years. He had changed music forever.</p>
+
+<h2 class="art-h2">Recommended Recordings Not in the Collection</h2>
+<p>Your Schubert holdings are already among the richest in the collection, but these recordings would deepen it further:</p>
+<div class="art-rec-list">
+  <div class="art-rec-item">
+    <div class="art-rec-title">Dietrich Fischer-Dieskau &amp; Gerald Moore &mdash; The Complete Songs for Male Voice</div>
+    <div class="art-rec-label">Deutsche Grammophon &nbsp;&#183;&nbsp; 21-CD box</div>
+    <p>The single greatest monument of Lieder recording: the supreme baritone of the age and the supreme accompanist, recorded across the 1960s and 70s, in every song Schubert wrote for a male voice. Fischer-Dieskau&apos;s combination of beauty of tone, verbal intelligence and interpretative depth has never been equalled. If one were to own only a single Schubert song set, this would be it. Reissued at budget price and frequently found secondhand.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">Hans Hotter &amp; Gerald Moore &mdash; Winterreise (1954)</div>
+    <div class="art-rec-label">EMI / Warner &nbsp;&#183;&nbsp; Single CD</div>
+    <p>A darker, more granitic counterpart to any lighter-voiced Winterreise: the great German bass-baritone, his huge voice weathered and infinitely expressive, in a 1954 mono recording that many regard as the most profound account of the cycle ever set down. An essential complement to the Winterreise already in your collection.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">Sviatoslav Richter &mdash; Piano Sonatas</div>
+    <div class="art-rec-label">Various labels (BBC Legends, Olympia, DG)</div>
+    <p>Richter&apos;s Schubert &mdash; especially the great B-flat major Sonata D.960, which he played at famously expansive tempi &mdash; is unlike anyone else&apos;s: vast, hypnotic, utterly absorbed. His live recordings in particular have a concentration that can stop time. The late sonatas are a summit of the repertoire and Richter is one of their supreme interpreters.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">The Complete Hyperion Schubert Edition</div>
+    <div class="art-rec-label">Hyperion &nbsp;&#183;&nbsp; 40-CD box (or individual volumes)</div>
+    <p>You already own Volume 19 <span class="art-cd-ref" onclick="goToCD(538)">CD 538</span>. The complete edition, masterminded by the pianist Graham Johnson across forty volumes and featuring a who&apos;s-who of the world&apos;s finest singers, is one of the towering recording achievements of the twentieth century &mdash; every song Schubert wrote, with scholarly notes that constitute a major work of Schubert literature in themselves. A long-term project well worth building up volume by volume.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">Wilhelm Furtw&auml;ngler / Berlin Philharmonic &mdash; Symphony No. 9 &lsquo;Great&rsquo;</div>
+    <div class="art-rec-label">Deutsche Grammophon &nbsp;&#183;&nbsp; Single CD</div>
+    <p>Furtw&auml;ngler&apos;s wartime and post-war accounts of the Great C major bring a weight, mystery and cumulative power to the symphony that more modern, lighter-textured recordings rarely match. A grand Romantic vision of the work, and a thrilling counterpart to the period-style approach.</p>
+  </div>
+</div>
+
+<h2 class="art-h2">Further Reading</h2>
+<div class="art-reading-section">
+  <div class="art-reading-sub">Books</div>
+  <div class="art-book-list">
+    <div class="art-book-item">
+      <div class="art-book-title">Schubert: The Music and the Man</div>
+      <div class="art-book-author">Brian Newbould &nbsp;&#183;&nbsp; Victor Gollancz, 1997</div>
+      <p>The best single-volume study combining life and works in accessible form. Newbould, a leading Schubert scholar (and the man who completed several of the unfinished works), writes with authority and warmth. The ideal starting point for the general reader who wants to understand the music as well as the life.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">The Life of Schubert</div>
+      <div class="art-book-author">Christopher H. Gibbs &nbsp;&#183;&nbsp; Cambridge University Press, 2000</div>
+      <p>A concise, scholarly and very readable biography in the Cambridge Musical Lives series. Particularly good on the social world of Schubert&apos;s Vienna, the Schubertiads, and the way his posthumous reputation was constructed. Compact enough to read in a few sittings.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">The Schubert Song Companion</div>
+      <div class="art-book-author">John Reed &nbsp;&#183;&nbsp; Manchester University Press</div>
+      <p>The indispensable reference for the songs: every one of the six hundred-plus Lieder discussed individually, with English translations and commentary. Not a book to read straight through, but the perfect companion to keep beside you as you explore the songs one by one.</p>
+    </div>
+  </div>
+  <div class="art-reading-sub">Online</div>
+  <div class="art-book-list">
+    <div class="art-book-item">
+      <div class="art-book-title">The LiederNet Archive</div>
+      <div class="art-book-author"><a href="https://www.lieder.net" target="_blank" class="art-link">lieder.net</a></div>
+      <p>A vast free archive of song texts and translations. For following Schubert&apos;s Lieder with the original German and a parallel English translation in front of you, it is simply invaluable &mdash; transforming the experience of listening to songs in a language you may not read.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">BBC Radio 3 &mdash; Composer of the Week</div>
+      <div class="art-book-author"><a href="https://www.bbc.co.uk/programmes/b006tnbm" target="_blank" class="art-link">bbc.co.uk/radio3</a></div>
+      <p>Donald Macleod&apos;s long-running series has covered Schubert&apos;s life and music in depth on several occasions, all available on BBC Sounds. Warmly presented, richly illustrated with recordings, and an ideal accompaniment to exploring the music.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">IMSLP &mdash; Petrucci Music Library</div>
+      <div class="art-book-author"><a href="https://imslp.org/wiki/Category:Schubert,_Franz" target="_blank" class="art-link">imslp.org</a></div>
+      <p>Free public-domain scores for everything Schubert wrote. Following the score of the String Quintet&apos;s Adagio, or one of the late sonatas, while you listen is one of the great rewards of musical literacy &mdash; and here it costs nothing.</p>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+
 <div class="no-results" id="no-results" style="display:none">
   <div class="no-results-icon">&#127925;</div>
   <h3>Not in your collection</h3>
@@ -272,8 +593,6 @@ header h1 span{color:var(--gold);font-style:italic}
 <div class="stats-footer">
   <div class="stat-item"><div class="stat-val" id="s-total"></div><div>Total CDs</div></div>
   <div class="stat-item"><div class="stat-val gold" id="s-value"></div><div>Collection value (used)</div></div>
-  <div class="stat-item"><div class="stat-val" id="s-avg"></div><div>Average used price</div></div>
-  <div class="stat-item"><div class="stat-val" id="s-comp"></div><div>Composers</div></div>
 </div>
 
 <script>const catalogue = [
@@ -797,7 +1116,24 @@ header h1 span{color:var(--gold);font-style:italic}
   {id:518,label:"Regis (2-disc)",composers:["J.S. Bach"],artist:"Ton Koopman (organ)",title:"J.S. Bach: Organ Masterpieces",description:"RRC 2042 · Regis · 2-disc set · rec. in Holland · 131 min · Penguin Guide ★★★",format:"2-disc set",catNo:"RRC 2042",usedGBP:14.00,newGBP:null,notes:"Regis. Ton Koopman at historic Dutch organs in Bach's greatest organ works. Penguin Guide three-star, Demonstration bracket. Disc 1 (organs at Leeuwarden): Preludes & Fugues BWV532, 543 · Toccata Adagio & Fugue BWV564 · Dorian Toccata BWV538 · Fantasia BWV572 · Passacaglia BWV582 · Fantasia BWV562. Disc 2 (Christian Müller Organ, Waalse Kerk, Amsterdam): Prelude & Fugue BWV552 'St Anne' · Partita BWV767 · Fantasia BWV542 · Chorales BWV659, 645, 639 · Toccata & Fugue BWV565. Total 131:47. The Waalse Kerk Müller organ is legendary. Licensed from AVC Switzerland."},
   {id:519,label:"Chandos",composers:["J.S. Bach"],artist:"Piet Kee (organ of St Bavo's Church, Haarlem · Müller Organ)",title:"Piet Kee plays Bach on the Müller Organ at St Bavo's, Haarlem Vol. 3",description:"CHAN 0527 · Chandos · including Toccata in D minor BWV 565",format:"Single CD",catNo:"CHAN 0527",usedGBP:12.00,newGBP:null,notes:"Chandos. Piet Kee (1927-2018) at the great Christian Müller organ of St Bavo's Church in Haarlem — one of the finest Baroque organs in the world, built in 1738 and famously played by the young Mozart in 1766. Volume 3 of Chandos's acclaimed series of Piet Kee's Bach recordings, including the Toccata in D minor BWV565. Piet Kee was one of the supreme Dutch organists of the 20th century."},
   {id:520,label:"Seraphim (2-disc)",composers:["J.S. Bach","Dietrich Buxtehude","François Couperin"],artist:"Hans-Christoph Becker-Foss (organ) · Franz Lehrndorfer (organ) · Christoph Bossert (organ)",title:"Baroque Organ Music · Bach · Buxtehude · Couperin",description:"7243 5 69119 2 5 · Seraphim/EMI · 2-disc set · 101 min",format:"2-disc set",catNo:"7243 5 69119 2 5",usedGBP:12.00,newGBP:null,notes:"Seraphim (EMI budget). A comprehensive survey of Baroque organ music. Disc 1: Buxtehude — Prelude & Fugue in E minor + Chorale Prelude · Bach — Chorale Prelude BWV676 + Toccata & Fugue BWV565 + Prelude & Fugue BWV552 · François Couperin — Six movements from Organ Mass No.2 (1690) / Hans-Christoph Becker-Foss. Disc 2: Bach — Prelude & Fugue BWV548 + Chorale preludes BWV650, 659, 639, 647 · Buxtehude — Prelude & Fugue in D · Bach — Passacaglia BWV582 / Franz Lehrndorfer & Christoph Bossert. New: Dietrich Buxtehude (1637-1707) — the German Baroque master who inspired the young Bach — and François Couperin (1668-1733)."},
-  {id:521,label:"EMI (2-disc)",composers:["Antonín Dvořák","Joseph Haydn","Edward Elgar","Robert Schumann","Felix Mendelssohn","Gabriel Fauré","Camille Saint-Saëns","Manuel de Falla","Max Bruch","Ludwig van Beethoven","Johannes Brahms","César Franck"],artist:"Jacqueline du Pré (cello)",title:"A Lasting Inspiration · Jacqueline du Pré",description:"7243 5 65955 2 1 · EMI · 2-disc set · 150 min",format:"2-disc set",catNo:"7243 5 65955 2 1",usedGBP:14.00,newGBP:null,notes:"EMI. A two-disc compilation celebrating Jacqueline du Pré (1945-1987), one of the supreme cellists of the 20th century. Disc 1: Dvořák — Cello Concerto in B minor Op.104 · Haydn — Cello Concerto No.2 in D Op.101 · Elgar — Cello Concerto in E minor Op.85. Disc 2: Paradis/Dushkin — Sicilienne · Schumann — Three Fantasy Pieces Op.73 · Mendelssohn — Song without Words Op.109 · Fauré — Élégie Op.24 · Bach/Siloti — Adagio · Saint-Saëns — The Swan · de Falla — Jota · Bruch — Kol Nidrei · Beethoven — Archduke Trio · Brahms — Cello Sonata No.2 · Franck — Sonata in A. New: Manuel de Falla (1876-1946) and César Franck (1822-1890) — whose Violin Sonata transcribed for cello is perhaps the greatest Romantic sonata for the instrument. © 1996 EMI Records Ltd."}
+  {id:521,label:"EMI (2-disc)",composers:["Antonín Dvořák","Joseph Haydn","Edward Elgar","Robert Schumann","Felix Mendelssohn","Gabriel Fauré","Camille Saint-Saëns","Manuel de Falla","Max Bruch","Ludwig van Beethoven","Johannes Brahms","César Franck"],artist:"Jacqueline du Pré (cello)",title:"A Lasting Inspiration · Jacqueline du Pré",description:"7243 5 65955 2 1 · EMI · 2-disc set · 150 min",format:"2-disc set",catNo:"7243 5 65955 2 1",usedGBP:14.00,newGBP:null,notes:"EMI. A two-disc compilation celebrating Jacqueline du Pré (1945-1987), one of the supreme cellists of the 20th century. Disc 1: Dvořák — Cello Concerto in B minor Op.104 · Haydn — Cello Concerto No.2 in D Op.101 · Elgar — Cello Concerto in E minor Op.85. Disc 2: Paradis/Dushkin — Sicilienne · Schumann — Three Fantasy Pieces Op.73 · Mendelssohn — Song without Words Op.109 · Fauré — Élégie Op.24 · Bach/Siloti — Adagio · Saint-Saëns — The Swan · de Falla — Jota · Bruch — Kol Nidrei · Beethoven — Archduke Trio · Brahms — Cello Sonata No.2 · Franck — Sonata in A. New: Manuel de Falla (1876-1946) and César Franck (1822-1890) — whose Violin Sonata transcribed for cello is perhaps the greatest Romantic sonata for the instrument. © 1996 EMI Records Ltd."},
+  {id:522,label:"Virgin Classics",composers:["Edward Elgar","Ernest Bloch","Dmitry Kabalevsky","Peter Tchaikovsky","Richard Strauss"],artist:"Steven Isserlis (cello) · London Symphony Orchestra / Richard Hickox · London Philharmonic / Andrew Litton · Chamber Orchestra of Europe / John Eliot Gardiner · Minnesota Orchestra / Edo de Waart",title:"Isserlis: Elgar Cello Concerto · Bloch Schelomo · Kabalevsky Cello Concerto No. 2 · Tchaikovsky Rococo Variations · R. Strauss Don Quixote",description:"7243 5 61490 2 1 · Virgin Classics",format:"Single CD",catNo:"7243 5 61490 2 1",usedGBP:12.00,newGBP:null,notes:"Virgin Classics. Steven Isserlis in five major cello works with distinguished orchestras and conductors. Elgar: Cello Concerto in E minor / LSO / Hickox · Bloch: Schelomo (Hebrew Rhapsody for cello and orchestra) / LPO / Litton · Kabalevsky: Cello Concerto No. 2 / COE / Gardiner · Tchaikovsky: Rococo Variations / Minnesota Orchestra / de Waart · R. Strauss: Don Quixote / Minnesota Orchestra / de Waart. Three new composers: Ernest Bloch (1880-1959), the Swiss-American composer whose Schelomo is the greatest Jewish-themed work for cello; Dmitry Kabalevsky (1904-1987), Soviet composer and educator. Isserlis is one of the most intellectually searching cellists of his generation."},
+  {id:523,label:"Philips (2-disc)",composers:["Edward Elgar","Antonín Dvořák","Camille Saint-Saëns","Peter Tchaikovsky"],artist:"Julian Lloyd Webber (cello)",title:"Favourite Cello Concertos · Elgar · Dvořák · Saint-Saëns · Tchaikovsky",description:"462 115-2 · Philips · 2-disc set · includes Jackie's Song",format:"2-disc set",catNo:"462 115-2",usedGBP:14.00,newGBP:null,notes:"Philips. Julian Lloyd Webber in the four great Romantic cello concertos: Elgar, Dvořák, Saint-Saëns and Tchaikovsky. Julian Lloyd Webber (b.1951) was for many years Britain's leading cello soloist and a passionate advocate for British music and for Elgar's Cello Concerto in particular. The disc includes Jackie's Song, his musical tribute to Jacqueline du Pré, who transformed public awareness of the Elgar concerto with her legendary 1965 recording. A fitting companion to the du Pré compilation in the collection (CD 521)."},
+  {id:524,label:"EMI",composers:["Andrew Lloyd Webber"],artist:"Julian Lloyd Webber (cello)",title:"Unexpected Songs",description:"0946 3 59488 2 0 · EMI",format:"Single CD",catNo:"0946 3 59488 2 0",usedGBP:10.00,newGBP:null,notes:"EMI. Julian Lloyd Webber in a programme of songs and popular pieces arranged for cello — the instrument at its most immediately appealing and accessible. Julian Lloyd Webber has always been committed to bringing the cello to the widest possible audience, and this disc reflects that mission. A good-natured crossover disc drawing on his wide musical sympathies."},
+  {id:525,label:"Teldec/Warner",composers:["Henry Purcell"],artist:"Chanticleer · Capriccio Stravagante",title:"Evening Prayer · Purcell Anthems & Sacred Songs",description:"2564 60290-2 · Teldec/Warner",format:"Single CD",catNo:"2564 60290-2",usedGBP:12.00,newGBP:null,notes:"Teldec/Warner. Chanticleer — the celebrated American vocal ensemble founded in 1978 — in Purcell anthems and sacred songs with the period-instrument ensemble Capriccio Stravagante. Chanticleer takes its name from the rooster in Chaucer's Canterbury Tales and is celebrated for its pure, seamlessly blended tone across a wide vocal range. Purcell's sacred music is among the glories of the English Baroque: intimate, harmonically adventurous, and deeply expressive. A beautiful pairing of American vocal excellence and English Baroque repertoire."},
+  {id:526,label:"Decca Original Masters (5-disc)",composers:["Edward Elgar","Antonín Dvořák","Ernest Bloch","Camille Saint-Saëns","Johannes Brahms"],artist:"Zara Nelsova (cello)",title:"Zara Nelsova: Decca Recordings 1950-1956",description:"475 6327 · Decca Original Masters · 5-disc set · rec. 1950-1956",format:"5-disc set",catNo:"475 6327",usedGBP:20.00,newGBP:null,notes:"Decca Original Masters. A comprehensive retrospective of Zara Nelsova (1918-2002), one of the great cellists of the mid-20th century — a Canadian artist of Russian-Jewish origin who was celebrated for the warmth and power of her tone and the depth of her musical intelligence. These Decca recordings from 1950-1956 represent the peak of her early recording career. Nelsova was particularly associated with Bloch's Schelomo and with the Elgar concerto; she was a close friend of both Bloch and Casals. A significant archive of mid-century cello playing at its finest."},
+  {id:527,label:"Deutsche Grammophon",composers:["Felix Mendelssohn","James MacMillan","W.A. Mozart"],artist:"Nicola Benedetti (violin) · Academy of St Martin-in-the-Fields / James MacMillan",title:"Mendelssohn: Violin Concerto · MacMillan: A's · Mozart: Violin Concerto No. 5",description:"476 315-9 · DG · 2007 debut album",format:"Single CD",catNo:"476 315-9",usedGBP:12.00,newGBP:null,notes:"Deutsche Grammophon. Nicola Benedetti's debut album, released when she was 19, following her BBC Young Musician of the Year win in 2004. The disc pairs the Mendelssohn Violin Concerto in E minor Op.64 and Mozart's Violin Concerto No. 5 in A major K.219 with the world premiere recording of James MacMillan's A's — a concerto written for Benedetti herself and conducted by the composer. James MacMillan (b.1959), the Scottish composer, is new to the collection. His music draws on his Catholic faith, Scottish folk music and contemporary avant-garde language. Benedetti has since become one of the most important violinists of her generation."},
+  {id:528,label:"Quicksilver",composers:["Rebecca Clarke","Elizabeth Maconchy","Ethel Smyth"],artist:"Catherine Wilmers (cello) · Simon Marlow (piano)",title:"A Cello Century of British Women Composers",description:"CD QS 6245 · Quicksilver",format:"Single CD",catNo:"CD QS 6245",usedGBP:10.00,newGBP:null,notes:"Quicksilver. A fascinating and unusual disc: cello music by British women composers spanning the 20th century, performed by Catherine Wilmers with pianist Simon Marlow. The repertoire draws on a largely neglected tradition — British women composers of the early-to-mid 20th century who worked in the shadow of their male contemporaries but produced music of real distinction. Rebecca Clarke (1886-1979), whose Viola Sonata is one of the finest British chamber works of the era, and Elizabeth Maconchy (1907-1994), a major figure in British music, are likely represented. An important document of recovery and advocacy."},
+  {id:529,label:"Onyx",composers:["Eugène Ysaÿe"],artist:"James Ehnes (violin)",title:"Ysaÿe: Sonatas for Solo Violin",description:"ONYX 4198 · Onyx Classics",format:"Single CD",catNo:"ONYX 4198",usedGBP:14.00,newGBP:null,notes:"Onyx Classics. James Ehnes in the six sonatas for solo violin by Eugène Ysaÿe (1858-1931), the Belgian violinist-composer who was one of the supreme virtuosos of his era. The sonatas, written in 1923 in a single creative burst, are each dedicated to a famous violinist of the time: Szigeti, Thibaud, Enescu, Kreisler, Mathieu Crickboom and Manuel Quiróga. They are among the most demanding and expressive works in the entire violin literature — a compendium of virtuoso techniques used always in the service of deep musical expression. James Ehnes is one of Canada's finest violinists, celebrated for his purity of tone and musical intelligence. Ysaÿe is a new composer to the collection."},
+  {id:530,label:"Hyperion",composers:["W.A. Mozart","Michael Haydn","Karl Stamitz","Carl Maria von Weber"],artist:"Laurence Perkins (bassoon) · The Manchester Camerata / Douglas Boyd",title:"Bassoon Concertos · Mozart · M. Haydn · Stamitz · Weber",description:"CDA67288 · Hyperion",format:"Single CD",catNo:"CDA67288",usedGBP:12.00,newGBP:null,notes:"Hyperion. Laurence Perkins and the Manchester Camerata under Douglas Boyd in four bassoon concertos. Mozart's Bassoon Concerto in B-flat major K.191 (1774), written when he was 18, is the most celebrated concerto for the instrument — elegant, witty and perfectly crafted. Michael Haydn's contribution shows his elder brother's influence. Karl Stamitz (1745-1801), son of the Mannheim composer Johann Stamitz, is new to the collection — a prolific composer who wrote concertos for virtually every instrument. Weber's Bassoon Concerto in F major Op.75 is a late Romantic showpiece. Douglas Boyd was himself one of the finest oboists of his generation before becoming a conductor."},
+  {id:531,label:"EMI",composers:["W.A. Mozart","Carl Maria von Weber","Johannes Brahms","Claude Debussy"],artist:"Emma Johnson (clarinet)",title:"Voyage · 20 Favourite Tracks",description:"986 618-0 · EMI compilation",format:"Single CD",catNo:"986 618-0",usedGBP:10.00,newGBP:null,notes:"EMI. A compilation of 20 tracks drawn from Emma Johnson's recordings — a portrait of one of Britain's most popular and gifted clarinettists. Johnson won BBC Young Musician of the Year in 1984 at the age of 17 and has been a leading advocate for the clarinet ever since. The programme spans the core clarinet repertoire: Mozart, Weber, Brahms, Debussy and others. A good introduction to Johnson's artistry across her career, and a companion to her earlier ASV disc in the collection (CD 483)."},
+  {id:532,label:"EMI Classics",composers:["Alessandro Scarlatti","Johann Adolf Hasse","Gaetano Donizetti","Vincenzo Bellini","Antonio Pasculli"],artist:"Christoph Hartmann (oboe) · Ensemble Berlin",title:"Bella Napoli · Concerti per Oboe · Scarlatti · Hasse · Donizetti · Bellini · Pasculli",description:"50990 5 14232 2 3 · EMI Classics",format:"Single CD",catNo:"50990 5 14232 2 3",usedGBP:12.00,newGBP:null,notes:"EMI Classics. Christoph Hartmann, principal oboist of the Berlin Philharmonic, and Ensemble Berlin in a programme of Neapolitan oboe concertos. The programme traces the Neapolitan tradition from Alessandro Scarlatti and Hasse through to the extraordinary Antonio Pasculli (1842-1924) — new to the collection and one of the most remarkable figures in the history of the oboe. Pasculli, known as the Paganini of the oboe, wrote fantasia-concertos of extraordinary technical demand based on opera themes by Donizetti and Bellini. Hartmann is one of the finest oboists in the world; his tone is luminous, his technique flawless."},
+  {id:533,label:"EMI Classics",composers:["J.S. Bach","George Frideric Handel","Henry Purcell","Jeremiah Clarke"],artist:"Alison Balsom (trumpet) · Quentin Thomas (organ)",title:"Trumpet · Organ · Balsom · Thomas",description:"7243 5 75683 2 6 · EMI Classics",format:"Single CD",catNo:"7243 5 75683 2 6",usedGBP:12.00,newGBP:null,notes:"EMI Classics. Alison Balsom (b.1981), one of the finest trumpet soloists of her generation, with organist Quentin Thomas in a programme of Baroque and Classical trumpet and organ music. Bach, Handel, Purcell, Clarke and others — the core repertoire for this combination, played with Balsom's characteristic brilliance of tone and effortless technical command. Balsom has done more than almost any other player to bring the trumpet to concert-hall prominence as a solo instrument."},
+  {id:534,label:"Priory Records",composers:["Herbert Howells","Charles Villiers Stanford","William Walton","Benjamin Britten"],artist:"Choir of St George's Chapel, Windsor Castle / Jonathan Rees-Williams · Roger Judd (organ)",title:"Magnificat and Nunc Dimittis Vol. 21",description:"PRCD 634 · Priory Records · Vol. 21 of the series",sealed:true,format:"Single CD",catNo:"PRCD 634",usedGBP:12.00,newGBP:null,notes:"Priory Records. Volume 21 of the long-running Priory series of Magnificat and Nunc Dimittis settings, performed by the Choir of St George's Chapel, Windsor Castle under Jonathan Rees-Williams with organist Roger Judd. The Magnificat and Nunc Dimittis form the musical heart of Anglican Evensong, and the tradition of setting them for choir and organ has produced a rich body of music from Stanford, Howells, Walton, Britten and many others. St George's Chapel Windsor is one of the great English choral foundations. Sealed."},
+  {id:535,label:"Harmonia Mundi USA",composers:["Antonio Vivaldi","Giovanni Battista Pergolesi","Giovanni Pierluigi da Palestrina","William Byrd"],artist:"Choir of Clare College, Cambridge / Graham Ross",title:"Stabat Mater dolorosa · Music for Passiontide",description:"HMU 907616 · Harmonia Mundi USA",format:"Single CD",catNo:"HMU 907616",usedGBP:12.00,newGBP:null,notes:"Harmonia Mundi USA. The Choir of Clare College, Cambridge under Graham Ross in a programme of Stabat Mater settings and related Passiontide music. The Stabat Mater — a 13th-century sequence depicting the Virgin Mary at the foot of the Cross — has inspired some of the most profound choral music ever written. Pergolesi's setting (1736, written as he lay dying of tuberculosis) is the most famous. Graham Ross and the Clare College Choir are one of the finest British choral partnerships of the present day. A deeply moving disc for the Easter season."},
+  {id:536,label:"Harmonia Mundi USA (SACD)",composers:["William Byrd","Thomas Tallis"],artist:"Stile Antico",title:"Heavenly Harmonies · Music by William Byrd and Thomas Tallis",description:"HMU 807463 · Harmonia Mundi USA · Hybrid SACD",format:"SACD",catNo:"HMU 807463",usedGBP:12.00,newGBP:null,notes:"Harmonia Mundi USA. Stile Antico — the outstanding British a cappella vocal ensemble founded in 2001 — in music by Byrd and Tallis. Both composers served as Gentlemen of the Chapel Royal; both remained Catholic throughout the reign of Elizabeth I; both produced sacred music of extraordinary beauty in a period when its performance was fraught with danger. Stile Antico sings from memory, without a conductor, from original part-books — recreating the Renaissance experience of singers gathering around a single source. Their blend and intonation are simply remarkable. Hybrid SACD plays on all CD and SACD players."},
+  {id:537,label:"Decca (2-disc)",composers:["J.S. Bach","George Frideric Handel","Johannes Brahms","Christoph Willibald Gluck","Gustav Mahler"],artist:"Kathleen Ferrier (contralto)",title:"Kathleen Ferrier: A Tribute · Remastered Decca Recordings 1912-1953",description:"475 078-2 · Decca · 2-disc set · 50th anniversary remastered edition",format:"2-disc set",catNo:"475 078-2",usedGBP:14.00,newGBP:null,notes:"Decca. A 50th anniversary tribute to Kathleen Ferrier (1912-1953), one of the most beloved singers of the 20th century. Ferrier was a Lancashire-born contralto of extraordinary natural gifts who rose from amateur singing competitions to international stardom in barely a decade — only to die of cancer at 41. Her recordings with Bruno Walter (Mahler's Das Lied von der Erde, Brahms Alto Rhapsody), her Bach, her Handel and her Gluck remain among the most treasured in the catalogue. Her voice had a quality of natural warmth and directness that no training could have manufactured. Remastered from the original Decca masters."},
+  {id:538,label:"Hyperion",composers:["Franz Schubert"],artist:"Felicity Lott (soprano) · Graham Johnson (piano)",title:"The Hyperion Schubert Edition · Complete Songs Vol. 19 · Felicity Lott",description:"CDJ33019 · Hyperion Schubert Edition · Vol. 19",format:"Single CD",catNo:"CDJ33019",usedGBP:10.00,newGBP:null,notes:"Hyperion. Volume 19 of the monumental Hyperion Schubert Edition — the complete songs, recorded over more than two decades by Graham Johnson with an extraordinary range of singers. Felicity Lott (b.1947), the greatly admired British soprano, brings her characteristic elegance, intelligence and tonal beauty to this volume. Graham Johnson's piano playing and scholarship are the backbone of the entire series — his booklet notes alone constitute a major contribution to Schubert literature. The Hyperion Schubert Edition is one of the great recording enterprises of the late 20th century."}
 ];
 
 let activeFilter='', activeComposer='', activeArtist='', activeLabel='', sortMode=0, notesSearchMode=false, filtered=[...catalogue], ddType='', ddItems=[];
@@ -1367,12 +1703,8 @@ function updateStats(){
   const all=catalogue.filter(c=>!deleted.includes(c.id));
   const total=all.length;
   const val=all.reduce((s,c)=>s+(c.usedGBP||0),0);
-  const avg=total?val/total:0;
-  const comps=new Set(all.flatMap(c=>c.composers)).size;
   document.getElementById('s-total').innerHTML=total;
   document.getElementById('s-value').innerHTML='£'+val.toFixed(2);
-  document.getElementById('s-avg').innerHTML='£'+avg.toFixed(2);
-  document.getElementById('s-comp').innerHTML=comps;
 }
 
 document.querySelectorAll('.filter-chip[data-filter]').forEach(btn=>{
@@ -1431,7 +1763,8 @@ window.addEventListener('resize', setHeaderHeight);
 
 // ── Articles ──────────────────────────────────────────────────
 const articleMeta = [
-  {id:'bach', title:'Johann Sebastian Bach', subtitle:'Life, times & music — from Eisenach to Leipzig', cdCount:12}
+  {id:'bach', title:'Johann Sebastian Bach', subtitle:'Life, times & music — from Eisenach to Leipzig', cdCount:12},
+  {id:'schubert', title:'Franz Schubert', subtitle:'Life, times & music — the brief miraculous life', cdCount:16}
 ];
 
 function openArticles(){
@@ -1444,6 +1777,7 @@ function openArticles(){
 }
 
 function closeArticles(){
+  _currentArticleId=null; hideReturnBtn();
   document.getElementById('article-panel').style.display='none';
   document.getElementById('cards').style.display='';
   document.getElementById('articles-chip').classList.remove('active');
@@ -1464,7 +1798,9 @@ function renderArticleList(){
   ).join('');
 }
 
+let _currentArticleId=null;
 function openArticle(id){
+  _currentArticleId=id;
   const content=document.getElementById('art-content-'+id);
   if(!content)return;
   document.getElementById('article-list-view').style.display='none';
@@ -1478,7 +1814,12 @@ function backToArticleList(){
   renderArticleList();
 }
 
+let _lastArticleId=null, _lastScrollY=0, _returnTimer=null;
+
 function goToCD(id){
+  // Store current article state for return
+  _lastArticleId=_currentArticleId||null;
+  _lastScrollY=window.scrollY;
   closeArticles();
   activeFilter=''; activeComposer=''; activeArtist=''; activeLabel=''; notesSearchMode=false;
   document.getElementById('search').value='';
@@ -1492,6 +1833,35 @@ function goToCD(id){
       setTimeout(()=>card.classList.remove('cd-highlight'),2000);
     }
   },150);
+  // Show return button if we came from an article
+  if(_lastArticleId){
+    showReturnBtn();
+  }
+}
+
+function showReturnBtn(){
+  const btn=document.getElementById('return-art-btn');
+  btn.style.display='block';
+  btn.style.opacity='0';
+  btn.style.transition='opacity 0.3s';
+  setTimeout(()=>btn.style.opacity='1',10);
+  if(_returnTimer) clearTimeout(_returnTimer);
+  _returnTimer=setTimeout(hideReturnBtn, 12000);
+}
+
+function hideReturnBtn(){
+  const btn=document.getElementById('return-art-btn');
+  btn.style.opacity='0';
+  setTimeout(()=>btn.style.display='none',300);
+}
+
+function returnToArticle(){
+  hideReturnBtn();
+  if(!_lastArticleId) return;
+  openArticles();
+  openArticle(_lastArticleId);
+  const sy=_lastScrollY;
+  setTimeout(()=>window.scrollTo({top:sy,behavior:'instant'}),80);
 }
 
 </script>
