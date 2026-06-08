@@ -1,3 +1,4 @@
+</div>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -302,7 +303,14 @@ header h1 span{color:var(--gold);font-style:italic}
   .played-tag{font-size:.75rem;color:#2a7a2a;padding:.15rem 0;font-style:italic;}
   .played-btn{display:block;width:100%;padding:.5rem;margin:.3rem 0;background:#f0fff0;border:1.5px solid #4a9a4a;color:#1a5a1a;border-radius:8px;font-size:.82rem;font-weight:500;cursor:pointer;font-family:inherit;text-align:center;}
   .played-btn:active{background:#d0f0d0;}
-</style>
+
+  .filter-chip-more{background:#1B2B5B!important;color:#fff!important;border-color:#1B2B5B!important;font-weight:500;}
+  .filter-chip-more.secondary-active{background:#C8A84B!important;border-color:#C8A84B!important;color:#1B2B5B!important;}
+  #more-panel{position:fixed;left:0;right:0;background:#fff;border-bottom:2px solid #E8E0D0;
+    padding:.6rem 1rem;display:flex;flex-wrap:wrap;gap:.4rem;z-index:90;
+    box-shadow:0 4px 12px rgba(0,0,0,.15);}
+
+  </style>
 </head>
 <body>
 
@@ -320,12 +328,21 @@ header h1 span{color:var(--gold);font-style:italic}
 
 <div class="filter-bar" id="filter-bar">
   <button class="filter-chip active" data-filter="">All</button>
-  <button class="filter-chip filter-chip-random" onclick="pickRandom()">&#127922; Surprise Me</button>
   <button class="filter-chip filter-chip-notes" id="notes-search-btn" onclick="toggleNotesSearch()">&#128196; Notes</button>
   <button class="filter-chip filter-chip-dd" id="composer-btn" onclick="toggleDropdown('composer',event)"><span id="composer-label">Composer</span> &#9662;</button>
   <button class="filter-chip filter-chip-dd" id="artist-btn" onclick="toggleDropdown('artist',event)"><span id="artist-label">Artist</span> &#9662;</button>
-  <button class="filter-chip filter-chip-dd" id="label-btn" onclick="toggleDropdown('label',event)"><span id="label-label">Label</span> &#9662;</button>
-  <button class="filter-chip filter-chip-dd" id="sets-btn" onclick="toggleDropdown('sets',event)"><span id="sets-label">Sets</span> &#9662;</button>
+  <button class="filter-chip filter-chip-more" id="more-btn" onclick="toggleMorePanel(event)">More &#9662;</button>
+</div>
+
+<div id="more-panel" style="display:none">
+  <button class="filter-chip filter-chip-random" onclick="pickRandom();closeMorePanel()">&#127922; Surprise Me</button>
+  <button class="filter-chip filter-chip-dd" id="label-btn" onclick="toggleDropdown('label',event);closeMorePanel()"><span id="label-label">Label</span> &#9662;</button>
+  <button class="filter-chip filter-chip-dd" id="sets-btn" onclick="toggleDropdown('sets',event);closeMorePanel()"><span id="sets-label">Sets</span> &#9662;</button>
+  <button class="filter-chip filter-chip-sacd" data-filter="SACD">SACD</button>
+  <button class="filter-chip filter-chip-new" data-filter="sealed">&#127381; New</button>
+  <button class="filter-chip filter-chip-star" data-filter="favourites">&#9733; Favourites</button>
+  <button class="filter-chip filter-chip-dupe" data-filter="duplicate">&#9888; Duplicates</button>
+  <button class="filter-chip filter-chip-articles" id="articles-chip" onclick="openArticles();closeMorePanel()">&#128214; Articles</button>
   <button class="filter-chip filter-chip-sacd" data-filter="SACD">SACD</button>
   <button class="filter-chip filter-chip-new" data-filter="sealed">&#127381; New</button>
   <button class="filter-chip filter-chip-star" data-filter="favourites">&#9733; Favourites</button>
@@ -2055,6 +2072,7 @@ function search(){
     return 0;
   });
   render(q);
+  if(document.getElementById('more-btn'))updateMoreBtn();
 }
 
 function render(q){
@@ -2198,6 +2216,7 @@ function updateStats(){
 
 document.querySelectorAll('.filter-chip[data-filter]').forEach(btn=>{
   btn.addEventListener('click',()=>{
+      closeMorePanel();
     const isActive=btn.classList.contains('active');
     const isAll=btn.dataset.filter==='';
     // Toggle off if already active (and not the All chip)
@@ -2270,6 +2289,7 @@ function openArticles(){
 
 function closeArticles(){
   _currentArticleId=null; hideReturnBanner();
+  setTimeout(function(){if(document.getElementById('more-btn'))updateMoreBtn();},50);
   document.getElementById('article-panel').style.display='none';
   document.getElementById('cards').style.display='';
   document.getElementById('articles-chip').classList.remove('active');
@@ -2498,15 +2518,13 @@ function pickRandom(){
   var _pool=_u.length>0?_u:_a;
   if(!_pool.length)return;
   var _cd=_pool[Math.floor(Math.random()*_pool.length)];
-  activeFilter='';activeComposer='';activeArtist='';activeLabel='';notesSearchMode=false;
-  document.getElementById('search').value='';
-  document.getElementById('clear-search').classList.remove('visible');
-  search();
+  filtered=[_cd];
+  render('');
   setTimeout(function(){
     var _c=document.getElementById('card-'+_cd.id);
     if(_c){_c.scrollIntoView({behavior:'smooth',block:'center'});
       _c.classList.add('cd-highlight');setTimeout(function(){_c.classList.remove('cd-highlight');},2500);}
-  },150);
+  },100);
 }
 async function lookupCatNo(){
   var _cn=document.getElementById('acd-catno').value.trim();
@@ -2542,7 +2560,33 @@ async function lookupCatNo(){
   }catch(_err){
     _st.style.color='#c00';_st.textContent='Lookup failed — check your connection.';
   }finally{document.getElementById('acd-lookup-btn').disabled=false;}
-}</script>
+}
+var _moreOpen=false;
+function toggleMorePanel(e){
+  if(e)e.stopPropagation();
+  _moreOpen=!_moreOpen;
+  var panel=document.getElementById('more-panel');
+  var fb=document.getElementById('filter-bar').getBoundingClientRect();
+  panel.style.top=fb.bottom+'px';
+  panel.style.display=_moreOpen?'flex':'none';
+}
+function closeMorePanel(){
+  _moreOpen=false;
+  document.getElementById('more-panel').style.display='none';
+}
+function updateMoreBtn(){
+  var secondary=['SACD','sealed','favourites','duplicate'];
+  var active=secondary.includes(activeFilter)||activeLabel!==''||
+    document.getElementById('article-panel').style.display!=='none';
+  document.getElementById('more-btn').classList.toggle('secondary-active',active);
+}
+document.addEventListener('click',function(e){
+  if(_moreOpen&&!document.getElementById('more-panel').contains(e.target)
+     &&e.target.id!=='more-btn'){
+    closeMorePanel();
+  }
+});
+</script>
 
 <div id="add-cd-overlay" style="display:none">
   <div id="add-cd-modal">
