@@ -2083,6 +2083,9 @@ function render(q){
       catalogue.some(o=>o.id!==cd.id&&o.duplicateGroup===cd.duplicateGroup&&!deleted.includes(o.id));
     const isAddition=getAdditions().some(function(a){return a.id===cd.id;});
     const editBtn=isAddition?'<button class="edit-cd-btn" onclick="openEditCD('+cd.id+',event)">&#9998; Edit</button>':'';
+    var _pd=getPlayedDate(cd.id);
+    var playedTag=_pd?'<div class="played-tag">♫ Last played: '+fmtPlayedDate(_pd)+'</div>':'';
+    var playedBtn='<button class="played-btn" onclick="markPlayed('+cd.id+',event)">♫ Played today</button>';
     const dupeBadge=isActiveDupe?'<span class="pill pill-dupe">&#9888; Duplicate</span>':'';
     const cardClass=isActiveDupe?' duplicate':'';
     const composers=cd.composers.map(c=>'<span class="pill pill-composer">'+c+'</span>').join('');
