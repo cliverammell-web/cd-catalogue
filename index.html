@@ -290,6 +290,18 @@ header h1 span{color:var(--gold);font-style:italic}
   
   .edit-cd-btn{display:block;width:100%;padding:.55rem;margin:.4rem 0 .2rem;background:#E8F0FF;border:1.5px solid #4a6bbf;color:#1B2B5B;border-radius:8px;font-size:.82rem;font-weight:500;cursor:pointer;font-family:inherit;text-align:center;}
   .edit-cd-btn:active{background:#d0dcf8;}
+
+  #acd-comp-sugg { display:flex; flex-wrap:wrap; gap:.3rem; margin-top:.35rem; }
+  .acd-suggest { background:#E8F0FF; border:1px solid #aac; color:#1B2B5B;
+    padding:.25rem .6rem; border-radius:12px; font-size:.76rem; cursor:pointer;
+    font-family:inherit; white-space:nowrap; }
+  .acd-suggest:active { background:#c8d8f8; }
+
+  
+  .filter-chip-random{background:#8B4513!important;color:#fff!important;border-color:#8B4513!important;font-weight:500;}
+  .played-tag{font-size:.75rem;color:#2a7a2a;padding:.15rem 0;font-style:italic;}
+  .played-btn{display:block;width:100%;padding:.5rem;margin:.3rem 0;background:#f0fff0;border:1.5px solid #4a9a4a;color:#1a5a1a;border-radius:8px;font-size:.82rem;font-weight:500;cursor:pointer;font-family:inherit;text-align:center;}
+  .played-btn:active{background:#d0f0d0;}
 </style>
 </head>
 <body>
@@ -308,6 +320,7 @@ header h1 span{color:var(--gold);font-style:italic}
 
 <div class="filter-bar" id="filter-bar">
   <button class="filter-chip active" data-filter="">All</button>
+  <button class="filter-chip filter-chip-random" onclick="pickRandom()">&#127922; Surprise Me</button>
   <button class="filter-chip filter-chip-notes" id="notes-search-btn" onclick="toggleNotesSearch()">&#128196; Notes</button>
   <button class="filter-chip filter-chip-dd" id="composer-btn" onclick="toggleDropdown('composer',event)"><span id="composer-label">Composer</span> &#9662;</button>
   <button class="filter-chip filter-chip-dd" id="artist-btn" onclick="toggleDropdown('artist',event)"><span id="artist-label">Artist</span> &#9662;</button>
@@ -893,6 +906,127 @@ header h1 span{color:var(--gold);font-style:italic}
 </div>
 </div>
 
+<div id="art-content-beethoven" style="display:none">
+<div class="art-article">
+<div class="art-kicker">A Musical Portrait</div>
+<h1 class="art-title">Ludwig van Beethoven</h1>
+<div class="art-subtitle">Life, Times &amp; Music &nbsp;&#183;&nbsp; Bonn 1770 &ndash; Vienna 1827</div>
+
+<h2 class="art-h2">A Difficult Beginning</h2>
+<p>Ludwig van Beethoven was born on or around 17 December 1770 in Bonn, then a modest Rhenish city and seat of the Elector of Cologne. The qualifying phrase &ldquo;on or around&rdquo; is already characteristic: Beethoven himself believed he had been born in 1772, and his father Johann van Beethoven, a court tenor with a taste for alcohol and an eye for the main chance, encouraged the confusion by falsifying his son&apos;s birth certificate in an attempt to pass him off as a two-year-old prodigy. It was not the last time the facts of Beethoven&apos;s life would be obscured by myth, self-mythology, and wishful invention.</p>
+<p>Johann van Beethoven was a talented but dissolute man who recognised in his son the gift he himself lacked and was determined to exploit it. The model was Mozart: the prodigy taken on tour, exhibited before courts and crowned heads, generating income. The young Ludwig was accordingly pushed to the keyboard from the age of four and subjected to lessons of punishing intensity. Johann was not a cruel father by the standards of the time, but he was careless, intermittently drunk, and more interested in commercial possibilities than in nurturing a child&apos;s wellbeing. The boy who emerged from this household was marked by it permanently: suspicious of authority, irascible in personal relations, given to sudden intense attachments followed by rupture, constitutionally unable to accept subordination.</p>
+<p>But he had the music, and nothing could dim that. His first proper teacher, the court organist Christian Gottlob Neefe, recognised immediately that this was not merely a talented boy but a phenomenon. Neefe taught him Bach&apos;s <em>Well-Tempered Clavier</em> &mdash; all 48 preludes and fugues &mdash; and introduced him to the most demanding repertoire available. By 1782, at the age of eleven, Beethoven was deputising for Neefe as court organist. By 1784 he was on the electoral payroll in his own right. Your disc of the youthful Beethoven <span class="art-cd-ref" onclick="goToCD(76)">CD 76</span> gives a sense of this early flowering &mdash; music written by a teenager already possessed of formidable technique and an unmistakable voice.</p>
+
+<h2 class="art-h2">Vienna and the Conquering Pianist</h2>
+<p>In 1787 the seventeen-year-old Beethoven made his first visit to Vienna and, by persistent tradition, played for Mozart, who told the audience to watch this young man: &ldquo;some day he will give the world something to talk about.&rdquo; Whether the meeting happened at all is debated by scholars; but Beethoven returned to Bonn within weeks on learning that his mother was dying of tuberculosis. Her death in July 1787 devastated him. The following years were darkened by his father&apos;s increasing alcoholism: Beethoven effectively became the head of the household, petitioning the electoral court to have half his father&apos;s salary paid directly to him to protect his younger brothers. He was seventeen.</p>
+<p>In 1790 Haydn passed through Bonn twice, heard some of Beethoven&apos;s music, and offered to teach him. In November 1792 Beethoven left for Vienna, aged twenty-one, carrying an album of testimonials and the hope of a fresh start. His father died the following month; Beethoven never returned to Bonn. He studied with Haydn (briefly and unsatisfactorily &mdash; each found the other trying), then with Johann Schenk, Johann Albrechtsberger for counterpoint, and Antonio Salieri for Italian vocal style. The studies were always secondary. What Beethoven had come to Vienna to do was play the piano, and play it he did.</p>
+<p>His improvisations were the talk of the city. He would sit at the keyboard and hold an entire room in a kind of suspended animation, taking a simple theme and transforming it through modulations and developments that no one had imagined possible, building to climaxes of overwhelming emotional force. He challenged and bested the finest pianists in the city in formal contests. The aristocracy &mdash; Prince Lichnowsky, Prince Lobkowitz, Count Razumovsky &mdash; took him up, gave him lodgings, stipends, and quartets of players to write for. It was an extraordinary position for a young man of no social standing, achieved entirely by force of musical personality.</p>
+
+<h2 class="art-h2">The Shadow Falls: Deafness</h2>
+<p>By 1796, when Beethoven was still only twenty-five, he had begun to notice a buzzing in his ears. By 1800 it was impossible to ignore. The greatest composer of his age was going deaf, in an era when deafness meant not merely the loss of a physical faculty but the destruction of a career, a livelihood, and a social identity. He kept the secret for years, terrified of what it would mean if known, avoiding company and conversation, retreating into isolation.</p>
+<p>In October 1802, during a summer stay in the village of Heiligenstadt outside Vienna, he wrote a letter to his brothers that he never sent. The Heiligenstadt Testament is one of the most remarkable documents in the history of music: a howl of grief and humiliation from a man who has contemplated suicide and chosen instead to continue. &ldquo;I would have ended my life &mdash; it was only my art that held me back. Ah, it seemed to me impossible to leave the world until I had brought forth all that I felt was within me.&rdquo; He sealed the letter and put it away; it was found among his papers after his death. From that moment on, something had changed. The music that followed was unlike anything that had come before &mdash; in his work or anyone else&apos;s.</p>
+
+<h2 class="art-h2">The Heroic Period</h2>
+<p>Between roughly 1803 and 1812 Beethoven produced the body of work that defines him in the public imagination and that changed the course of Western music. The Third Symphony in E-flat major, Op. 55, known as the <em>Eroica</em>, was originally dedicated to Napoleon Bonaparte, whom Beethoven admired as the embodiment of Revolutionary ideals. When Napoleon declared himself Emperor in 1804, Beethoven erased the dedication so violently that he tore the paper: &ldquo;Is he then, too, nothing more than an ordinary human being?&rdquo; The symphony &mdash; three times the length of any symphony previously written, of a harmonic and structural complexity that made it almost incomprehensible to its first audiences &mdash; was dedicated instead to a patron, Prince Lobkowitz. It announced a new era.</p>
+<p>The Fifth Symphony in C minor, Op. 67, with its famous four-note opening motif &mdash; three short notes and one long &mdash; is the most recognised piece of orchestral music ever written and probably the most analysed. It is also, heard freshly, still astounding: a single-minded fifty-minute argument that moves from darkness to triumph in one unbroken arc. Your collection holds multiple symphony cycles, including Gardiner&apos;s period-instrument Orchestre R&eacute;volutionnaire et Romantique <span class="art-cd-ref" onclick="goToCD(94)">CD 94</span>, Karajan&apos;s imperious Berlin Philharmonic account <span class="art-cd-ref" onclick="goToCD(95)">CD 95</span>, Rattle&apos;s Vienna Philharmonic recording <span class="art-cd-ref" onclick="goToCD(97)">CD 97</span>, the complete Mackerras survey on Hyperion <span class="art-cd-ref" onclick="goToCD(96)">CD 96</span>, and the LSO Live six-disc SACD set <span class="art-cd-ref" onclick="goToCD(106)">CD 106</span> &mdash; one of the richest symphony collections possible.</p>
+<p>The Sixth Symphony, the <em>Pastoral</em>, is the great exception to the heroic mode: a five-movement evocation of the countryside, of &ldquo;feelings awakened by a pleasant landscape,&rdquo; the only symphony Beethoven provided with a descriptive programme. It is a work of serene happiness, more Schubert than anything else in his output, the storm in the fourth movement followed by a Shepherd&apos;s Song of extraordinary calm <span class="art-cd-ref" onclick="goToCD(80)">CD 80</span>. The Seventh and Eighth (on the same disc with Gardiner <span class="art-cd-ref" onclick="goToCD(94)">CD 94</span>, and on Beecham&apos;s celebrated older account <span class="art-cd-ref" onclick="goToCD(81)">CD 81</span>) form a pair of pure energy and wit: the Seventh all propulsive rhythmic drive, the Eighth compact and playful.</p>
+
+<h2 class="art-h2">The Concertos</h2>
+<p>Beethoven&apos;s five piano concertos trace his development from the elegant classicism of the First and Second to the colossal architecture of the Fifth, known as the <em>Emperor</em>. The Third Concerto in C minor, clearly influenced by Mozart&apos;s great C minor concerto K.491, marks the turning point &mdash; darker, more dramatic, the soloist and orchestra genuinely in conflict rather than conversation. Your collection holds Ashkenazy in the First and Third <span class="art-cd-ref" onclick="goToCD(75)">CD 75</span> <span class="art-cd-ref" onclick="goToCD(74)">CD 74</span>, Perahia in the Third and Fourth with the Concertgebouw <span class="art-cd-ref" onclick="goToCD(90)">CD 90</span>, and two accounts of the Emperor: Brendel&apos;s classic Philips recording <span class="art-cd-ref" onclick="goToCD(89)">CD 89</span> and Arrau with Colin Davis and the Dresden Staatskapelle <span class="art-cd-ref" onclick="goToCD(103)">CD 103</span>.</p>
+<p>The Fourth Concerto in G major is perhaps the most poetically beautiful of the five &mdash; its slow movement a dialogue between a quietly insistent piano and a gradually subdued orchestra that Liszt memorably described as Orpheus taming the Furies. The <em>Emperor</em> is the culmination: a work of imperial scale and confidence, its opening movement the longest first movement in any concerto up to that date, its finale a rondo of irresistible momentum.</p>
+<p>The Violin Concerto in D major, Op. 61, is the only concerto he wrote for that instrument and the supreme work in the repertoire, its long lyrical lines sustained over a harmonic simplicity that disguises extraordinary structural depth. You have it in two very different accounts: Mutter with the New York Philharmonic and Masur on DG <span class="art-cd-ref" onclick="goToCD(85)">CD 85</span>, and Zehetmair with the Orchestra of the 18th Century on period instruments <span class="art-cd-ref" onclick="goToCD(102)">CD 102</span>. The contrast between the two &mdash; the one lush and romantic, the other lean and historically informed &mdash; illuminates the concerto from opposite ends. The Triple Concerto for piano, violin and cello, one of his more relaxed and sociable works, features the Beaux Arts Trio <span class="art-cd-ref" onclick="goToCD(100)">CD 100</span>.</p>
+
+<h2 class="art-h2">Chamber Music: Conversations in Four Parts</h2>
+<p>The three Razumovsky Quartets, Op. 59 (1806), are the chamber music equivalents of the heroic symphonies &mdash; vast in scale, revolutionary in language, deeply serious in intent. Count Razumovsky, the Russian ambassador and a keen amateur quartet player, commissioned them; at his request Beethoven incorporated Russian folk themes into the first two. Their first audiences were baffled: a violinist who played through Op. 59 No. 1 declared it could not possibly be music; a colleague replied that it would be understood in fifty years. He was right. The Lindsay Quartet&apos;s account on your shelves <span class="art-cd-ref" onclick="goToCD(77)">CD 77</span> is among the most admired modern recordings.</p>
+<p>The late quartets (Opp. 127, 130, 131, 132 and 135), written between 1824 and 1826, are the summit of his achievement and among the most profound utterances in all of Western art. Completely deaf, withdrawn from public life, Beethoven turned the string quartet into a vehicle for a kind of musical thought that had no precedent and no real successor until Bart&oacute;k. The Quartetto Italiano&apos;s two-volume set on Philips <span class="art-cd-ref" onclick="goToCD(78)">CD 78</span> <span class="art-cd-ref" onclick="goToCD(79)">CD 79</span>, along with the Amadeus Quartet in Opp. 130, 133 and 135 <span class="art-cd-ref" onclick="goToCD(88)">CD 88</span>, give you the complete late cycle in distinguished accounts.</p>
+<p>The violin sonatas are among his most intimate works. The <em>Kreutzer</em> Sonata in A major, Op. 47 &mdash; its first movement of volcanic energy, its final rondo of almost reckless brilliance &mdash; famously inspired Tolstoy&apos;s novella of the same name. Your collection includes Perlman and Ashkenazy <span class="art-cd-ref" onclick="goToCD(101)">CD 101</span>, Kremer and Argerich <span class="art-cd-ref" onclick="goToCD(84)">CD 84</span>, and the Szeryng and Haebler complete survey <span class="art-cd-ref" onclick="goToCD(98)">CD 98</span>. For the cello sonatas &mdash; five works across his entire career that effectively created the modern repertoire for the instrument &mdash; you have the du Pr&eacute; and Bishop-Kovacevich account of Nos. 3 and 5 <span class="art-cd-ref" onclick="goToCD(73)">CD 73</span>, the du Pr&eacute; and Barenboim complete survey <span class="art-cd-ref" onclick="goToCD(99)">CD 99</span>, and the Schiff and Per&eacute;nyi complete recording on ECM <span class="art-cd-ref" onclick="goToCD(104)">CD 104</span>.</p>
+
+<h2 class="art-h2">The Piano: A Life at the Keyboard</h2>
+<p>Beethoven&apos;s thirty-two piano sonatas span his entire creative life and constitute the most important body of keyboard music since Bach&apos;s <em>Well-Tempered Clavier</em>. From the early Opp. 2 and 7 through the middle-period landmarks &mdash; the <em>Path&eacute;tique</em> Op. 13, the <em>Moonlight</em> Op. 27 No. 2, the <em>Waldstein</em> Op. 53, the <em>Appassionata</em> Op. 57 &mdash; to the last five sonatas of which the <em>Hammerklavier</em> Op. 106 is the most monumental, they trace the full arc of his development. The <em>Hammerklavier</em>, over forty-five minutes long, was described by Beethoven himself as a sonata &ldquo;that will give pianists something to do when it is played fifty years hence.&rdquo; Hiromi Okada&apos;s recording pairs it with Bach&apos;s Partita No. 2 in a provocative and illuminating coupling <span class="art-cd-ref" onclick="goToCD(87)">CD 87</span>.</p>
+<p>The Diabelli Variations, Op. 120 (1823), are the piano work that most closely rivals the late quartets in depth and originality. Anton Diabelli, a Viennese music publisher, invited fifty composers to write a variation each on a waltz theme he had composed. Beethoven declined to contribute a single variation &mdash; and then wrote thirty-three of them, transforming Diabelli&apos;s simple, almost banal theme into a complete world of musical thought, from the most solemn fugue to the most comic scherzo. Paul Lewis&apos;s acclaimed Harmonia Mundi recording is in your collection <span class="art-cd-ref" onclick="goToCD(92)">CD 92</span>. And for the most unusual Beethoven experience imaginable, Andr&aacute;s Schiff plays on Beethoven&apos;s own surviving Broadwood piano &mdash; the instrument he was given by the London firm in 1818 and treasured until the end of his life &mdash; in a recording that reveals how differently his music sounded on the instrument he actually heard in his imagination <span class="art-cd-ref" onclick="goToCD(93)">CD 93</span>.</p>
+
+<h2 class="art-h2">The Ninth Symphony and the Final Years</h2>
+<p>By 1817 Beethoven had been almost entirely deaf for several years. He communicated by writing in conversation books; he had not performed in public for a decade; his personal life was in chaos, consumed by a long and ruinous legal battle for the guardianship of his nephew Karl. And yet from this period came the most extraordinary creative outpouring of his life. The last five piano sonatas, the Diabelli Variations, the <em>Missa Solemnis</em>, the Ninth Symphony, and the five late string quartets &mdash; all produced between 1817 and 1826 by a man who could not hear a single note of what he wrote.</p>
+<p>The Ninth Symphony in D minor, Op. 125, premiered on 7 May 1824, is the work for which he is most universally known. Its finale introduced a choir and soloists into a symphony for the first time, setting Schiller&apos;s <em>Ode to Joy</em> in a movement of overwhelming cumulative force. At the premiere, Beethoven stood on stage throughout, conducting from memory the score he could not hear. When the symphony ended, the audience erupted in applause he could not hear; one of the soloists turned him around so he could see it. He is said to have wept. Your collection includes Karajan&apos;s celebrated DG account <span class="art-cd-ref" onclick="goToCD(82)">CD 82</span> and Norrington&apos;s period-instrument reading on EMI <span class="art-cd-ref" onclick="goToCD(83)">CD 83</span>.</p>
+
+<h2 class="art-h2">Death and Immortality</h2>
+<p>Beethoven died on 26 March 1827 in Vienna, aged 56, of liver failure compounded by pleurisy and various other ailments. He had been ill for months, enduring four abdominal operations in the final weeks. His last documented words, on being told he had been sent twelve bottles of wine, were: &ldquo;Pity &mdash; pity &mdash; too late.&rdquo; There was a violent thunderstorm at the moment of death; a visitor reported that the dying man raised his fist at the lightning in a final defiant gesture. It may be apocryphal. It fits perfectly.</p>
+<p>Twenty thousand people attended the funeral procession. Schubert &mdash; who had lived in the same city, revered Beethoven to the point of terror, and never become truly acquainted with him &mdash; was one of the torchbearers. He died the following year. Franz Grillparzer wrote the funeral oration: &ldquo;He was an artist, and who shall stand beside him?&rdquo;</p>
+<p>Beethoven left no direct heirs and very little money. He left instead the most substantial and transformative body of work in the history of Western music &mdash; a body of work that defined what music could express, what forms it could take, what demands it could make on performer and listener alike. Every composer who came after him had to reckon with what he had done. Brahms spent twenty years writing his First Symphony in the knowledge that Beethoven had written nine. Wagner built an entire aesthetic on the idea that the Ninth had exhausted the possibilities of absolute music. Schoenberg began the dissolution of tonality that Beethoven&apos;s late quartets had half-anticipated. And the music itself &mdash; the Fifth, the late quartets, the Diabelli Variations, the Ninth &mdash; is still being heard, still being discovered, still yielding new meanings, two hundred years after it was written.</p>
+
+<h2 class="art-h2">Recommended Recordings Not in the Collection</h2>
+<p>Your Beethoven holdings are among the deepest in the collection, but these gaps are worth filling:</p>
+<div class="art-rec-list">
+  <div class="art-rec-item">
+    <div class="art-rec-title">Fidelio</div>
+    <div class="art-rec-label">Various labels &nbsp;&#183;&nbsp; 2-disc set &nbsp;&#183;&nbsp; Beethoven&apos;s only opera</div>
+    <p>The most significant absence from your Beethoven collection. <em>Fidelio</em> &mdash; the story of a wife who disguises herself as a man to rescue her imprisoned husband &mdash; was revised three times between 1805 and 1814 and exists in multiple versions, each with a different overture. Otto Klemperer&apos;s 1962 Philharmonia recording on EMI, with Christa Ludwig and Jon Vickers, is the classic account; Karl B&ouml;hm&apos;s Dresden recording is a fine alternative. The &ldquo;Prisoners&rsquo; Chorus&rdquo; and Leonore&apos;s great aria &ldquo;Abscheulicher!&rdquo; are among the most stirring pages in all of opera.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">Missa Solemnis Op. 123</div>
+    <div class="art-rec-label">Various labels &nbsp;&#183;&nbsp; 2-disc set</div>
+    <p>Beethoven considered this his greatest work. A setting of the Latin Mass that goes far beyond liturgy into something closer to a personal testament of faith and doubt, it is a work of enormous demands on singers and orchestra and corresponding rewards for the listener. Gardiner on Archiv (with his period forces) and Karajan on DG (Berlin Philharmonic, 1966) are both outstanding. Not for the faint-hearted, but unmissable.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">The Complete Piano Sonatas</div>
+    <div class="art-rec-label">Various labels &nbsp;&#183;&nbsp; 8&ndash;10 disc sets</div>
+    <p>You have the <em>Hammerklavier</em> and scattered sonatas elsewhere, but the complete cycle &mdash; all thirty-two sonatas as a single journey &mdash; is a different experience. Alfred Brendel&apos;s final Philips cycle (1994-96) is the most considered and comprehensive; Stephen Kovacevich on Hyperion is warmer and more spontaneous; Wilhelm Kempff on DG remains a miraculous, unstuffy classic. Any of the three would be a major addition.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">String Quartets Op. 18 (the six early quartets)</div>
+    <div class="art-rec-label">Various labels &nbsp;&#183;&nbsp; 2-disc set</div>
+    <p>You have the Razumovsky and late quartets in depth but the Op. 18 set &mdash; six brilliant, witty, thoroughly accomplished early works, full of Haydn and Mozart but already distinctively Beethoven &mdash; is missing. The Quartetto Italiano on Philips (who recorded the late quartets already in your collection) provide the ideal complement; the Talich Quartet on Calliope are another excellent choice.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">Piano Concerto No. 4 in G major Op. 58</div>
+    <div class="art-rec-label">Various labels &nbsp;&#183;&nbsp; Single CD</div>
+    <p>Your collection has Concertos 1, 3 and 5, and Perahia&apos;s recording of 3 &amp; 4 together <span class="art-cd-ref" onclick="goToCD(90)">CD 90</span>, but it is worth flagging the Fourth as perhaps the most poetically beautiful of the five &mdash; its second movement the most intimate and strange dialogue Beethoven ever wrote for piano and orchestra. If you don&apos;t already know it well, it is the one to seek out first.</p>
+  </div>
+</div>
+
+<h2 class="art-h2">Further Reading</h2>
+<div class="art-reading-section">
+  <div class="art-reading-sub">Books</div>
+  <div class="art-book-list">
+    <div class="art-book-item">
+      <div class="art-book-title">Beethoven</div>
+      <div class="art-book-author">Maynard Solomon &nbsp;&#183;&nbsp; Schirmer Books, 1977 (revised 1998)</div>
+      <p>The definitive modern biography, combining meticulous scholarship with genuine literary distinction. Solomon is particularly illuminating on the psychological dimensions of Beethoven&apos;s life &mdash; the &ldquo;Immortal Beloved&rdquo; correspondence, the Heiligenstadt Testament, the relationship with his nephew Karl. The revised 1998 edition is the one to find. Essential.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">Beethoven: The Music and the Life</div>
+      <div class="art-book-author">Lewis Lockwood &nbsp;&#183;&nbsp; W. W. Norton, 2003</div>
+      <p>An excellent life-and-works survey by one of the leading Beethoven scholars, combining biographical narrative with close analysis of the music. Somewhat more accessible than Solomon and particularly strong on the compositional process &mdash; how Beethoven worked, revised, and transformed his sketches into finished masterpieces.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">Beethoven (Master Musicians)</div>
+      <div class="art-book-author">Barry Cooper &nbsp;&#183;&nbsp; Oxford University Press, 2000</div>
+      <p>The most accessible single-volume survey in the standard reference series. Clear, authoritative, well-organised, and good on the context of Vienna&apos;s musical life. An ideal starting companion to Solomon&apos;s more demanding biography.</p>
+    </div>
+  </div>
+  <div class="art-reading-sub">Online</div>
+  <div class="art-book-list">
+    <div class="art-book-item">
+      <div class="art-book-title">Beethoven-Haus Bonn</div>
+      <div class="art-book-author"><a href="https://www.beethoven.de/en" target="_blank" class="art-link">beethoven.de</a></div>
+      <p>The official research institute and museum in Beethoven&apos;s birthplace. The website has biography, catalogue, digitised manuscripts, and details of the permanent collection. Scholarly and authoritative &mdash; the primary online reference for anything to do with Beethoven&apos;s life and sources.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">BBC Radio 3 &mdash; Composer of the Week</div>
+      <div class="art-book-author"><a href="https://www.bbc.co.uk/programmes/b006tnbm" target="_blank" class="art-link">bbc.co.uk/radio3</a></div>
+      <p>Donald Macleod has devoted several week-long series to Beethoven on BBC Radio 3, all available on BBC Sounds. Rich in archive recordings and contextual detail, these are ideal alongside the music in your collection.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">IMSLP &mdash; Beethoven Scores</div>
+      <div class="art-book-author"><a href="https://imslp.org/wiki/Category:Beethoven,_Ludwig_van" target="_blank" class="art-link">imslp.org</a></div>
+      <p>Free scores for the complete works. Following the score of a late quartet or the <em>Hammerklavier</em> while listening &mdash; even without being able to read every detail &mdash; reveals the architecture in a way that pure listening cannot. Particularly rewarding for the late quartets and the Ninth Symphony.</p>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
 <div class="no-results" id="no-results" style="display:none">
   <div class="no-results-icon">&#127925;</div>
   <h3>Not in your collection</h3>
@@ -917,6 +1051,8 @@ header h1 span{color:var(--gold);font-style:italic}
 <div class="stats-footer">
   <div class="stat-item"><div class="stat-val" id="s-total"></div><div>Total CDs</div></div>
   <div class="stat-item"><div class="stat-val gold" id="s-value"></div><div>Collection value (used)</div></div>
+  <div class="stat-item"><div class="stat-val" id="s-comp"></div><div>Composers</div></div>
+  <div class="stat-item"><div class="stat-val" id="s-artists"></div><div>Artists</div></div>
 </div>
 
 <script>const catalogue = [
@@ -1461,10 +1597,23 @@ header h1 span{color:var(--gold);font-style:italic}
 ];
 
 let activeFilter='', activeComposer='', activeArtist='', activeLabel='', sortMode=0, notesSearchMode=false, filtered=[...catalogue], ddType='', ddItems=[];
-const sortModes=[{key:'id',label:'No.'},{key:'title',label:'A-Z'},{key:'usedGBP',label:'Price low'},{key:'usedGBPd',label:'Price high'}];
+const sortModes=[{key:'id',label:'No.'},{key:'title',label:'A-Z'},{key:'usedGBP',label:'Price low'},{key:'usedGBPd',label:'Price high'},{key:'played',label:'Last Played'}];
 
 function fmt(n){return n!=null&&n>0?'£'+n.toFixed(2):null}
 
+function getPlayedDates(){try{return JSON.parse(localStorage.getItem('cd_played')||'{}')}catch(e){return{}}}
+function savePlayedDates(o){localStorage.setItem('cd_played',JSON.stringify(o));}
+function getPlayedDate(id){return getPlayedDates()[String(id)]||null;}
+function markPlayed(id,e){
+  if(e)e.stopPropagation();
+  var _p=getPlayedDates();_p[String(id)]=new Date().toISOString().slice(0,10);
+  savePlayedDates(_p);search();
+  setTimeout(function(){var _c=document.getElementById('card-'+id);if(_c)_c.scrollIntoView({behavior:'smooth',block:'center'});},100);
+}
+function fmtPlayedDate(ds){
+  var _mn=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var _d=new Date(ds+'T12:00:00');return _d.getDate()+' '+_mn[_d.getMonth()]+' '+_d.getFullYear();
+}
 function getDeleted(){try{return JSON.parse(localStorage.getItem('cd_deleted')||'[]')}catch(e){return[]}}
 function saveDeleted(arr){localStorage.setItem('cd_deleted',JSON.stringify(arr))}
 function getLocStore(){try{return JSON.parse(localStorage.getItem('cd_locations')||'{}');}catch(e){return{};}}
@@ -1533,7 +1682,7 @@ function normaliseLabel(label){
 }
 function getLabelList(){
   const s=new Set();
-  catalogue.forEach(cd=>{ if(cd.label) s.add(normaliseLabel(cd.label)); });
+  [...catalogue,...getAdditions()].forEach(cd=>{ if(cd.label) s.add(normaliseLabel(cd.label)); });
   return [...s].sort((a,b)=>a.localeCompare(b));
 }
 function lastNameFirst(name){
@@ -1545,7 +1694,7 @@ function lastNameFirst(name){
 }
 function getComposerList(){
   const s=new Set();
-  catalogue.forEach(cd=>cd.composers.forEach(c=>s.add(c)));
+  [...catalogue,...getAdditions()].forEach(cd=>cd.composers.forEach(c=>s.add(c)));
   return [...s]
     .map(c=>({display:lastNameFirst(c),value:c}))
     .sort((a,b)=>a.display.localeCompare(b.display));
@@ -1553,7 +1702,7 @@ function getComposerList(){
 function getArtistList(){
   const s=new Set();
   const del=getDeleted();
-  catalogue.filter(cd=>!del.includes(cd.id)).forEach(cd=>{
+  [...catalogue,...getAdditions()].filter(cd=>!del.includes(cd.id)).forEach(cd=>{
     const stripped=cd.artist.replace(/\s*\([^)]*\)/g,'');
     stripped.split(/\s*[·\/]\s*/).forEach(p=>{
       const clean=p.trim();
@@ -1694,6 +1843,7 @@ function confirmImport(){
   if(d.catnos)     localStorage.setItem('cd_catnos',JSON.stringify(d.catnos));
   if(d.locations)  localStorage.setItem('cd_locations',JSON.stringify(d.locations));
   if(d.notes)      localStorage.setItem('cd_notes',JSON.stringify(d.notes));
+  if(d.played)localStorage.setItem('cd_played',JSON.stringify(d.played));
   pendingImport=null;
   document.getElementById('import-confirm').style.display='none';
   updateRestoreBtn();
@@ -1901,6 +2051,7 @@ function search(){
     if(sm.key==='title')return a.title.localeCompare(b.title);
     if(sm.key==='usedGBP')return a.usedGBP-b.usedGBP;
     if(sm.key==='usedGBPd')return b.usedGBP-a.usedGBP;
+    if(sm.key==='played'){var _pds=getPlayedDates();var _da=_pds[String(a.id)]||'0';var _db=_pds[String(b.id)]||'0';return _db.localeCompare(_da);}
     return 0;
   });
   render(q);
@@ -2008,6 +2159,8 @@ function render(q){
             '</div>'+
           '</div>'+
         '</div>'+
+        playedTag+
+        playedBtn+
         '<button class="tracks-btn" onclick="showTracks('+cd.id+',event)">&#127925; Show tracks on MusicBrainz</button>'+
         '<div class="tracks-panel" id="tracks-panel-'+cd.id+'"></div>'+
         editBtn+
@@ -2032,8 +2185,12 @@ function updateStats(){
   const all=[...catalogue,...getAdditions()].filter(c=>!deleted.includes(c.id));
   const total=all.length;
   const val=all.reduce((s,c)=>s+(c.usedGBP||0),0);
+  const comps=new Set(all.flatMap(c=>c.composers)).size;
+  const arts=new Set(all.map(c=>c.artist.replace(/\s*\([^)]*\)/g,'').split(/\s*[·\/]\s*/)[0].trim())).size;
   document.getElementById('s-total').innerHTML=total;
   document.getElementById('s-value').innerHTML='£'+val.toFixed(2);
+  document.getElementById('s-comp').innerHTML=comps;
+  document.getElementById('s-artists').innerHTML=arts;
 }
 
 document.querySelectorAll('.filter-chip[data-filter]').forEach(btn=>{
@@ -2095,7 +2252,8 @@ const articleMeta = [
   {id:'bach', title:'Johann Sebastian Bach', subtitle:'Life, times & music — from Eisenach to Leipzig', cdCount:12},
   {id:'schubert', title:'Franz Schubert', subtitle:'Life, times & music — the brief miraculous life', cdCount:16},
   {id:'gould', title:'Glenn Gould', subtitle:'Portrait of an original — the pianist who changed everything', cdCount:1},
-  {id:'quartet', title:'The String Quartet', subtitle:'A history from Haydn to Shostakovich', cdCount:22}
+  {id:'quartet', title:'The String Quartet', subtitle:'A history from Haydn to Shostakovich', cdCount:22},
+  {id:'beethoven', title:'Ludwig van Beethoven', subtitle:'Life, times & music — from Bonn to immortality', cdCount:24}
 ];
 
 function openArticles(){
@@ -2216,6 +2374,7 @@ function openEditCD(id,e){
   var fmt=document.getElementById('acd-format');
   for(var i=0;i<fmt.options.length;i++){if(fmt.options[i].value===cd.format){fmt.selectedIndex=i;break;}}
   document.getElementById('acd-id-preview').textContent='Editing CD '+id;
+  populateFormDataLists();
 }
 function openAddCD(){
   _editingId=null;
@@ -2223,6 +2382,7 @@ function openAddCD(){
   document.getElementById('acd-submit-btn').textContent='Add to Collection';
   document.getElementById('add-cd-overlay').style.display='flex';
   document.getElementById('acd-id-preview').textContent='Will be assigned CD '+getNextId();
+  populateFormDataLists();
   document.getElementById('acd-error').style.display='none';
   ['acd-label','acd-composers','acd-artist','acd-title','acd-catno','acd-notes'].forEach(function(id){
     document.getElementById(id).value='';
@@ -2285,7 +2445,101 @@ function submitAddCD(){
     }
   },200);
 }
-</script>
+
+function populateFormDataLists(){
+  // Label datalist
+  const labels=getLabelList();
+  const ldl=document.getElementById('acd-label-dl');
+  if(ldl) ldl.innerHTML=labels.map(l=>'<option value="'+l+'">').join('');
+  // Artist datalist
+  const artists=getArtistList();
+  const adl=document.getElementById('acd-artist-dl');
+  if(adl) adl.innerHTML=artists.map(a=>'<option value="'+a+'">').join('');
+}
+
+function updateComposerSugg(){
+  const input=document.getElementById('acd-composers');
+  const container=document.getElementById('acd-comp-sugg');
+  const val=input.value;
+  const parts=val.split(',');
+  const typing=parts[parts.length-1].trim().toLowerCase();
+  if(typing.length<1){container.innerHTML='';return;}
+  const already=parts.slice(0,-1).map(s=>s.trim().toLowerCase());
+  const allComp=[...new Set([...catalogue,...getAdditions()].flatMap(cd=>cd.composers))];
+  const matches=allComp
+    .filter(c=>c.toLowerCase().includes(typing)&&!already.includes(c.toLowerCase()))
+    .slice(0,8);
+  container.innerHTML=matches.map(c=>{
+    const safe=c.replace(/&/g,'&amp;').replace(/'/g,'&#39;');
+    return '<button type="button" class="acd-suggest" onclick="selectComposer(\''+safe+'\')">'+safe+'</button>';
+  }).join('');
+}
+
+function selectComposer(name){
+  const input=document.getElementById('acd-composers');
+  const parts=input.value.split(',').map(s=>s.trim()).filter(Boolean);
+  parts.pop(); // remove partial
+  parts.push(name);
+  input.value=parts.join(', ')+', ';
+  document.getElementById('acd-comp-sugg').innerHTML='';
+  input.focus();
+  // place cursor at end
+  const len=input.value.length;
+  input.setSelectionRange(len,len);
+}
+
+function pickRandom(){
+  var _d=getDeleted();var _p=getPlayedDates();
+  var _a=[...catalogue,...getAdditions()].filter(function(c){return!_d.includes(c.id);});
+  var _u=_a.filter(function(c){return!_p[String(c.id)];});
+  var _pool=_u.length>0?_u:_a;
+  if(!_pool.length)return;
+  var _cd=_pool[Math.floor(Math.random()*_pool.length)];
+  activeFilter='';activeComposer='';activeArtist='';activeLabel='';notesSearchMode=false;
+  document.getElementById('search').value='';
+  document.getElementById('clear-search').classList.remove('visible');
+  search();
+  setTimeout(function(){
+    var _c=document.getElementById('card-'+_cd.id);
+    if(_c){_c.scrollIntoView({behavior:'smooth',block:'center'});
+      _c.classList.add('cd-highlight');setTimeout(function(){_c.classList.remove('cd-highlight');},2500);}
+  },150);
+}
+async function lookupCatNo(){
+  var _cn=document.getElementById('acd-catno').value.trim();
+  var _st=document.getElementById('acd-lookup-status');
+  if(!_cn){_st.style.color='#c00';_st.textContent='Enter a catalogue number first.';return;}
+  _st.style.color='#888';_st.textContent='Searching MusicBrainz…';
+  document.getElementById('acd-lookup-btn').disabled=true;
+  try{
+    var _url='https://musicbrainz.org/ws/2/release?query=catno:%22'+encodeURIComponent(_cn)+'%22&limit=3&fmt=json';
+    var _r=await fetch(_url,{headers:{'Accept':'application/json'}});
+    if(!_r.ok)throw new Error('HTTP '+_r.status);
+    var _data=await _r.json();
+    if(!_data.releases||!_data.releases.length){
+      _st.style.color='#c00';_st.textContent='Not found. Try a variant of the catalogue number.';return;}
+    var _rel=_data.releases[0];
+    if(_rel.title)document.getElementById('acd-title').value=_rel.title;
+    if(_rel['artist-credit']&&_rel['artist-credit'].length){
+      var _art=_rel['artist-credit'].filter(function(ac){return ac&&typeof ac==='object'&&ac.artist;})
+        .map(function(ac){return ac.artist.name;}).join(' · ');
+      if(_art)document.getElementById('acd-artist').value=_art;}
+    if(_rel['label-info']&&_rel['label-info'].length){
+      var _li=_rel['label-info'][0];
+      if(_li&&_li.label&&_li.label.name)document.getElementById('acd-label').value=_li.label.name;
+      if(_li&&_li['catalog-number'])document.getElementById('acd-catno').value=_li['catalog-number'];}
+    if(_rel.media&&_rel.media.length){
+      var _cnt=_rel.media.length;var _tgt=_cnt===1?'Single CD':_cnt+'-disc set';
+      var _fmt=document.getElementById('acd-format');
+      for(var _i=0;_i<_fmt.options.length;_i++){
+        if(_fmt.options[_i].value===_tgt){_fmt.selectedIndex=_i;break;}}}
+    _st.style.color='#2a7a2a';
+    _st.textContent='✓ Found ('+(_rel.score||'?')+'% match). Add composers manually.';
+    populateFormDataLists();
+  }catch(_err){
+    _st.style.color='#c00';_st.textContent='Lookup failed — check your connection.';
+  }finally{document.getElementById('acd-lookup-btn').disabled=false;}
+}</script>
 
 <div id="add-cd-overlay" style="display:none">
   <div id="add-cd-modal">
@@ -2296,15 +2550,16 @@ function submitAddCD(){
     <div id="add-cd-body">
       <div class="acd-field">
         <label>Label *</label>
-        <input id="acd-label" type="text" placeholder="e.g. Hyperion, Deutsche Grammophon">
+        <input id="acd-label" type="text" placeholder="e.g. Hyperion, Deutsche Grammophon" list="acd-label-dl" autocomplete="off">
       </div>
       <div class="acd-field">
         <label>Composer(s) * <span class="acd-hint">separate multiple with commas</span></label>
-        <input id="acd-composers" type="text" placeholder="e.g. J.S. Bach, Handel">
+        <input id="acd-composers" type="text" placeholder="e.g. J.S. Bach, Handel" oninput="updateComposerSugg()" autocomplete="off">
+        <div id="acd-comp-sugg"></div>
       </div>
       <div class="acd-field">
         <label>Artist / Performer(s) *</label>
-        <input id="acd-artist" type="text" placeholder="e.g. Andras Schiff (piano)">
+        <input id="acd-artist" type="text" placeholder="e.g. Andras Schiff (piano)" list="acd-artist-dl" autocomplete="off">
       </div>
       <div class="acd-field">
         <label>Title *</label>
@@ -2312,7 +2567,7 @@ function submitAddCD(){
       </div>
       <div class="acd-field">
         <label>Catalogue Number</label>
-        <input id="acd-catno" type="text" placeholder="e.g. CDA67288">
+        <div style="display:flex;gap:.5rem"><input id="acd-catno" type="text" placeholder="e.g. CDA67288" style="flex:1"><button type="button" id="acd-lookup-btn" onclick="lookupCatNo()" style="background:#1B2B5B;color:#fff;border:none;padding:.6rem .9rem;border-radius:6px;font-size:.8rem;cursor:pointer;white-space:nowrap;font-family:inherit">🔍 Look Up</button></div><div id="acd-lookup-status" style="font-size:.75rem;margin-top:.3rem;min-height:1rem;color:#888"></div>
       </div>
       <div class="acd-field">
         <label>Format</label>
@@ -2350,6 +2605,8 @@ function submitAddCD(){
         <textarea id="acd-notes" rows="4" placeholder="Your notes about this recording..."></textarea>
       </div>
       <div id="acd-error" style="display:none"></div>
+      <datalist id="acd-label-dl"></datalist>
+      <datalist id="acd-artist-dl"></datalist>
     </div>
     <div id="add-cd-footer">
       <button id="acd-submit-btn" onclick="submitAddCD()">&#10003; Add to Collection</button>
