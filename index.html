@@ -221,9 +221,11 @@ header h1 span{color:var(--gold);font-style:italic}
 
   
   
-  #return-art-banner { background:#1B2B5B; color:#fff; padding:.65rem 1rem;
+  #return-art-banner { position:fixed; left:0; right:0; z-index:88;
+    background:#1B2B5B; color:#fff; padding:.65rem 1rem;
     text-align:center; font-size:.85rem; cursor:pointer; font-weight:500;
-    border-bottom:2px solid #C8A84B; letter-spacing:.02em; }
+    border-bottom:2px solid #C8A84B; letter-spacing:.02em;
+    box-shadow:0 2px 8px rgba(0,0,0,.25); }
   #return-art-banner:active { background:#C8A84B; color:#1B2B5B; }
 
   
@@ -310,6 +312,24 @@ header h1 span{color:var(--gold);font-style:italic}
     padding:.6rem 1rem;display:flex;flex-wrap:wrap;gap:.4rem;z-index:90;
     box-shadow:0 4px 12px rgba(0,0,0,.15);}
 
+  
+  #surprise-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:2000;display:flex;align-items:flex-end;}
+  #surprise-sheet{background:#FAF7F2;width:100%;max-height:80vh;border-radius:16px 16px 0 0;
+    display:flex;flex-direction:column;box-shadow:0 -4px 30px rgba(0,0,0,0.25);overflow:hidden;}
+  #surprise-hdr{background:#8B4513;color:#fff;padding:.8rem 1rem;display:flex;align-items:center;
+    justify-content:space-between;flex-shrink:0;}
+  #surprise-hdr span{font-size:.95rem;font-weight:500;}
+  #surprise-hdr button{background:none;border:none;color:rgba(255,255,255,.7);font-size:1.2rem;cursor:pointer;padding:0 .2rem;}
+  #surprise-body{overflow-y:auto;padding:1rem;}
+  #surprise-intro{font-size:.85rem;color:#888;margin-bottom:.75rem;text-align:center;}
+  #surprise-cats{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;}
+  .surprise-cat-btn{background:#fff;border:1.5px solid #E8E0D0;border-radius:10px;
+    padding:.75rem .6rem;cursor:pointer;text-align:center;font-family:inherit;transition:all .15s;}
+  .surprise-cat-btn:active{background:#1B2B5B;color:#fff;border-color:#1B2B5B;}
+  .surprise-cat-icon{font-size:1.4rem;display:block;margin-bottom:.2rem;}
+  .surprise-cat-label{font-size:.78rem;font-weight:500;color:#1B2B5B;display:block;}
+  .surprise-cat-count{font-size:.68rem;color:#aaa;display:block;}
+
   </style>
 </head>
 <body>
@@ -335,7 +355,7 @@ header h1 span{color:var(--gold);font-style:italic}
 </div>
 
 <div id="more-panel" style="display:none">
-  <button class="filter-chip filter-chip-random" onclick="pickRandom();closeMorePanel()">&#127922; Surprise Me</button>
+  <button class="filter-chip filter-chip-random" onclick="openSurprisePanel();closeMorePanel()">&#127922; Surprise Me</button>
   <button class="filter-chip filter-chip-dd" id="label-btn" onclick="toggleDropdown('label',event);closeMorePanel()"><span id="label-label">Label</span> &#9662;</button>
   <button class="filter-chip filter-chip-dd" id="sets-btn" onclick="toggleDropdown('sets',event);closeMorePanel()"><span id="sets-label">Sets</span> &#9662;</button>
   <button class="filter-chip filter-chip-sacd" data-filter="SACD">SACD</button>
@@ -343,11 +363,6 @@ header h1 span{color:var(--gold);font-style:italic}
   <button class="filter-chip filter-chip-star" data-filter="favourites">&#9733; Favourites</button>
   <button class="filter-chip filter-chip-dupe" data-filter="duplicate">&#9888; Duplicates</button>
   <button class="filter-chip filter-chip-articles" id="articles-chip" onclick="openArticles();closeMorePanel()">&#128214; Articles</button>
-  <button class="filter-chip filter-chip-sacd" data-filter="SACD">SACD</button>
-  <button class="filter-chip filter-chip-new" data-filter="sealed">&#127381; New</button>
-  <button class="filter-chip filter-chip-star" data-filter="favourites">&#9733; Favourites</button>
-  <button class="filter-chip filter-chip-dupe" data-filter="duplicate">&#9888; Duplicates</button>
-  <button class="filter-chip filter-chip-articles" id="articles-chip" onclick="openArticles()">&#128214; Articles</button>
 </div>
 
 <div id="dd-panel" style="display:none;position:fixed;left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);box-shadow:0 4px 20px rgba(0,0,0,0.18);z-index:150;max-height:50vh;overflow-y:auto" onclick="event.stopPropagation()">
@@ -1044,6 +1059,256 @@ header h1 span{color:var(--gold);font-style:italic}
 </div>
 </div>
 
+<div id="art-content-handel" style="display:none">
+<div class="art-article">
+<div class="art-kicker">A Musical Portrait</div>
+<h1 class="art-title">George Frideric Handel</h1>
+<div class="art-subtitle">Life, Times &amp; Music &nbsp;&#183;&nbsp; Halle 1685 &ndash; London 1759</div>
+
+<h2 class="art-h2">The Year That Changed Music</h2>
+<p>In the year 1685 three of the supreme composers in the history of Western music were born within a few months of each other. Johann Sebastian Bach arrived in Eisenach in March; Domenico Scarlatti in Naples in October. And on 23 February, in the Saxon city of Halle, Georg Friedrich H&auml;ndel &mdash; he would anglicise his name only after settling permanently in England &mdash; came into the world. The coincidence of birth years between Handel and Bach has fascinated posterity ever since: two composers of comparable genius, born in the same year in the same country, who never met, whose musical languages were entirely different, and whose careers could hardly have been more divergent. Bach spent his life in provincial German courts and churches; Handel conquered Europe, moved to London, became a naturalised Englishman, and transformed the musical life of a nation.</p>
+<p>Halle in 1685 was a prosperous German town dominated by the salt trade and the Lutheran church. Handel&apos;s father, Georg H&auml;ndel, was a barber-surgeon of considerable standing &mdash; a man who had risen by diligence and competence to serve at the ducal court &mdash; and he intended his youngest son for the law. Music, in his view, was no profession for a respectable man. The story goes that the young Georg Friedrich smuggled a clavichord into the attic of the family house and practised there by night, the instrument&apos;s soft tone too quiet to penetrate the floors below. Whether literally true or not, the anecdote captures something real: a musical gift so irresistible it could not be suppressed, and a family environment that offered no encouragement.</p>
+<p>The father relented enough to allow music lessons, and when he took his son to visit his elder son &mdash; a valet at the court of the Duke of Saxe-Weissenfels &mdash; the eight-year-old Handel sat down at the chapel organ after a service and played so impressively that the Duke himself intervened and told Georg H&auml;ndel senior that his son must study music. The father acquiesced. Handel was sent to study with Friedrich Wilhelm Zachow, the organist of the Marktkirche in Halle, who gave him a thorough grounding in counterpoint, harmony, and the keyboard music of the day. By the time he was eleven he was occasionally deputising for Zachow at the organ. He was already composing prolifically.</p>
+
+<h2 class="art-h2">Hamburg and the Duel</h2>
+<p>When his father died in 1697, the twelve-year-old Handel was left in straitened circumstances. He enrolled briefly at Halle University to study law in 1702, in belated compliance with his father&apos;s wishes, but within a year had abandoned the pretence and moved to Hamburg &mdash; the one city in Germany with a public opera house &mdash; to seek his musical fortune. He was seventeen. He found work as a back-desk violinist in the opera orchestra, later graduating to harpsichordist, and began to learn the opera business from the inside.</p>
+<p>Hamburg also gave him one of the more extraordinary episodes in a life not short of drama. He had become friendly with Johann Mattheson, a composer and musician of formidable talent and equally formidable ego. The two fell out after a performance of Mattheson&apos;s opera <em>Cleopatra</em>, in which Handel had been playing the harpsichord and declined to cede the instrument to the composer when Mattheson wished to conduct from it. Mattheson challenged him to a duel; they fought with swords in the street outside the opera house; and Handel survived only because Mattheson&apos;s blade broke against a large button on his coat. They were subsequently reconciled and remained on friendly terms. It is difficult to imagine such an episode in the life of Bach.</p>
+<p>His two Hamburg operas &mdash; <em>Almira</em> and <em>Nero</em> &mdash; were produced in 1705. But Hamburg was a staging post, not a destination. He had fixed his sights on Italy.</p>
+
+<h2 class="art-h2">Italy: The Crucial Apprenticeship</h2>
+<p>In 1706, probably supported by a Medici prince he had met in Hamburg, Handel travelled to Italy and spent the next three and a half years absorbing the Italian style at its source. He visited Florence, Rome, Venice and Naples; he met Corelli, Alessandro Scarlatti and the young Domenico Scarlatti; he heard Italian opera and oratorio performed by the best singers and players in Europe; and he composed with the furious productivity that never deserted him. The transformation was complete and permanent. He arrived in Italy a capable German musician; he left it a master of a cosmopolitan international style that drew on German counterpoint and Italian vocal lyricism in equal measure.</p>
+<p>Rome was particularly fruitful. Pope Clement XI had banned public opera as morally objectionable, which redirected Handel&apos;s considerable operatic energies into the oratorio and the cantata. In April 1707 he composed the <em>Dixit Dominus</em> HWV 232, a setting of Psalm 110 of such ferocious energy and contrapuntal brilliance that it sounds unlike anything else written that decade. The double-choir passages are electrifying, the soprano writing practically impossible, and the final setting of &ldquo;Gloria Patri&rdquo; one of the most thrilling pages in all Baroque choral music. Your collection holds it in two recordings: the Archiv account with Simon Preston <span class="art-cd-ref" onclick="goToCD(225)">CD 225</span> and paired with the Bach Magnificat in a scintillating Virgin Classics disc <span class="art-cd-ref" onclick="goToCD(49)">CD 49</span>. The <em>Salve Regina</em> and <em>Nisi Dominus</em> on CD 225 are equally fine early Roman works. The <em>Carmelite Vespers</em> of 1707, composed for the church of Santa Maria di Monte Santo <span class="art-cd-ref" onclick="goToCD(232)">CD 232</span>, show the same astonishing command. He was twenty-two years old.</p>
+<p>The Italian cantatas &mdash; secular vocal works, usually for solo voice and continuo, setting pastoral or amorous texts &mdash; poured out of him in these years. Your collection is rich in them: the Archiv Italian Cantatas with Jennifer Smith and John Elwes <span class="art-cd-ref" onclick="goToCD(227)">CD 227</span>, the Marian Cantatas with Anne Sofie von Otter and Musica Antiqua K&ouml;ln <span class="art-cd-ref" onclick="goToCD(230)">CD 230</span>, and the Coro Live disc of Italian Cantatas and Arias from The Sixteen <span class="art-cd-ref" onclick="goToCD(224)">CD 224</span>. His early Italian oratorio <em>Il Trionfo del Tempo e del Disinganno</em> &mdash; Time and Disillusion triumphant over Beauty and Pleasure &mdash; was composed for Rome in 1707 and shows the full scope of his dramatic ambitions already at work <span class="art-cd-ref" onclick="goToCD(204)">CD 204</span>. So does <em>La Resurrezione</em>, a lavish Easter oratorio of 1708 that drew on the resources of the Marquis Ruspoli&apos;s household <span class="art-cd-ref" onclick="goToCD(207)">CD 207</span>.</p>
+<p>In Venice in 1709 he scored his first operatic triumph outside Hamburg: <em>Agrippina</em>, produced for the carnival season, received twenty-seven consecutive performances. The Venetians called him &ldquo;il caro Sassone&rdquo; &mdash; the dear Saxon. He was ready for London.</p>
+
+<h2 class="art-h2">London: The Adopted Home</h2>
+<p>In 1710 Handel was appointed Kapellmeister to Georg Ludwig, Elector of Hanover &mdash; but the post was almost immediately treated as a sinecure, since he obtained leave to visit London almost at once and found the city irresistible. His opera <em>Rinaldo</em> (1711), the first Italian opera composed expressly for the London stage, was an immediate sensation. He returned to Hanover, obtained further leave, came back to London in 1712, and simply stayed &mdash; overstaying his leave by two years. When Queen Anne died in 1714 and the Elector of Hanover ascended the English throne as George I, Handel&apos;s position was temporarily awkward. The story that he composed the <em>Water Music</em> as an act of musical reconciliation &mdash; performed from a barge on the Thames for the King&apos;s river party in 1717 &mdash; is probably more legend than fact, but the result is undeniable: the <em>Water Music</em> suite became one of the most celebrated pieces of outdoor music ever written, and Handel&apos;s favour was restored <span class="art-cd-ref" onclick="goToCD(215)">CD 215</span>. The same disc holds the <em>Music for the Royal Fireworks</em>, composed in 1749 for the Peace of Aix-la-Chapelle celebrations &mdash; originally for a band of wind instruments and drums, without strings, at the insistence of George II.</p>
+
+<h2 class="art-h2">Cannons and the Chandos Anthems</h2>
+<p>Between roughly 1717 and 1720, Handel served as composer-in-residence to James Brydges, Earl of Carnarvon and later Duke of Chandos, at his magnificent palace at Cannons near Edgware. Brydges maintained a small but excellent musical establishment, and for it Handel produced eleven <em>Chandos Anthems</em> &mdash; settings of English psalm texts for chorus, soloists and small orchestra that are among the most immediately attractive works he ever wrote. Dignified and festive, learned but not dry, they show the German master adapting with extraordinary fluency to the English choral tradition. Your collection has all four volumes of The Sixteen&apos;s recordings under Harry Christophers <span class="art-cd-ref" onclick="goToCD(220)">CD 220</span> <span class="art-cd-ref" onclick="goToCD(221)">CD 221</span> <span class="art-cd-ref" onclick="goToCD(218)">CD 218</span> <span class="art-cd-ref" onclick="goToCD(219)">CD 219</span>, and King&apos;s College Cambridge with David Willcocks provides a contrasting traditional account <span class="art-cd-ref" onclick="goToCD(226)">CD 226</span>. Also at Cannons he produced <em>Esther</em> HWV 50 (1718), the work usually identified as the first English oratorio, in a private theatrical version <span class="art-cd-ref" onclick="goToCD(243)">CD 243</span>.</p>
+
+<h2 class="art-h2">The Opera Impresario</h2>
+<p>Opera was Handel&apos;s primary passion for the first two decades of his London career, and he pursued it with the energy and commercial ruthlessness of a born entrepreneur. In 1719 he co-founded the Royal Academy of Music &mdash; a joint-stock company financed by the aristocracy and dedicated to producing Italian opera seria at the King&apos;s Theatre in the Haymarket. He travelled to Germany and Italy to recruit the finest singers in Europe, including the castrato Senesino, whose employment would become one of the defining feuds of his later career.</p>
+<p>The operas of the Royal Academy period (1719-1728) include some of his finest theatrical work: <em>Radamisto</em> (1720), <em>Giulio Cesare</em> (1724), <em>Tamerlano</em> (1724), <em>Rodelinda</em> (1725), <em>Admeto</em> (1727). <em>Radamisto</em>, your collection&apos;s earliest complete opera recording, features Joyce DiDonato and Patricia Ciofi in a star-studded Virgin Classics production <span class="art-cd-ref" onclick="goToCD(206)">CD 206</span>. The opera <em>Flavio</em>, from 1723, survives in a landmark Harmonia Mundi recording with Jeffrey Gall and Derek Lee Ragin under William Christie &mdash; one of the recordings that revived serious scholarly interest in Handel&apos;s operas <span class="art-cd-ref" onclick="goToCD(203)">CD 203</span>. And <em>Il Pastor Fido</em> (revised version 1734) shows the pastoral side of his operatic writing at its most refined <span class="art-cd-ref" onclick="goToCD(199)">CD 199</span>. <em>Atalanta</em> of 1736 has its own Hungaroton recording in the collection <span class="art-cd-ref" onclick="goToCD(200)">CD 200</span>.</p>
+<p>The Academy collapsed in 1728, partly from internal feuding (the singers became more famous and more expensive than the company could afford), partly from the devastating success of John Gay&apos;s <em>Beggar&apos;s Opera</em>, which had satirised Italian opera seria so mercilessly that fashionable London could no longer take it entirely seriously. Handel persisted with a second company, then a third, suffering enormous financial losses. The opera wars of the 1730s &mdash; a rival Italian opera company, backed by the Prince of Wales in deliberate opposition to his father George II&apos;s support for Handel &mdash; brought him to bankruptcy and a stroke in 1737. He recovered. He always recovered.</p>
+
+<h2 class="art-h2">The Turn to Oratorio</h2>
+<p>The collapse of his operatic ventures forced a creative reorientation that proved, in retrospect, the most fortunate thing that ever happened to Handel&apos;s career. As the London public tired of Italian opera, he turned increasingly to the English oratorio &mdash; a dramatic work on a biblical subject, sung in English, performed in the concert hall without scenery or costumes, by English singers. The form suited the English temperament, the Protestant tradition, the choral establishments of the country&apos;s churches, and the commercial realities of the London music market. Handel, ever the pragmatist, understood this completely and exploited it with characteristic brilliance.</p>
+<p>The oratorios of the 1730s and 40s are in many ways the summit of his achievement. <em>Saul</em> (1738) &mdash; with its portrayal of jealousy, madness and tragedy that rivals Shakespearean drama &mdash; is perhaps the greatest of them all <span class="art-cd-ref" onclick="goToCD(242)">CD 242</span>. <em>Athalia</em> (1733), composed for Oxford, gives Joan Sutherland and Emma Kirkby a chance to light up the title role and the virtuous queen respectively in a celebrated Decca recording <span class="art-cd-ref" onclick="goToCD(201)">CD 201</span>. <em>Esther</em> in its revised 1732 London version is the collection&apos;s other Decca recording with Kirkby and Rolfe Johnson <span class="art-cd-ref" onclick="goToCD(202)">CD 202</span>. <em>Solomon</em> (1748), with its ravishing double choruses and the famous &ldquo;Arrival of the Queen of Sheba&rdquo;, is one of the most opulent sounds in all his output <span class="art-cd-ref" onclick="goToCD(208)">CD 208</span>. <em>Judas Maccabaeus</em> (1746), composed in the aftermath of the Jacobite rising of 1745 and tapping into a surge of patriotic fervour, was the biggest popular success of his career <span class="art-cd-ref" onclick="goToCD(231)">CD 231</span>. And <em>Jephtha</em> (1751), his last oratorio, was composed as his eyesight failed catastrophically; a note in the manuscript in his own hand records that he was forced to stop work at a particular passage because his left eye had given out completely. The passage in question &mdash; the chorus &ldquo;How dark, O Lord, are Thy decrees&rdquo; &mdash; is a meditation on mortality, suffering and resignation that carries, in context, an almost unbearable personal weight <span class="art-cd-ref" onclick="goToCD(205)">CD 205</span>.</p>
+<p>The great odes complete the picture: <em>Alexander&apos;s Feast</em> (1736), setting Dryden&apos;s poem about the power of music, in the atmospheric Coro recording with The Sixteen <span class="art-cd-ref" onclick="goToCD(223)">CD 223</span>; and the <em>Ode for St Cecilia&apos;s Day</em> (1739), another Dryden setting with Felicity Lott and Anthony Rolfe Johnson under Pinnock <span class="art-cd-ref" onclick="goToCD(229)">CD 229</span>.</p>
+
+<h2 class="art-h2">The Messiah</h2>
+<p>The Messiah was composed between 22 August and 14 September 1741 &mdash; twenty-three days of white-heat inspiration that produced one of the longest and most complex pieces in the choral repertoire. Handel had been invited to Dublin to direct a charitable benefit concert season; the <em>Messiah</em>, with its text compiled by Charles Jennens from the King James Bible and the Book of Common Prayer, was written for that occasion. Its Dublin premiere on 13 April 1742 was a triumph. The hall was so crowded that ladies had been asked not to wear hooped skirts and gentlemen to leave their swords at home in order to increase the audience capacity.</p>
+<p>The London premiere in 1743 was cooler. The clergy objected to sacred texts being performed in a theatre; society found the idea of sitting quietly listening to scripture set to music vaguely improper. The King&apos;s decision to stand for the &ldquo;Hallelujah&rdquo; chorus &mdash; whether from religious fervour, stiff joints, or a desire to end the evening &mdash; established a tradition that British audiences maintain to this day. It took years for the <em>Messiah</em> to become the indispensable fixture of English musical life that it now is, but by the 1750s, Handel himself was conducting annual performances for the Foundling Hospital, whose chapel organ he had donated. The work became the foundation of his popular reputation.</p>
+<p>Your collection holds four separate recordings &mdash; testimony to the work&apos;s inexhaustible fascination. The period-instrument Gardiner/Pinnock account on Philips with Margaret Marshall <span class="art-cd-ref" onclick="goToCD(195)">CD 195</span>, the Scholars Baroque Ensemble on Naxos in an intimate chamber version <span class="art-cd-ref" onclick="goToCD(196)">CD 196</span>, the landmark Gardiner Archiv recording with Arleen Aug&eacute;r and Anne Sofie von Otter <span class="art-cd-ref" onclick="goToCD(197)">CD 197</span>, and the New College Oxford account with the Academy of Ancient Music under Edward Higginbottom <span class="art-cd-ref" onclick="goToCD(198)">CD 198</span>. Each brings different qualities: the Archiv recording is probably the most celebrated period-instrument account of the twentieth century.</p>
+
+<h2 class="art-h2">The Organ Concertos: A Personal Invention</h2>
+<p>Handel invented the organ concerto. Or rather: he was the first composer to make the form a major vehicle for public performance, and he did so in a characteristically entrepreneurial way. He would play an organ concerto as an interval entertainment between the acts of one of his oratorios, improvising freely within the written framework and displaying his own legendary keyboard gifts to a paying audience. The concertos were simultaneously crowd-pleasing entertainment and genuine artistic achievement &mdash; melodically inventive, formally varied, and full of the kind of florid passage-work that left contemporary audiences gasping.</p>
+<p>Your collection has four organ concerto discs: Simon Preston with Menuhin on EMI <span class="art-cd-ref" onclick="goToCD(209)">CD 209</span>, Ton Koopman&apos;s celebrated Erato recordings <span class="art-cd-ref" onclick="goToCD(210)">CD 210</span>, and both opus sets in the authoritative Preston/Pinnock Archiv accounts &mdash; Op. 4 <span class="art-cd-ref" onclick="goToCD(211)">CD 211</span> and Op. 7 <span class="art-cd-ref" onclick="goToCD(212)">CD 212</span>. Koopman in particular plays these pieces with a swagger and wit that recalls exactly the spirit of improvised theatre-interval entertainment in which they originated.</p>
+
+<h2 class="art-h2">Chamber Music, Keyboard and the Vocal Recitals</h2>
+<p>Away from the public stage, Handel produced a body of chamber and instrumental music of quiet distinction. The <em>Oboe Concertos and Sonatas</em> show his feeling for the instrument&apos;s singing quality <span class="art-cd-ref" onclick="goToCD(214)">CD 214</span>. The <em>Recorder Sonatas</em>, played by Pamela Thorby and Richard Egarr on Linn Records <span class="art-cd-ref" onclick="goToCD(216)">CD 216</span>, are among the most immediately charming music he ever wrote. The <em>Trio Sonatas Op. 5</em> for two violins <span class="art-cd-ref" onclick="goToCD(244)">CD 244</span> represent the summit of his chamber writing. Murray Perahia&apos;s celebrated Sony disc pairs Handel and Domenico Scarlatti on the piano &mdash; the two composers born in the same year, whose meeting in Rome in 1707 (when Scarlatti reportedly acknowledged Handel&apos;s superiority at the organ) is one of music history&apos;s great encounters <span class="art-cd-ref" onclick="goToCD(213)">CD 213</span>.</p>
+<p>The vocal recitals in your collection illuminate his genius for the individual voice. Sarah Connolly and The Sixteen in <em>Heroes and Heroines</em> <span class="art-cd-ref" onclick="goToCD(222)">CD 222</span>, Ren&eacute;e Fleming with the Orchestra of the Age of Enlightenment on DG SACD <span class="art-cd-ref" onclick="goToCD(228)">CD 228</span> &mdash; these are windows onto an operatic world of unparalleled vocal splendour. Handel wrote for the finest singers of his age: Francesca Cuzzoni, Faustina Bordoni, the castrati Senesino and Farinelli (the latter for a rival company, annoyingly). The repertoire is beginning to receive the serious performance attention it deserves.</p>
+
+<h2 class="art-h2">The Final Years</h2>
+<p>By 1751 Handel was going blind, probably from cataracts. The same surgeon who later operated on Bach tried to restore his sight; the results in both cases were catastrophic. His last years were spent revising earlier works and conducting performances of the oratorios from memory, guided by his amanuensis John Christopher Smith Jr., who had taken over much of the practical management of his musical affairs. He attended a performance of the <em>Messiah</em> on 6 April 1759, eight days before his death on 14 April. He died peacefully, in the early hours of Good Friday, at his house in Brook Street, London. He had requested burial in Westminster Abbey, and there he lies, in Poets&apos; Corner, beneath a Roubiliac statue that is one of the finest monuments in the building &mdash; the composer caught in the act of writing the &ldquo;I know that my Redeemer liveth.&rdquo;</p>
+<p>He left an estate of approximately &pound;20,000 &mdash; a very considerable fortune, much of it accumulated from his oratorio performances &mdash; most of which went to family, servants, and charitable bequests. He left the organ in the Foundling Hospital chapel, the plates of his published music, and a musical legacy that has not stopped growing in esteem since the day he died. The Handel commemoration concerts of 1784, held in Westminster Abbey with an orchestra and chorus of over 500 performers, were the largest musical events England had ever seen. He was, and remains, the most completely adopted foreign composer in the history of British music.</p>
+
+<h2 class="art-h2">Recommended Recordings Not in the Collection</h2>
+<p>Your Handel holdings are extraordinarily comprehensive, but these works deserve attention:</p>
+<div class="art-rec-list">
+  <div class="art-rec-item">
+    <div class="art-rec-title">Giulio Cesare in Egitto HWV 17</div>
+    <div class="art-rec-label">Various labels &nbsp;&#183;&nbsp; 3-disc set &nbsp;&#183;&nbsp; 1724</div>
+    <p>The most celebrated of all Handel&apos;s operas and the one most frequently performed today. Caesar and Cleopatra, written for the greatest singers Handel ever had at his disposal, contains some of his most inventive da capo arias and a dramatic construction of real sophistication. Janet Baker and Valerie Masterson in the English National Opera recording (Chandos) is the classic; Marc Minkowski on Archiv is the most vivid period-instrument account.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">Theodora HWV 68</div>
+    <div class="art-rec-label">Harmonia Mundi &nbsp;&#183;&nbsp; 2-disc set &nbsp;&#183;&nbsp; 1749</div>
+    <p>Handel himself said it was the finest thing he had ever written. A Christian martyr story of unusual gravity and restraint, it was a commercial failure in its own time &mdash; audiences found the subject too serious &mdash; but has been recognised by posterity as one of his most spiritually profound works. William Christie&apos;s Harmonia Mundi recording with Dawn Upshaw and David Daniels is essential.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">Israel in Egypt HWV 54</div>
+    <div class="art-rec-label">Various labels &nbsp;&#183;&nbsp; 2-disc set &nbsp;&#183;&nbsp; 1739</div>
+    <p>The most choral of all his oratorios &mdash; the solo arias are few, the double choruses overwhelming in their cumulative power. The ten plagues of Egypt depicted in music of graphic vividness; the triumphant crossing of the Red Sea in choruses of irresistible energy. Paul McCreesh on Archiv is the outstanding period-instrument account.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">Rodelinda HWV 19</div>
+    <div class="art-rec-label">Various labels &nbsp;&#183;&nbsp; 3-disc set &nbsp;&#183;&nbsp; 1725</div>
+    <p>Among the finest of the Royal Academy operas &mdash; a drama of conjugal fidelity, usurpation and political intrigue set in medieval Lombardy, containing several of Handel&apos;s most deeply felt arias. Renée Fleming in the title role (Decca) gives one of her finest recorded performances.</p>
+  </div>
+</div>
+
+<h2 class="art-h2">Further Reading</h2>
+<div class="art-reading-section">
+  <div class="art-reading-sub">Books</div>
+  <div class="art-book-list">
+    <div class="art-book-item">
+      <div class="art-book-title">Handel</div>
+      <div class="art-book-author">Donald Burrows &nbsp;&#183;&nbsp; Oxford University Press, 1994 (revised 2012)</div>
+      <p>The standard English-language biography, written by the leading Handel scholar of his generation. Thorough, authoritative and well-organised, covering both the life and the works in detail. The revised 2012 edition in the Master Musicians series is the one to find. Essential.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">Handel as Orpheus: Voice and Desire in the Chamber Cantatas</div>
+      <div class="art-book-author">Ellen T. Harris &nbsp;&#183;&nbsp; Harvard University Press, 2001</div>
+      <p>A more specialised study, but fascinating for anyone exploring the Italian cantatas in your collection. Harris argues for the cantatas as a coded autobiography of desire, and her analysis illuminates this somewhat neglected repertoire with great scholarly and literary skill.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">George Frideric Handel: A Life with Friends</div>
+      <div class="art-book-author">Ellen T. Harris &nbsp;&#183;&nbsp; W. W. Norton, 2014</div>
+      <p>A more accessible and personal biography that reconstructs Handel&apos;s social world &mdash; his friendships, his household, his network of patrons and collaborators. A vivid account of what daily life in Georgian London looked like for a foreign musician at the height of his fame.</p>
+    </div>
+  </div>
+  <div class="art-reading-sub">Online</div>
+  <div class="art-book-list">
+    <div class="art-book-item">
+      <div class="art-book-title">The Handel Institute</div>
+      <div class="art-book-author"><a href="https://www.handelinstitute.org" target="_blank" class="art-link">handelinstitute.org</a></div>
+      <p>The primary scholarly organisation for Handel research, based in London. The website has bibliographies, news of performances and recordings, and links to the ongoing Hallische H&auml;ndel-Ausgabe &mdash; the critical edition of the complete works. The annual Handel conference proceedings are also available.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">BBC Radio 3 &mdash; Composer of the Week</div>
+      <div class="art-book-author"><a href="https://www.bbc.co.uk/programmes/b006tnbm" target="_blank" class="art-link">bbc.co.uk/radio3</a></div>
+      <p>BBC Radio 3 has given Handel&apos;s music extensive coverage, particularly around the anniversary years. The BBC Sounds archive holds many hours of documentary and performance material. Donald Macleod&apos;s presenter style makes even unfamiliar works immediately accessible.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">IMSLP &mdash; Handel Scores</div>
+      <div class="art-book-author"><a href="https://imslp.org/wiki/Category:Handel,_George_Frideric" target="_blank" class="art-link">imslp.org</a></div>
+      <p>Free scores for a large proportion of Handel&apos;s output. Following the vocal score of the <em>Messiah</em> or the <em>Dixit Dominus</em> while listening is especially rewarding &mdash; the choral writing is so inventive that seeing the individual lines on the page reveals architecture invisible to the ear alone.</p>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+<div id="art-content-sonata" style="display:none">
+<div class="art-article">
+<div class="art-kicker">A Musical Guide</div>
+<h1 class="art-title">The Development of Sonata Form</h1>
+<div class="art-subtitle">From Scarlatti to Brahms &nbsp;&#183;&nbsp; c.1740 &ndash; c.1890</div>
+
+<h2 class="art-h2">What Is Sonata Form?</h2>
+<p>Sonata form is the most important formal structure in the history of Western classical music. It is the architecture used in the first movements of virtually every symphony, concerto, string quartet and piano sonata written between roughly 1760 and 1900. Understanding it does not require musical literacy &mdash; it requires only the ability to listen for contrast, tension and resolution, which is instinctive in most people. And once recognised, it transforms the experience of this music: you hear not just a succession of beautiful sounds, but an argument with a beginning, a middle and an end.</p>
+<p>The form has three sections. In the <strong>Exposition</strong>, the composer presents two contrasting musical ideas. The first, in the home key (the tonic), tends to be firmer and more assertive; the second, in a related key (usually the dominant &mdash; five notes higher), tends to be more lyrical and relaxed. A connecting passage called the bridge modulates between them, and a closing section rounds things off. You have heard the first theme and the second theme, and you have moved away from home. In the <strong>Development</strong>, the composer takes those themes apart: fragments them, combines them, runs them through unexpected keys, intensifies them, puts them under pressure. This is where the drama lies &mdash; the sense of uncertainty, of struggle, of things being worked out. Then comes the <strong>Recapitulation</strong>: the first theme returns in the home key, then the second theme &mdash; crucially, now also in the home key rather than the dominant. The tension is resolved; you are home. Often there is a <strong>Coda</strong> (Italian for &ldquo;tail&rdquo;) that rounds off the movement with a final emphatic confirmation of the key.</p>
+<p>That is the skeleton. What the great composers did with it &mdash; and how it changed across 150 years &mdash; is one of the central stories of musical history.</p>
+
+<h2 class="art-h2">Precursors: Scarlatti and the Binary Seed</h2>
+<p>The seeds of sonata form lie in the Baroque <em>binary</em> form used in dance movements and keyboard pieces &mdash; a simple two-part structure, each half repeated, in which the first part moves to the dominant and the second returns home. Domenico Scarlatti (1685-1757), who was born in the same year as both Handel and Bach and spent much of his career at the Spanish court writing keyboard music for the Queen, composed 555 single-movement keyboard sonatas in binary form. They are not sonata form &mdash; there is no separate development section, no independent second theme as such &mdash; but in their harmonic adventures, their dramatic contrasts of texture and mood, and their journey away from and back to the home key, they contain the genetic material from which sonata form would develop. Murray Perahia&apos;s Sony disc pairs Handel and Scarlatti on the piano <span class="art-cd-ref" onclick="goToCD(213)">CD 213</span> &mdash; an illuminating juxtaposition of two musical worlds, both born the same year, both pointing forward to the Classical era in different ways.</p>
+<p>The crucial missing ingredient in Baroque binary form was the concept of <em>thematic contrast</em>: two genuinely different musical characters inhabiting the same movement, set against each other. That idea arrived with the generation of composers born around 1710-1735 &mdash; above all Carl Philipp Emanuel Bach, Johann Stamitz, and the composers of the Mannheim school &mdash; who developed what they called the <em>empfindsamer Stil</em> (sensitive style): music of sudden contrasts, dramatic silences, and immediate emotional expressivity. C.P.E. Bach&apos;s keyboard sonatas in particular show an embryonic sonata form, with recognisable contrasting themes and something approaching a development section. Both Haydn and Mozart acknowledged him as a decisive influence. &ldquo;He is the father,&rdquo; Mozart said, &ldquo;we are the children.&rdquo;</p>
+
+<h2 class="art-h2">Haydn: Crystallising the Convention</h2>
+<p>It was Joseph Haydn who brought all these tendencies together into a coherent, teachable, endlessly flexible formal procedure. Over roughly thirty years of intense compositional experimentation &mdash; mostly in the relative isolation of the Esterh&aacute;zy court in Hungary, where he had an orchestra to test his ideas with &mdash; he developed and refined sonata form across all the major genres: the symphony, the string quartet, the piano sonata, and the piano trio. By his middle period (roughly the 1770s and 80s) the form was established with sufficient clarity that it could be described, taught, and recognised by audiences. The great theorist Heinrich Koch published the first clear textbook account of it in 1782-93, citing Haydn as his primary example.</p>
+<p>But Haydn was never a formalist. His great achievement was to make the formal conventions feel not like a cage but like a stage set on which endlessly surprising things could happen. His humour &mdash; the false recapitulations that fool the listener into thinking the development is over, the unexpected silences, the sudden <em>pianissimo</em> after a long <em>forte</em> build-up &mdash; depends entirely on the listener having internalised the formal expectation that is then subverted. The &ldquo;Surprise&rdquo; Symphony works as a joke only because the audience knows the rules. His <em>Piano Sonatas</em> of the 1780s and 90s, collected on Naxos <span class="art-cd-ref" onclick="goToCD(241)">CD 241</span>, show the form at its most compact and witty. The <em>String Quartets Op. 76</em> &mdash; written in his late sixties and among the finest things he ever wrote &mdash; show it at its most expansive and profound <span class="art-cd-ref" onclick="goToCD(240)">CD 240</span>. The <em>Military</em> Symphony No. 100 <span class="art-cd-ref" onclick="goToCD(239)">CD 239</span> shows the form in its most public, orchestral guise: the first movement&apos;s clear exposition, dramatic development and satisfying recapitulation is a textbook example.</p>
+
+<h2 class="art-h2">Mozart: Perfection Without Strain</h2>
+<p>Mozart absorbed Haydn&apos;s formal innovations and applied to them a musical intelligence of a different order: more instinctive, more lyrical, more harmonically subtle. Where Haydn&apos;s formal wit is external &mdash; you can hear him playing with the conventions &mdash; Mozart&apos;s formal mastery is invisible. The sonata form movements are so perfectly proportioned, so naturally flowing, that it is easy to miss the technical command underneath. &ldquo;Too many notes,&rdquo; the Emperor Joseph II reportedly said after the premiere of <em>Die Entf&uuml;hrung aus dem Serail</em>. &ldquo;Exactly as many as are needed, Your Majesty,&rdquo; Mozart replied.</p>
+<p>In Mozart&apos;s sonata form movements, several things are characteristic. The <em>development sections</em> tend to be relatively brief &mdash; not because he was lazy, but because he preferred formal elegance to dramatic struggle. His energies went into the exposition and recapitulation, where the themes themselves are so richly characterised that development is almost superfluous. The <em>transitions</em> (bridges between themes) are often as interesting as the themes themselves. And the relationship between the two main themes is often one of <em>complement</em> rather than contrast: in many Mozart sonata-form movements, the second theme feels like the lyrical fulfilment of the energy established by the first, rather than a dramatic counterweight to it.</p>
+<p>His piano sonatas &mdash; collected complete on Philips and other labels <span class="art-cd-ref" onclick="goToCD(294)">CD 294</span>, with individual discs including the famous <em>K.545</em> &ldquo;easy&rdquo; sonata <span class="art-cd-ref" onclick="goToCD(289)">CD 289</span> and Mikhail Pletnev&apos;s searching accounts <span class="art-cd-ref" onclick="goToCD(290)">CD 290</span> &mdash; are the most accessible entry point to his sonata form thinking. The <em>Piano Concertos</em> are more complex: here Mozart took the form and adapted it to the dialogue between soloist and orchestra. He established a double exposition (the orchestra plays through the themes first, then the soloist enters and plays them again, transformed), and the interplay between the solo line and the orchestral accompaniment generates a dramatic counterpoint unique to the concerto genre. The concertos numbered 20-27 are the summit of his achievement in the form: the D minor K.466 <span class="art-cd-ref" onclick="goToCD(293)">CD 293</span>, the A major K.488, the C minor K.491 <span class="art-cd-ref" onclick="goToCD(307)">CD 307</span> and the final B flat major K.595 <span class="art-cd-ref" onclick="goToCD(311)">CD 311</span> each represent a different emotional and formal world, but all are governed by the same serene formal intelligence. The string quintets &mdash; your collection has both volumes <span class="art-cd-ref" onclick="goToCD(303)">CD 303</span> <span class="art-cd-ref" onclick="goToCD(304)">CD 304</span> &mdash; show sonata form in chamber music at its most refined and inward.</p>
+
+<h2 class="art-h2">Beethoven: The Form Under Pressure</h2>
+<p>If Mozart perfected the Classical inheritance, Beethoven subjected it to stresses it had never previously encountered. He did not abandon sonata form &mdash; he used it throughout his career, even in the most radical late works &mdash; but he systematically expanded, dramatised and ultimately transformed every element of it. The difference between a Mozart sonata-form movement and a Beethoven one is the difference between a well-proportioned Georgian townhouse and a Gothic cathedral: both are organised on coherent architectural principles, but the scale, the emotional atmosphere and the relationship between parts and whole are entirely different.</p>
+<p>Consider the <em>development sections</em>. In a typical Mozart first movement, the development might last fifty bars out of a total of perhaps 250. In the first movement of Beethoven&apos;s <em>Eroica</em> Symphony, the development runs to nearly 250 bars &mdash; longer than the exposition &mdash; and traverses harmonic territory (including the famous entry of a completely new theme, unprecedented in the form) that leaves the listener genuinely disoriented before the triumphal return of the opening theme. The development is no longer a passage between exposition and recapitulation; it is the dramatic heart of the movement.</p>
+<p>Consider the <em>codas</em>. Mozart&apos;s codas round off a movement that has already reached its conclusion. Beethoven&apos;s codas are frequently second development sections, as long and as harmonically adventurous as the first. In the Fifth Symphony <span class="art-cd-ref" onclick="goToCD(96)">CD 96</span> <span class="art-cd-ref" onclick="goToCD(97)">CD 97</span>, the coda of the first movement is a ferocious final working-out of the four-note motto that has driven the movement from its opening bar. The recapitulation alone does not provide sufficient resolution; the coda must fight its way through to a definitive conclusion.</p>
+<p>Consider the <em>thematic material</em> itself. Mozart&apos;s themes tend to be complete melodic statements: you can hum them. Beethoven&apos;s themes are often motivic fragments deliberately designed to be developed. The first &ldquo;theme&rdquo; of the Fifth Symphony is not a melody at all &mdash; it is a rhythmic cell of four notes that generates everything that follows. The first theme of the <em>Eroica</em>&apos;s first movement is a bare descending arpeggio, chosen precisely because it is so neutral that it can be combined with anything. These are not tunes; they are seeds.</p>
+<p>The <em>Razumovsky</em> Quartets Op. 59 <span class="art-cd-ref" onclick="goToCD(77)">CD 77</span> show these innovations in chamber music: the first movement of Op. 59 No. 1 is a scale-expanding masterwork, its development section so extended that contemporary listeners could not follow where they were. The <em>Hammerklavier</em> Sonata Op. 106 <span class="art-cd-ref" onclick="goToCD(87)">CD 87</span> represents the most extreme expansion of piano sonata form ever attempted: a first movement lasting nearly twenty minutes, with a development section of towering complexity, a fugal finale that dissolves the very notion of sonata form by replacing it with something more ancient &mdash; and in doing so, points directly towards the late quartets <span class="art-cd-ref" onclick="goToCD(78)">CD 78</span> <span class="art-cd-ref" onclick="goToCD(79)">CD 79</span>, where sonata form is retained as a structural skeleton but is animated by an emotional and harmonic language so far from Classical conventions as to be unrecognisable. Andr&aacute;s Schiff playing the sonatas on Beethoven&apos;s own Broadwood piano <span class="art-cd-ref" onclick="goToCD(93)">CD 93</span> reveals how differently these works sounded on the instrument for which they were conceived.</p>
+
+<h2 class="art-h2">The Mozart-Beethoven Comparison: A Practical Guide</h2>
+<p>The contrast is most vivid when you hear comparable works side by side. Take the first movements of Mozart&apos;s Piano Concerto No. 20 in D minor K.466 <span class="art-cd-ref" onclick="goToCD(293)">CD 293</span> and Beethoven&apos;s Piano Concerto No. 3 in C minor Op. 37 <span class="art-cd-ref" onclick="goToCD(74)">CD 74</span>. Both are in the minor key; both are dramatic and serious in tone; Beethoven was clearly thinking of the Mozart when he wrote his. Yet the differences are fundamental. Mozart&apos;s first movement runs to about 350 bars; Beethoven&apos;s to nearly 500. Mozart&apos;s development is swift and purposeful; Beethoven&apos;s is a long, turbulent journey through multiple keys. Mozart&apos;s recapitulation feels like a peaceful homecoming; Beethoven&apos;s feels hard-won. Most tellingly: Mozart&apos;s movement ends with a question &mdash; a mysterious pianissimo that dissolves into the piano&apos;s cadenza &mdash; while Beethoven&apos;s ends with a decisive, emphatic assertion of the tonic key. Mozart lives with ambiguity; Beethoven insists on resolution.</p>
+<p>Or compare their violin sonatas. Mozart&apos;s were originally conceived as &ldquo;piano sonatas with violin accompaniment&rdquo; &mdash; the piano is primary, the violin decorative. Your collection includes multiple volumes <span class="art-cd-ref" onclick="goToCD(324)">CD 324</span> <span class="art-cd-ref" onclick="goToCD(325)">CD 325</span>. In Beethoven&apos;s sonatas, the violin and piano are equals, and their dialogue &mdash; sometimes collaborative, sometimes genuinely argumentative &mdash; is itself a structural device. The <em>Kreutzer</em> Sonata Op. 47 <span class="art-cd-ref" onclick="goToCD(101)">CD 101</span>, with its massive first movement and its blazing finale, sounds like a symphony compressed into two instruments. Tolstoy wrote a novella about the psychological effects of listening to it.</p>
+
+<h2 class="art-h2">Schubert: Time Transformed</h2>
+<p>Schubert&apos;s relationship with sonata form is perhaps the most individual of any major composer. He inherited the same formal conventions as Beethoven, but his musical imagination operated on entirely different principles. Where Beethoven&apos;s forms are driven by motivic conflict and resolution &mdash; a drama of struggle and triumph &mdash; Schubert&apos;s are driven by <em>harmonic colour</em> and <em>lyrical flow</em>. His second themes are not complementary ideas in the dominant but often completely independent songs in unexpected keys: the flat submediant (a third below the tonic) is one of his favourite harmonic moves, and it gives his sonata-form movements a characteristic sense of stepping sideways into a different light.</p>
+<p>His development sections do not typically fragment and transform the themes dramatically; instead, they explore long harmonic journeys, drifting through remote keys with a sense of being beautifully, dreamily lost. Schumann described the <em>Great</em> C major Symphony <span class="art-cd-ref" onclick="goToCD(392)">CD 392</span> as having &ldquo;heavenly length&rdquo; &mdash; not a criticism but a description of a different relationship to musical time, in which the journey matters as much as the destination. The first movement of the <em>Great</em> C major, with its vast spans and unhurried unfolding, is Schubertian sonata form at its most characteristic: enormous, patient, luminous.</p>
+<p>The late piano sonatas <span class="art-cd-ref" onclick="goToCD(386)">CD 386</span> take the form still further from Beethoven: the great B-flat major Sonata D.960 (not in this volume but recorded by Richter among others) unfolds its first movement in a state of profound contemplative stillness quite unlike anything in Beethoven&apos;s sonatas. The <em>Death and the Maiden</em> Quartet D.810 <span class="art-cd-ref" onclick="goToCD(402)">CD 402</span> <span class="art-cd-ref" onclick="goToCD(407)">CD 407</span> and the <em>String Quintet</em> D.956 <span class="art-cd-ref" onclick="goToCD(401)">CD 401</span> apply Schubertian sonata thinking to chamber music: in the Quintet&apos;s first movement, the formal landmarks are there &mdash; exposition, development, recapitulation &mdash; but they are navigated at a pace and with a lyrical generosity that feels entirely unlike Beethoven. The result is not lesser; it is different.</p>
+
+<h2 class="art-h2">Brahms: The Conservative Revolutionary</h2>
+<p>Johannes Brahms occupies a special place in the history of sonata form because he was simultaneously the most reverent and the most creative inheritor of the Classical tradition. He worshipped Beethoven to the point of paralysis: he spent twenty-one years writing and destroying attempts at his First Symphony, haunted by the fear of what Beethoven had done and what it left for anyone else to do. When the First Symphony finally appeared in 1876 <span class="art-cd-ref" onclick="goToCD(125)">CD 125</span>, it was immediately described as &ldquo;Beethoven&apos;s Tenth&rdquo; &mdash; a description Brahms found exasperating but understandable.</p>
+<p>His distinctive contribution to sonata form was the technique Arnold Schoenberg later called <em>developing variation</em>: a process in which the themes are not dramatically contrasted and then developed in a separate section, but are continuously varied and transformed throughout the movement, so that exposition, development and recapitulation blur into a single unbroken process of metamorphosis. His violin sonatas <span class="art-cd-ref" onclick="goToCD(119)">CD 119</span> and cello sonatas <span class="art-cd-ref" onclick="goToCD(124)">CD 124</span> are particularly fine examples of this technique in chamber music. The Piano Concerto No. 1 in D minor <span class="art-cd-ref" onclick="goToCD(116)">CD 116</span> &mdash; originally sketched as a symphony &mdash; is one of the most densely wrought sonata-form movements in the repertoire: its development section is a labyrinth of motivic transformation in which every element of the first movement&apos;s material is continuously reinvented. The Fourth Symphony Op. 98 <span class="art-cd-ref" onclick="goToCD(118)">CD 118</span> <span class="art-cd-ref" onclick="goToCD(122)">CD 122</span>, its finale a set of variations on a Baroque bass line, shows Brahms reaching back even further into musical history &mdash; past Beethoven, past Mozart, to the contrapuntal foundations on which all Western formal music rests.</p>
+<p>Brahms also represents the end of a chapter. After him, the pressures on sonata form became irresistible. Wagner had proposed that &ldquo;endless melody&rdquo; &mdash; a continuous, harmonically unstable flow with no clear formal articulation &mdash; was the musical future. Liszt had invented the <em>symphonic poem</em>, in which narrative programme took the place of abstract formal structure. By 1890, the perfectly proportioned Classical sonata-form movement that Haydn had crystallised and Mozart had perfected seemed to belong to another world. What came after is another story. But the achievement of those hundred and fifty years &mdash; from Haydn&apos;s early quartets to Brahms&apos;s Fourth Symphony &mdash; represents one of the most sustained and coherent formal traditions in any art form in history.</p>
+
+<h2 class="art-h2">A Listener&apos;s Guide: Where to Start</h2>
+<p>If you want to hear the development of sonata form directly through the recordings in your collection, this sequence offers the clearest journey:</p>
+<div class="art-rec-list">
+  <div class="art-rec-item">
+    <div class="art-rec-title">1. The Seed: Domenico Scarlatti &mdash; Keyboard Sonatas</div>
+    <div class="art-rec-label"><span class="art-cd-ref" onclick="goToCD(213)">CD 213</span> &nbsp;&#183;&nbsp; Murray Perahia plays Handel and Scarlatti</div>
+    <p>Hear the binary form from which sonata form grew. Short, brilliant, harmonically adventurous pieces that show the ancestor of a great tradition &mdash; the two-section structure, the move to the dominant, the return home &mdash; without yet the independent development section that defines the mature form.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">2. The Convention Established: Haydn &mdash; String Quartet Op. 76 No. 2 &lsquo;Fifths&rsquo;</div>
+    <div class="art-rec-label"><span class="art-cd-ref" onclick="goToCD(240)">CD 240</span> &nbsp;&#183;&nbsp; Kodály Quartet</div>
+    <p>Haydn at his most crystalline. The first movement&apos;s opening with its falling fifths is a perfect example of a Haydnesque first theme: short, rhythmically distinctive, full of latent energy. Listen for the two clearly contrasting themes in the exposition, the development&apos;s wit and harmonic play, and the satisfying click of the recapitulation arriving home.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">3. The Form Perfected: Mozart &mdash; Piano Concerto No. 20 in D minor K.466</div>
+    <div class="art-rec-label"><span class="art-cd-ref" onclick="goToCD(293)">CD 293</span> &nbsp;&#183;&nbsp; Perahia / English Chamber Orchestra</div>
+    <p>Mozart&apos;s most dramatic piano concerto, and one of the clearest examples of his formal intelligence. The orchestral exposition sets up the themes; the piano enters with its own version of them; the development is purposeful but brief; the recapitulation is poignant. Note how naturally the whole thing flows &mdash; the formal structure is invisible behind the musical expression.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">4. The Form Transformed: Beethoven &mdash; Symphony No. 5</div>
+    <div class="art-rec-label"><span class="art-cd-ref" onclick="goToCD(96)">CD 96</span> or <span class="art-cd-ref" onclick="goToCD(97)">CD 97</span></div>
+    <p>The most famous first movement in music, and the clearest illustration of what Beethoven did to the form. The four-note motto is not really a &ldquo;theme&rdquo; &mdash; it is a cell. Listen for how the development section extends far beyond what Mozart would have needed; how the recapitulation adds a dramatic oboe cadenza; and how the enormous coda functions as a second development, hammering home the tonic with a finality that Mozart would never have required.</p>
+  </div>
+  <div class="art-rec-item">
+    <div class="art-rec-title">5. The Form Reimagined: Schubert &mdash; String Quintet in C major D.956</div>
+    <div class="art-rec-label"><span class="art-cd-ref" onclick="goToCD(401)">CD 401</span> &nbsp;&#183;&nbsp; Alban Berg Quartet</div>
+    <p>Schubert&apos;s last chamber work and one of the most extraordinary pieces in the repertoire. The first movement&apos;s sonata form is recognisable but profoundly transformed: the second theme appears in E flat major (the flat submediant) rather than the expected G major (the dominant), giving it a quality of luminous surprise. The development drifts through distant keys with an unhurried patience entirely unlike Beethoven. The Adagio that follows &mdash; not in sonata form at all &mdash; is the most sublime slow movement he ever wrote.</p>
+  </div>
+</div>
+
+<h2 class="art-h2">Further Reading</h2>
+<div class="art-reading-section">
+  <div class="art-reading-sub">Books</div>
+  <div class="art-book-list">
+    <div class="art-book-item">
+      <div class="art-book-title">Sonata Forms</div>
+      <div class="art-book-author">Charles Rosen &nbsp;&#183;&nbsp; W. W. Norton, 1980</div>
+      <p>The standard scholarly account of the form and its varieties, by the pianist-scholar who did more than anyone to make sonata form intelligible to musicians and non-musicians alike. Rosen writes with rare analytical precision and literary grace. Not light reading, but the most rewarding single account of the subject. His earlier and broader book <em>The Classical Style</em> (1971) covers the same ground in a wider context and is equally brilliant.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">The Beethoven Quartet Companion</div>
+      <div class="art-book-author">Robert Winter &amp; Robert Martin (eds.) &nbsp;&#183;&nbsp; University of California Press, 1994</div>
+      <p>An excellent collection of essays on Beethoven&apos;s string quartets, with particularly good material on how his use of sonata form evolved across his career. A useful companion to the quartet recordings in your collection, with accessible analytical chapters alongside more scholarly ones.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">Music and the Mind</div>
+      <div class="art-book-author">Anthony Storr &nbsp;&#183;&nbsp; HarperCollins, 1992</div>
+      <p>A readable, humanistic account of why music affects us as it does, with illuminating sections on expectation, tension and resolution &mdash; the very mechanisms that make sonata form emotionally effective. Storr is a psychiatrist rather than a musicologist, which gives his account a different and refreshing perspective. Ideal alongside this article for anyone interested in <em>why</em> the formal structures described here work on our emotions.</p>
+    </div>
+  </div>
+  <div class="art-reading-sub">Online</div>
+  <div class="art-book-list">
+    <div class="art-book-item">
+      <div class="art-book-title">Oxford Music Online &mdash; Grove Dictionary</div>
+      <div class="art-book-author"><a href="https://www.oxfordmusiconline.com" target="_blank" class="art-link">oxfordmusiconline.com</a></div>
+      <p>The Grove Dictionary of Music is the authoritative reference work in the field. The article on &ldquo;Sonata form&rdquo; is thorough and authoritative; the biographies of Haydn, Mozart, Beethoven, Schubert and Brahms all discuss their use of the form in detail. Access requires a subscription, but many public libraries provide it.</p>
+    </div>
+    <div class="art-book-item">
+      <div class="art-book-title">BBC Radio 3 &mdash; Music Matters and In Tune</div>
+      <div class="art-book-author"><a href="https://www.bbc.co.uk/radio3" target="_blank" class="art-link">bbc.co.uk/radio3</a></div>
+      <p>BBC Radio 3&apos;s analytical and documentary programmes have covered sonata form in many contexts, particularly around the Beethoven anniversary (2020) and various Schubert and Brahms coverage. The BBC Sounds archive is a rich resource, with programmes ranging from introductory to scholarly.</p>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+<div id="surprise-overlay" style="display:none" onclick="if(event.target===this)closeSurprisePanel()">
+  <div id="surprise-sheet">
+    <div id="surprise-hdr">
+      <span>&#127922; Surprise Me</span>
+      <button onclick="closeSurprisePanel()">&#10005;</button>
+    </div>
+    <div id="surprise-body">
+      <p id="surprise-intro">What are you in the mood for?</p>
+      <div id="surprise-cats"></div>
+    </div>
+  </div>
+</div>
+
 <div class="no-results" id="no-results" style="display:none">
   <div class="no-results-icon">&#127925;</div>
   <h3>Not in your collection</h3>
@@ -1625,7 +1890,7 @@ function markPlayed(id,e){
   if(e)e.stopPropagation();
   var _p=getPlayedDates();_p[String(id)]=new Date().toISOString().slice(0,10);
   savePlayedDates(_p);search();
-  setTimeout(function(){var _c=document.getElementById('card-'+id);if(_c)_c.scrollIntoView({behavior:'smooth',block:'center'});},100);
+  setTimeout(function(){var _c=document.getElementById('card-'+id);if(_c)scrollToCardBelowBanner(_c);},100);
 }
 function fmtPlayedDate(ds){
   var _mn=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -1861,6 +2126,7 @@ function confirmImport(){
   if(d.locations)  localStorage.setItem('cd_locations',JSON.stringify(d.locations));
   if(d.notes)      localStorage.setItem('cd_notes',JSON.stringify(d.notes));
   if(d.played)localStorage.setItem('cd_played',JSON.stringify(d.played));
+  if(d.wishlist)localStorage.setItem('cd_wishlist',JSON.stringify(d.wishlist));
   pendingImport=null;
   document.getElementById('import-confirm').style.display='none';
   updateRestoreBtn();
@@ -2275,7 +2541,9 @@ const articleMeta = [
   {id:'schubert', title:'Franz Schubert', subtitle:'Life, times & music — the brief miraculous life', cdCount:16},
   {id:'gould', title:'Glenn Gould', subtitle:'Portrait of an original — the pianist who changed everything', cdCount:1},
   {id:'quartet', title:'The String Quartet', subtitle:'A history from Haydn to Shostakovich', cdCount:22},
-  {id:'beethoven', title:'Ludwig van Beethoven', subtitle:'Life, times & music — from Bonn to immortality', cdCount:24}
+  {id:'beethoven', title:'Ludwig van Beethoven', subtitle:'Life, times & music — from Bonn to immortality', cdCount:24},
+  {id:'handel', title:'George Frideric Handel', subtitle:'Life, times & music — from Halle to Westminster Abbey', cdCount:32},
+  {id:'sonata', title:'The Development of Sonata Form', subtitle:'A guide from Scarlatti to Brahms', cdCount:22}
 ];
 
 function openArticles(){
@@ -2339,7 +2607,7 @@ function goToCD(id){
   setTimeout(()=>{
     const card=document.getElementById('card-'+id);
     if(card){
-      card.scrollIntoView({behavior:'smooth',block:'center'});
+      scrollToCardBelowBanner(card);
       card.classList.add('cd-highlight');
       setTimeout(()=>card.classList.remove('cd-highlight'),2000);
     }
@@ -2348,12 +2616,17 @@ function goToCD(id){
     const meta=articleMeta.find(a=>a.id===_lastArticleId);
     const label=meta?meta.title:'article';
     document.getElementById('return-art-label').textContent='Return to — '+label;
-    document.getElementById('return-art-banner').style.display='block';
+    var _fb=document.getElementById('filter-bar').getBoundingClientRect();
+    var _bn=document.getElementById('return-art-banner');
+    _bn.style.top=_fb.bottom+'px';
+    _bn.style.display='block';
+    document.getElementById('cards').style.paddingTop='3rem';
   }
 }
 
 function hideReturnBanner(){
   document.getElementById('return-art-banner').style.display='none';
+  document.getElementById('cards').style.paddingTop='';
 }
 
 function returnToArticle(){
@@ -2454,6 +2727,10 @@ function submitAddCD(){
     _editingId=null;
   }else{additions.push(newCD);}
   saveAdditions(additions);
+  if(typeof _acquiringWLId!=='undefined'&&_acquiringWLId){
+    saveWishlist(getWishlist().filter(function(w){return String(w.id)!==String(_acquiringWLId);}));
+    _acquiringWLId=null;
+  }
   closeAddCD();
   activeFilter=''; activeComposer=''; activeArtist=''; activeLabel=''; notesSearchMode=false;
   document.getElementById('search').value='';
@@ -2522,7 +2799,7 @@ function pickRandom(){
   render('');
   setTimeout(function(){
     var _c=document.getElementById('card-'+_cd.id);
-    if(_c){_c.scrollIntoView({behavior:'smooth',block:'center'});
+    if(_c){scrollToCardBelowBanner(_c);
       _c.classList.add('cd-highlight');setTimeout(function(){_c.classList.remove('cd-highlight');},2500);}
   },100);
 }
@@ -2586,6 +2863,268 @@ document.addEventListener('click',function(e){
     closeMorePanel();
   }
 });
+
+function scrollToCardBelowBanner(card){
+  if(!card)return;
+  var _fb=document.getElementById('filter-bar').getBoundingClientRect().bottom;
+  var _bn=document.getElementById('return-art-banner');
+  var _bh=(_bn&&_bn.style.display!=='none')?_bn.offsetHeight:0;
+  var _offset=_fb+_bh+8;
+  var _top=card.getBoundingClientRect().top+window.scrollY;
+  window.scrollTo({top:_top-_offset,behavior:'smooth'});
+}
+
+function getWishlist(){try{return JSON.parse(localStorage.getItem('cd_wishlist')||'[]')}catch(e){return[];}}
+function saveWishlist(a){localStorage.setItem('cd_wishlist',JSON.stringify(a));}
+var _acquiringWLId=null;
+var _editingWLId=null;
+
+function openWishlist(){
+  document.getElementById('cards').style.display='none';
+  document.getElementById('no-results').style.display='none';
+  document.getElementById('wishlist-panel').style.display='block';
+  document.getElementById('wishlist-chip').classList.add('active');
+  renderWishlist();
+}
+function closeWishlist(){
+  document.getElementById('wishlist-panel').style.display='none';
+  document.getElementById('cards').style.display='';
+  document.getElementById('wishlist-chip').classList.remove('active');
+  search();
+}
+function renderWishlist(){
+  var items=getWishlist();
+  var container=document.getElementById('wishlist-list');
+  if(!items.length){
+    container.innerHTML='<div style="text-align:center;padding:3rem 1rem;color:#aaa;font-style:italic">Your wishlist is empty.<br>Tap + Add CD to start.</div>';
+    return;
+  }
+  container.innerHTML=items.map(function(item){
+    var comps=(item.composers||[]).join(', ');
+    var meta=[comps,item.artist,item.label,item.format].filter(Boolean).join(' · ');
+    var notes=item.notes?'<div class="wl-card-notes">'+item.notes.replace(/[<>&]/g,function(c){return{'<':'&lt;','>':'&gt;','&':'&amp;'}[c];})+'</div>':'';
+    return('<div class="wl-card">'
+      +'<div class="wl-card-title">'+item.title.replace(/</g,'&lt;')+'</div>'
+      +(meta?'<div class="wl-card-meta">'+meta+'</div>':'')
+      +notes
+      +'<div class="wl-card-btns">'
+      +'<button class="wl-btn-acquire" data-wlid="'+item.id+'" onclick="acquireWishlistItem(this.dataset.wlid)">✓ Acquired — add to catalogue</button>'
+      +'<button class="wl-btn-delete" data-wlid="'+item.id+'" onclick="deleteWishlistItem(this.dataset.wlid)">✕</button>'
+      +'</div></div>');
+  }).join('');
+}
+function openAddWishlist(){
+  document.getElementById('wishlist-add-overlay').style.display='flex';
+  ['wl-title','wl-composers','wl-artist','wl-label','wl-notes'].forEach(function(id){
+    document.getElementById(id).value='';
+  });
+  document.getElementById('wl-format').selectedIndex=0;
+  document.getElementById('wl-error').style.display='none';
+  document.getElementById('wl-comp-sugg').innerHTML='';
+  document.getElementById('wl-submit-btn').textContent='♥ Add to Wishlist';
+  _editingWLId=null;
+  populateFormDataLists();
+}
+function closeAddWishlist(){
+  document.getElementById('wishlist-add-overlay').style.display='none';
+  _editingWLId=null;
+}
+function submitAddWishlist(){
+  var title=document.getElementById('wl-title').value.trim();
+  var err=document.getElementById('wl-error');
+  if(!title){err.textContent='Please enter a title.';err.style.display='block';return;}
+  err.style.display='none';
+  var item={
+    id:_editingWLId||Date.now(),
+    title:title,
+    composers:document.getElementById('wl-composers').value.split(',').map(function(s){return s.trim();}).filter(Boolean),
+    artist:document.getElementById('wl-artist').value.trim(),
+    label:document.getElementById('wl-label').value.trim(),
+    format:document.getElementById('wl-format').value,
+    notes:document.getElementById('wl-notes').value.trim()
+  };
+  var wl=getWishlist();
+  if(_editingWLId){
+    var ei=wl.findIndex(function(w){return w.id==_editingWLId;});
+    if(ei!==-1)wl[ei]=item;else wl.push(item);
+  }else{wl.push(item);}
+  saveWishlist(wl);
+  closeAddWishlist();
+  renderWishlist();
+}
+function deleteWishlistItem(id){
+  saveWishlist(getWishlist().filter(function(w){return String(w.id)!==String(id);}));
+  renderWishlist();
+}
+function acquireWishlistItem(id){
+  var item=getWishlist().find(function(w){return String(w.id)===String(id);});
+  if(!item)return;
+  _acquiringWLId=item.id;
+  openAddCD();
+  document.getElementById('acd-title').value=item.title||'';
+  document.getElementById('acd-composers').value=(item.composers||[]).join(', ');
+  document.getElementById('acd-artist').value=item.artist||'';
+  document.getElementById('acd-label').value=item.label||'';
+  document.getElementById('acd-notes').value=item.notes||'';
+  var fmt=document.getElementById('acd-format');
+  for(var i=0;i<fmt.options.length;i++){if(fmt.options[i].value===item.format){fmt.selectedIndex=i;break;}}
+  document.getElementById('add-cd-hdr').querySelector('span').textContent='✓ Add acquired CD';
+  document.getElementById('acd-id-preview').textContent='From wishlist — add price & catalogue number';
+  closeWishlist();
+}
+function updateWLComposerSugg(){
+  var input=document.getElementById('wl-composers');
+  var container=document.getElementById('wl-comp-sugg');
+  var parts=input.value.split(',');
+  var typing=parts[parts.length-1].trim().toLowerCase();
+  if(typing.length<1){container.innerHTML='';return;}
+  var already=parts.slice(0,-1).map(function(s){return s.trim().toLowerCase();});
+  var allComp=[...new Set([...catalogue,...getAdditions()].flatMap(function(cd){return cd.composers;}))];
+  var matches=allComp.filter(function(c){return c.toLowerCase().includes(typing)&&!already.includes(c.toLowerCase());}).slice(0,8);
+  container.innerHTML='';
+  matches.forEach(function(c){
+    var btn=document.createElement('button');
+    btn.type='button';
+    btn.className='acd-suggest';
+    btn.textContent=c;
+    btn.onclick=function(){
+      var ps=input.value.split(',').map(function(s){return s.trim();}).filter(Boolean);
+      ps.pop();ps.push(c);
+      input.value=ps.join(', ')+', ';
+      container.innerHTML='';
+      input.focus();
+    };
+    container.appendChild(btn);
+  });
+}
+
+var _surpriseCategories=[
+  {id:'Choral & Vocal',icon:'\uD83C\uDFBC',label:'Choral & Vocal'},
+  {id:'Opera',icon:'\uD83C\uDFAD',label:'Opera'},
+  {id:'Songs & Lieder',icon:'\uD83C\uDF99\uFE0F',label:'Songs & Lieder'},
+  {id:'Symphonies',icon:'\uD83C\uDFBB',label:'Symphonies'},
+  {id:'Orchestral',icon:'\uD83C\uDFBA',label:'Orchestral'},
+  {id:'Piano Concertos',icon:'\uD83C\uDFB9',label:'Piano Concertos'},
+  {id:'Concertos',icon:'\uD83C\uDFF9',label:'Other Concertos'},
+  {id:'String Quartets',icon:'\uD83C\uDFBB',label:'String Quartets'},
+  {id:'Chamber Music',icon:'\uD83D\uDD77\uFE0F',label:'Chamber Music'},
+  {id:'Solo Piano',icon:'\uD83C\uDFB9',label:'Solo Piano'},
+  {id:'Organ',icon:'\u26EA',label:'Organ'},
+  {id:'Guitar & Lute',icon:'\uD83C\uDFB8',label:'Guitar & Lute'},
+  {id:'Various',icon:'\uD83D\uDCA1',label:'Various & Compilations'}
+];
+
+function categorizeCd(cd){
+  var t=(cd.title||'').toLowerCase();
+  var a=(cd.artist||'').toLowerCase();
+  if(/\borgan\b/.test(a)||/\borgan\b/.test(t))return'Organ';
+  if(/guitar|lute|theorbo|mandolin/.test(a)||/guitar|lute/.test(t))return'Guitar & Lute';
+  if(/harpsichord|cembalo|clavecin/.test(a)&&!/orchestra|ensemble|quartet|concert/.test(a))return'Solo Piano';
+  var opera=['fidelio','lohengrin','parsifal','meistersinger','tristan','falstaff','traviata',
+    'don carlo','attila','radamisto','pastor fido','rodelinda','rinaldo','ariodante','alcina',
+    'giulio cesare','tamerlano','admeto','resurrezione','trionfo del tempo','semele','theodora',
+    'saul hwv','jephtha hwv','orfeo','nozze di figaro','le nozze','don giovanni',
+    'cos\u00ec fan tutte','cosi fan tutte','idomeneo','poliuto','la boh\u00e8me','boheme',
+    'tosca','butterfly','turandot','ermione','barbiere','elisir','lucia di','norma',
+    'clemenza di tito','occasione fa il ladro','flavio','atalanta','rossini','occasione'];
+  if(opera.some(function(k){return t.indexOf(k)!==-1;})||/\bopera\b/.test(t))return'Opera';
+  var choral=['mass','missa','requiem','passion','magnificat','stabat mater','vespers','anthem',
+    'gloria','te deum','oratorio','messiah','chandos anthem','christmas oratorio','carmelite',
+    'alexander\'s feast','st cecilia','nunc dimittis','dixit dominus','nisi dominus',
+    'salve regina','israel in egypt','judas maccab','cantata','cantatas','ode for','ode to',
+    'sacred','choral','miserere','exsultate','laudate','evening prayer','stabat',
+    'sch\u00f6pfung','creation','childhood of christ','enfance du christ','seasons',
+    'elijah','war requiem','hymn','motet','motets','spem in alium','esther hwv',
+    'athalia','solomon hwv','judas maccabaeus','jephtha','lamentation'];
+  if(choral.some(function(k){return t.indexOf(k)!==-1;}))return'Choral & Vocal';
+  if(/choir|chorus|choral|sixteen|chanticleer|collegium|chapel|cathedral|abbey|stile antico|vocal ensemble/.test(a))return'Choral & Vocal';
+  var songs=['lied','lieder','songs','winterreise','m\u00fcllerin','schubert edition',
+    'schwanengesang','voyage','unexpected songs','italian cantata','marian cantata',
+    'an die musik','folksong','folk songs','heroes and heroines','fedele e costante',
+    'music for a while','lieder recital','songs of travel','sea pictures',
+    'kindertotenlieder','lied von der erde','italian cantatas','song cycle','ayres'];
+  if(songs.some(function(k){return t.indexOf(k)!==-1;}))return'Songs & Lieder';
+  if(/\b(soprano|mezzo|contralto|tenor|baritone|bass-baritone|counter-tenor)\b/.test(a))
+    return'Songs & Lieder';
+  if(/\bsymphon/.test(t))return'Symphonies';
+  if(/piano concerto|concerto.{0,15}piano|keyboard concerto/.test(t))return'Piano Concertos';
+  if(/\bconcerti\b|\bconcerto\b|\bconcertos\b/.test(t))return'Concertos';
+  if(/string quartet|string quintet/.test(t))return'String Quartets';
+  if(/\bquartet|\bquintets?/.test(t)&&!/piano quintet|wind|clarinet quintet|oboe quintet/.test(t))
+    return'String Quartets';
+  var orch=['overture','ouverture','water music','fireworks','ballet','planets','symphonic poem',
+    'tone poem','hungarian dances','slavonic dances','serenade','don quixote op',
+    'romeo and juliet op','eine kleine nachtmusik','orchestral works','rite of spring',
+    'firebird','scheherazade','concertante','sinfonia concertante'];
+  if(orch.some(function(k){return t.indexOf(k)!==-1;}))return'Orchestral';
+  if(/philharmon|philharmoniker|philharmonia|symphony orchestra|berliner phil|wiener phil|london symphony|cleveland|chicago symphony|hall\u00e9/.test(a)&&!/concerto|sonata/.test(t))return'Orchestral';
+  var solo=['piano sonata','impromptus','nocturne','ballade','waltz','mazurka','polonaise',
+    '\u00e9tude','etude','rhapsod','partita','goldberg','well-tempered','inventions',
+    'sinfonias','toccata','wanderer','diabelli','piano works','piano music','piano pieces',
+    'clavier','clavier\u00fcbung','french suites','english suites','preludes and fugues',
+    'transformation','fantasies','kinderszenen','davidsb\u00fcndlert\u00e4nze','kreisleriana',
+    'lyric pieces','moments musicaux','complete harpsichord','harpsichord works'];
+  if(solo.some(function(k){return t.indexOf(k)!==-1;}))return'Solo Piano';
+  if(/\bpiano\b/.test(a)&&!/philharmon|orchestra|violin|cello|clarinet|quartet|trio|string|ensemble/.test(a))return'Solo Piano';
+  var chamber=['trio','sonata','duo','sextet','octet','quintet','sonatine','sonatina',
+    'arpeggione','chamber music','late chamber','recorder sonata','flute sonata',
+    'violin sonata','cello sonata','recorder quartet','piano quartet','divertimento','nonet'];
+  if(chamber.some(function(k){return t.indexOf(k)!==-1;}))return'Chamber Music';
+  if(/violin|cello|viola|clarinet|oboe|flute|recorder|bassoon|trumpet|horn/.test(a)&&
+     !/philharmon|orchestra|symphony|academy/.test(a))return'Chamber Music';
+  if(/philharmon|philharmoniker/.test(a))return'Orchestral';
+  return'Various';
+}
+
+function buildSurprisePool(){
+  var del=getDeleted();
+  var all=[...catalogue,...getAdditions()].filter(function(c){return!del.includes(c.id);});
+  var pools={};
+  all.forEach(function(cd){
+    var cat=categorizeCd(cd);
+    if(!pools[cat])pools[cat]=[];
+    pools[cat].push(cd);
+  });
+  return pools;
+}
+
+function openSurprisePanel(){
+  var pools=buildSurprisePool();
+  var container=document.getElementById('surprise-cats');
+  container.innerHTML=_surpriseCategories.map(function(sc){
+    var n=(pools[sc.id]||[]).length;
+    if(!n)return'';
+    return('<button class="surprise-cat-btn" data-cat="'+sc.id+'" onclick="pickFromCategory(this.dataset.cat)">'
+      +'<span class="surprise-cat-icon">'+sc.icon+'</span>'
+      +'<span class="surprise-cat-label">'+sc.label+'</span>'
+      +'<span class="surprise-cat-count">'+n+' CDs</span>'
+      +'</button>');
+  }).join('');
+  document.getElementById('surprise-overlay').style.display='flex';
+}
+
+function closeSurprisePanel(){
+  document.getElementById('surprise-overlay').style.display='none';
+}
+
+function pickFromCategory(catId){
+  closeSurprisePanel();
+  var pools=buildSurprisePool();
+  var pool=pools[catId]||[];
+  var played=getPlayedDates();
+  var unplayed=pool.filter(function(c){return!played[String(c.id)];});
+  var source=unplayed.length>0?unplayed:pool;
+  if(!source.length)return;
+  var cd=source[Math.floor(Math.random()*source.length)];
+  filtered=[cd];
+  render('');
+  setTimeout(function(){
+    var card=document.getElementById('card-'+cd.id);
+    if(card){scrollToCardBelowBanner(card);
+      card.classList.add('cd-highlight');
+      setTimeout(function(){card.classList.remove('cd-highlight');},2500);}
+  },100);
+}
 </script>
 
 <div id="add-cd-overlay" style="display:none">
