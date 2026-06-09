@@ -354,19 +354,19 @@ header h1 span{color:var(--gold);font-style:italic}
   <button class="filter-chip filter-chip-notes" id="notes-search-btn" onclick="toggleNotesSearch()">&#128196; Notes</button>
   <button class="filter-chip filter-chip-dd" id="composer-btn" onclick="toggleDropdown('composer',event)"><span id="composer-label">Composer</span> &#9662;</button>
   <button class="filter-chip filter-chip-dd" id="artist-btn" onclick="toggleDropdown('artist',event)"><span id="artist-label">Artist</span> &#9662;</button>
+  <button class="filter-chip filter-chip-dd" id="sets-btn" onclick="toggleDropdown('sets',event)"><span id="sets-label">Sets</span> &#9662;</button>
+  <button class="filter-chip filter-chip-wishlist" id="wishlist-chip" onclick="openWishlist()">&#9825; Wishlist</button>
   <button class="filter-chip filter-chip-more" id="more-btn" onclick="toggleMorePanel(event)">More &#9662;</button>
 </div>
 
 <div id="more-panel" style="display:none">
   <button class="filter-chip filter-chip-random" onclick="openSurprisePanel();closeMorePanel()">&#127922; Surprise Me</button>
   <button class="filter-chip filter-chip-dd" id="label-btn" onclick="closeMorePanel();toggleDropdown('label',event)"><span id="label-label">Label</span> &#9662;</button>
-  <button class="filter-chip filter-chip-dd" id="sets-btn" onclick="closeMorePanel();toggleDropdown('sets',event)"><span id="sets-label">Sets</span> &#9662;</button>
   <button class="filter-chip filter-chip-sacd" data-filter="SACD">SACD</button>
   <button class="filter-chip filter-chip-new" data-filter="sealed">&#127381; New</button>
   <button class="filter-chip filter-chip-star" data-filter="favourites">&#9733; Favourites</button>
   <button class="filter-chip filter-chip-dupe" data-filter="duplicate">&#9888; Duplicates</button>
   <button class="filter-chip filter-chip-articles" id="articles-chip" onclick="openArticles();closeMorePanel()">&#128214; Articles</button>
-  <button class="filter-chip filter-chip-wishlist" id="wishlist-chip" onclick="openWishlist();closeMorePanel()">&#9825; Wishlist</button>
 </div>
 
 <div id="dd-panel" style="display:none;position:fixed;left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);box-shadow:0 4px 20px rgba(0,0,0,0.18);z-index:150;max-height:50vh;overflow-y:auto" onclick="event.stopPropagation()">
@@ -2030,12 +2030,18 @@ function selectDropdown(idx){
     activeArtist=val;
     document.getElementById('artist-label').textContent=val.length>20?val.slice(0,18)+'…':val||'Artist';
     document.getElementById('artist-btn').classList.toggle('active',val!=='');
+  } else if(ddType==='sets'){
+    activeFilter=val;
+    const sl=val?val.replace(' set','').replace('Single CD','Single'):'Sets';
+    document.getElementById('sets-label').textContent=sl;
+    document.getElementById('sets-btn').classList.toggle('active',val!=='');
   } else {
     activeLabel=val;
     document.getElementById('label-label').textContent=val.length>18?val.slice(0,16)+'…':val||'Label';
     document.getElementById('label-btn').classList.toggle('active',val!=='');
   }
   closeDropdown();
+  closeMorePanel();
   search();
 }
 function closeDropdown(){
