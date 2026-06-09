@@ -76,17 +76,17 @@ header h1 span{color:var(--gold);font-style:italic}
 .results-count{font-size:0.92rem;font-weight:500;color:var(--navy)}
 .sort-btn{font-size:0.78rem;color:var(--navy);background:none;font-family:'DM Sans',sans-serif;cursor:pointer;padding:0.2rem 0.5rem;border:1px solid var(--border);border-radius:20px}
 .cards{padding:0 0.75rem 2rem;display:flex;flex-direction:column;gap:0.6rem}
-.card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
+.card{background:#FFF3EB;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
 .card:active{box-shadow:0 2px 8px rgba(27,43,91,0.15)}
 .card.duplicate{border-left:3px solid var(--gold)}
 .card-main{padding:0.9rem 1rem;cursor:pointer;display:flex;gap:0.75rem;align-items:flex-start}
-.card-num{min-width:28px;height:28px;background:var(--navy-xlight);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72rem;color:var(--navy-mid);font-weight:500;flex-shrink:0;margin-top:1px}
+.card-num{min-width:28px;height:28px;background:#E8D5B8;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72rem;color:var(--navy-mid);font-weight:500;flex-shrink:0;margin-top:1px}
 .card-body{flex:1;min-width:0}
 .card-title{font-weight:500;font-size:0.95rem;line-height:1.3;color:var(--text);margin-bottom:0.2rem;word-break:break-word}
 .card-artist{font-size:0.8rem;color:var(--text-mid);margin-bottom:0.35rem;line-height:1.4}
 .card-meta{display:flex;flex-wrap:wrap;gap:0.3rem;align-items:center}
 .pill{display:inline-block;padding:0.15rem 0.5rem;border-radius:20px;font-size:0.7rem;line-height:1.4}
-.pill-composer{background:var(--navy-xlight);color:var(--navy-mid)}
+.pill-composer{background:#E8D5B8;color:#1B2B5B}
 .pill-label{background:var(--cream-dark);color:var(--text-mid)}
 .pill-format{background:var(--gold-light);color:#7a5a0a}
 .pill-dupe{background:#fff3cd;color:#7a5a0a}
@@ -301,7 +301,7 @@ header h1 span{color:var(--gold);font-style:italic}
   .acd-suggest:active { background:#c8d8f8; }
 
   
-  .filter-chip-random{background:#8B4513!important;color:#fff!important;border-color:#8B4513!important;font-weight:500;}
+  .filter-chip-random{background:#F28500!important;color:#fff!important;border-color:#F28500!important;font-weight:500;}
   .played-tag{font-size:.75rem;color:#2a7a2a;padding:.15rem 0;font-style:italic;}
   .played-btn{display:block;width:100%;padding:.5rem;margin:.3rem 0;background:#f0fff0;border:1.5px solid #4a9a4a;color:#1a5a1a;border-radius:8px;font-size:.82rem;font-weight:500;cursor:pointer;font-family:inherit;text-align:center;}
   .played-btn:active{background:#d0f0d0;}
@@ -316,7 +316,7 @@ header h1 span{color:var(--gold);font-style:italic}
   #surprise-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:2000;display:flex;align-items:flex-end;}
   #surprise-sheet{background:#FAF7F2;width:100%;max-height:80vh;border-radius:16px 16px 0 0;
     display:flex;flex-direction:column;box-shadow:0 -4px 30px rgba(0,0,0,0.25);overflow:hidden;}
-  #surprise-hdr{background:#8B4513;color:#fff;padding:.8rem 1rem;display:flex;align-items:center;
+  #surprise-hdr{background:#F28500;color:#fff;padding:.8rem 1rem;display:flex;align-items:center;
     justify-content:space-between;flex-shrink:0;}
   #surprise-hdr span{font-size:.95rem;font-weight:500;}
   #surprise-hdr button{background:none;border:none;color:rgba(255,255,255,.7);font-size:1.2rem;cursor:pointer;padding:0 .2rem;}
@@ -1303,7 +1303,6 @@ header h1 span{color:var(--gold);font-style:italic}
       <button onclick="closeSurprisePanel()">&#10005;</button>
     </div>
     <div id="surprise-body">
-      <p id="surprise-intro">What are you in the mood for?</p>
       <div id="surprise-cats"></div>
     </div>
   </div>
@@ -3011,7 +3010,6 @@ var _surpriseCategories=[
   {id:'Solo Piano',icon:'\uD83C\uDFB9',label:'Solo Piano'},
   {id:'Organ',icon:'\u26EA',label:'Organ'},
   {id:'Guitar & Lute',icon:'\uD83C\uDFB8',label:'Guitar & Lute'},
-  {id:'Various',icon:'\uD83D\uDCA1',label:'Various & Compilations'}
 ];
 
 function categorizeCd(cd){
@@ -3120,7 +3118,8 @@ function pickFromCategory(catId){
   render('');
   setTimeout(function(){
     var card=document.getElementById('card-'+cd.id);
-    if(card){scrollToCardBelowBanner(card);
+    if(card){card.style.background='#FED0AE';
+      scrollToCardBelowBanner(card);
       card.classList.add('cd-highlight');
       setTimeout(function(){card.classList.remove('cd-highlight');},2500);}
   },100);
