@@ -330,7 +330,10 @@ header h1 span{color:var(--gold);font-style:italic}
   .surprise-cat-label{font-size:.78rem;font-weight:500;color:#1B2B5B;display:block;}
   .surprise-cat-count{font-size:.68rem;color:#aaa;display:block;}
 
-  </style>
+  
+  .filter-chip-wishlist{background:#8B1A4A!important;color:#fff!important;border-color:#8B1A4A!important;font-weight:500;}
+  .filter-chip-wishlist.active{background:#C8A84B!important;border-color:#C8A84B!important;color:#1B2B5B!important;}
+</style>
 </head>
 <body>
 
@@ -356,13 +359,14 @@ header h1 span{color:var(--gold);font-style:italic}
 
 <div id="more-panel" style="display:none">
   <button class="filter-chip filter-chip-random" onclick="openSurprisePanel();closeMorePanel()">&#127922; Surprise Me</button>
-  <button class="filter-chip filter-chip-dd" id="label-btn" onclick="toggleDropdown('label',event);closeMorePanel()"><span id="label-label">Label</span> &#9662;</button>
-  <button class="filter-chip filter-chip-dd" id="sets-btn" onclick="toggleDropdown('sets',event);closeMorePanel()"><span id="sets-label">Sets</span> &#9662;</button>
+  <button class="filter-chip filter-chip-dd" id="label-btn" onclick="closeMorePanel();toggleDropdown('label',event)"><span id="label-label">Label</span> &#9662;</button>
+  <button class="filter-chip filter-chip-dd" id="sets-btn" onclick="closeMorePanel();toggleDropdown('sets',event)"><span id="sets-label">Sets</span> &#9662;</button>
   <button class="filter-chip filter-chip-sacd" data-filter="SACD">SACD</button>
   <button class="filter-chip filter-chip-new" data-filter="sealed">&#127381; New</button>
   <button class="filter-chip filter-chip-star" data-filter="favourites">&#9733; Favourites</button>
   <button class="filter-chip filter-chip-dupe" data-filter="duplicate">&#9888; Duplicates</button>
   <button class="filter-chip filter-chip-articles" id="articles-chip" onclick="openArticles();closeMorePanel()">&#128214; Articles</button>
+  <button class="filter-chip filter-chip-wishlist" id="wishlist-chip" onclick="openWishlist();closeMorePanel()">&#9825; Wishlist</button>
 </div>
 
 <div id="dd-panel" style="display:none;position:fixed;left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);box-shadow:0 4px 20px rgba(0,0,0,0.18);z-index:150;max-height:50vh;overflow-y:auto" onclick="event.stopPropagation()">
