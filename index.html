@@ -324,9 +324,9 @@ header h1 span{color:var(--gold);font-style:italic}
   #surprise-intro{font-size:.85rem;color:#888;margin-bottom:.75rem;text-align:center;}
   #surprise-cats{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;}
   .surprise-cat-btn{background:#fff;border:1.5px solid #E8E0D0;border-radius:10px;
-    padding:.75rem .6rem;cursor:pointer;text-align:center;font-family:inherit;transition:all .15s;}
+    padding:.5rem .5rem;cursor:pointer;text-align:center;font-family:inherit;transition:all .15s;}
   .surprise-cat-btn:active{background:#1B2B5B;color:#fff;border-color:#1B2B5B;}
-  .surprise-cat-icon{font-size:1.4rem;display:block;margin-bottom:.2rem;}
+  .surprise-cat-icon{font-size:1.2rem;display:block;margin-bottom:.1rem;}
   .surprise-cat-label{font-size:.78rem;font-weight:500;color:#1B2B5B;display:block;}
   .surprise-cat-count{font-size:.68rem;color:#aaa;display:block;}
 
@@ -351,11 +351,11 @@ header h1 span{color:var(--gold);font-style:italic}
 
 <div class="filter-bar" id="filter-bar">
   <button class="filter-chip active" data-filter="">All</button>
+  <button class="filter-chip filter-chip-wishlist" id="wishlist-chip" onclick="openWishlist()">&#9825; Wishlist</button>
   <button class="filter-chip filter-chip-notes" id="notes-search-btn" onclick="toggleNotesSearch()">&#128196; Notes</button>
   <button class="filter-chip filter-chip-dd" id="composer-btn" onclick="toggleDropdown('composer',event)"><span id="composer-label">Composer</span> &#9662;</button>
   <button class="filter-chip filter-chip-dd" id="artist-btn" onclick="toggleDropdown('artist',event)"><span id="artist-label">Artist</span> &#9662;</button>
   <button class="filter-chip filter-chip-dd" id="sets-btn" onclick="toggleDropdown('sets',event)"><span id="sets-label">Sets</span> &#9662;</button>
-  <button class="filter-chip filter-chip-wishlist" id="wishlist-chip" onclick="openWishlist()">&#9825; Wishlist</button>
   <button class="filter-chip filter-chip-more" id="more-btn" onclick="toggleMorePanel(event)">More &#9662;</button>
 </div>
 
@@ -1308,6 +1308,62 @@ header h1 span{color:var(--gold);font-style:italic}
     </div>
     <div id="surprise-body">
       <div id="surprise-cats"></div>
+    </div>
+  </div>
+</div>
+
+
+<div id="wishlist-panel" style="display:none">
+  <div class="art-back-bar" onclick="closeWishlist()">
+    <span class="art-back-arrow">&#8592;</span>
+    <span>Back to catalogue</span>
+  </div>
+  <div style="padding:.75rem 1rem .4rem;display:flex;align-items:center;justify-content:space-between">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:#1B2B5B;font-style:italic">&#9825; Wishlist</div>
+    <button onclick="openAddWishlist()" style="background:#8B1A4A;color:#fff;border:none;padding:.5rem .9rem;border-radius:8px;font-size:.82rem;font-weight:500;cursor:pointer;font-family:inherit">+ Add CD</button>
+  </div>
+  <div id="wishlist-list" style="padding:0 .75rem 4rem"></div>
+</div>
+
+<div id="wishlist-add-overlay" style="display:none">
+  <div id="wishlist-add-modal">
+    <div id="wishlist-add-hdr">
+      <span>&#9825; Add to Wishlist</span>
+      <button onclick="closeAddWishlist()">&#10005;</button>
+    </div>
+    <div id="wishlist-add-body">
+      <div class="acd-field">
+        <label>Title *</label>
+        <input id="wl-title" type="text" placeholder="e.g. Bach: Goldberg Variations">
+      </div>
+      <div class="acd-field">
+        <label>Composer(s) <span class="acd-hint">comma-separated</span></label>
+        <input id="wl-composers" type="text" placeholder="e.g. J.S. Bach" oninput="updateWLComposerSugg()" autocomplete="off">
+        <div id="wl-comp-sugg"></div>
+      </div>
+      <div class="acd-field">
+        <label>Artist / Performer(s)</label>
+        <input id="wl-artist" type="text" placeholder="e.g. Glenn Gould (piano)" list="acd-artist-dl" autocomplete="off">
+      </div>
+      <div class="acd-field">
+        <label>Label</label>
+        <input id="wl-label" type="text" placeholder="e.g. Deutsche Grammophon" list="acd-label-dl" autocomplete="off">
+      </div>
+      <div class="acd-field">
+        <label>Format</label>
+        <select id="wl-format">
+          <option>Single CD</option><option>2-disc set</option><option>3-disc set</option>
+          <option>4-disc set</option><option>5-disc set</option><option>Box set</option><option>SACD</option>
+        </select>
+      </div>
+      <div class="acd-field">
+        <label>Clive&apos;s Notes <span class="acd-hint">pre-buy research, where to find it, etc.</span></label>
+        <textarea id="wl-notes" rows="4" placeholder="Why I want it, which version, where to buy..."></textarea>
+      </div>
+      <div id="wl-error" style="display:none;background:#fde8e8;border:1px solid #e08080;color:#8b0000;padding:.55rem .75rem;border-radius:6px;font-size:.82rem;margin-top:.5rem"></div>
+    </div>
+    <div id="wishlist-add-footer">
+      <button id="wl-submit-btn" onclick="submitAddWishlist()">&#9825; Add to Wishlist</button>
     </div>
   </div>
 </div>
