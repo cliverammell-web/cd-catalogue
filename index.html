@@ -368,6 +368,7 @@ header h1 span{color:var(--gold);font-style:italic}
   #more-panel{position:fixed;left:0;right:0;background:#fff;border-bottom:2px solid #E8E0D0;
     padding:.6rem 1rem;display:flex;flex-wrap:wrap;gap:.4rem;z-index:90;
     box-shadow:0 4px 12px rgba(0,0,0,.15);}
+  #more-panel .filter-chip{flex:1 1 calc(33.333% - .4rem);min-width:calc(33.333% - .4rem);max-width:calc(33.333% - .4rem);text-align:center;box-sizing:border-box;}
 
   
   #surprise-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:2000;display:flex;align-items:flex-end;}
@@ -412,6 +413,9 @@ header h1 span{color:var(--gold);font-style:italic}
   .wl-btn-acquire{flex:1;padding:.6rem .5rem;background:#2a7a2a;color:#fff;border:none;
     border-radius:8px;font-size:.8rem;font-weight:600;cursor:pointer;font-family:inherit;text-align:center;}
   .wl-btn-acquire:active{background:#1a5a1a;}
+  .wl-btn-edit{padding:.6rem .9rem;background:#1B2B5B;color:#fff;border:none;
+    border-radius:8px;font-size:.82rem;font-weight:600;cursor:pointer;font-family:inherit;}
+  .wl-btn-edit:active{background:#0f1a38;}
   .wl-btn-delete{padding:.6rem .9rem;background:#b83232;color:#fff;border:none;
     border-radius:8px;font-size:.82rem;font-weight:600;cursor:pointer;font-family:inherit;}
   .wl-btn-delete:active{background:#8b2020;}
@@ -448,16 +452,13 @@ header h1 span{color:var(--gold);font-style:italic}
   <button class="filter-chip filter-chip-notes" id="notes-search-btn" onclick="toggleNotesSearch()">&#128196; Notes</button>
   <button class="filter-chip filter-chip-dd" id="composer-btn" onclick="toggleDropdown('composer',event)"><span id="composer-label">Composer</span> &#9662;</button>
   <button class="filter-chip filter-chip-dd" id="artist-btn" onclick="toggleDropdown('artist',event)"><span id="artist-label">Artist</span> &#9662;</button>
+  <button class="filter-chip filter-chip-dd" id="label-btn" onclick="toggleDropdown('label',event)"><span id="label-label">Label</span> &#9662;</button>
   <button class="filter-chip filter-chip-dd" id="sets-btn" onclick="toggleDropdown('sets',event)"><span id="sets-label">Sets</span> &#9662;</button>
 </div>
 
 <div id="more-panel" style="display:none">
   <button class="filter-chip filter-chip-random" onclick="openSurprisePanel();closeMorePanel()">&#127922; Surprise Me</button>
-  <button class="filter-chip filter-chip-dd" id="label-btn" onclick="closeMorePanel();toggleDropdown('label',event)"><span id="label-label">Label</span> &#9662;</button>
-  <button class="filter-chip filter-chip-sacd" data-filter="SACD">SACD</button>
-  <button class="filter-chip filter-chip-new" data-filter="sealed">&#127381; New</button>
   <button class="filter-chip filter-chip-star" data-filter="favourites">&#9733; Favourites</button>
-  <button class="filter-chip filter-chip-dupe" data-filter="duplicate">&#9888; Duplicates</button>
   <button class="filter-chip filter-chip-articles" id="articles-chip" onclick="openArticles();closeMorePanel()">&#128214; Articles</button>
 </div>
 
@@ -4895,8 +4896,8 @@ header h1 span{color:var(--gold);font-style:italic}
   {id:300,label:"Philips",composers:["W.A. Mozart"],artist:"Mitsuko Uchida (piano)",title:"Mozart: Piano Sonatas KV 533/494 & KV 545 · Rondo KV 494",description:"412 122-2 · Philips",format:"Single CD",catNo:"412 122-2",usedGBP:9.00,newGBP:null,notes:"Philips. Mitsuko Uchida in two of Mozart's most profound later sonatas: K.533/494, a deeply serious work in F major, and K.545, the famous 'easy' sonata that conceals considerable depth beneath its apparent simplicity. Uchida's cycle for Philips remains the benchmark; these are among the most admired performances in the complete set."},
   {id:301,label:"RCA",composers:["W.A. Mozart"],artist:"Alicia de Larrocha (piano)",title:"Mozart: Piano Sonatas Vol. 4 · Sonatas K.279, 280, 311 · Fantasias K.475 & K.397 · Rondo K.485",description:"09026 60453 2 · RCA",format:"Single CD",catNo:"09026 60453 2",usedGBP:10.00,newGBP:null,notes:"RCA. Alicia de Larrocha (1923-2009) was one of the most celebrated pianists of the 20th century, particularly beloved for her Albéniz and Granados but also a distinguished Mozart interpreter. Her RCA Mozart series has an aristocratic elegance and natural authority. Volume 4 includes early sonatas alongside the great Fantasias K.475 and K.397."},
   {id:302,label:"CRD Records",composers:["W.A. Mozart","Johannes Brahms"],artist:"The Nash Ensemble",title:"Mozart: Clarinet Quintet K.581 · Brahms: Clarinet Quintet Op. 115",description:"CRD 3445 · CRD Records",format:"Single CD",catNo:"CRD 3445",usedGBP:12.00,newGBP:null,notes:"CRD Records. The two greatest works in the clarinet quintet repertoire on one disc — the natural coupling. Mozart's K.581 (1789) was written for Anton Stadler and is one of his most serene and autumnal works. Brahms's Op.115 (1891) was also written at the end of a composer's life, similarly valedictory in tone. The Nash Ensemble were one of Britain's finest chamber ensembles, with Michael Collins as clarinetist."},
-  {id:303,label:"Philips (Duo, 2-disc)",composers:["W.A. Mozart"],artist:"Arthur Grumiaux · Arpad Gerecz · Max Lesueur · Tibor de Machula · Academy of St Martin-in-the-Fields soloists · others",title:"Mozart: The Complete Quintets Vol. 1",description:"456 055-2 · Philips Duo · 2-disc set",format:"2-disc set",catNo:"456 055-2",usedGBP:10.00,newGBP:null,notes:"Philips Duo. The first volume of the complete Mozart quintets featuring the distinguished Grumiaux-led ensemble. Mozart's quintets — for strings, clarinet, horn and piano — represent some of his most intimate and searching chamber writing. Arthur Grumiaux (1921-1986) was one of the supreme violinists of the 20th century, his silky tone and aristocratic style perfectly suited to this music."},
-  {id:304,label:"Philips (Duo, 2-disc)",composers:["W.A. Mozart"],artist:"Quartetto Italiano · Jack Brymer (clarinet) · Abigail Quartet · others",title:"Mozart: The Complete Quintets Vol. 2",description:"456 058-2 · Philips Duo · 2-disc set",format:"2-disc set",catNo:"456 058-2",usedGBP:10.00,newGBP:null,notes:"Philips Duo. The companion volume featuring the legendary Quartetto Italiano and Jack Brymer (principal clarinettist of the RPO, one of the most celebrated British wind players of the 20th century). Together Vols. 1 and 2 form a comprehensive survey of Mozart's quintet output at exceptional Duo budget price."},
+  {id:303,label:"Philips (Duo, 2-disc)",composers:["W.A. Mozart"],artist:"Arthur Grumiaux · Arpad Gerecz · Max Lesueur · Tibor de Machula · Academy of St Martin-in-the-Fields Chamber Ensemble · Netherlands Wind Ensemble",title:"Mozart: The Complete Quintets Vol. 1",description:"456 055-2 · Philips Duo · 2-disc set",format:"2-disc set",catNo:"456 055-2",usedGBP:10.00,newGBP:null,notes:"Philips Duo. The first volume of the complete Mozart quintets featuring the distinguished Grumiaux-led ensemble. Mozart's quintets — for strings, clarinet, horn and piano — represent some of his most intimate and searching chamber writing. Arthur Grumiaux (1921-1986) was one of the supreme violinists of the 20th century, his silky tone and aristocratic style perfectly suited to this music."},
+  {id:304,label:"Philips (Duo, 2-disc)",composers:["W.A. Mozart"],artist:"Arthur Grumiaux · Arpad Gerecz · Quartetto Italiano · Allegri Quartet · Jack Brymer (clarinet)",title:"Mozart: The Complete Quintets Vol. 2",description:"456 058-2 · Philips Duo · 2-disc set",format:"2-disc set",catNo:"456 058-2",usedGBP:10.00,newGBP:null,notes:"Philips Duo. The companion volume featuring the legendary Quartetto Italiano and Jack Brymer (principal clarinettist of the RPO, one of the most celebrated British wind players of the 20th century). Together Vols. 1 and 2 form a comprehensive survey of Mozart's quintet output at exceptional Duo budget price."},
   {id:305,label:"EMI Classics (Box set)",composers:["W.A. Mozart"],artist:"English Chamber Orchestra / Jeffrey Tate",title:"Mozart: 51 Symphonies",description:"5 85589 2 · EMI Classics · 12-disc box set",format:"12-disc set",catNo:"5 85589 2",usedGBP:30.00,newGBP:null,notes:"EMI Classics. A remarkable 12-disc box set containing all 51 symphonies attributed to Mozart — the 41 canonical numbered works plus ten unnumbered early symphonies. Jeffrey Tate (1943-2017) was a British conductor particularly celebrated for his Mozart with the English Chamber Orchestra. His cycle is praised for its lightness of touch, natural phrasing and elegant proportions. An outstanding survey of Mozart's symphonic output from boyhood to the great final trilogy."},
   {id:306,label:"Deutsche Grammophon",composers:["W.A. Mozart"],artist:"Barbara Hendricks (soprano) · Janet Perry (soprano) · Peter Schreier (tenor) · Benjamin Luxon (bass) · Vienna Singverein · Berliner Philharmoniker / Herbert von Karajan",title:"Mozart: Grosse Messe C-moll (Mass in C minor) K.427",description:"400 067-2 · DG · very early DG CD pressing · rec. 1982",format:"Single CD",catNo:"400 067-2",usedGBP:12.00,newGBP:null,notes:"Deutsche Grammophon. One of the earliest DG CD releases — the 400 series dates from 1982-83. The Mass in C minor K.427 is one of Mozart's most ambitious sacred works, left unfinished at his death. It was partly premiered during his visit to Salzburg in 1783 when his wife Constanze sang the soprano solos. Karajan's grand, opulent account with Barbara Hendricks is a landmark recording, though its scale contrasts sharply with more recently fashionable period-instrument accounts."},
   {id:307,label:"Philips (Duo, 2-disc)",composers:["W.A. Mozart"],artist:"Mitsuko Uchida (piano) · English Chamber Orchestra / Jeffrey Tate",title:"Mozart: The Great Piano Concertos Vol. 1 · Nos. 19, 20, 21, 22 & 23",description:"468 540-2 · Philips Duo · 2-disc set",format:"2-disc set",catNo:"468 540-2",usedGBP:10.00,newGBP:null,notes:"Philips Duo. Five of Mozart's greatest concertos in one budget 2-disc set, drawn from Uchida and Tate's acclaimed complete series. Includes the famous No. 21 K.467 'Elvira Madigan' and the dark, stormy No. 20 K.466 in D minor. This Philips Duo series made Uchida's definitive cycle widely accessible at modest cost."},
@@ -5575,8 +5576,6 @@ function search(){
       return cd.duplicate===true&&cd.duplicateGroup&&
         catalogue.some(o=>o.id!==cd.id&&o.duplicateGroup===cd.duplicateGroup&&!deleted.includes(o.id));
     }
-    if(activeFilter==='SACD'&&!(cd.format&&cd.format.includes('SACD')))return false;
-    if(activeFilter&&activeFilter!=='SACD'&&cd.format!==activeFilter)return false;
     if(activeComposer&&!cd.composers.includes(activeComposer))return false;
     if(activeArtist&&!cd.artist.includes(activeArtist))return false;
     if(activeLabel&&normaliseLabel(cd.label)!==activeLabel)return false;
@@ -5588,7 +5587,7 @@ function search(){
       const notesHay=[cd.notes||'',getCliveNote(cd.id)].join(' ').toLowerCase();
       return exactMatch?wordRe.test(notesHay):qWords.every(w=>notesHay.includes(w));
     }
-    const hay=[cd.title,cd.artist,cd.label,...cd.composers,liveCatNo].join(' ').toLowerCase();
+    const hay=[cd.title,cd.artist,cd.label,...cd.composers,liveCatNo,(cd.format||'')].join(' ').toLowerCase();
     return exactMatch?wordRe.test(hay):qWords.every(w=>hay.includes(w));
   });
   const sm=sortModes[sortMode];
@@ -6195,7 +6194,7 @@ function closeMorePanel(){
   document.getElementById('more-panel').style.display='none';
 }
 function updateMoreBtn(){
-  var secondary=['SACD','sealed','favourites','duplicate'];
+  var secondary=['favourites'];
   var active=secondary.includes(activeFilter)||activeLabel!==''||
     document.getElementById('article-panel').style.display!=='none';
   document.getElementById('more-btn').classList.toggle('secondary-active',active);
@@ -6252,6 +6251,7 @@ function renderWishlist(){
       +notes
       +'<div class="wl-card-btns">'
       +'<button class="wl-btn-acquire" data-wlid="'+item.id+'" onclick="acquireWishlistItem(this.dataset.wlid)">✓ Acquired — add to catalogue</button>'
+      +'<button class="wl-btn-edit" data-wlid="'+item.id+'" onclick="editWishlistItem(this.dataset.wlid)">✎ Edit</button>'
       +'<button class="wl-btn-delete" data-wlid="'+item.id+'" onclick="showWLConfirm('+item.id+',event)">✕</button>'
       +'</div>'
       +'<div class="wl-confirm" id="wlconfirm-'+item.id+'">'
@@ -6260,6 +6260,25 @@ function renderWishlist(){
       +'<button class="wl-confirm-no" onclick="hideWLConfirm('+item.id+')">Cancel</button>'
       +'</div></div>');
   }).join('');
+}
+function editWishlistItem(id){
+  var item=getWishlist().find(function(w){return String(w.id)===String(id);});
+  if(!item)return;
+  document.getElementById('wishlist-add-overlay').style.display='flex';
+  document.getElementById('wl-catno').value=item.catno||'';
+  document.getElementById('wl-title').value=item.title||'';
+  document.getElementById('wl-composers').value=(item.composers||[]).join(', ');
+  document.getElementById('wl-artist').value=item.artist||'';
+  document.getElementById('wl-label').value=item.label||'';
+  document.getElementById('wl-notes').value=item.notes||'';
+  var fmt=document.getElementById('wl-format');
+  for(var i=0;i<fmt.options.length;i++){if(fmt.options[i].value===item.format){fmt.selectedIndex=i;break;}}
+  document.getElementById('wl-error').style.display='none';
+  document.getElementById('wl-lookup-status').textContent='';
+  document.getElementById('wl-comp-sugg').innerHTML='';
+  document.getElementById('wl-submit-btn').textContent='✎ Save Changes';
+  _editingWLId=item.id;
+  populateFormDataLists();
 }
 function openAddWishlist(){
   document.getElementById('wishlist-add-overlay').style.display='flex';
