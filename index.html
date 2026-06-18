@@ -5735,7 +5735,8 @@ function playOnPresto(id, e){
   const cd=[...catalogue,...getAdditions()].find(c=>c.id===id);
   if(!cd)return;
   const composer=(cd.composers&&cd.composers[0])||'';
-  const query=(composer+' '+cd.title).trim();
+  const firstArtist=(cd.artist||'').split(/\s*[·\/]\s*/)[0].replace(/\([^)]*\)/g,'').trim();
+  const query=[composer,cd.title,firstArtist].filter(Boolean).join(' ').trim();
   const url='https://www.prestomusic.com/search?search_query='+encodeURIComponent(query);
   window.open(url,'_blank');
 }
