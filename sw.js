@@ -1,4 +1,4 @@
-const CACHE = 'cd-catalogue-v6';
+const CACHE = 'cd-catalogue-v7';
 const BASE = '/cd-catalogue/';
 const ASSETS = [
   BASE,
@@ -8,8 +8,17 @@ const ASSETS = [
 
 self.addEventListener('install', e => {
   e.waitUntil(
-    caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting())
+    caches.open(CACHE).then(c => c.addAll(ASSETS))
+    // Note: skipWaiting() removed from install — activation is now
+    // controlled explicitly by the page via postMessage, so an update
+    // never takes over while the old version is still being used.
   );
+});
+
+self.addEventListener('message', e => {
+  if (e.data === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });
 
 self.addEventListener('activate', e => {
