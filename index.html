@@ -5735,24 +5735,22 @@ function printReport(){
   <style>
     body{font-family:'DM Sans',Arial,sans-serif;color:#1a1a1a;padding:1.5rem;max-width:800px;margin:0 auto}
     h1{font-size:1.3rem;margin-bottom:0.2rem;color:#1B2B5B}
-    .report-sub{font-size:0.85rem;color:#555;margin-bottom:0.15rem}
-    .report-date{font-size:0.78rem;color:#888;margin-bottom:1.2rem}
+    .report-sub{font-size:0.85rem;color:#333;margin-bottom:1.2rem;font-weight:700}
     table{width:100%;border-collapse:collapse;font-size:0.82rem}
     th{background:#1B2B5B;color:#fff;text-align:left;padding:0.4rem 0.6rem;font-size:0.72rem;letter-spacing:0.04em;text-transform:uppercase}
     td{padding:0.32rem 0.6rem;border-bottom:1px solid #ddd}
     tr:nth-child(even) td{background:#f7f5f0}
     .col-id{width:10%}.col-loc{width:14%}.col-catno{width:24%}.col-title{width:52%}
-    .report-count{font-size:0.78rem;color:#888;margin-top:1rem;text-align:right}
+    .report-footer{display:flex;justify-content:space-between;font-size:0.78rem;color:#888;margin-top:1rem}
     @media print{body{padding:0.5cm}}
   </style></head><body>
   <h1>Clive's CD Collection</h1>
   <div class="report-sub">Filtered report for: ${filterDesc}</div>
-  <div class="report-date">Printed ${today}</div>
   <table>
     <tr><th class="col-id">CD No.</th><th class="col-loc">Loc.</th><th class="col-catno">Cat. No.</th><th class="col-title">CD Title</th></tr>
     ${rows}
   </table>
-  <div class="report-count">${filtered.length} CD${filtered.length===1?'':'s'}</div>
+  <div class="report-footer"><span>Printed ${today}</span><span>${filtered.length} CD${filtered.length===1?'':'s'}</span></div>
   </body></html>`;
   const win=window.open('','_blank');
   win.document.write(reportHtml);
