@@ -4937,9 +4937,19 @@ header h1 span{color:var(--gold);font-style:italic}
 <button class="scroll-fab" id="scroll-fab" onclick="scrollFab()" title="Scroll to bottom">&#8964;</button>
 <div class="data-bar">
   <button class="data-btn" onclick="openAddCD()" style="border-color:#2a7a2a;color:#1a5a1a">&#43; Add CD</button>
-  <button class="data-btn" onclick="exportData()">&#128228; Export data</button>
-  <button class="data-btn" onclick="document.getElementById('import-file').click()">&#128229; Import data</button>
-  <button class="data-btn" id="restore-btn" onclick="showRestoreConfirm()" style="display:none;border-color:#b94040;color:#8b2020;line-height:1.2;text-align:center">&#x21A9; Restore<br><span id="restore-count" style="font-size:.72rem;opacity:.85">0 CDs</span></button>
+  <button class="data-btn" id="options-btn" onclick="toggleOptionsPanel(event)">&#8943; Options</button>
+</div>
+<div id="options-panel" style="display:none;position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:2px solid var(--border);box-shadow:0 -4px 20px rgba(0,0,0,0.18);z-index:250;padding:0.75rem 0.75rem calc(0.75rem + env(safe-area-inset-bottom))">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem">
+    <span style="font-size:0.78rem;font-weight:600;color:var(--text-mid);letter-spacing:0.04em;text-transform:uppercase">Options</span>
+    <span onclick="toggleOptionsPanel(event)" style="cursor:pointer;font-size:1.1rem;color:var(--text-mid);padding:0 0.3rem">&#10005;</span>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:0.5rem">
+    <button class="data-btn" style="flex:none;width:100%" onclick="printReport();toggleOptionsPanel(event)">&#128424; Print Report</button>
+    <button class="data-btn" style="flex:none;width:100%" onclick="exportData();toggleOptionsPanel(event)">&#128228; Export data</button>
+    <button class="data-btn" style="flex:none;width:100%" onclick="document.getElementById('import-file').click()">&#128229; Import data</button>
+    <button class="data-btn" id="restore-btn" onclick="showRestoreConfirm()" style="display:none;flex:none;width:100%;border-color:#b94040;color:#8b2020">&#x21A9; Restore <span id="restore-count" style="font-size:.72rem;opacity:.85">0 CDs</span></button>
+  </div>
   <input type="file" id="import-file" accept=".json" style="display:none" onchange="importData(event)">
 </div>
 <div class="import-confirm" id="import-confirm">
@@ -5684,6 +5694,72 @@ window.addEventListener('scroll',function(){
   fab.title=atBottom?'Scroll to top':'Scroll to bottom';
   fab.classList.toggle('at-bottom', atBottom);
 });
+function toggleOptionsPanel(e){
+  if(e)e.stopPropagation();
+  const panel=document.getElementById('options-panel');
+  panel.style.display=panel.style.display==='none'?'block':'none';
+}
+document.addEventListener('click',function(e){
+  const panel=document.getElementById('options-panel');
+  if(panel&&panel.style.display==='block'&&!panel.contains(e.target)&&e.target.id!=='options-btn'){
+    panel.style.display='none';
+  }
+});
+
+function describeActiveFilter(){
+  const parts=[];
+  if(activeComposer)parts.push('Composer: '+activeComposer);
+  if(activeArtist)parts.push('Artist: '+activeArtist);
+  if(activeLabel)parts.push('Label: '+activeLabel);
+  if(activeFilter==='favourites')parts.push('Favourites');
+  else if(activeFilter==='sealed')parts.push('New / Sealed');
+  else if(activeFilter==='duplicate')parts.push('Duplicates');
+  else if(activeFilter)parts.push(activeFilter);
+  const q=(document.getElementById('search').value||'').trim();
+  if(q)parts.push('Search: "'+q+'"');
+  if(parts.length===0)return 'All CDs';
+  return parts.join(' · ');
+}
+
+function printReport(){
+  const filterDesc=describeActiveFilter();
+  const catnos=getCatNoStore();
+  const locs=getLocStore();
+  const rows=filtered.map(cd=>{
+    const catNo=(catnos[cd.id]||cd.catNo||'—');
+    const loc=(locs[cd.id]||'—');
+    return '<tr><td>'+cd.id+'</td><td>'+loc+'</td><td>'+catNo+'</td><td>'+cd.title.replace(/</g,'&lt;')+'</td></tr>';
+  }).join('');
+  const today=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+  const reportHtml=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Clive's CD Collection — Report</title>
+  <style>
+    body{font-family:'DM Sans',Arial,sans-serif;color:#1a1a1a;padding:1.5rem;max-width:800px;margin:0 auto}
+    h1{font-size:1.3rem;margin-bottom:0.2rem;color:#1B2B5B}
+    .report-sub{font-size:0.85rem;color:#555;margin-bottom:0.15rem}
+    .report-date{font-size:0.78rem;color:#888;margin-bottom:1.2rem}
+    table{width:100%;border-collapse:collapse;font-size:0.82rem}
+    th{background:#1B2B5B;color:#fff;text-align:left;padding:0.4rem 0.6rem;font-size:0.72rem;letter-spacing:0.04em;text-transform:uppercase}
+    td{padding:0.32rem 0.6rem;border-bottom:1px solid #ddd}
+    tr:nth-child(even) td{background:#f7f5f0}
+    .col-id{width:10%}.col-loc{width:14%}.col-catno{width:24%}.col-title{width:52%}
+    .report-count{font-size:0.78rem;color:#888;margin-top:1rem;text-align:right}
+    @media print{body{padding:0.5cm}}
+  </style></head><body>
+  <h1>Clive's CD Collection</h1>
+  <div class="report-sub">Filtered report for: ${filterDesc}</div>
+  <div class="report-date">Printed ${today}</div>
+  <table>
+    <tr><th class="col-id">CD No.</th><th class="col-loc">Loc.</th><th class="col-catno">Cat. No.</th><th class="col-title">CD Title</th></tr>
+    ${rows}
+  </table>
+  <div class="report-count">${filtered.length} CD${filtered.length===1?'':'s'}</div>
+  </body></html>`;
+  const win=window.open('','_blank');
+  win.document.write(reportHtml);
+  win.document.close();
+  win.onload=function(){win.print();};
+}
+
 function exportData(){
   const data={
     exported: new Date().toISOString(),
