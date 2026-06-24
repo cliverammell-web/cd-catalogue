@@ -455,6 +455,7 @@ header h1 span{color:var(--gold);font-style:italic}
   <button class="filter-chip filter-chip-dd" id="artist-btn" onclick="toggleDropdown('artist',event)"><span id="artist-label">Artist</span> &#9662;</button>
   <button class="filter-chip filter-chip-dd" id="label-btn" onclick="toggleDropdown('label',event)"><span id="label-label">Label</span> &#9662;</button>
   <button class="filter-chip filter-chip-dd" id="sets-btn" onclick="toggleDropdown('sets',event)"><span id="sets-label">Sets</span> &#9662;</button>
+  <button class="filter-chip filter-chip-dd" id="category-btn" onclick="toggleDropdown('category',event)"><span id="category-label">Category</span> &#9662;</button>
 </div>
 
 <div id="more-panel" style="display:none">
@@ -5665,7 +5666,7 @@ header h1 span{color:var(--gold);font-style:italic}
   {id:538,label:"Hyperion",composers:["Franz Schubert"],artist:"Felicity Lott (soprano) · Graham Johnson (piano)",title:"The Hyperion Schubert Edition · Complete Songs Vol. 19 · Felicity Lott",description:"CDJ33019 · Hyperion Schubert Edition · Vol. 19",format:"Single CD",catNo:"CDJ33019",usedGBP:10.00,newGBP:null,notes:"Hyperion. Volume 19 of the monumental Hyperion Schubert Edition — the complete songs, recorded over more than two decades by Graham Johnson with an extraordinary range of singers. Felicity Lott (b.1947), the greatly admired British soprano, brings her characteristic elegance, intelligence and tonal beauty to this volume. Graham Johnson's piano playing and scholarship are the backbone of the entire series — his booklet notes alone constitute a major contribution to Schubert literature. The Hyperion Schubert Edition is one of the great recording enterprises of the late 20th century."}
 ];
 
-let activeFilter='', activeComposer='', activeArtist='', activeLabel='', sortMode=0, notesSearchMode=false, filtered=[...catalogue], ddType='', ddItems=[];
+let activeFilter='', activeComposer='', activeArtist='', activeLabel='', activeCategory='', sortMode=0, notesSearchMode=false, filtered=[...catalogue], ddType='', ddItems=[];
 const sortModes=[{key:'id',label:'No.'},{key:'title',label:'A-Z'},{key:'usedGBP',label:'Price low'},{key:'usedGBPd',label:'Price high'},{key:'played',label:'Last Played'}];
 
 function fmt(n){return n!=null&&n>0?'£'+n.toFixed(2):null}
@@ -5781,21 +5782,32 @@ function getArtistList(){
   });
   return [...s].sort((a,b)=>a.localeCompare(b));
 }
+function getCategoryList(){
+  const del=getDeleted();
+  const counts={};
+  [...catalogue,...getAdditions()].filter(cd=>!del.includes(cd.id)).forEach(cd=>{
+    const cat=categorizeCd(cd);
+    counts[cat]=(counts[cat]||0)+1;
+  });
+  return _surpriseCategories
+    .filter(sc=>counts[sc.id])
+    .map(sc=>({value:sc.id,display:sc.icon+' '+sc.label+' ('+counts[sc.id]+')'}));
+}
 function toggleDropdown(type, e){
   e.stopPropagation();
   const panel=document.getElementById('dd-panel');
   if(ddType===type){closeDropdown();return;}
   ddType=type;
   const setItems=[{value:'Single CD',display:'Single CD'},{value:'2-disc set',display:'2-disc sets'},{value:'3-disc set',display:'3-disc sets'},{value:'4-disc set',display:'4-disc sets'},{value:'5-disc set',display:'5-disc sets'},{value:'6-disc set',display:'6-disc sets'},{value:'7-disc set',display:'7-disc set'},{value:'8-disc set',display:'8-disc sets'},{value:'12-disc set',display:'12-disc sets'}];
-  ddItems=type==='composer'?getComposerList():type==='artist'?getArtistList():type==='sets'?setItems:getLabelList();
+  ddItems=type==='composer'?getComposerList():type==='artist'?getArtistList():type==='sets'?setItems:type==='category'?getCategoryList():getLabelList();
   const formatFilters=['Single CD','2-disc set','3-disc set','4-disc set','5-disc set','6-disc set','7-disc set','8-disc set','12-disc set'];
-  const current=type==='composer'?activeComposer:type==='artist'?activeArtist:type==='sets'?(formatFilters.includes(activeFilter)?activeFilter:''):activeLabel;
+  const current=type==='composer'?activeComposer:type==='artist'?activeArtist:type==='sets'?(formatFilters.includes(activeFilter)?activeFilter:''):type==='category'?activeCategory:activeLabel;
   const filterBar=document.querySelector('.filter-bar');
   const resultsBar=document.querySelector('.results-bar');
   const top=filterBar.getBoundingClientRect().bottom;
   panel.style.top=top+'px';
   document.getElementById('dd-list').innerHTML=
-    '<div class="dd-item'+(current===''?' dd-selected':'')+'" onclick="selectDropdown(-1)">All '+(type==='composer'?'composers':type==='artist'?'artists':type==='sets'?'formats':'labels')+'</div>'+
+    '<div class="dd-item'+(current===''?' dd-selected':'')+'" onclick="selectDropdown(-1)">All '+(type==='composer'?'composers':type==='artist'?'artists':type==='sets'?'formats':type==='category'?'categories':'labels')+'</div>'+
     ddItems.map((item,i)=>{
       const val=item.value||item;
       const label=item.display||item;
@@ -5820,6 +5832,11 @@ function selectDropdown(idx){
     const sl=val?val.replace(' set','').replace('Single CD','Single'):'Sets';
     document.getElementById('sets-label').textContent=sl;
     document.getElementById('sets-btn').classList.toggle('active',val!=='');
+  } else if(ddType==='category'){
+    activeCategory=val;
+    const catObj=_surpriseCategories.find(sc=>sc.id===val);
+    document.getElementById('category-label').textContent=catObj?catObj.label:'Category';
+    document.getElementById('category-btn').classList.toggle('active',val!=='');
   } else {
     activeLabel=val;
     document.getElementById('label-label').textContent=val.length>18?val.slice(0,16)+'…':val||'Label';
@@ -6189,6 +6206,7 @@ function search(){
     if(activeComposer&&!cd.composers.includes(activeComposer))return false;
     if(activeArtist&&!cd.artist.includes(activeArtist))return false;
     if(activeLabel&&normaliseLabel(cd.label)!==activeLabel)return false;
+    if(activeCategory&&categorizeCd(cd)!==activeCategory)return false;
     if(activeFilter&&activeFilter!=='sealed'&&activeFilter!=='favourites'&&activeFilter!=='duplicate'&&cd.format!==activeFilter)return false;
     if(!q)return true;
     const liveCatNo=catnos[cd.id]||cd.catNo||'';
@@ -6231,7 +6249,7 @@ function render(q){
     notFound.classList.remove('visible');
   }
 
-  const isFiltered=q||activeFilter||activeComposer||activeArtist||activeLabel;
+  const isFiltered=q||activeFilter||activeComposer||activeArtist||activeLabel||activeCategory;
   resCount.textContent=isFiltered?filtered.length+' of '+total:total+' CDs';
   
 
@@ -6593,7 +6611,7 @@ function goToCD(id){
   _lastArticleId=_currentArticleId||null;
   _lastScrollY=window.scrollY;
   closeArticles();
-  activeFilter=''; activeComposer=''; activeArtist=''; activeLabel=''; notesSearchMode=false;
+  activeFilter=''; activeComposer=''; activeArtist=''; activeLabel=''; activeCategory=''; notesSearchMode=false;
   document.getElementById('search').value='';
   document.getElementById('clear-search').classList.remove('visible');
   search();
@@ -6725,7 +6743,7 @@ function submitAddCD(){
     _acquiringWLId=null;
   }
   closeAddCD();
-  activeFilter=''; activeComposer=''; activeArtist=''; activeLabel=''; notesSearchMode=false;
+  activeFilter=''; activeComposer=''; activeArtist=''; activeLabel=''; activeCategory=''; notesSearchMode=false;
   document.getElementById('search').value='';
   document.getElementById('clear-search').classList.remove('visible');
   search();
